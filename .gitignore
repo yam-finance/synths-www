@@ -2,7 +2,9 @@
 node_modules
 .vscode
 .idea
-/dist
+dist
+dist-ssr
+*.local
 
 # local env files
 .env.local
