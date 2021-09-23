@@ -20,7 +20,7 @@ export default defineComponent({
     SynthsNew,
   },
   setup() {
-    const userDetails = inject("userDetails");
+    const userDetails:any = inject("userDetails");
     return {
       userDetails
     };
