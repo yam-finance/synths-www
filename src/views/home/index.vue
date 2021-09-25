@@ -1,5 +1,9 @@
 <template>
-  <div>
+  <div class="home">
+  
+    <img class="m-auto max-w-xs" alt="logo" :src="synthsLogo" />
+    <SynthsNew class="mt-5" :msg="'Welcome ' + userDetails.name " />
+    
     <SynthsSideBar :settle="true" :title="'Mint position'" :sub-title="'Deposit WETH collateral to mint Long and Short tokens of equal value'" :button-name="'Mint'">
       <template #costs>
         <hr class="bg-white opacity-10 mb-2"/>
@@ -10,18 +14,30 @@
     </SynthsSideBar>
     <SynthsSideBar :settle="false" :title="'Mint position'" :sub-title="'Deposit WETH collateral to mint Long and Short tokens of equal value'" :button-name="'Mint'"/>
     <SynthsSideBar :settle="false" :title="'Mint position'" :sub-title="'Deposit WETH collateral to mint Long and Short tokens of equal value'" :button-name="'Mint'"/>
+    
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, inject, computed } from "vue";
 
 import SynthsSideBar from '../../components/SynthsSideBar.vue'
+import SynthsNew from "../../components/SynthsNew.vue"
+import synthsLogo from "../../assets/images/logo.png"
 
 export default defineComponent({
   name: "Home",
   components: {
     SynthsSideBar
+    SynthsNew,
+  },
+  setup() {
+  
+    const userDetails:any = inject("userDetails");
+    
+    return {
+      userDetails
+    };
   }
 })
 </script>
