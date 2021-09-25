@@ -28,7 +28,7 @@ import synthsLogo from "../../assets/images/logo.png"
 export default defineComponent({
   name: "Home",
   components: {
-    SynthsSideBar
+    SynthsSideBar,
     SynthsNew,
   },
   setup() {
