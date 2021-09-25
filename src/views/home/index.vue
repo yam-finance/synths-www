@@ -31,6 +31,9 @@ export default defineComponent({
     SynthsSideBar,
     SynthsNew,
   },
+  data: () => ({
+    synthsLogo
+  }),
   setup() {
   
     const userDetails:any = inject("userDetails");
