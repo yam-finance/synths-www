@@ -1,5 +1,5 @@
 <template>
-  <div class="sci-wrapper bg-[#3739AA] rounded-xl py-4 px-6 w-full grid gap-2.5">
+  <div class="sci-wrapper bg-[#3739AA] rounded-xl py-4 px-6 w-full grid gap-x-2.5">
     <div class="sci__selector uppercase font-bold text-xs justify-self-start">
       weth
     </div>
