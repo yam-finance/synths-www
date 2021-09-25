@@ -6,6 +6,11 @@ const routes = [
         name: 'Home',
         component: () => import('../views/home/index.vue'),
     },
+    {
+        path: '/explore',
+        name: 'Explore',
+        component: () => import('../views/explore/index.vue'),
+    }
 ]
 const router = createRouter({
     history: createWebHistory(),

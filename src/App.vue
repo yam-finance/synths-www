@@ -3,9 +3,11 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, provide, reactive } from "vue";
+import { defineComponent, provide, reactive, ref, onUnmounted } from "vue";
+
 export default defineComponent({
   setup() {
+    //Setup Simple Data
     const state = reactive({
       name: "John Doe",
       email: "john@gmail.com",
@@ -23,7 +25,24 @@ export default defineComponent({
     provide("updateUsername", updateUsername);
     provide("updateEmail", updateEmail);
 
-    return { state };
-  }
+    //Setup window resize watcher
+    const screenWidth = ref<number | null>(null);
+
+    const resizeHandler = () => {
+      screenWidth.value = window.innerWidth;
+    }
+
+    window.addEventListener("resize", resizeHandler);
+
+    onUnmounted(()=>{
+      window.removeEventListener("resize", resizeHandler);
+    });
+
+    provide('screen', screenWidth);
+
+    return { state, screenWidth };
+  },
+
+
 })
 </script>
