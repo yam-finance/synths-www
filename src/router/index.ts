@@ -10,7 +10,7 @@ const routes = [
         path: '/explore',
         name: 'Explore',
         component: () => import('../views/explore/index.vue'),
-    },
+    }
 ]
 const router = createRouter({
     history: createWebHistory(),
