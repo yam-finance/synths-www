@@ -21,7 +21,7 @@
 <script lang="ts">
 import { defineComponent, inject, computed } from "vue";
 
-import SynthsSideBar from '../../components/SynthsSideBar.vue'
+import SynthsSideBar from '../../components/SynthsInsideBar.vue'
 import SynthsNew from "../../components/SynthsNew.vue"
 import synthsLogo from "../../assets/images/logo.png"
 

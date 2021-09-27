@@ -10,6 +10,11 @@ const routes = [
         path: '/explore',
         name: 'Explore',
         component: () => import('../views/explore/index.vue'),
+    },
+    {
+        path: '/insidebar',
+        name: 'InsideBar',
+        component: () => import('../views/elements/insidebar.vue'),
     }
 ]
 const router = createRouter({
