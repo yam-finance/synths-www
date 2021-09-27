@@ -47,7 +47,7 @@ import SynthsRoundedButton from "./buttons/SynthsRoundedButton.vue";
 import SynthsCryptoInput from "./inputs/SynthsCryptoInput.vue";
 
 export default {
-  name: "SynthsInsideBar",
+  name: "SynthsSideBar",
   props: {
     title: {
       type: String,

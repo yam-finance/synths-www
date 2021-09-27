@@ -10,7 +10,6 @@
     </SynthsInsideBar>
     <SynthsInsideBar :settle="false" :title="'Mint position'" :sub-title="'Deposit WETH collateral to mint Long and Short tokens of equal value'" :button-name="'Mint'"/>
     <SynthsInsideBar :settle="false" :title="'Mint position'" :sub-title="'Deposit WETH collateral to mint Long and Short tokens of equal value'" :button-name="'Mint'"/>
-    
   </div>
 </template>
 
