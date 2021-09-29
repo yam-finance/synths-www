@@ -1,13 +1,19 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/explore">Explore</router-link>
-    <router-link to="/insidebar">InSidebar</router-link>
-  </div>
+<!--  <div id="nav">-->
+<!--    <router-link to="/">Home</router-link> |-->
+<!--    <router-link to="/explore">Explore</router-link>-->
+<!--  </div>-->
   <router-view />
 </template>
 
 <style lang="scss">
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
 #nav {
   padding: 30px;
   a {
@@ -19,48 +25,3 @@
   }
 }
 </style>
-
-<script lang="ts">
-import { defineComponent, provide, reactive, ref, onUnmounted } from "vue";
-
-export default defineComponent({
-  setup() {
-    //Setup Simple Data
-    const state = reactive({
-      name: "John Doe",
-      email: "john@gmail.com",
-    });
-
-    const updateUsername = (name: string) => {
-      state.name = name;
-    };
-
-    const updateEmail = (email: string) => {
-      state.email = email;
-    };
-
-    provide("userDetails", state);
-    provide("updateUsername", updateUsername);
-    provide("updateEmail", updateEmail);
-
-    //Setup window resize watcher
-    const screenWidth = ref<number | null>(null);
-
-    const resizeHandler = () => {
-      screenWidth.value = window.innerWidth;
-    }
-
-    window.addEventListener("resize", resizeHandler);
-
-    onUnmounted(()=>{
-      window.removeEventListener("resize", resizeHandler);
-    });
-
-    provide('screen', screenWidth);
-
-    return { state, screenWidth };
-  },
-
-
-})
-</script>
