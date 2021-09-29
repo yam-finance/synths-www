@@ -1,23 +1,26 @@
 <template>
-  <div class="home">
-    <img class="m-auto max-w-xs" alt="logo" :src="synthsLogo" />
-    <SynthsNew class="mt-5" msg="Welcome to Yam Synths!" />
+  <div class="home bg-light">
+    <Header />
+    <SideBar />
+    <TabContent />
+    <Footer />
   </div>
+
 </template>
 
 <script lang="ts">
-import SynthsNew from "./components/SynthsNew.vue"
-import synthsLogo from "../../assets/images/logo.png"
+import SideBar from "./components/SideBar.vue"
+import Header from "./components/Header.vue"
+import TabContent from "./components/TabContent.vue"
+import Footer from "./components/Footer.vue"
 
 export default {
   name: "Home",
-  data: function () {
-    return {
-      synthsLogo: synthsLogo,
-    }
-  },
   components: {
-    SynthsNew,
+    TabContent,
+    SideBar,
+    Header,
+    Footer,
   },
 }
 </script>

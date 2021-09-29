@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.bg-main {
+    background: #11112F;
+}
+
+.bg-dark {
+    background: #0C0C28;
+}
+
+.bg-light {
+    background: #19193F;
+}
+
+.wallet-btn{
+    background: #DA4CAB;
+}
+
+.txt-main{
+    color: #7171B2;
+}
