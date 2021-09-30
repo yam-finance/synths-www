@@ -1,5 +1,5 @@
 <template>
-  <button class="rounded-xl py-4 w-full font-bold" @click="$emit('btn-click')">
+  <button class="rounded-xl py-4 w-full font-bold" :class="buttonStyles" @click="$emit('btn-click')">
     <slot name="buttonTitle"></slot>
   </button>
 </template>
@@ -7,11 +7,17 @@
 <script>
 export default {
   name: "SynthsRoundedButton",
+  props: {
+    color: {
+      type: String,
+      default: 'linear-gradient(180deg, #F77FA0 0%, #DA4CAB 100%)'
+    },
+    buttonStyles: {
+      type: String,
+      default: ''
+    }
+  },
   emits: ['btn-click'],
-  data: () => ({
-    title: "Mint",
-    color: 'linear-gradient(180deg, #F77FA0 0%, #DA4CAB 100%)'
-  })
 }
 </script>
 

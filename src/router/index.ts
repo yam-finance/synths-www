@@ -15,6 +15,11 @@ const routes = [
         path: '/insidebar',
         name: 'InsideBar',
         component: () => import('../views/elements/insidebar.vue'),
+    },
+    {
+        path: '/markets',
+        name: 'Markets',
+        component: () => import('../views/markets/index.vue'),
     }
 ]
 const router = createRouter({
