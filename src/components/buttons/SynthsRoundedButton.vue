@@ -7,7 +7,7 @@
 <script>
 export default {
   name: "SynthsRoundedButton",
-  emits: ["btn-click"],
+  emits: ['btn-click'],
   data: () => ({
     title: "Mint",
     color: 'linear-gradient(180deg, #F77FA0 0%, #DA4CAB 100%)'
