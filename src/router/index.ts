@@ -6,6 +6,16 @@ const routes = [
         name: 'Home',
         component: () => import('../views/home/index.vue'),
     },
+    {
+        path: '/explore',
+        name: 'Explore',
+        component: () => import('../views/explore/index.vue'),
+    },
+    {
+        path: '/insidebar',
+        name: 'InsideBar',
+        component: () => import('../views/elements/insidebar.vue'),
+    }
 ]
 const router = createRouter({
     history: createWebHistory(),

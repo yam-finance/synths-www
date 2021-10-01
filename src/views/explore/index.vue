@@ -1,11 +1,10 @@
 <template>
   <div class="explore">
-      explore
+    explore
   </div>
 </template>
 
 <script lang="ts">
-
 export default {
   name: 'Explore',
 }

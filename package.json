@@ -3,11 +3,14 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
+    "tailwind": "tailwind-config-viewer -o -p 3001",
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview"
   },
   "dependencies": {
     "sass": "^1.42.1",
+    "tailwind-config-viewer": "^1.6.2",
+    "tailwindcss": "^2.2.15",
     "vue": "^3.2.13",
     "vue-router": "^4.0.11"
   },
