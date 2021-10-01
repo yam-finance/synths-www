@@ -8,7 +8,7 @@ module.exports = {
     extend: {},
     placeholderColor: {
       'primary': '#525284',
-    }
+    },
     fontFamily: {
       openSauceSans: ['Open Sauce Sans','sans-serif'],
     },
@@ -20,7 +20,6 @@ module.exports = {
       purpleLight: '#7171B2',
       purpleDark: '#525284',
       blueDark: '#212149',
-
     },
     screens: {
       'xs': '475px',
