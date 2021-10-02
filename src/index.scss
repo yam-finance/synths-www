@@ -28,3 +28,41 @@
 html, body, #__nuxt, #__layout {
     height: 100%
 }
+
+
+html, body {
+    .bg-main {
+        background: #11112F;
+    }
+
+    .bg-dark {
+        background: #0C0C28;
+    }
+
+    .bg-light {
+        background: #19193F;
+    }
+
+    .wallet-btn{
+        background: #DA4CAB;
+    }
+
+    .txt-main{
+        color: #7171B2;
+    }
+
+    ::-webkit-scrollbar {
+        width: 2px;
+        border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: inherit;
+        border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #0C0C28;
+        border-radius: 5px;
+    }
+}
