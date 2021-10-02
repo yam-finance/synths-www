@@ -9,18 +9,18 @@
 </template>
 
 <script lang="ts">
-import SideBar from "./components/SideBar.vue"
-import Header from "./components/Header.vue"
-import TabContent from "./components/TabContent.vue"
-import Footer from "./components/Footer.vue"
+  import SideBar from "../../components/Layout/SideBar.vue"
+  import Header from "../../components/Layout/Header.vue"
+  import TabContent from "../../components/Layout/TabContent.vue"
+  import Footer from "../../components/Layout/Footer.vue"
 
-export default {
-  name: "Home",
-  components: {
-    TabContent,
-    SideBar,
-    Header,
-    Footer,
-  },
-}
+  export default {
+    name: "Home",
+    components: {
+      TabContent,
+      SideBar,
+      Header,
+      Footer,
+    },
+  }
 </script>
