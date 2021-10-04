@@ -1,5 +1,5 @@
 <template>
-  <div class="home bg-light">
+  <div class="home bg-main">
     <Header />
     <SideBar />
     <Footer />

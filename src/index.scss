@@ -51,8 +51,12 @@ html, body {
         color: #7171B2;
     }
 
+    .bd-main{
+        border-color: #242449;
+    }
+
     ::-webkit-scrollbar {
-        width: 2px;
+        width: 1px;
         border-radius: 5px;
     }
 

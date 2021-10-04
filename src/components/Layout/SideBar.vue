@@ -1,9 +1,9 @@
 <template>
         <aside
-            class="sticky justify-center w-64 top-12 overflow-auto bg-navy-blue-100 dark:bg-black-500 dark:text-gray-100 text-left font-semibold bg-main txt-main invisible md:visible"
+            class="sticky justify-center w-64 top-12 overflow-auto bg-navy-blue-100 dark:bg-black-500 dark:text-gray-100 text-left font-semibold bg-main txt-main invisible md:visible border-r bd-main "
             style="height: calc(100vh - 96px)"
         >
-            <div class="w-full h-12 py-3 px-3 border-b border-gray-700">
+            <div class="w-full h-12 py-3 px-3 border-b bd-main">
                 <span class="text-sm">All Synths</span>
             </div>
             <div class="w-full h-12 py-3 px-3 flex">
@@ -15,7 +15,7 @@
                 />
             </div>
             <ul class="w-full py-4">
-                <router-link to="/synths">
+                <router-link to="#">
                 <li
                      v-for="(menu, key) in menus"
                      :key="key"
@@ -23,7 +23,7 @@
                 >
                     <div
                             v-if="menu.title.toLowerCase().includes(filter_string)"
-                            class="px-4 py-2 my-auto flex border-b border-gray-700 cursor-pointer" :class="menu.active==1? 'bg-light': ''"
+                            class="px-4 py-2 my-auto flex border-b bd-main cursor-pointer" :class="menu.active==1? 'bg-light': ''"
                     >
                         <img src="../../assets/images/group.png">
                         <span class="px-2 text-sm my-auto text-white">{{ menu.title }}</span>
