@@ -15,9 +15,9 @@
                 v-for="(tab, key) in tabs"
                 :key="key"
                 @click="selectTab(tab)"
-                :class="tab.active==1? 'bg-white rounded-md': ''"
+                :class="tab.id==this.activeTab? 'bg-white rounded-md': ''"
             >
-                <span v-if="tab.active==1" class="text-black">{{ tab.title }}</span>
+                <span v-if="tab.id==this.activeTab" class="text-black">{{ tab.title }}</span>
                 <span v-else>{{ tab.title }}</span>
             </li>
         </ul>
@@ -60,34 +60,30 @@
         {
             id: 1,
             title: "Explore Synths",
-            active: 0,
         },
         {
             id: 2,
             title: "Markets",
-            active: 1,
         },
         {
             id: 3,
             title: "Portfolio",
-            active: 0,
         },
     ];
     let isDropDownOpen = 0;
+    let activeTab = 1;
     export default {
         name: "Header",
         data() {
             return {
                 tabs,
-                isDropDownOpen
+                isDropDownOpen,
+                activeTab
             };
         },
         methods: {
             selectTab(item) {
-                tabs.forEach(function(tab_item) {
-                    tab_item.active = 0;
-                });
-                item.active = 1;
+                this.activeTab = item.id;
             }
         }
     }

@@ -15,6 +15,7 @@
                 />
             </div>
             <ul class="w-full py-4">
+                <router-link to="/synths">
                 <li
                      v-for="(menu, key) in menus"
                      :key="key"
@@ -34,6 +35,7 @@
                         </div>
                     </div>
                 </li>
+                </router-link>
             </ul>
         </aside>
 

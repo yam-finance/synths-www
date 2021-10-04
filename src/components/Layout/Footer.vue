@@ -12,8 +12,8 @@
             </div>
             <div class="flex absolute w-96 right-0 p-2 text-right h-12 lg:border-l border-gray-700">
                 <div class="flex absolute right-2">
-                    <img src="../../assets/images/twitter.png" class="mx-2 my-auto cursor-pointer">
-                    <img src="../../assets/images/discord.png" class="mx-2 my-auto cursor-pointer">
+                    <img src="../../assets/images/socials/twitter.png" class="mx-2 my-auto cursor-pointer">
+                    <img src="../../assets/images/socials/discord.png" class="mx-2 my-auto cursor-pointer">
                 </div>
             </div>
         </div>
@@ -57,8 +57,8 @@
 
                 <div class="flex fixed bottom-96 mb-12 visible md:invisible px-2 py-3">
                     <div class="flex">
-                        <img src="../../assets/images/twitter.png" class="mx-2 my-auto cursor-pointer">
-                        <img src="../../assets/images/discord.png" class="mx-2 my-auto cursor-pointer">
+                        <img src="../../assets/images/socials/twitter.png" class="mx-2 my-auto cursor-pointer">
+                        <img src="../../assets/images/socials/discord.png" class="mx-2 my-auto cursor-pointer">
                     </div>
                 </div>
             </div>
