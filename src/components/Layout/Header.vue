@@ -17,8 +17,10 @@
                 @click="selectTab(tab)"
                 :class="tab.id==this.activeTab? 'bg-white rounded-md': ''"
             >
-                <span v-if="tab.id==this.activeTab" class="text-black">{{ tab.title }}</span>
-                <span v-else>{{ tab.title }}</span>
+                <router-link to="#">
+                    <span v-if="tab.id==this.activeTab" class="text-black">{{ tab.title }}</span>
+                    <span v-else>{{ tab.title }}</span>
+                </router-link>
             </li>
         </ul>
         <div class="flex absolute w-96 right-0 p-2 text-right h-12 lg:border-l bd-main invisible md:visible">
