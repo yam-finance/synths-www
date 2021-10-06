@@ -2,11 +2,13 @@
     <nav
         class="h-12 sticky overflow-hidden top-0 left-0 z-20 bg-navy-blue-800 text-white flex flex-col lg:flex-row border-b bd-main bg-main"
     >
-        <div class="flex p-2 pr-2.5 border-r bd-main">
-            <img src="../../assets/images/yamIcon.png">
-            <h3 class="logo font-bold text-emerald-500 my-auto ml-3">Yam Synths</h3>
+        <router-link to="/">
+        <div class="w-64 h-12 flex border-r bd-main">
+            <img src="../../assets/images/yamIcon.png" class="m-2">
+            <h3 class="logo font-bold text-emerald-500 my-auto">Yam Synths</h3>
             <span class="bg-blue-500 my-auto px-2 overflow-hidden ml-3 md:ml-16 rounded-full text-sm">v 3.0</span>
         </div>
+        </router-link>
         <ul
             class="flex space-x-8 overflow-hidden sticky left-64 my-auto px-4 rounded-full text-sm mx-4 py-1 font-semibold bg-dark txt-main invisible md:visible"
         >
@@ -14,11 +16,10 @@
                 class="min-w-max cursor-pointer px-2"
                 v-for="(tab, key) in tabs"
                 :key="key"
-                @click="selectTab(tab)"
-                :class="tab.id==this.activeTab? 'bg-white rounded-md': ''"
+                :class="tab.title==$route.name? 'bg-white rounded-md': ''"
             >
-                <router-link to="#">
-                    <span v-if="tab.id==this.activeTab" class="text-black">{{ tab.title }}</span>
+                <router-link :to='"/" + tab.to'>
+                    <span v-if="tab.title==$route.name" class="text-black">{{ tab.title }}</span>
                     <span v-else>{{ tab.title }}</span>
                 </router-link>
             </li>
@@ -62,18 +63,21 @@
         {
             id: 1,
             title: "Explore Synths",
+            to: "explore-synths"
         },
         {
             id: 2,
             title: "Markets",
+            to: "markets"
         },
         {
             id: 3,
             title: "Portfolio",
+            to: "portfolio"
         },
     ];
     let isDropDownOpen = 0;
-    let activeTab = 1;
+    let activeTab = 0;
     export default {
         name: "Header",
         data() {
