@@ -1,7 +1,7 @@
 <template>
         <aside
-            class="sticky justify-center w-64 top-12 overflow-auto bg-navy-blue-100 dark:bg-black-500 dark:text-gray-100 text-left font-semibold bg-main txt-main invisible md:visible border-r bd-main "
-            style="height: calc(100vh - 96px)"
+            class="sticky justify-center w-64 top-12 overflow-auto bg-navy-blue-100 dark:bg-black-500 dark:text-gray-100 text-left font-semibold bg-main txt-main invisible md:visible border-r bd-main scrollbar"
+            style="height: calc(100vh - 96px); scrollbar-width: none;"
         >
             <div class="w-full h-12 py-3 px-3 border-b bd-main">
                 <span class="text-sm">All Synths</span>
@@ -15,7 +15,6 @@
                 />
             </div>
             <ul class="w-full py-4">
-
                 <li
                      v-for="(menu, key) in menus"
                      :key="key"
