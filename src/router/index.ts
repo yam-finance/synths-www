@@ -15,6 +15,11 @@ const routes = [
         path: '/insidebar',
         name: 'InsideBar',
         component: () => import('../views/elements/insidebar.vue'),
+    },
+    {
+        path: '/synths/:synth',
+        name: 'Synth',
+        component: () => import('../views/sidemenu/sidemenu.vue'),
     }
 ]
 const router = createRouter({
