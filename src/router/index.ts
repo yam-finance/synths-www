@@ -18,7 +18,7 @@ const routes = [
     },
     {
         path: '/synths/:synth',
-        name: 'SideMenu',
+        name: 'Synth',
         component: () => import('../views/sidemenu/sidemenu.vue'),
     }
 ]
