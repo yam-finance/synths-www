@@ -3,6 +3,7 @@
     <router-link to="/">Home</router-link> |
     <router-link to="/explore">Explore</router-link>
     <router-link to="/insidebar">InSidebar</router-link>
+    <router-link to="/markets">Markets</router-link>
   </div>
   <router-view />
 </template>

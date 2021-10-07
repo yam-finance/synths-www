@@ -1,102 +1,138 @@
 <template>
-  <div>
-    <LineChart class="chart-container" ref="lineRef" :chartData="testData" :options="options"/>
+  <div ref="chartContainer" class="chart-container">
+    <canvas ref="chart"></canvas>
   </div>
 </template>
 
 <script>
-import {computed, defineComponent, ref, onMounted} from 'vue';
-import {LineChart} from 'vue-chart-3';
+import {
+  Chart,
+  ArcElement,
+  LineElement,
+  BarElement,
+  PointElement,
+  BarController,
+  BubbleController,
+  DoughnutController,
+  LineController,
+  PieController,
+  PolarAreaController,
+  RadarController,
+  ScatterController,
+  CategoryScale,
+  LinearScale,
+  LogarithmicScale,
+  RadialLinearScale,
+  TimeScale,
+  TimeSeriesScale,
+  Decimation,
+  Filler,
+  Legend,
+  Title,
+  Tooltip,
+  SubTitle
+} from 'chart.js';
 
-export default defineComponent({
-  name: 'Home',
-  components: {LineChart},
-  setup() {
-    const lineRef = ref(null);
+Chart.register(
+    ArcElement,
+    LineElement,
+    BarElement,
+    PointElement,
+    BarController,
+    BubbleController,
+    DoughnutController,
+    LineController,
+    PieController,
+    PolarAreaController,
+    RadarController,
+    ScatterController,
+    CategoryScale,
+    LinearScale,
+    LogarithmicScale,
+    RadialLinearScale,
+    TimeScale,
+    TimeSeriesScale,
+    Decimation,
+    Filler,
+    Legend,
+    Title,
+    Tooltip,
+    SubTitle
+);
 
-    const options = ref({
-      responsive: true,
-      maintainAspectRatio: false,
-      legend: {
-        display: false
-      },
-      tooltips: {
-        enabled: false
-      },
-      scales: {
-        alignToPixels:true,
-        xAxes: [{
-          gridLines: {
+export default {
+  props: {
+    chartData: {
+      type: Array,
+      default: () => []
+    },
+    labels: {
+      type: Array,
+      default: () => []
+    }
+  },
+  mounted() {
+    const canvas = this.$refs.chart;
+    const container = this.$refs.chartContainer
+    const ctx = canvas.getContext('2d')
+    const data = {
+      labels: [],
+      datasets: []
+    }
+    if (this.labels) {
+      data.labels = this.labels
+    }
+
+
+    this.chartData.forEach(item => {
+      data.datasets.push(item)
+    })
+
+    canvas.height = container.clientHeight;
+    canvas.width = container.clientWidth;
+
+
+    let myChart = new Chart(ctx, {
+      type: 'line',
+      data: data,
+      options: {
+        plugins: {
+          legend: {
             display: false
           },
-          ticks: {
-            display: false
-          },
-        }],
-        yAxes: [{
-          gridLines: {
-            display: false
-          },
-          ticks: {
-            display: false,
-            beginAtZero: true
-          },
-        }],
-      },
-      transitions: {
-        show: {
-          animations: {
-            x: {
-              from: 0
-            },
-            y: {
-              from: 0
-            }
+          tooltip: {
+            enabled: false
           }
         },
-        hide: {
-          animations: {
-            x: {
-              to: 0
-            },
-            y: {
-              to: 0
-            }
+        scales: {
+          y: {
+            display: false // Hide Y axis labels
+          },
+          x: {
+            display: false // Hide X axis labels
           }
-        }
-      },
-      elements: {
-        point:{
-          radius: 0
+        },
+        elements: {
+          point:{
+            radius: 0
+          },
+          line: {
+            borderJoinStyle: 'round'
+          }
+        },
+        layout: {
+          padding: 5
         }
       }
     });
+  }
 
-    const ctx = document.createElement('canvas').getContext('2d');
-    const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-    gradient.addColorStop(0, 'rgba(45, 255, 66, 0.2)');
-    gradient.addColorStop(1, 'rgba(45, 255, 66, 0)');
-
-
-    const testData = computed(() => ({
-      labels: '# of Votes',
-      datasets: [{
-        data: [40, 10, 5, 60,0],
-        backgroundColor: gradient,
-        borderColor: 'white',
-        borderWidth: 2
-      }]
-    }));
-
-    // value we've specified above.
-
-    return {testData, options, lineRef};
-  },
-});
+}
 </script>
 <style lang="scss">
 .chart-container{
   position: relative;
   height: 100%;
+  width: 100%;
 }
 </style>
