@@ -8,7 +8,6 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "@j-t-mcc/vue3-chartjs": "^1.1.4",
     "autoprefixer": "^10.3.5",
     "chart.js": "^3.5.1",
     "lodash": "^4.17.21",

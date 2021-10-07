@@ -91,11 +91,6 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.0.tgz#87de7af9c231826fdd68ac7258f77c429e0e5fcf"
   integrity sha512-wdppn25U8z/2yiaT6YGquE6X8sSv7hNMWSXYSSU1jGv/yd6XqjXgTDJ8KP4NgjTXfJ3GbRjeeb8RTV7a/VpM+w==
 
-"@j-t-mcc/vue3-chartjs@^1.1.4":
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/@j-t-mcc/vue3-chartjs/-/vue3-chartjs-1.1.4.tgz#f1910b61487886ef927eaed1ddf77809f5c80d2f"
-  integrity sha512-DaMbonZp+lkUm+xe9xoRyvDJhXUKYMIpax937nzq+isUmRy3iIy6QeyYZV2Rd+T63ePRUJs2xxHSPMnmZDUduw==
-
 "@koa/router@^9.0.1":
   version "9.4.0"
   resolved "https://registry.yarnpkg.com/@koa/router/-/router-9.4.0.tgz#734b64c0ae566eb5af752df71e4143edc4748e48"
