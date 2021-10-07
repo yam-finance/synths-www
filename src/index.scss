@@ -31,3 +31,44 @@ html, body, #__nuxt, #__layout {
 p, span, div {
     @apply text-white cursor-default;
 }
+
+html, body {
+    .bg-main {
+        background: #11112F;
+    }
+
+    .bg-dark {
+        background: #0C0C28;
+    }
+
+    .bg-light {
+        background: #19193F;
+    }
+
+    .wallet-btn{
+        background: #DA4CAB;
+    }
+
+    .txt-main{
+        color: #7171B2;
+    }
+
+    .bd-main{
+        border-color: #242449;
+    }
+
+    ::-webkit-scrollbar {
+        width: 1px;
+        border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: inherit;
+        border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #0C0C28;
+        border-radius: 5px;
+    }
+}

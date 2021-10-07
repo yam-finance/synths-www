@@ -20,6 +20,11 @@ const routes = [
         path: '/markets',
         name: 'Markets',
         component: () => import('../views/markets/index.vue'),
+    },
+    {
+        path: '/synths/:synth',
+        name: 'Synth',
+        component: () => import('../views/sidemenu/sidemenu.vue'),
     }
 ]
 const router = createRouter({
