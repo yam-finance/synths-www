@@ -10,7 +10,7 @@
                     <img src="../../assets/images/external.png" >
                 </div>
             </div>
-            <div class="flex absolute w-96 right-0 p-2 text-right h-12 lg:border-l bd-main">
+            <div class="flex absolute w-96 mr-4 right-0 p-2 text-right h-12 lg:border-l bd-main">
                 <div class="flex absolute right-2">
                     <img src="../../assets/images/socials/twitter.png" class="mx-2 my-auto cursor-pointer">
                     <img src="../../assets/images/socials/discord.png" class="mx-2 my-auto cursor-pointer">
