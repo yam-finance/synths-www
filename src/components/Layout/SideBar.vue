@@ -1,6 +1,6 @@
 <template>
         <aside
-            class="sticky justify-center w-64 top-12 overflow-auto bg-navy-blue-100 dark:bg-black-500 dark:text-gray-100 text-left font-semibold bg-main txt-main invisible md:visible border-r bd-main scrollbar"
+            class="sticky justify-center w-64 top-12 overflow-auto bg-navy-blue-100 dark:bg-black-500 dark:text-gray-100 text-left font-semibold bg-main txt-main hidden md:block border-r bd-main scrollbar"
             style="height: calc(100vh - 96px); scrollbar-width: none;"
         >
             <div v-if="hasSideBar">

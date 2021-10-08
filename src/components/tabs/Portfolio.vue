@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full font-semibold">
+    <div class="w-full font-semibold hidden md:block">
         <div class="w-full h-12 py-3 px-3 border-b bd-main">
             <span class="text-sm txt-main">Portfolio</span>
         </div>
@@ -19,7 +19,7 @@
                 </div>
                 <div class="text-xs txt-main flex">
                     Portential rewards this week
-                    <img src="../../assets/images/help-circle.png" class="ml-2">
+                    <img src="../../assets/images/help-circle.png" class="ml-2 h-4">
                 </div>
             </div>
             <div class="card rounded-lg bg-light px-6 py-4">
@@ -80,6 +80,56 @@
                         <img src="../../assets/images/arrow-right.png" class="cursor-pointer">
                     </td>
                 </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="w-screen font-semibold block md:hidden text-white"
+        v-if="1"
+    >
+        <div class="w-full py-2 px-3 border-b bd-main">
+            <span class="text-sm txt-main">Portfolio</span>
+        </div>
+        <div class="card p-3 border-b bd-main">
+            <div class="text-lg font-bold">$42,000</div>
+            <div class="text-xs txt-main">Total Portfolio Value</div>
+        </div>
+        <div class="w-full h-12 py-3 px-4 border-b bd-main text-white text-lg">
+            Your Synths
+        </div>
+        <table class="text-white border-b bd-main w-full font-normal">
+            <thead class="text-sm txt-main text-left">
+            <th class="py-2 px-4">Synths</th>
+            <th>Balance</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th></th>
+            </thead>
+            <tbody class="border-t bd-main text-md">
+            <tr
+                    v-for="(synth, key) in synths"
+                    :key="key"
+                    class="border-b bd-main"
+            >
+                <td class="px-4 py-2 font-semibold flex">
+                    <img src="../../assets/images/group.png">
+                    &nbsp;{{synth.name}}
+                </td>
+                <td>{{synth.balance}}</td>
+                <td>${{synth.price}}</td>
+                <td>
+                    <div v-if="synth.status">
+                        <span class="text-white">Live</span>
+                    </div>
+                    <div v-else>
+                        <span class="txt-main">Expired</span>
+                        <span class="rounded-xl wallet-btn text-xs text-white px-2 pb-0.5 my-auto font-bold">Settle</span>
+                    </div>
+                </td>
+                <td>
+                    <img src="../../assets/images/arrow-right.png" class="cursor-pointer">
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>

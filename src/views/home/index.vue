@@ -4,10 +4,13 @@
     <main>
       <div class="w-full" style="display: -webkit-inline-box">
           <div>
-            <SideBar/>
+              <SideBar/>
           </div>
           <div class="hidden md:block" style="width: calc(100vw - 256px - 400px)">
-            <router-view/>
+              <router-view/>
+          </div>
+          <div class="block md:hidden" style="height: calc(100vh - 64px);">
+              <router-view/>
           </div>
           <div class="w-96 mr-4 border-l bd-main hidden md:block">
 
