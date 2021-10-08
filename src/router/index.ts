@@ -5,6 +5,34 @@ const routes = [
         path: '/',
         name: 'Home',
         component: () => import('../views/home/index.vue'),
+        meta: { hasSideBar: 1 },
+        children: [
+            {
+                path: '/explore-synths',
+                name: 'Explore Synths',
+                component: () => import('../components/tabs/ExploreSynths.vue'),
+                meta: { hasSideBar: 1 }
+            },
+            {
+                path: '/markets',
+                name: 'Markets',
+                component: () => import('../components/tabs/Markets.vue'),
+                meta: { hasSideBar: 1 }
+            },
+            {
+                path: '/portfolio',
+                name: 'Portfolio',
+                component: () => import('../components/tabs/Portfolio.vue'),
+                meta: { hasSideBar: 0 }
+            },
+            {
+                path: '/synths/:synth',
+                name: 'Synths',
+                component: () => import('../components/tabs/ExploreSynths.vue'),
+                meta: { hasSideBar: 1 }
+            },
+
+        ]
     },
     {
         path: '/explore',

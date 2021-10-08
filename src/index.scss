@@ -46,7 +46,7 @@ html, body {
     }
 
     .wallet-btn{
-        background: #DA4CAB;
+        background: linear-gradient(180deg, #F77FA0 0%, #DA4CAB 100%);
     }
 
     .txt-main{
@@ -59,6 +59,7 @@ html, body {
 
     ::-webkit-scrollbar {
         width: 1px;
+        height: 5px;
         border-radius: 5px;
     }
 

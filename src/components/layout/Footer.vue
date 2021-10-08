@@ -10,7 +10,7 @@
                     <img src="../../assets/images/external.png" >
                 </div>
             </div>
-            <div class="flex absolute w-96 right-0 p-2 text-right h-12 lg:border-l bd-main">
+            <div class="flex absolute w-96 mr-4 right-0 p-2 text-right h-12 lg:border-l bd-main">
                 <div class="flex absolute right-2">
                     <img src="../../assets/images/socials/twitter.png" class="mx-2 my-auto cursor-pointer">
                     <img src="../../assets/images/socials/discord.png" class="mx-2 my-auto cursor-pointer">
@@ -29,22 +29,22 @@
                     v-if="isMenuOpen"
             >
                 <ul
-                    class="overflow-hidden w-full my-auto py-1 text-lg my-4 text-left fixed bottom-12 z-30 visible md:invisible"
+                    class="overflow-hidden w-full my-auto py-1 text-lg my-4 pt-8 text-left fixed bottom-8 z-30 visible md:invisible bg-main"
                 >
                     <span class="px-4 txt-main">Menu</span>
-                    <li class="min-w-max cursor-pointer border-t bd-main px-4 py-3">
-                        <span>Explore Synths</span>
-                    </li>
-                    <li class="min-w-max cursor-pointer border-t bd-main px-4 py-3">
-                        <span>Markets</span>
-                    </li>
-                    <li class="min-w-max cursor-pointer border-t bd-main px-4 py-3">
-                        <span>Portfolio</span>
+                    <li class="min-w-max cursor-pointer border-t bd-main px-4 py-3"
+                        v-for="(tab, key) in tabs"
+                        :key="key"
+                        @click="isMenuOpen = !isMenuOpen"
+                    >
+                        <router-link :to='"/" + tab.to'>
+                        <span>{{ tab.title }}</span>
+                        </router-link>
                     </li>
                 </ul>
 
                 <ul
-                    class="overflow-hidden w-full my-auto py-1 text-lg my-4 text-left fixed bottom-64 z-30 visible md:invisible"
+                    class="overflow-hidden w-full my-auto py-1 text-lg my-4 text-left fixed bottom-60 z-30 visible md:invisible bg-main"
                 >
                     <span class="px-4 txt-main">Help</span>
                     <li class="min-w-max cursor-pointer border-t bd-main px-4 py-3">
@@ -55,7 +55,7 @@
                     </li>
                 </ul>
 
-                <div class="flex fixed bottom-96 mb-12 visible md:invisible px-2 py-3">
+                <div class="w-full flex fixed bottom-96 mb-2 visible md:invisible px-2 py-3 bg-main">
                     <div class="flex">
                         <img src="../../assets/images/socials/twitter.png" class="mx-2 my-auto cursor-pointer">
                         <img src="../../assets/images/socials/discord.png" class="mx-2 my-auto cursor-pointer">
@@ -78,13 +78,33 @@
 
 <script>
     let isMenuOpen = 0;
+    let tabs = [
+        {
+            id: 1,
+            title: "Explore Synths",
+            to: "explore-synths"
+        },
+        {
+            id: 2,
+            title: "Markets",
+            to: "markets"
+        },
+        {
+            id: 3,
+            title: "Portfolio",
+            to: "portfolio"
+        },
+    ];
     export default {
         name: "Footer",
         data() {
             return {
-                isMenuOpen
+                isMenuOpen,
+                tabs
             };
         },
+        methods: {
+        }
     }
 </script>
 
