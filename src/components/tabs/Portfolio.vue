@@ -1,9 +1,9 @@
 <template>
-    <div class="w-full font-semibold hidden md:block">
+    <div class="w-full font-semibold hidden md:block mb-10">
         <div class="w-full h-12 py-3 px-3 border-b bd-main">
             <span class="text-sm txt-main">Portfolio</span>
         </div>
-        <div class="p-4 grid md:grid-cols-2 2xl:grid-cols-4 gap-4 text-white border-b bd-main">
+        <div class="p-4 grid md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-4 gap-4 text-white border-b bd-main">
             <div class="card rounded-lg bg-light px-6 py-4">
                 <div class="text-lg font-bold">$42,000</div>
                 <div class="text-xs txt-main">Total Portfolio Value</div>
@@ -40,8 +40,8 @@
             Your Synths
         </div>
 
-        <table class="text-white border-b bd-main w-full font-normal">
-            <thead class="text-sm txt-main text-left">
+        <table class="text-white border-b bd-main w-full font-normal hidden lg:table">
+            <thead class="lg:text-xs xl:text-sm txt-main text-left">
                 <th class="py-2 px-4">Synths</th>
                 <th>Balance</th>
                 <th>Amount Minted</th>
@@ -51,14 +51,14 @@
                 <th>Status</th>
                 <th></th>
             </thead>
-            <tbody class="border-t bd-main text-md">
+            <tbody class="border-t bd-main lg:text-xs xl:text-sm 2xl:text-base">
                 <tr
                     v-for="(synth, key) in synths"
                     :key="key"
                     class="border-b bd-main"
                 >
                     <td class="px-4 py-2 font-semibold flex">
-                        <img src="../../assets/images/group.png">
+                        <img src="../../assets/images/group.png" class="h-6">
                         &nbsp;{{synth.name}}
                     </td>
                     <td>{{synth.balance}}</td>
@@ -66,17 +66,16 @@
                     <td>{{synth.lp_qty}}</td>
                     <td>${{synth.price}}</td>
                     <td>{{synth.collateral}}</td>
-                    <td>
+                    <td class="p-0 m-0">
                         <div v-if="synth.status">
                             <span class="text-white">Live</span>
                         </div>
                         <div v-else>
-                            <span class="txt-main">Expired</span>
-                            &nbsp;
-                            <span class="rounded-xl wallet-btn text-xs text-white px-2 pb-0.5 my-auto font-bold">Settle</span>
+                            <span class="txt-main mr-0.5">Expired</span>
+                            <button class="rounded-xl wallet-btn text-xs text-white px-2 pb-0.5 my-auto font-bold block xl:inline">Settle</button>
                         </div>
                     </td>
-                    <td>
+                    <td class="p-0 m-0">
                         <img src="../../assets/images/arrow-right.png" class="cursor-pointer">
                     </td>
                 </tr>
@@ -105,7 +104,7 @@
             <th>Status</th>
             <th></th>
             </thead>
-            <tbody class="border-t bd-main text-md">
+            <tbody class="border-t bd-main text-base">
             <tr
                     v-for="(synth, key) in synths"
                     :key="key"
@@ -123,7 +122,7 @@
                     </div>
                     <div v-else>
                         <span class="txt-main">Expired</span>
-                        <span class="rounded-xl wallet-btn text-xs text-white px-2 pb-0.5 my-auto font-bold">Settle</span>
+                        <button class="rounded-xl wallet-btn text-xs text-white px-2 pb-0.5 m-auto ml-0 font-bold block">Settle</button>
                     </div>
                 </td>
                 <td>
