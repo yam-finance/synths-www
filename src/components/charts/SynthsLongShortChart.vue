@@ -94,7 +94,7 @@ export default {
   }
 
   &__stats-item {
-    @apply bg-blueDark rounded px-2 py-3 h-full flex flex-col justify-center;
+    @apply bg-blueDark rounded px-2 py-3 h-full flex flex-col justify-center min-w-[180px];
     box-shadow: 0 16px 16px -4px rgba(0, 0, 0, 0.15), 0px 4px 4px rgba(0, 0, 0, 0.1);
 
     p {
