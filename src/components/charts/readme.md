@@ -1,27 +1,8 @@
-Chart implementation for Synths
-
+# Chart implementation for Synths
 LineChart extends Chart.js/LineChart
 
-Important props :
-chartData: Array,
-labels: Array
+## Props:
+	- labels: Array of ?
+	- chartData: Array of objects
 
-Example: 
-
-labels: [12, 25, 1, 5, 20, 3],
-
-chartData: [
-{
-
-backgroundColor: '#FFFFFF',
-
-borderWidth: 3,
-
-tension: 0.4,
-
-fill: false,
-
-borderColor: '#FFFFFF',
-
-data: [12, 25, 1, 5, 20, 3]
-}]
+## Example:
