@@ -1,6 +1,6 @@
 <template>
   <div
-      class="ssb-wrapper bg-[#4447BD] text-white flex flex-col justify-start items-center py-16 px-8 max-w-[400px] max-h-full">
+      class="ssb-wrapper bg-[#4447BD] flex flex-col justify-start items-center py-16 px-8 max-w-[400px] max-h-full">
 
     <h2 class="text-[32px] mb-5 font-semibold">{{ title }}</h2>
 
@@ -105,7 +105,7 @@ export default {
 .ssb {
   &__costs {
     & > p {
-      @apply text-sm text-white flex justify-between mb-2;
+      @apply text-sm flex justify-between mb-2;
       & > span:nth-child(1) {
         @apply opacity-60;
       }

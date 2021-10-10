@@ -7,11 +7,17 @@
 <script>
 export default {
   name: "SynthsRoundedButton",
+  props: {
+    color: {
+      type: String,
+      default: 'linear-gradient(180deg, #F77FA0 0%, #DA4CAB 100%)'
+    },
+    buttonStyles: {
+      type: String,
+      default: ''
+    }
+  },
   emits: ['btn-click'],
-  data: () => ({
-    title: "Mint",
-    color: 'linear-gradient(180deg, #F77FA0 0%, #DA4CAB 100%)'
-  })
 }
 </script>
 
