@@ -58,7 +58,7 @@
                     class="border-b bd-main"
                 >
                     <td class="px-4 py-2 font-semibold flex">
-                        <img src="../../assets/images/group.png" class="h-6">
+                        <img src="../../assets/images/zombie.png" class="h-6">
                         &nbsp;{{synth.name}}
                     </td>
                     <td>{{synth.balance}}</td>
@@ -76,7 +76,7 @@
                         </div>
                     </td>
                     <td class="p-0 m-0">
-                        <img src="../../assets/images/arrow-right.png" class="cursor-pointer">
+                        <img src="../../assets/images/arrow-right.svg" class="cursor-pointer">
                     </td>
                 </tr>
             </tbody>
@@ -111,7 +111,7 @@
                     class="border-b bd-main"
             >
                 <td class="px-4 py-2 font-semibold flex">
-                    <img src="../../assets/images/group.png">
+                    <img src="../../assets/images/zombie.png">
                     &nbsp;{{synth.name}}
                 </td>
                 <td>{{synth.balance}}</td>
@@ -126,7 +126,7 @@
                     </div>
                 </td>
                 <td>
-                    <img src="../../assets/images/arrow-right.png" class="cursor-pointer">
+                    <img src="../../assets/images/arrow-right.svg" class="cursor-pointer">
                 </td>
             </tr>
             </tbody>
