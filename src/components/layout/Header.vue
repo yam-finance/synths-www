@@ -25,7 +25,7 @@
             </li>
         </ul>
         <div class="flex absolute w-96 right-0 p-2 mr-4 text-right h-12 lg:border-l bd-main invisible md:visible">
-            <div class="flex absolute right-5">
+            <div class="flex absolute right-1">
                 <span
                         class="flex px-4 py-1.5 text-sm cursor-pointer"
                         @click="isDropDownOpen = !isDropDownOpen"

@@ -3,6 +3,11 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
     {
         path: '/',
+        name: 'HomePage',
+        component: () => import('../views/home/home.vue'),
+    },
+    {
+        path: '/',
         name: 'Home',
         component: () => import('../views/home/index.vue'),
         meta: { hasSideBar: 1 },
@@ -43,7 +48,12 @@ const routes = [
         path: '/insidebar',
         name: 'InsideBar',
         component: () => import('../views/elements/insidebar.vue'),
-    }
+    },
+    {
+        path: '/markets',
+        name: 'Markets',
+        component: () => import('../views/markets/index.vue'),
+    },
 ]
 const router = createRouter({
     history: createWebHistory(),
