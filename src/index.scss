@@ -28,9 +28,9 @@
 html, body, #__nuxt, #__layout {
     height: 100%
 }
-//p, span, div {
-//    @apply text-white cursor-default;
-//}
+p, span, div {
+    @apply text-white cursor-default;
+}
 
 html, body {
     .bg-main {
