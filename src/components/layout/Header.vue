@@ -31,7 +31,7 @@
                         @click="isDropDownOpen = !isDropDownOpen"
                 >
                     Help
-                    <img src="../../assets/images/dropdown.png" class="mx-2 my-auto h-4">
+                    <img src="../../assets/images/dropdown.svg" class="mx-2 my-auto h-4">
                 </span>
                 <button class="hover:shadow-lg rounded-full px-4 py-1.5 my-auto text-sm wallet-btn">
                     Connect Wallet
@@ -51,8 +51,8 @@
         </div>
         <div class="flex overflow-hidden absolute right-0 h-12 visible md:invisible">
             <div class="flex px-4 py-4">
-                <img src="../../assets/images/green.png" class="h-full py-0.5">
-                <span class="px-1 text-xs my-auto font-normal px-3">13224549</span>
+                <img src="../../assets/images/green-dot.svg" class="h-full py-0.5">
+                <span class="text-xs my-auto font-normal px-1">13224549</span>
             </div>
         </div>
     </nav>
