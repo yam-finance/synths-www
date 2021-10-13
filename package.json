@@ -19,7 +19,7 @@
     "tailwindcss": "^2.2.15",
     "vue": "^3.2.13",
     "vue-router": "4",
-    "vuex": "^4.0.2",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@types/pathjs": "^0.8.36",
