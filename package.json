@@ -20,8 +20,6 @@
     "vue": "^3.2.13",
     "vue-router": "4",
     "vuex": "^4.0.2",
-    "web3": "^1.6.0",
-    "web3-ts": "^0.2.2"
   },
   "devDependencies": {
     "@types/pathjs": "^0.8.36",
