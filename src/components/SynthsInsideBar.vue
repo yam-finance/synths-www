@@ -43,8 +43,8 @@
 </template>
 
 <script>
-import SynthsRoundedButton from "./buttons/SynthsRoundedButton.vue";
-import SynthsCryptoInput from "./inputs/SynthsCryptoInput.vue";
+import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue";
+import SynthsCryptoInput from "@/components/inputs/SynthsCryptoInput.vue";
 
 export default {
   name: "SynthsSideBar",
