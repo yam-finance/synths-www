@@ -16,10 +16,17 @@ export default  {
     },
     actions: {
         loadBlockNumber({commit}:any) {
-          web3.getBlockNumber()
-               .then((res:number) => {
-                   commit('setBlockNumber', res)
-               })
+            web3.getBlockNumber()
+                .then((res:number) => {
+                    commit('setBlockNumber', res)
+                })
+            setInterval(() => {
+                web3.getBlockNumber()
+                    .then((res:number) => {
+                        commit('setBlockNumber', res)
+                    })
+            }, 40000)
+
         }
     }
 }
