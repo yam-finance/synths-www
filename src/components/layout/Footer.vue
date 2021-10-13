@@ -6,7 +6,7 @@
             <div class="flex overflow-hidden absolute w-64 h-12 border-r bd-main">
                 <div class="flex px-4 py-4">
                     <img src="../../assets/images/green-dot.svg" class="h-full py-0.5">
-                    <span class="px-1 text-xs my-auto font-normal px-3">13224549</span>
+                    <span class="px-1 text-xs my-auto font-normal px-3">{{ blockNumber }}</span>
                     <img src="../../assets/images/external-link.svg" >
                 </div>
             </div>
@@ -77,6 +77,8 @@
 </template>
 
 <script>
+    import {mapGetters} from "vuex";
+
     let isMenuOpen = 0;
     let tabs = [
         {
@@ -103,7 +105,10 @@
                 tabs
             };
         },
-        methods: {
+        computed: {
+            ...mapGetters({
+                blockNumber: 'getBlockNumber'
+            })
         }
     }
 </script>

@@ -1,13 +1,15 @@
 <template>
-  <router-view />
+  <router-view/>
 </template>
 
 <style lang="scss">
 #nav {
   padding: 30px;
+
   a {
     font-weight: bold;
     color: #2c3e50;
+
     &.router-link-exact-active {
       color: #42b983;
     }
@@ -16,7 +18,8 @@
 </style>
 
 <script lang="ts">
-import { defineComponent, provide, reactive, ref, onUnmounted } from "vue";
+import {defineComponent, provide, reactive, ref, onUnmounted} from "vue";
+import {mapActions} from "vuex";
 
 export default defineComponent({
   setup() {
@@ -47,15 +50,22 @@ export default defineComponent({
 
     window.addEventListener("resize", resizeHandler);
 
-    onUnmounted(()=>{
+    onUnmounted(() => {
       window.removeEventListener("resize", resizeHandler);
     });
 
     provide('screen', screenWidth);
 
-    return { state, screenWidth };
+    return {state, screenWidth};
   },
-
+  methods: {
+    ...mapActions({
+      getBlockNumber: 'loadBlockNumber'
+    }),
+  },
+  mounted() {
+    this.getBlockNumber()
+  }
 
 })
 </script>
