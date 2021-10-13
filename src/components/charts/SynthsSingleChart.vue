@@ -21,7 +21,8 @@
 </template>
 
 <script>
-import LineChart from "./LineChart.vue";
+import LineChart from "@/components/charts/LineChart.vue";
+
 
 export default {
   name: "SynthsSingleChart",

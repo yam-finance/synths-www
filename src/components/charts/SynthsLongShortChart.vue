@@ -1,5 +1,5 @@
 <template>
-  <div class="slsc-wrapper bg-blueDark rounded-xl p-4 grid gap-1 items-start">
+  <div class="slsc-wrapper bg-blueDark rounded-xl p-4 grid items-start">
     <div class="slsc__stats-item !rounded-tl-xl">
       <p class="flex items-end font-semibold leading-5">$323k</p>
       <p class="text-[10px] text-purpleLight">Long Token Liquidity</p>
@@ -59,8 +59,8 @@
 </template>
 
 <script>
-import LineChart from "./LineChart.vue";
-import SynthsRoundedButton from "../buttons/SynthsRoundedButton.vue";
+import LineChart from "@/components/charts/LineChart.vue";
+import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue";
 
 
 export default {
@@ -75,8 +75,9 @@ export default {
 <style scoped lang="scss">
 .slsc {
   &-wrapper {
-    grid-template-columns: 0.3fr 1fr;
+    grid-template-columns: 29% 70%;
     grid-template-rows: repeat(4, 1fr);
+    gap: 1%;
     grid-template-areas:
     ". chart"
     ". chart"
@@ -94,7 +95,7 @@ export default {
   }
 
   &__stats-item {
-    @apply bg-blueDark rounded px-2 py-3 h-full flex flex-col justify-center min-w-[180px];
+    @apply bg-blueDark rounded px-2 py-3 h-full flex flex-col justify-center min-w-[90px];
     box-shadow: 0 16px 16px -4px rgba(0, 0, 0, 0.15), 0px 4px 4px rgba(0, 0, 0, 0.1);
 
     p {
