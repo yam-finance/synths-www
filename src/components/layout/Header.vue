@@ -4,9 +4,9 @@
     >
         <router-link to="/">
         <div class="w-64 h-12 flex md:border-r bd-main">
-            <img src="../../assets/images/yamIcon.png" class="m-2">
+            <img src="../../assets/images/yamIcon.png" class="m-2 h-8 w-8">
             <h3 class="logo font-bold text-emerald-500 my-auto">Yam Synths</h3>
-            <span class="bg-blue-500 my-auto px-2 overflow-hidden ml-3 md:ml-16 rounded-full text-sm">v 3.0</span>
+            <span class="home-btn-bg my-auto px-2 overflow-hidden ml-3 md:ml-16 rounded-full text-sm">v 3.0</span>
         </div>
         </router-link>
         <ul
@@ -25,7 +25,8 @@
             </li>
         </ul>
         <div class="flex absolute w-96 right-0 p-2 mr-4 text-right h-12 lg:border-l bd-main invisible md:visible">
-            <div class="flex absolute right-5">
+            <div class="flex absolute right-1">
+                <img src="../../assets/images/bell.png" class="cursor-pointer my-auto h-4">
                 <span
                         class="flex px-4 py-1.5 text-sm cursor-pointer"
                         @click="isDropDownOpen = !isDropDownOpen"
@@ -52,7 +53,7 @@
         <div class="flex overflow-hidden absolute right-0 h-12 visible md:invisible">
             <div class="flex px-4 py-4">
                 <img src="../../assets/images/green-dot.svg" class="h-full py-0.5">
-                <span class="text-xs my-auto font-normal px-1">13224549</span>
+                <span class="text-xs my-auto font-normal px-3">13224549</span>
             </div>
         </div>
     </nav>

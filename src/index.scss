@@ -29,7 +29,7 @@ html, body, #__nuxt, #__layout {
     height: 100%
 }
 p, span, div {
-    @apply text-white cursor-default;
+    @apply text-white;
 }
 
 html, body {
@@ -45,12 +45,32 @@ html, body {
         background: #19193F;
     }
 
+    .bg-light2{
+        background: #272760;
+    }
+
+    .home-btn-bg{
+        background: #3468FF;
+    }
+
+    .bg-mint{
+        background: #4447BD;
+    }
+
     .wallet-btn{
         background: linear-gradient(180deg, #F77FA0 0%, #DA4CAB 100%);
     }
 
     .txt-main{
         color: #7171B2;
+    }
+
+    .txt-sub-light{
+        color: #CBCBFF
+    }
+
+    .txt-sub-dark{
+        color: #9A9AC8;
     }
 
     .bd-main{
