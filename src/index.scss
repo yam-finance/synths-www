@@ -29,7 +29,7 @@ html, body, #__nuxt, #__layout {
     height: 100%
 }
 p, span, div {
-    @apply text-white cursor-default;
+    @apply text-white;
 }
 
 html, body {
@@ -51,6 +51,10 @@ html, body {
 
     .home-btn-bg{
         background: #3468FF;
+    }
+
+    .bg-mint{
+        background: #4447BD;
     }
 
     .wallet-btn{

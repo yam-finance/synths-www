@@ -30,3 +30,4 @@ yarn-error.log*
 *.bak
 
 .env
+synths-www.zip

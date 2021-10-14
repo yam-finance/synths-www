@@ -1,5 +1,5 @@
 <template>
-  <button class="rounded-xl py-4 w-full font-bold hover:brightness-110 active:brightness-75" @click="$emit('btn-click')">
+  <button class="rounded-xl py-1 2xl:py-2 w-full font-bold hover:brightness-110 active:brightness-75" @click="$emit('btn-click')">
     <slot name="buttonTitle"></slot>
   </button>
 </template>

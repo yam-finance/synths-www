@@ -7,7 +7,7 @@
                 <div class="w-64 h-12 flex">
                     <img src="../../assets/images/yamIcon.png" class="m-2">
                     <h3 class="logo font-bold text-emerald-500 my-auto">Yam Synths</h3>
-                    <span class="bg-blue-500 my-auto px-2 overflow-hidden ml-3 md:ml-16 rounded-full text-sm">v 3.0</span>
+                    <span class="home-btn-bg my-auto px-2 overflow-hidden ml-3 md:ml-16 rounded-full text-sm">v 3.0</span>
                 </div>
             </router-link>
             <div class="flex absolute right-1 p-2">
@@ -70,7 +70,7 @@
                     >
                         <div class="grid grid-cols-2 mb-4">
                             <div class="flex">
-                                <img src="../../assets/images/group.png" class="w-6 h-6 mb-1">
+                                <img src="../../assets/images/zombie.png" class="w-6 h-6 mb-1">
                                 <span class="text-base font-semibold ml-2">{{menu.title}}</span>
                             </div>
                             <div>
@@ -80,12 +80,12 @@
                         <div class="grid grid-cols-2">
                             <div class="flex">
                                 <span class="px-1 my-auto font-bold">${{menu.price}}</span>
-                                <img src="../../assets/images/arrow-up.png" class="h-full py-0.5">
+                                <img src="../../assets/images/arrow-up-right.svg" class="h-full py-0.5">
                                 <span class="px-1 my-auto text-sm txt-sub-dark">15%</span>
                             </div>
                             <router-link :to="'/synths/' + menu.to">
                             <div>
-                                <img src="../../assets/images/arrow-right.png" class="float-right">
+                                <img src="../../assets/images/arrow-right.svg" class="float-right">
                             </div>
                             </router-link>
                         </div>
@@ -153,7 +153,7 @@
                 </div>
                 <div class="text-lg">
                     <span class="txt-main">Powered by </span>
-                    <img src="../../assets/images/logo.png" class="inline w-6 h-6">UMA
+                    🐙 UMA
                 </div>
 
                 <ul
@@ -166,8 +166,8 @@
 
                 <div>
                     <div class="inline-flex mt-8">
-                        <img src="../../assets/images/socials/twitter.png" class="mx-2 my-auto cursor-pointer">
-                        <img src="../../assets/images/socials/discord.png" class="mx-2 my-auto cursor-pointer">
+                        <img src="../../assets/images/socials/twitter.svg" class="mx-2 my-auto cursor-pointer">
+                        <img src="../../assets/images/socials/discord.svg" class="mx-2 my-auto cursor-pointer">
                     </div>
                 </div>
 
