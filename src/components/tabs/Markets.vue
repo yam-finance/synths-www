@@ -90,7 +90,7 @@
                     <div
                             v-for="(option, key) in options"
                             :key="key"
-                            @click="this.selected_option=option.id"
+                            @click="selected_option=option.id"
                     >
                         <div class="w-full h-12 py-3 px-6 border-b bd-main cursor-pointer" :class="{'bg-mint' : option.id==selected_option}">
                             <span class="font-semibold">{{option.title}}</span>
