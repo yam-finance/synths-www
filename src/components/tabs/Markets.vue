@@ -1,5 +1,5 @@
 <template>
-    <div class="markets bg-light mb-10 pb-10 visible md:invisible lg:visible">
+    <div class="markets bg-light mb-10 pb-10">
         <div class="w-full h-12 py-3 px-6 border-b bd-main">
             <span class="text-sm txt-main">Information</span>
         </div>
@@ -109,29 +109,56 @@
             <SynthsLongShortChart class="h-[400px] p-0"/>
         </div>
     </div>
+
+    <div class="min-w-[400px] hidden lg:block">
+        <div
+                v-for="(option, key) in options"
+                :key="key"
+                :class="(option.id==selected_option)?'h-full':''"
+        >
+            <SynthsInsideBar
+                    :settle="(option.slug=='Settle')?false:true"
+                    :title="option.title"
+                    :sub-title="option.description"
+                    :button-name="option.slug"
+                    v-if="option.id==selected_option"
+            >
+                <template #costs v-if="option.slug=='Settle'">
+                    <hr class="bg-white opacity-10 mb-2"/>
+                    <p><span>ETH Expiry Price</span> <span>$3,200</span></p>
+                    <p><span>Long Token Expiry Price</span> <span>$120</span></p>
+                    <p><span>Short Token Expiry Price</span> <span>$60</span></p>
+                </template>
+            </SynthsInsideBar>
+        </div>
+    </div>
 </template>
 
 <script lang="ts">
     import { defineComponent, inject, computed } from "vue";
-    import SynthsRoundedButton from "../buttons/SynthsRoundedButton.vue";
-    import SynthsSingleChart from '../charts/SynthsSingleChart.vue'
-    import SynthsLongShortChart from '../charts/SynthsLongShortChart.vue'
+    import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue";
+    import SynthsSingleChart from '@/components/charts/SynthsSingleChart.vue'
+    import SynthsLongShortChart from '@/components/charts/SynthsLongShortChart.vue'
+    import SynthsInsideBar from '@/components/SynthsInsideBar.vue'
 
     let options = [
         {
             id: 1,
             title: "Mint a position",
-            slug: "mint"
+            description: 'Deposit WETH collateral to mint Long and Short tokens of equal value',
+            slug: "Mint"
         },
         {
             id: 2,
             title: "Redeem your position",
-            slug: "redeem"
+            description: 'Burn Long and Short tokens to receive your WETH collateral',
+            slug: "Redeem"
         },
         {
             id: 3,
             title: "Settle",
-            slug: "settle"
+            escription: 'Burn Long and Short tokens for ETH',
+            slug: "Settle"
         },
     ];
 
@@ -143,6 +170,7 @@
             SynthsSingleChart,
             SynthsLongShortChart,
             's-button': SynthsRoundedButton,
+            SynthsInsideBar,
         },
         data() {
             return {

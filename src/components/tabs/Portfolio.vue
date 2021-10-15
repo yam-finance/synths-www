@@ -40,7 +40,7 @@
             Your Synths
         </div>
 
-        <table class="text-white border-b bd-main w-full font-normal hidden lg:table">
+        <table class="text-white border-b bd-main w-full font-normal hidden md:table">
             <thead class="lg:text-xs xl:text-sm txt-main text-left">
                 <th class="py-2 px-4">Synths</th>
                 <th>Balance</th>
@@ -83,9 +83,11 @@
         </table>
     </div>
 
-    <div class="w-screen font-semibold block md:hidden text-white"
-        v-if="1"
-    >
+    <div class="min-w-[400px] border-l bd-main hidden lg:block">
+        <!--Right Side-->
+    </div>
+
+    <div class="w-screen font-semibold block md:hidden text-white">
         <div class="w-full py-2 px-3 border-b bd-main">
             <span class="text-sm txt-main">Portfolio</span>
         </div>
