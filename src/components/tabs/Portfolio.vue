@@ -72,7 +72,7 @@
                         </div>
                         <div v-else>
                             <span class="txt-main mr-0.5">Expired</span>
-                          <s-button buttonStyles="wallet-btn text-xs text-white px-2 !py-0.5 my-auto font-bold block xl:inline">
+                          <s-button buttonStyles="wallet-btn w-auto text-xs text-white px-2 !py-0.5 my-auto font-bold block xl:inline">
                             <template #buttonTitle>
                               Settle
                             </template>
@@ -127,7 +127,7 @@
                     <div v-else>
                         <span class="txt-main">Expired</span>
 
-                      <s-button color="linear-gradient(180deg, #F77FA0 0%, #DA4CAB 100%)" buttonStyles="text-xs text-white px-2 pb-0.5 m-auto ml-0 font-bold">
+                      <s-button color="linear-gradient(180deg, #F77FA0 0%, #DA4CAB 100%)" buttonStyles="w-auto text-xs text-white px-2 pb-0.5 m-auto ml-0 font-bold">
                         <template #buttonTitle>
                           Settle
                         </template>

@@ -73,4 +73,8 @@ html, body {
         background: #0C0C28;
         border-radius: 5px;
     }
+
+    .basic-hover{
+       @apply hover:brightness-110 active:brightness-75
+    }
 }
