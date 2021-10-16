@@ -1,5 +1,5 @@
 <template>
-    <div class="markets bg-light mb-10 pb-10">
+    <div class="markets bg-light pb-10">
         <div class="w-full h-12 py-3 px-6 border-b bd-main">
             <span class="text-sm txt-main">Information</span>
         </div>
@@ -107,6 +107,54 @@
         </div>
         <div class="px-6 py-4 border-b md:border-0 bd-main hidden xl:block">
             <SynthsLongShortChart class="h-[400px] p-0"/>
+        </div>
+        <div class="px-6 py-4 border-b md:border-0 bd-main hidden xl:block">
+            <SynthsLongShortChart class="h-[400px] p-0">
+            </SynthsLongShortChart>
+        </div>
+        <div class="border-t bd-main">
+            <div class="grid grid-cols-1 xl:grid-cols-2">
+                <div class="px-6 py-4 pb-8 border-r border-b bd-main">
+                    <p class="pb-4 text-lg font-semibold">Calculate returns at expiry</p>
+                    <p class="text-sm txt-main pb-8">
+                        Simulate your potential returns at expiry.
+                        Edit the number of short or long tokens in your wallet.
+                        with the chart to see your expected profit or loss
+                    </p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-sm block pb-2">Long Tokens</label>
+                            <input class="rounded-lg bg-main px-2 py-1 outline-none w-full" placeholder="0" name="long_token" id="long_token">
+                        </div>
+                        <div>
+                            <label class="text-sm block pb-2">Short Tokens</label>
+                            <input class="rounded-lg bg-main px-2 py-1 outline-none w-full" placeholder="0" name="short_token" id="short_token">
+                        </div>
+                    </div>
+
+                    <div class="mt-2">
+                        <label class="inline-flex items-center">
+                            <input type="checkbox" class="form-checkbox h-5 w-5">
+                            <span class="ml-2 txt-main">Use wallet balances</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="px-6 py-4">
+                    <div class="grid grid-cols-2 gap-1">
+                        <div class="bg-light3 px-6 py-4 rounded-md rounded-tl-2xl">
+                            <p class="text-lg font-bold txt-green inline">+$140</p>
+                            <p class="text-xs txt-main">Returns at expiry</p>
+                        </div>
+                        <div class="bg-light3 px-6 py-4 rounded-md rounded-tr-2xl">
+                            <p class="text-lg font-bold inline">44%</p>
+                            <p class="text-xs txt-main">xSUSHI APY at Expiry</p>
+                        </div>
+                    </div>
+                    <div class="my-2">
+                        <SynthsSingleChart class="rounded-t-md"/>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
