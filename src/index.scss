@@ -1,75 +1,81 @@
-@import 'tailwindcss/components';
-@import 'tailwindcss/base';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/components";
+@import "tailwindcss/base";
+@import "tailwindcss/utilities";
 
 @layer base {
-    @font-face {
-        font-family: 'Open Sauce Sans', sans-serif;
-        font-weight: 300;
-        src: url(../public/fonts/OpenSauceSans-Light.ttf) format("ttf");
-    }
-    @font-face {
-        font-family: 'Open Sauce Sans', sans-serif;
-        font-weight: 400;
-        src: url(../public/fonts/OpenSauceSans-Regular.ttf) format("ttf");
-    }
-    @font-face {
-        font-family: 'Open Sauce Sans', sans-serif;
-        font-weight: 600;
-        src: url(../public/fonts/OpenSauceSans-SemiBold.ttf) format("ttf");
-    }
-    @font-face {
-        font-family: 'Open Sauce Sans', sans-serif;
-        font-weight: 700;
-        src: url(../public/fonts/OpenSauceSans-Bold.ttf) format("ttf");
-    }
+  @font-face {
+    font-family: "Open Sauce Sans", sans-serif;
+    font-weight: 300;
+    src: url(../public/fonts/OpenSauceSans-Light.ttf) format("ttf");
+  }
+  @font-face {
+    font-family: "Open Sauce Sans", sans-serif;
+    font-weight: 400;
+    src: url(../public/fonts/OpenSauceSans-Regular.ttf) format("ttf");
+  }
+  @font-face {
+    font-family: "Open Sauce Sans", sans-serif;
+    font-weight: 600;
+    src: url(../public/fonts/OpenSauceSans-SemiBold.ttf) format("ttf");
+  }
+  @font-face {
+    font-family: "Open Sauce Sans", sans-serif;
+    font-weight: 700;
+    src: url(../public/fonts/OpenSauceSans-Bold.ttf) format("ttf");
+  }
 }
 
-html, body, #__nuxt, #__layout {
-    height: 100%
+html,
+body,
+#__nuxt,
+#__layout {
+  height: 100%;
 }
-p, span, div {
-    @apply text-white cursor-default;
+p,
+span,
+div {
+  @apply text-white cursor-default;
 }
 
-html, body {
-    .bg-main {
-        background: #11112F;
-    }
+html,
+body {
+  .bg-main {
+    background: #11112f;
+  }
 
-    .bg-dark {
-        background: #0C0C28;
-    }
+  .bg-dark {
+    background: #0c0c28;
+  }
 
-    .bg-light {
-        background: #19193F;
-    }
+  .bg-light {
+    background: #19193f;
+  }
 
-    .wallet-btn{
-        background: linear-gradient(180deg, #F77FA0 0%, #DA4CAB 100%);
-    }
+  .wallet-btn {
+    background: linear-gradient(180deg, #f77fa0 0%, #da4cab 100%);
+  }
 
-    .txt-main{
-        color: #7171B2;
-    }
+  .txt-main {
+    color: #7171b2;
+  }
 
-    .bd-main{
-        border-color: #242449;
-    }
+  .bd-main {
+    border-color: #242449;
+  }
 
-    ::-webkit-scrollbar {
-        width: 1px;
-        height: 5px;
-        border-radius: 5px;
-    }
+  ::-webkit-scrollbar {
+    width: 1px;
+    height: 5px;
+    border-radius: 5px;
+  }
 
-    ::-webkit-scrollbar-track {
-        background: inherit;
-        border-radius: 5px;
-    }
+  ::-webkit-scrollbar-track {
+    background: inherit;
+    border-radius: 5px;
+  }
 
-    ::-webkit-scrollbar-thumb {
-        background: #0C0C28;
-        border-radius: 5px;
-    }
+  ::-webkit-scrollbar-thumb {
+    background: #0c0c28;
+    border-radius: 5px;
+  }
 }

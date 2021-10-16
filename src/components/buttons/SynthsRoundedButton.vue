@@ -1,5 +1,8 @@
 <template>
-  <button class="rounded-xl py-4 w-full font-bold hover:brightness-110 active:brightness-75" @click="$emit('btn-click')">
+  <button
+    class="rounded-xl py-4 w-full font-bold hover:brightness-110 active:brightness-75"
+    @click="$emit('btn-click')"
+  >
     <slot name="buttonTitle"></slot>
   </button>
 </template>
@@ -10,14 +13,14 @@ export default {
   props: {
     color: {
       type: String,
-      default: 'linear-gradient(180deg, #F77FA0 0%, #DA4CAB 100%)'
+      default: "linear-gradient(180deg, #F77FA0 0%, #DA4CAB 100%)",
     },
     buttonStyles: {
       type: String,
-      default: ''
-    }
+      default: "",
+    },
   },
-  emits: ['btn-click'],
+  emits: ["btn-click"],
 }
 </script>
 
