@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "vite",
     "tailwind": "tailwind-config-viewer -o -p 3001",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vite build",
+    "lint": "eslint \"./src/*/**/*.{ts,vue,json}\" --fix",
     "serve": "vite preview"
   },
   "dependencies": {
@@ -24,6 +25,7 @@
     "sass": "^1.42.1",
     "tailwind-config-viewer": "^1.6.2",
     "tailwindcss": "^2.2.15",
+    "unplugin-vue-components": "^0.15.6",
     "vue": "^3.2.13",
     "vue-js-modal": "^2.0.1",
     "vue-router": "4"

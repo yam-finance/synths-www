@@ -9,6 +9,8 @@
     "sourceMap": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
+    "importHelpers": true,
+    "allowSyntheticDefaultImports": true,
     "lib": ["esnext", "dom"],
     "baseUrl": ".",
     "paths": {
