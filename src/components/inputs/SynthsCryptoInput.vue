@@ -3,7 +3,7 @@
     <div class="sci__selector uppercase font-bold text-xs justify-self-start">
       weth
     </div>
-    <button class="sci__max-button font-semibold text-black text-xs rounded bg-white p-1 text-center justify-self-end">Max</button>
+    <button class="sci__max-button font-semibold text-black text-xs rounded bg-white p-1 text-center justify-self-end basic-hover">Max</button>
     <div class="sci__input">
       <input class="w-full text-purpleLight outline-none" type="text" v-model="inputValue">
     </div>

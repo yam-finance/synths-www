@@ -4,7 +4,7 @@
     >
         <router-link to="/">
         <div class="w-64 h-12 flex md:border-r bd-main">
-            <img src="../../assets/images/yamIcon.png" class="m-2">
+            <img src="@/assets/images/yamIcon.png" class="m-2">
             <h3 class="logo font-bold text-emerald-500 my-auto">Yam Synths</h3>
             <span class="bg-blue-500 my-auto px-2 overflow-hidden ml-3 md:ml-16 rounded-full text-sm">v 3.0</span>
         </div>
@@ -31,15 +31,18 @@
                         @click="isDropDownOpen = !isDropDownOpen"
                 >
                     Help
-                    <img src="../../assets/images/dropdown.svg" class="mx-2 my-auto h-4">
+                    <img src="@/assets/images/dropdown.svg" class="mx-2 my-auto h-4">
                 </span>
-                <button class="hover:shadow-lg rounded-full px-4 py-1.5 my-auto text-sm wallet-btn">
-                    Connect Wallet
-                </button>
+              <s-button buttonStyles="wallet-btn px-4 py-1.5 my-auto text-sm font-normal">
+                <template #buttonTitle>
+                  Connect Wallet
+                </template>
+              </s-button>
             </div>
             <ul
                 class="overflow-hidden my-auto p-2 text-sm text-left fixed top-9 right-44 bg-light rounded-xl"
                 v-if="isDropDownOpen"
+                v-click-away="closePopup"
             >
                 <li class="min-w-max cursor-pointer p-1">
                     <span>Documentation</span>
@@ -50,8 +53,8 @@
             </ul>
         </div>
         <div class="flex overflow-hidden absolute right-0 h-12 visible md:invisible">
-            <div class="flex px-4 py-4">
-                <img src="../../assets/images/green-dot.svg" class="h-full py-0.5">
+            <div class="flex px-4 py-4 cursor-pointer">
+                <img src="@/assets/images/green-dot.svg" class="h-full py-0.5">
                 <span class="text-xs my-auto font-normal px-1">13224549</span>
             </div>
         </div>
@@ -59,6 +62,9 @@
 </template>
 
 <script>
+import  SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue";
+
+
     let tabs = [
         {
             id: 1,
@@ -80,6 +86,9 @@
     let activeTab = 0;
     export default {
         name: "Header",
+      components: {
+        's-button': SynthsRoundedButton,
+      },
         data() {
             return {
                 tabs,
@@ -90,8 +99,12 @@
         methods: {
             selectTab(item) {
                 this.activeTab = item.id;
-            }
-        }
+            },
+          closePopup(e) {
+              e.stopPropagation()
+            this.isDropDownOpen = false
+          }
+        },
     }
 </script>
 
