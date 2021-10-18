@@ -25,7 +25,7 @@ export default defineComponent({
     /// @dev Can be removed if no example is needed anymore
     const { synth, connect } = await useSynthsSDK();
 
-    connect("upunks-0921);
+    connect("upunks-0921");
     // @ts-ignore
     console.log(await synth.value.getGCR());
 
