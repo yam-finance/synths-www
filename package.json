@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "vite",
     "tailwind": "tailwind-config-viewer -o -p 3001",
-    "build": "vue-tsc --noEmit && vite build",
+    "build": "vite build",
     "lint": "eslint \"./src/*/**/*.{ts,vue,json}\" --fix",
     "serve": "vite preview"
   },
