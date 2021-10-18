@@ -22,7 +22,7 @@
     "name": "Portis",
     "network": "1",
     "options": {
-      "dappId": "3eb93706-c71d-456b-b4eb-322ea27f7d48",
+      "dappId": "18a8e636-0f17-448b-bdab-1ff91029922d",
       "network": "mainnet"
     }
   },
@@ -30,7 +30,7 @@
     "id": "fortmatic",
     "name": "Fortmatic",
     "options": {
-      "apiKey": "pk_live_9CE8FD92E54684ED"
+      "apiKey": "pk_live_09A6493DFF29A3BE"
     }
   }
 }

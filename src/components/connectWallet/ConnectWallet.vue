@@ -45,6 +45,7 @@ export default {
 
   methods: {
     close() {
+      console.log("sadfasdf");
       this.$emit("close")
     },
     saveWalletType() {

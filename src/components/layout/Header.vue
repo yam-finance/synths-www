@@ -46,6 +46,7 @@ const { login, web3 ,logout} = useWeb3();
 const isModalVisible = ref(false);
 const isDropDownOpen = ref(false);
 const isWalletDropDownOpen = ref(false);
+const emit = defineEmits(['login', 'close']);
 const etherscanlink = ref("");;
   async function handleConnect(connector) {
     isModalVisible.value = false;
@@ -55,6 +56,7 @@ const etherscanlink = ref("");;
   async function handleLogout() {
     console.log("logout")
     await logout(); 
+     emit('close');
   }
   function formatAddress(address) {
     return address.slice(0, 6) + '...' + address.slice(-6);
