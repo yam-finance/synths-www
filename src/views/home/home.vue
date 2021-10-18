@@ -151,7 +151,7 @@
 
                 <div class="mt-32 text-lg">
                     <span class="txt-main">Build by</span>
-                    <img src="@/assets/images/logo.png" class="inline w-6 h-6">YAM
+                    🍠 YAM
                 </div>
                 <div class="text-lg">
                     <span class="txt-main">Powered by </span>
