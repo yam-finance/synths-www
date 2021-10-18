@@ -1,25 +1,33 @@
-import { ref, computed } from 'vue';
-import Synths from "synths-sdk";                                          
-import { ethers } from "ethers";                                          
-                                                                                      
-const url = "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161";
-const provider = new ethers.providers.JsonRpcProvider(url);
+import { ref, Ref, computed } from 'vue';
+import Synths from "synths-sdk";     
+import Asset from 'synths-sdk/dist/src/lib/Asset';
+import { providers } from "ethers";
 
-export async function useSynthsSDK() {
-    const synthsSDK = await Synths.create({ ethersProvider: provider });
+
+export function useSynthsSDK(provider: providers.JsonRpcProvider) {
     const loading = ref(false);
-    const synth = ref({});
+    const data = ref();
     
-    // Connect the sdk a synth                                                
-    async function connect(param: string) {
+    // Connect the sdk to a synth                                                
+    async function connectTo(param: string) {
       loading.value = true;
-      synth.value = await synthsSDK.connectAsset(param);
+
+      const synthsSDK = await Synths.create({ ethersProvider: provider });
+      const asset = await synthsSDK.connectAsset(param);
+      const empState = await asset.getEmpState();
+
+      // Store all relevant data about a synth
+      data.value = { 
+        empState
+      };
+
       loading.value = false;
     }
 
     return {
-        synth: computed(() => synth.value),
-        connect
+        loading: computed(() => loading.value),
+        data: computed(() => data.value),
+        connectTo
     }
 }
 

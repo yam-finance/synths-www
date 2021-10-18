@@ -13,6 +13,11 @@
       <p><span>ETH Expiry Price</span> <span>$3,200</span></p>
       <p><span>ETH Expiry Price</span> <span>$3,200</span></p>
       <p><span>ETH Expiry Price</span> <span>$3,200</span></p>
+      <!-- -- Start of SDK Test -- --> 
+      <button @click="connectTo('ugas-0921')">Switch to ugas-0921</button>
+      <p v-if="loading"><span>Expiry Price in WEI</span> <span>loading</span></p>
+      <p v-else><span>Expiry Price in WEI</span> <span>{{data.empState.expiryPrice}}</span></p>
+      <!-- -- End of SDK Test -- -->
     </template>
   </SynthsSideBar>
   <SynthsSideBar :settle="false" :title="'Mint position'"
@@ -32,6 +37,11 @@ import SynthsNew from "@/components/SynthsNew.vue";
 import synthsLogo from "@/assets/images/logo.png";
 import {inject} from "vue";
 
+// SDK TEST
+import { computed } from 'vue';
+import { useSynthsSDK } from "../../stores/sdk-store";
+import { providers } from "ethers";
+
 export default {
   name: "Markets",
   components: {
@@ -45,10 +55,22 @@ export default {
   }),
   setup() {
 
+    /* -- Start of SDK Test -- */
+    /// @notice Synth SDK Init test
+    const url = "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161";
+    const provider = new providers.JsonRpcProvider(url);
+    const { connectTo, data, loading } = useSynthsSDK(provider);
+
+    connectTo("upunks-0921");
+    /* -- End of SDK Test -- */
+
     const userDetails: any = inject("userDetails");
 
     return {
-      userDetails
+      userDetails,
+      loading,
+      data,
+      connectTo
     };
   }
 }

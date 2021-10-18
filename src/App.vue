@@ -17,19 +17,9 @@
 
 <script lang="ts">
 import { defineComponent, provide, reactive, ref, onUnmounted } from "vue";
- import { useSynthsSDK } from "./stores/sdk-store";
 
 export default defineComponent({
-  async setup() {
-    /// @notice Synth SDK Init test
-    /// @dev Can be removed if no example is needed anymore
-    const { synth, connect } = await useSynthsSDK();
-
-    connect("upunks-0921");
-    // @ts-ignore
-    console.log(await synth.value.getGCR());
-
-    /* -- End of Test -- */
+  setup() {
 
     //Setup Simple Data
     const state = reactive({
