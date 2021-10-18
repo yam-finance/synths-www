@@ -252,7 +252,7 @@
             /* -- End of SDK Test -- */
             const userDetails: any = inject("userDetails");
             return {
-                userDetails
+                userDetails,
                 /* -- Start of SDK Test -- */
                 loading,
                 data,
