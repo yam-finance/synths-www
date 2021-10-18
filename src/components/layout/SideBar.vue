@@ -21,9 +21,10 @@
                          :key="key"
                          @click="selectMenu(menu)">
                         <router-link :to="'/synths/' + menu.to">
-                            <div v-if="menu.title.toLowerCase().includes(filter_string)"
+                            <div v-if="menu.title.toLowerCase().includes(filter_string.toLowerCase())"
                                  class="px-4 py-2 my-auto flex border-b bd-main !cursor-pointer"
                                  :class="activeTab === menu.id? 'bg-light': ''">
+
                                 <img class="w-6" src="@/assets/images/zombie.png">
                                 <span class="px-2 text-sm my-auto text-white">{{ menu.title }}</span>
                                 <div class="flex my-0.5 absolute" :class="activeTab === menu.id? 'left-32': 'left-40'">

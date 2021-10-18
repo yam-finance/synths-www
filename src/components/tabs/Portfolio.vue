@@ -58,7 +58,7 @@
                     class="border-b bd-main"
                 >
                     <td class="px-4 py-2 font-semibold flex">
-                        <img src="@/assets/images/zombie.png" class="h-6">
+                        <img src="@/assets/images/zombie.png" class="w-6 h-6">
                         &nbsp;{{synth.name}}
                     </td>
                     <td>{{synth.balance}}</td>
@@ -117,7 +117,7 @@
                     class="border-b bd-main"
             >
                 <td class="px-4 py-2 font-semibold flex">
-                    <img src="@/assets/images/zombie.png">
+                    <img src="@/assets/images/zombie.png" class="w-6 h-6">
                     &nbsp;{{synth.name}}
                 </td>
                 <td>{{synth.balance}}</td>

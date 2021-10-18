@@ -68,9 +68,12 @@
             <div class="flex">
                 <img src="@/assets/images/x.svg" v-if="isMenuOpen" @click="isMenuOpen = !isMenuOpen">
                 <img src="@/assets/images/menu.svg" v-else @click="isMenuOpen = !isMenuOpen">
-                <button class="hover:shadow-lg rounded-full px-4 py-1.5 my-auto text-sm absolute right-5 wallet-btn">
-                    Connect Wallet
-                </button>
+                <div class="absolute right-5">
+                    <img src="@/assets/images/bell.png" class="mx-2 my-auto h-4 inline cursor-pointer">
+                    <button class="hover:shadow-lg rounded-full px-4 py-1.5 my-auto text-sm wallet-btn inline">
+                        Connect Wallet
+                    </button>
+                </div>
             </div>
         </div>
     </nav>
