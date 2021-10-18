@@ -1,11 +1,53 @@
 import { createApp } from 'vue'
-
-
 import App from '@/App.vue'
 import router from "@/router"
 
 import VueClickAway from "vue3-click-away";
+import { createI18n } from 'vue-i18n'
 
-import '@/index.scss'
+import "@/index.scss";
 
-const app = createApp(App).use(VueClickAway).use(router).mount('#app');
+/**
+ * @notice Import locale messages resource from json for global scope
+ */
+ import enUS from './locales/en-US.json';
+
+ /// @notice Type-define 'en-US' as the master schema for the resource
+type MessageSchema = typeof enUS;
+ 
+/**
+ * @notice Setup vue-i18n with i18n resources with global type definition.
+ * If you define the i18n resource schema in your `*.d.ts`, these is checked with typeScript.
+ * You can check global type defition at `./vue-i18n.d.ts`
+ */
+ // @ts-ignore
+ const i18n = createI18n<{ message: MessageSchema }, false>({
+  legacy: false,
+  locale: 'en-US',
+  fallbackLocale: 'en-US',
+  messages: {
+    'en-US': enUS
+  },
+  datetimeFormats: {
+    'en-US': {
+      short: {
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+        timeZoneName: 'short',
+        timezone: 'US/LA'
+      }
+    }
+  },
+  numberFormats: {
+    'en-US': {
+      currency: {
+        style: 'currency',
+        currencyDisplay: 'symbol',
+        currency: 'USD'
+      }
+    },
+  }
+});
+
+const app = createApp(App).use(i18n).use(VueClickAway).use(router).mount('#app');
