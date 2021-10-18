@@ -29,6 +29,7 @@ html, body, #__nuxt, #__layout {
     height: 100%
 }
 p, span, div {
+    cursor: inherit;
     @apply text-white;
 }
 
@@ -99,5 +100,9 @@ html, body {
     ::-webkit-scrollbar-thumb {
         background: #0C0C28;
         border-radius: 5px;
+    }
+
+    .basic-hover{
+       @apply hover:brightness-110 active:brightness-75
     }
 }

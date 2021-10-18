@@ -12,7 +12,7 @@
     </div>
     <div
         class="ssc__buttons justify-self-end flex items-start justify-between font-semibold w-[70%] max-w-[186px] bg-[#19193F] p-1 rounded-lg text-[10px]">
-      <div class="ssc__buttons-item text-purpleLight hover:text-black rounded hover:bg-white w-auto py-0.5 px-2"
+      <div class="ssc__buttons-item cursor-pointer text-purpleLight hover:text-black rounded hover:bg-white w-auto py-0.5 px-2"
            v-for="item in filterButtons" :key="item">{{ item }}
       </div>
     </div>
