@@ -23,11 +23,10 @@ const isDropDownOpen = ref(false);
 
 <script>
 import  SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue";
-import { useWeb3 } from '@/composables/useWeb3';
-import { ref } from  'vue';
+
 import connectWalletModal from "../connectWallet/ConnectWallet.vue";
-const { login, web3 ,logout} = useWeb3();
-const closeModal = ref(false);
+
+
     let tabs = [
         {
             id: 1,
