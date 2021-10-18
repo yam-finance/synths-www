@@ -21,7 +21,7 @@
                          :key="key"
                          @click="selectMenu(menu)">
                         <router-link :to="'/synths/' + menu.to">
-                            <div v-if="menu.title.toLowerCase().includes(filter_string)"
+                            <div v-if="menu.title.toLowerCase().includes(filter_string.toLowerCase())"
                                  class="px-4 py-2 my-auto flex border-b bd-main !cursor-pointer"
                                  :class="activeTab === menu.id? 'bg-light': ''">
 

@@ -40,7 +40,7 @@
             Your Synths
         </div>
 
-        <table class="text-white border-b bd-main w-full font-normal hidden lg:table">
+        <table class="text-white border-b bd-main w-full font-normal hidden md:table">
             <thead class="lg:text-xs xl:text-sm txt-main text-left">
                 <th class="py-2 px-4">Synths</th>
                 <th>Balance</th>
@@ -58,7 +58,7 @@
                     class="border-b bd-main"
                 >
                     <td class="px-4 py-2 font-semibold flex">
-                        <img src="@/assets/images/zombie.png" class="h-6">
+                        <img src="@/assets/images/zombie.png" class="w-6 h-6">
                         &nbsp;{{synth.name}}
                     </td>
                     <td>{{synth.balance}}</td>
@@ -87,9 +87,11 @@
         </table>
     </div>
 
-    <div class="w-screen font-semibold block md:hidden text-white"
-        v-if="1"
-    >
+    <div class="min-w-[400px] border-l bd-main hidden lg:block">
+        <!--Right Side-->
+    </div>
+
+    <div class="w-screen font-semibold block md:hidden text-white">
         <div class="w-full py-2 px-3 border-b bd-main">
             <span class="text-sm txt-main">Portfolio</span>
         </div>
@@ -115,7 +117,7 @@
                     class="border-b bd-main"
             >
                 <td class="px-4 py-2 font-semibold flex">
-                    <img src="@/assets/images/zombie.png">
+                    <img src="@/assets/images/zombie.png" class="w-6 h-6">
                     &nbsp;{{synth.name}}
                 </td>
                 <td>{{synth.balance}}</td>

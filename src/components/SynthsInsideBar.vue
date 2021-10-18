@@ -1,6 +1,6 @@
 <template>
   <div
-      class="ssb-wrapper bg-[#4447BD] flex flex-col justify-start items-center py-16 px-8 max-w-[400px] max-h-full">
+      class="ssb-wrapper bg-[#4447BD] flex flex-col justify-start items-center py-16 px-8 max-w-[400px] h-full">
 
     <h2 class="text-[32px] mb-5 font-semibold">{{ title }}</h2>
 
@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import  SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue";
+import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue";
 import SynthsCryptoInput from "@/components/inputs/SynthsCryptoInput.vue";
 
 export default {

@@ -3,6 +3,11 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
     {
         path: '/',
+        name: 'HomePage',
+        component: () => import('@/views/home/home.vue'),
+    },
+    {
+        path: '/',
         name: 'Home',
         component: () => import('@/views/home/index.vue'),
         meta: { hasSideBar: 1 },
