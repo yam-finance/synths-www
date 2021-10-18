@@ -30,107 +30,104 @@ import {
   Legend,
   Title,
   Tooltip,
-  SubTitle
-} from 'chart.js';
+  SubTitle,
+} from "chart.js"
 
 Chart.register(
-    ArcElement,
-    LineElement,
-    BarElement,
-    PointElement,
-    BarController,
-    BubbleController,
-    DoughnutController,
-    LineController,
-    PieController,
-    PolarAreaController,
-    RadarController,
-    ScatterController,
-    CategoryScale,
-    LinearScale,
-    LogarithmicScale,
-    RadialLinearScale,
-    TimeScale,
-    TimeSeriesScale,
-    Decimation,
-    Filler,
-    Legend,
-    Title,
-    Tooltip,
-    SubTitle
-);
+  ArcElement,
+  LineElement,
+  BarElement,
+  PointElement,
+  BarController,
+  BubbleController,
+  DoughnutController,
+  LineController,
+  PieController,
+  PolarAreaController,
+  RadarController,
+  ScatterController,
+  CategoryScale,
+  LinearScale,
+  LogarithmicScale,
+  RadialLinearScale,
+  TimeScale,
+  TimeSeriesScale,
+  Decimation,
+  Filler,
+  Legend,
+  Title,
+  Tooltip,
+  SubTitle
+)
 
 export default {
   props: {
     chartData: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     labels: {
       type: Array,
-      default: () => []
-    }
+      default: () => [],
+    },
   },
   mounted() {
-    const canvas = this.$refs.chart;
+    const canvas = this.$refs.chart
     const container = this.$refs.chartContainer
-    const ctx = canvas.getContext('2d')
+    const ctx = canvas.getContext("2d")
     const data = {
       labels: [],
-      datasets: []
+      datasets: [],
     }
     if (this.labels) {
       data.labels = this.labels
     }
 
-
-    this.chartData.forEach(item => {
+    this.chartData.forEach((item) => {
       data.datasets.push(item)
     })
 
-    canvas.height = container.clientHeight;
-    canvas.width = container.clientWidth;
-
+    canvas.height = container.clientHeight
+    canvas.width = container.clientWidth
 
     let myChart = new Chart(ctx, {
-      type: 'line',
+      type: "line",
       data: data,
       options: {
         plugins: {
           legend: {
-            display: false
+            display: false,
           },
           tooltip: {
-            enabled: false
-          }
+            enabled: false,
+          },
         },
         scales: {
           y: {
-            display: false // Hide Y axis labels
+            display: false, // Hide Y axis labels
           },
           x: {
-            display: false // Hide X axis labels
-          }
+            display: false, // Hide X axis labels
+          },
         },
         elements: {
-          point:{
-            radius: 0
+          point: {
+            radius: 0,
           },
           line: {
-            borderJoinStyle: 'round'
-          }
+            borderJoinStyle: "round",
+          },
         },
         layout: {
-          padding: 5
-        }
-      }
-    });
-  }
-
+          padding: 5,
+        },
+      },
+    })
+  },
 }
 </script>
 <style lang="scss">
-.chart-container{
+.chart-container {
   position: relative;
   height: 100%;
   width: 100%;

@@ -16,7 +16,7 @@
 </style>
 
 <script lang="ts">
-import { defineComponent, provide, reactive, ref, onUnmounted } from "vue";
+import { defineComponent, provide, reactive, ref, onUnmounted } from "vue"
 
 export default defineComponent({
   setup() {
@@ -24,38 +24,36 @@ export default defineComponent({
     const state = reactive({
       name: "John Doe",
       email: "john@gmail.com",
-    });
+    })
 
     const updateUsername = (name: string) => {
-      state.name = name;
-    };
-
-    const updateEmail = (email: string) => {
-      state.email = email;
-    };
-
-    provide("userDetails", state);
-    provide("updateUsername", updateUsername);
-    provide("updateEmail", updateEmail);
-
-    //Setup window resize watcher
-    const screenWidth = ref<number | null>(null);
-
-    const resizeHandler = () => {
-      screenWidth.value = window.innerWidth;
+      state.name = name
     }
 
-    window.addEventListener("resize", resizeHandler);
+    const updateEmail = (email: string) => {
+      state.email = email
+    }
 
-    onUnmounted(()=>{
-      window.removeEventListener("resize", resizeHandler);
-    });
+    provide("userDetails", state)
+    provide("updateUsername", updateUsername)
+    provide("updateEmail", updateEmail)
 
-    provide('screen', screenWidth);
+    //Setup window resize watcher
+    const screenWidth = ref<number | null>(null)
 
-    return { state, screenWidth };
+    const resizeHandler = () => {
+      screenWidth.value = window.innerWidth
+    }
+
+    window.addEventListener("resize", resizeHandler)
+
+    onUnmounted(() => {
+      window.removeEventListener("resize", resizeHandler)
+    })
+
+    provide("screen", screenWidth)
+
+    return { state, screenWidth }
   },
-
-
 })
 </script>

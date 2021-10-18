@@ -6,7 +6,7 @@
 
 <script lang="ts">
 export default {
-  name: 'SynthsNew',
+  name: "SynthsNew",
   props: {
     msg: String,
   },

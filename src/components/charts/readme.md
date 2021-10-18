@@ -1,11 +1,14 @@
 # Chart implementation for Synths
+
 LineChart extends Chart.js/LineChart
 
 ## Props:
-	- labels: Array of ?
-	- chartData: Array of objects
+
+    - labels: Array of ?
+    - chartData: Array of objects
 
 ## Example:
+
 ```
 labels: [12, 25, 1, 5, 20, 3],
 chartData: [
