@@ -192,13 +192,11 @@
     import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue";
     import SynthsSingleChart from "@/components/charts/SynthsSingleChart.vue";
     import SynthsLongShortChart from "@/components/charts/SynthsLongShortChart.vue";
-    import SynthsSideBar from "@/components/SynthsInsideBar.vue";
+    import SynthsInsideBar from "@/components/SynthsInsideBar.vue";
     import SynthsNew from "@/components/SynthsNew.vue";
     import synthsLogo from "@/assets/images/logo.png";
-    import {inject} from "vue";
     
     /* -- Start of SDK Test -- */
-    import { computed } from 'vue';
     import { useSynthsSDK } from "../../stores/sdk-store";
     import { providers } from "ethers";
     /* -- End of SDK Test -- */
