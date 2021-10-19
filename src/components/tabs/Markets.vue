@@ -193,10 +193,9 @@
     import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue";
     import SynthsSingleChart from "@/components/charts/SynthsSingleChart.vue";
     import SynthsLongShortChart from "@/components/charts/SynthsLongShortChart.vue";
-    import SynthsSideBar from "@/components/SynthsInsideBar.vue";
+    import SynthsInsideBar from "@/components/SynthsInsideBar.vue";
     import SynthsNew from "@/components/SynthsNew.vue";
     import synthsLogo from "@/assets/images/logo.png";
-    import {inject} from "vue";
     import { useI18n } from "vue-i18n";
 
     let options = [
