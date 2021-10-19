@@ -137,9 +137,9 @@
                             <input type="checkbox" class="form-checkbox h-5 w-5 opacity-0" id="chk_wallet">
                             <label
                                     for="chk_wallet"
-                                    @click="isUseWallet = !isUseWallet"
+                                    @click="isUseWallet = 1 - isUseWallet"
                                     class="ml-2 txt-main cursor-pointer absolute ml-8 before:w-6 before:h-6 before:-ml-8 before:absolute before:border before:border-purpleLight before:rounded-md after:absolute after:w-6 after:h-6 after:-left-8 after:bg-checkbox"
-                                    :class="{ 'after:content-none': isUseWallet == 0 }"
+                                    :class="{ 'after:content-none': isUseWallet === 0 }"
                             >
                                 Use wallet balances
                             </label>
