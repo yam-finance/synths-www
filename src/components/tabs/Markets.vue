@@ -246,7 +246,7 @@
             const { connectTo, data, loading } = useSynthsSDK(provider);
 
             connectTo("upunks-0921");
-            /* -- End of SDK Test -- */
+            /* -- End of SDK Init Test -- */
             const userDetails: any = inject("userDetails");
             return {
                 userDetails,
