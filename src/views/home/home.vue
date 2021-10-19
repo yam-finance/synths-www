@@ -10,17 +10,17 @@
                     <span class="bg-[#3468FF] my-auto px-2 overflow-hidden ml-3 md:ml-16 rounded-full text-sm">v 3.0</span>
                 </div>
             </router-link>
-            <div class="flex absolute right-1 p-2">
-            <span class="flex px-4 py-1.5 text-sm cursor-pointer">
-                Learn
-            </span>
-            <router-link to="/explore-synths">
-            <s-button buttonStyles="wallet-btn px-4 py-1.5 my-auto text-sm font-normal">
-                <template #buttonTitle>
-                    Explore Synths
-                </template>
-            </s-button>
-            </router-link>
+            <div class="flex absolute right-2 p-2">
+                <span class="flex px-4 py-1.5 text-sm cursor-pointer">
+                    Learn
+                </span>
+                <router-link to="/explore-synths">
+                <s-button buttonStyles="wallet-btn px-4 py-1.5 my-auto text-sm font-normal mr-4">
+                    <template #buttonTitle>
+                        Explore Synths
+                    </template>
+                </s-button>
+                </router-link>
             </div>
         </nav>
         <div class="container-fluid max-w-[1000px] m-auto">
@@ -151,7 +151,7 @@
 
                 <div class="mt-32 text-lg">
                     <span class="txt-main">Build by</span>
-                    🍠 YAM
+                    <img src="@/assets/images/logo.png" class="inline w-6 h-6">YAM
                 </div>
                 <div class="text-lg">
                     <span class="txt-main">Powered by </span>
