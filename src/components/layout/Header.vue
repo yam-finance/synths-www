@@ -70,6 +70,7 @@ function formatAddress(address) {
 
 <template>
   <nav
+
     class="
       h-12
       sticky
@@ -114,7 +115,7 @@ function formatAddress(address) {
         invisible
         md:visible
       "
-    >
+  >
       <li
         class="min-w-max cursor-pointer px-2"
         v-for="(tab, key) in tabs"
@@ -145,6 +146,7 @@ function formatAddress(address) {
     >
       <div class="flex absolute right-1">
         <img src="@/assets/images/bell.png" class="cursor-pointer my-auto h-4" />
+
         <span
           class="flex px-4 py-1.5 text-sm cursor-pointer"
           @click="isDropDownOpen = !isDropDownOpen"
@@ -272,6 +274,7 @@ function formatAddress(address) {
     </connectWalletModal>
   </nav>
 </template>
+
 
 <style scoped>
 .image_icon {

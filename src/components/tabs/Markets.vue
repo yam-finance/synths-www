@@ -12,10 +12,27 @@
                         <p class="font-semibold text-base inline ml-2">Sushi APY</p>
                     </div>
                     <div class="text-right mr-2 inline float-right">
-                        <span class="rounded-xl bg-main px-4 py-2 font-normal text-sm txt-main">
+                        <span class="rounded-xl bg-main px-4 py-2 font-normal text-sm txt-main" @click="isDropDown = !isDropDown">
                             Expiring 21st April
                             <img src="@/assets/images/arrow-down.png" class="h-6 inline mb-0.5 cursor-pointer">
                         </span>
+                      <ul
+                        class="overflow-hidden my-auto p-2 text-sm text-left fixed bg-main rounded-br-xl rounded-bl-xl"
+                        v-if="isDropDown"
+                        v-click-away="closeDown"
+                      >
+                        <RouterLink to="/#">
+                          <li class="min-w-max cursor-pointer p-1">
+                            <span class="rounded-xl bg-main px-4 py-2 font-normal text-sm txt-main"> Expiring 23st April</span>
+                          </li>
+                        </RouterLink>
+                        <RouterLink to="/#">
+
+                          <li class="min-w-max cursor-pointer p-1">
+                            <span class="rounded-xl bg-main px-4 py-2 font-normal text-sm txt-main"> Expiring 23st April</span>
+                          </li>
+                        </RouterLink>
+                      </ul>
                     </div>
                 </div>
 
@@ -26,19 +43,25 @@
                     selected based on data from swaggystocks.com.
                 </p>
 
+                <!-- i18n Test Start -->
+                <p>`t` resource key completion: {{ t('menu.login') }}</p>
+                <p>`d` resource key completion: {{ d(new Date(), 'short') }}</p>
+                <p>`n` resource key completion: {{ n(1000, 'currency') }}</p>
+                <!-- i18n Test Start -->
+
                 <div class="grid grid-cols-3 mt-4">
-                    <div>
+                    <RouterLink to="/#" class="cursor-pointer">
                         <p class="text-sm inline mr-1 md:mr-2">Learn More</p>
                         <img src="@/assets/images/external-link.svg" class="inline cursor-pointer">
-                    </div>
-                    <div>
+                    </RouterLink>
+                    <RouterLink to="/#" class="cursor-pointer">
                         <p class="text-sm inline mr-1 md:mr-2">Tutorial</p>
                         <img src="@/assets/images/external-link.svg" class="inline cursor-pointer">
-                    </div>
-                    <div>
+                    </RouterLink>
+                    <RouterLink to="/#" class="cursor-pointer">
                         <p class="text-sm inline mr-0.5 md:mr-2">Connect Address</p>
                         <img src="@/assets/images/external-link.svg" class="inline cursor-pointer">
-                    </div>
+                    </RouterLink>
                 </div>
 
                 <div class="grid grid-cols-2">
@@ -94,7 +117,7 @@
                     >
                         <div class="w-full h-12 py-3 px-6 border-b bd-main cursor-pointer" :class="{'bg-[#4447BD]' : option.id==selected_option}">
                             <span class="font-semibold">{{option.title}}</span>
-                            <img src="@/assets/images/arrow-right-pink.png" v-if="option.id==1" class="inline float-right w-6 h-6 cursor-pointer">
+                            <img src="@/assets/images/arrow-right-pink.png" v-if="option.id==selected_option" class="inline float-right w-6 h-6 cursor-pointer">
                             <img src="@/assets/images/arrow-right.svg" v-else class="inline float-right w-6 h-6 cursor-pointer">
                         </div>
                     </div>
@@ -133,10 +156,17 @@
                     </div>
 
                     <div class="mt-2">
-                        <label class="inline-flex items-center">
-                            <input type="checkbox" class="form-checkbox h-5 w-5">
-                            <span class="ml-2 txt-main">Use wallet balances</span>
-                        </label>
+                        <div class="checkbox inline-flex items-center mt-4 cursor-pointer">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 opacity-0" id="chk_wallet">
+                            <label
+                                    for="chk_wallet"
+                                    @click="isUseWallet = 1 - isUseWallet"
+                                    class="ml-2 txt-main cursor-pointer absolute ml-8 before:w-6 before:h-6 before:-ml-8 before:absolute before:border before:border-purpleLight before:rounded-md after:absolute after:w-6 after:h-6 after:-left-8 after:bg-checkbox"
+                                    :class="{ 'after:content-none': isUseWallet === 0 }"
+                            >
+                                Use wallet balances
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <div class="px-6 py-4">
@@ -164,7 +194,7 @@
                 :key="key"
                 :class="(option.id==selected_option)?'h-full':''"
         >
-            <SynthsSideBar
+            <SynthsInsideBar
                     :settle="(option.slug=='Settle')?false:true"
                     :title="option.title"
                     :sub-title="option.description"
@@ -176,21 +206,31 @@
                     <p><span>ETH Expiry Price</span> <span>$3,200</span></p>
                     <p><span>Long Token Expiry Price</span> <span>$120</span></p>
                     <p><span>Short Token Expiry Price</span> <span>$60</span></p>
+                    <!-- -- Start of SDK Test -- -->
+                    <button @click="connectTo('ugas-0921')">Switch to ugas-0921</button>
+                    <p v-if="loading"><span>Expiry Price in WEI</span> <span>loading</span></p>
+                    <p v-else><span>Expiry Price in WEI</span> <span>{{data.empState.expiryPrice}}</span></p>
+                    <!-- -- End of SDK Test -- -->
                 </template>
-            </SynthsSideBar>
+            </SynthsInsideBar>
         </div>
     </div>
 </template>
 
 <script lang="ts">
     import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue";
-
     import SynthsSingleChart from "@/components/charts/SynthsSingleChart.vue";
     import SynthsLongShortChart from "@/components/charts/SynthsLongShortChart.vue";
-    import SynthsSideBar from "@/components/SynthsInsideBar.vue";
+    import SynthsInsideBar from "@/components/SynthsInsideBar.vue";
     import SynthsNew from "@/components/SynthsNew.vue";
     import synthsLogo from "@/assets/images/logo.png";
     import {inject} from "vue";
+    import { useI18n } from "vue-i18n";
+
+    /* -- Start of SDK Test -- */
+    import { useSynthsSDK } from "../../stores/sdk-store";
+    import { providers } from "ethers";
+    /* -- End of SDK Test -- */
 
     let options = [
         {
@@ -208,12 +248,14 @@
         {
             id: 3,
             title: "Settle",
-            escription: 'Burn Long and Short tokens for ETH',
+            description: 'Burn Long and Short tokens for ETH',
             slug: "Settle"
         },
     ];
 
     let selected_option = 0;
+    let isUseWallet = 0;
+    let isDropDown: boolean = true;
 
     export default {
         name: "Markets",
@@ -221,22 +263,56 @@
             SynthsSingleChart,
             SynthsLongShortChart,
             's-button': SynthsRoundedButton,
-            SynthsSideBar,
+            SynthsInsideBar,
             SynthsNew,
         },
         data() {
             return {
                 synthsLogo,
                 options,
-                selected_option
+                selected_option,
+                isUseWallet,
+              isDropDown
             };
         },
         setup() {
+            /* -- Start of SDK Test -- */
+            /// @notice Synth SDK Init test
+            const url = `${import.meta.env.VITE_INFURA_URL}`;
+            const provider = new providers.JsonRpcProvider(url);
+            const { connectTo, data, loading } = useSynthsSDK(provider);
+
+            connectTo("upunks-0921");
+            /* -- End of SDK Init Test -- */
+
+            /// @dev Use global scope
+            const { t, d, n } = useI18n({
+                useScope: 'global',
+                inheritLocale: true
+            });
+
             const userDetails: any = inject("userDetails");
+
             return {
-                userDetails
+                t,
+                d,
+                n,
+                userDetails,
+
+                /* -- Start of SDK Test -- */
+                loading,
+                data,
+                connectTo
+                /* -- End of SDK Test -- */
             };
+        },
+      methods: {
+        closeDown(e:any) {
+          e.stopPropagation();
+        isDropDown = false;
         }
+      },
+
     }
 </script>
 <style scoped lang="scss">

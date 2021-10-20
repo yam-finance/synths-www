@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-main font-openSauceSans">
+    <div class="home bg-main">
         <nav
                 class="h-12 sticky overflow-hidden top-0 left-0 z-20 bg-navy-blue-800 text-white flex flex-col lg:flex-row bg-main"
         >
@@ -10,17 +10,19 @@
                     <span class="bg-[#3468FF] my-auto px-2 overflow-hidden ml-3 md:ml-16 rounded-full text-sm">v 3.0</span>
                 </div>
             </router-link>
-            <div class="flex absolute right-1 p-2">
-            <span class="flex px-4 py-1.5 text-sm cursor-pointer">
-                Learn
-            </span>
-            <router-link to="/explore-synths">
-            <s-button buttonStyles="wallet-btn px-4 py-1.5 my-auto text-sm font-normal">
-                <template #buttonTitle>
-                    Explore Synths
-                </template>
-            </s-button>
-            </router-link>
+            <div class="flex absolute right-2 p-2 w-96 h-12">
+                <div class="flex absolute right-2 align-middle my-auto">
+                    <span class="flex px-4 py-1.5 text-sm cursor-pointer">
+                        Learn
+                    </span>
+                    <router-link to="/explore-synths" class="my-auto">
+                        <s-button buttonStyles="wallet-btn px-2 py-1.5 my-auto text-sm font-semibold  mr-4">
+                            <template #buttonTitle>
+                                Explore Synths
+                            </template>
+                        </s-button>
+                    </router-link>
+                </div>
             </div>
         </nav>
         <div class="container-fluid max-w-[1000px] m-auto">
@@ -151,7 +153,7 @@
 
                 <div class="mt-32 text-lg">
                     <span class="txt-main">Build by</span>
-                    🍠 YAM
+                    <img src="@/assets/images/logo.png" class="inline w-6 h-6">YAM
                 </div>
                 <div class="text-lg">
                     <span class="txt-main">Powered by </span>
@@ -161,9 +163,15 @@
                 <ul
                     class="inline-flex space-x-8 text-[#CBCBFF] mt-8"
                 >
+                  <router-link to="/#" class="cursor-pointer">
                     <li class="cursor-pointer">Documentation</li>
+                  </router-link>
+                  <router-link to="/#" class="cursor-pointer">
                     <li class="cursor-pointer">FAQs</li>
+                  </router-link>
+                  <router-link to="/#" class="cursor-pointer">
                     <li class="cursor-pointer">Newsletter</li>
+                  </router-link>
                 </ul>
 
                 <div>
