@@ -6,7 +6,7 @@
           <div>
               <SideBar/>
           </div>
-          <div class="hidden md:flex" style="width: calc(100vw - 257px)">
+          <div class="hidden md:flex" style="width: calc(100vw - 256px)">
               <router-view/>
           </div>
           <div class="block md:hidden" style="height: calc(100vh - 64px);">

@@ -5,7 +5,9 @@
     "dev": "vite",
     "tailwind": "tailwind-config-viewer -o -p 3001",
     "build": "vue-tsc --noEmit && vite build",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "lint": "prettier --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
+    "format": "prettier --write --plugin-search-dir=. ."
   },
   "dependencies": {
     "autoprefixer": "^10.3.5",
@@ -24,10 +26,12 @@
   },
   "devDependencies": {
     "@types/pathjs": "^0.8.36",
+    "@typescript-eslint/eslint-plugin": "^5.1.0",
+    "@typescript-eslint/parser": "^5.1.0",
     "@vitejs/plugin-vue": "^1.9.0",
-    "eslint": "^7.32.0",
+    "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-vue": "^7.18.0",
+    "eslint-plugin-vue": "^7.19.1",
     "prettier": "^2.4.1",
     "typescript": "^4.4.3",
     "vite": "^2.5.10",
