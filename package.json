@@ -12,7 +12,7 @@
   "dependencies": {
     "autoprefixer": "^10.3.5",
     "chart.js": "^3.5.1",
-    "ethers": "^5.4.7",
+    "ethers": "^5.5.0",
     "lodash": "^4.17.21",
     "path": "^0.12.7",
     "postcss": "^8.3.7",
@@ -21,6 +21,7 @@
     "tailwind-config-viewer": "^1.6.2",
     "tailwindcss": "^2.2.15",
     "vue": "^3.2.13",
+    "vue-i18n": "^9.1.9",
     "vue-router": "4",
     "vue3-click-away": "^1.2.1"
   },

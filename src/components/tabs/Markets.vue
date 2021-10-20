@@ -26,6 +26,12 @@
                     selected based on data from swaggystocks.com.
                 </p>
 
+                <!-- i18n Test Start -->
+                <p>`t` resource key completion: {{ t('menu.login') }}</p>
+                <p>`d` resource key completion: {{ d(new Date(), 'short') }}</p>
+                <p>`n` resource key completion: {{ n(1000, 'currency') }}</p>
+                <!-- i18n Test Start -->
+
                 <div class="grid grid-cols-3 mt-4">
                     <div>
                         <p class="text-sm inline mr-1 md:mr-2">Learn More</p>
@@ -202,6 +208,7 @@
     import SynthsNew from "@/components/SynthsNew.vue";
     import synthsLogo from "@/assets/images/logo.png";
     import {inject} from "vue";
+    import { useI18n } from "vue-i18n";
     
     /* -- Start of SDK Test -- */
     import { useSynthsSDK } from "../../stores/sdk-store";
@@ -258,9 +265,21 @@
 
             connectTo("upunks-0921");
             /* -- End of SDK Init Test -- */
+            
+            /// @dev Use global scope
+            const { t, d, n } = useI18n({
+                useScope: 'global',
+                inheritLocale: true
+            });
+
             const userDetails: any = inject("userDetails");
+
             return {
+                t,
+                d,
+                n,
                 userDetails,
+                
                 /* -- Start of SDK Test -- */
                 loading,
                 data,
