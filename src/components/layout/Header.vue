@@ -34,7 +34,7 @@
                     Help
                     <img src="@/assets/images/dropdown.svg" class="mx-2 my-auto h-4">
                 </span>
-              <s-button buttonStyles="wallet-btn px-4 py-1.5 my-auto text-sm font-normal">
+              <s-button buttonStyles="wallet-btn px-2 py-1.5 my-auto text-sm font-semibold">
                 <template #buttonTitle>
                   Connect Wallet
                 </template>
