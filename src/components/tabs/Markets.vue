@@ -209,11 +209,14 @@
     import synthsLogo from "@/assets/images/logo.png";
     import {inject} from "vue";
     import { useI18n } from "vue-i18n";
+    import dotenv from "dotenv";
     
     /* -- Start of SDK Test -- */
     import { useSynthsSDK } from "../../stores/sdk-store";
     import { providers } from "ethers";
     /* -- End of SDK Test -- */
+
+    dotenv.config();
 
     let options = [
         {
