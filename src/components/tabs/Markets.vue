@@ -189,6 +189,11 @@
                     <p><span>ETH Expiry Price</span> <span>$3,200</span></p>
                     <p><span>Long Token Expiry Price</span> <span>$120</span></p>
                     <p><span>Short Token Expiry Price</span> <span>$60</span></p>
+                    <!-- -- Start of SDK Test -- --> 
+                    <button @click="connectTo('ugas-0921')">Switch to ugas-0921</button>
+                    <p v-if="loading"><span>Expiry Price in WEI</span> <span>loading</span></p>
+                    <p v-else><span>Expiry Price in WEI</span> <span>{{data.empState.expiryPrice}}</span></p>
+                    <!-- -- End of SDK Test -- -->
                 </template>
             </SynthsInsideBar>
         </div>
@@ -204,6 +209,11 @@
     import synthsLogo from "@/assets/images/logo.png";
     import {inject} from "vue";
     import { useI18n } from "vue-i18n";
+    
+    /* -- Start of SDK Test -- */
+    import { useSynthsSDK } from "../../stores/sdk-store";
+    import { providers } from "ethers";
+    /* -- End of SDK Test -- */
 
     let options = [
         {
@@ -246,6 +256,16 @@
             };
         },
         setup() {
+            /* -- Start of SDK Test -- */
+            /// @notice Synth SDK Init test
+            const url = "${process.env.INFURA_URL}";
+
+            const provider = new providers.JsonRpcProvider(url);
+            const { connectTo, data, loading } = useSynthsSDK(provider);
+
+            connectTo("upunks-0921");
+            /* -- End of SDK Init Test -- */
+            
             /// @dev Use global scope
             const { t, d, n } = useI18n({
                 useScope: 'global',
@@ -258,7 +278,13 @@
                 t,
                 d,
                 n,
-                userDetails
+                userDetails,
+                
+                /* -- Start of SDK Test -- */
+                loading,
+                data,
+                connectTo
+                /* -- End of SDK Test -- */
             };
         }
     }
