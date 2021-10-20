@@ -1,32 +1,7 @@
-<script setup>
-import { useWeb3 } from '@/composables/useWeb3';
-import { ref } from  'vue';
-
-const { login, web3 ,logout} = useWeb3();
-const isModalVisible = ref(false);
-
-const isWalletDropDownOpen = ref(false);
-const isDropDownOpen = ref(false);
-
-  async function handleConnect(connector) {
-    isModalVisible.value = false;
-    await login(connector);  
-  }
-  async function handleLogout() {
-    await logout(); 
-    // emit('close');
-  }
-  function formatAddress(address) {
-    return address.slice(0, 6) + '...' + address.slice(-6);
-  }
-</script>
-
 <script>
 import  SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue";
-import { useWeb3 } from '@/composables/useWeb3';
-import { ref } from  'vue';
-import connectWalletModal from "../connectWallet/ConnectWallet.vue";
-const { login, web3 ,logout} = useWeb3();
+
+
 const closeModal = ref(false);
     let tabs = [
         {
@@ -68,10 +43,36 @@ const closeModal = ref(false);
               e.stopPropagation()
             this.isDropDownOpen = false
             this.isWalletDropDownOpen = false;
+           // this.isModalVisible = false;
           },
         },
   }
 </script>
+<script setup>
+import { useWeb3 } from '@/composables/useWeb3';
+import connectWalletModal from "../connectWallet/ConnectWallet.vue"
+import { ref } from  'vue';
+
+const { login, web3 ,logout} = useWeb3();
+const isModalVisible = ref(false);
+
+const isWalletDropDownOpen = ref(false);
+const isDropDownOpen = ref(false);
+
+  async function handleConnect(connector) {
+    isModalVisible.value = false;
+    await login(connector);  
+  }
+  async function handleLogout() {
+    await logout(); 
+    // emit('close');
+  }
+  function formatAddress(address) {
+    return address.slice(0, 6) + '...' + address.slice(-6);
+  }
+</script>
+
+
 
 <template>
     <nav
@@ -209,9 +210,10 @@ const closeModal = ref(false);
                 <span class="text-xs my-auto font-normal px-1">13224549</span>
             </div>
         </div>
-    </nav>
-<connectWalletModal  v-show="isModalVisible" @close="closeModal" @connect="handleConnect" >
+        <connectWalletModal  v-show="isModalVisible" @close="closeModal" @connect="handleConnect" >
   </connectWalletModal>
+    </nav>
+
 </template>
 
 

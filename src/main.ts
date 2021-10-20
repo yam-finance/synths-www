@@ -8,6 +8,7 @@ import App from '@/App.vue'
 import router from "@/router"
 import options from '@/utils/auth';
 import { LockPlugin } from '@snapshot-labs/lock/plugins/vue3';
+import 'vue-js-modal/dist/styles.css'
 
 import VueClickAway from "vue3-click-away";
 
