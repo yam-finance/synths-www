@@ -80,9 +80,9 @@
                 </p>
 
                 <!-- i18n Test Start -->
-                <p>`t` resource key completion: {{ t("menu.login") }}</p>
-                <p>`d` resource key completion: {{ d(new Date(), "short") }}</p>
-                <p>`n` resource key completion: {{ n(1000, "currency") }}</p>
+                <!-- <p>`t` resource key completion: {{ t("menu.login") }}</p> -->
+                <!-- <p>`d` resource key completion: {{ d(new Date(), "short") }}</p> -->
+                <!-- <p>`n` resource key completion: {{ n(1000, "currency") }}</p> -->
                 <!-- i18n Test Start -->
 
                 <div class="grid grid-cols-3 mt-4">
