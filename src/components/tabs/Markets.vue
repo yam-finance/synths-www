@@ -255,7 +255,7 @@
 
     let selected_option = 0;
     let isUseWallet = 0;
-    let isDropDown = 0;
+    let isDropDown: boolean = true;
 
     export default {
         name: "Markets",
@@ -309,7 +309,7 @@
       methods: {
         closeDown(e:any) {
           e.stopPropagation();
-        isDropDown = 0;
+        isDropDown = false;
         }
       },
 
