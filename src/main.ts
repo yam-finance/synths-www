@@ -7,7 +7,7 @@ import { i18n } from "./i18n";
 
 import "@/index.scss";
 
-const app = createApp(App)).use(i18n).use(VueClickAway).use(router);
+const app = createApp(App).use(i18n).use(VueClickAway).use(router);
 app.mount('#app');
 
 app.config.performance = true

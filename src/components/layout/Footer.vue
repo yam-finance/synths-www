@@ -17,8 +17,6 @@
                 </div>
             </div>
         </div>
-      </div>
-    </div>
 
     <transition
         enter-active-class="transition ease-in-out duration-100"
@@ -78,8 +76,6 @@
                 </div>
             </div>
         </div>
-      </div>
-    </transition>
 
     <div class="flex absolute w-full right-0 p-2 text-right h-12 lg:border-l bd-main visible md:invisible">
       <div class="flex">
@@ -95,7 +91,6 @@
 
 <script>
 import { globalStore } from "@/store/index";
-import {computed, onMounted} from "vue";
 
 
 let isMenuOpen = 0;
