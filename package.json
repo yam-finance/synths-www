@@ -12,6 +12,7 @@
   "dependencies": {
     "autoprefixer": "^10.3.5",
     "chart.js": "^3.5.1",
+    "ethers": "^5.5.0",
     "lodash": "^4.17.21",
     "path": "^0.12.7",
     "postcss": "^8.3.7",
