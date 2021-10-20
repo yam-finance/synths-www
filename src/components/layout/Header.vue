@@ -1,16 +1,16 @@
 <template>
     <nav
-        class="h-12 sticky overflow-hidden top-0 left-0 z-20 bg-navy-blue-800 text-white flex flex-col lg:flex-row border-b bd-main bg-main"
+            class="h-12 sticky overflow-hidden top-0 left-0 z-20 bg-navy-blue-800 text-white flex flex-col md:flex-row border-b bd-main bg-main"
     >
         <router-link to="/">
-        <div class="w-64 h-12 flex md:border-r bd-main">
-            <img src="@/assets/images/yamIcon.png" class="m-2 h-8 w-8">
-            <h3 class="logo font-bold text-emerald-500 my-auto">Yam Synths</h3>
-            <span class="bg-[#3468FF] my-auto px-2 overflow-hidden ml-3 md:ml-16 rounded-full text-sm">v 3.0</span>
-        </div>
+            <div class="w-64 h-12 flex md:border-r bd-main">
+                <img src="@/assets/images/yamIcon.png" class="m-2 h-8 w-8">
+                <h3 class="logo font-bold text-emerald-500 my-auto">Yam Synths</h3>
+                <span class="bg-[#3468FF] my-auto px-2 overflow-hidden ml-3 md:ml-16 rounded-full text-sm">v 3.0</span>
+            </div>
         </router-link>
         <ul
-            class="flex space-x-8 overflow-hidden sticky left-64 my-auto px-4 rounded-full text-sm mx-4 py-1 font-semibold bg-dark txt-main invisible md:visible"
+            class="flex md:space-x-2 lg:space-x-8 overflow-hidden sticky left-64 my-auto px-4 rounded-full text-sm mx-4 py-1 font-semibold bg-dark txt-main invisible md:visible"
         >
             <li
                 class="min-w-max cursor-pointer px-2"
@@ -24,8 +24,8 @@
                 </router-link>
             </li>
         </ul>
-        <div class="flex absolute w-96 right-0 p-2 mr-4 text-right h-12 lg:border-l bd-main invisible md:visible">
-            <div class="flex absolute right-1">
+        <div class="flex absolute w-72 lg:w-96 right-0 p-2 mr-4 text-right h-12 lg:border-l bd-main invisible md:visible">
+            <div class="flex absolute right-0">
                 <img src="@/assets/images/bell.png" class="cursor-pointer my-auto h-4">
                 <span
                         class="flex px-4 py-1.5 text-sm cursor-pointer"
@@ -63,7 +63,7 @@
 </template>
 
 <script>
-import  SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue";
+    import  SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue";
 
 
     let tabs = [
@@ -87,9 +87,9 @@ import  SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue";
     let activeTab = 0;
     export default {
         name: "Header",
-      components: {
-        's-button': SynthsRoundedButton,
-      },
+        components: {
+          's-button': SynthsRoundedButton,
+        },
         data() {
             return {
                 tabs,
