@@ -1,3 +1,3 @@
-import globalStore from "@/store/global";
+import globalStore from "@/store/global"
 
 export { globalStore }

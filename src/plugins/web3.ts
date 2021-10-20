@@ -1,4 +1,4 @@
-import { ethers } from "ethers";
+import { ethers } from "ethers"
 
 const web3 = new ethers.providers.Web3Provider(window.ethereum)
 
@@ -7,5 +7,4 @@ const web3 = new ethers.providers.Web3Provider(window.ethereum)
 // For this, you need the account signer...
 const signer = web3.getSigner()
 
-
-export {web3, signer}
+export { web3, signer }
