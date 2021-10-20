@@ -4,45 +4,45 @@ const routes = [
     {
         path: '/',
         name: 'HomePage',
-        component: () => import('@/views/home/home.vue'),
+        component: () => import('@/views/home.vue'),
     },
     {
         path: '/',
         name: 'Home',
-        component: () => import('@/views/home/index.vue'),
+        component: () => import('@/views/AppView.vue'),
         meta: { hasSideBar: 1 },
         children: [
             {
                 path: '/explore-synths',
                 name: 'Explore Synths',
-                component: () => import('@/components/tabs/ExploreSynths.vue'),
+                component: () => import('@/views/ExploreSynths.vue'),
                 meta: { hasSideBar: 1 }
             },
             {
                 path: '/markets',
                 name: 'Markets',
-                component: () => import('@/components/tabs/Markets.vue'),
+                component: () => import('@/views/Markets.vue'),
                 meta: { hasSideBar: 1 }
             },
             {
                 path: '/portfolio',
                 name: 'Portfolio',
-                component: () => import('@/components/tabs/Portfolio.vue'),
+                component: () => import('@/views/Portfolio.vue'),
                 meta: { hasSideBar: 0 }
             },
             {
                 path: '/synths/:synth',
                 name: 'Synths',
-                component: () => import('@/components/tabs/ExploreSynths.vue'),
+                component: () => import('@/views/ExploreSynths.vue'),
                 meta: { hasSideBar: 1 }
             },
 
         ]
     },
     {
-        path: '/elements',
-        name: 'Elements',
-        component: () => import('@/views/elements/index.vue'),
+        path: '/testsidebar',
+        name: 'Testsidebar',
+        component: () => import('@/components/testsidebar/index.vue'),
     },
 ]
 const router = createRouter({

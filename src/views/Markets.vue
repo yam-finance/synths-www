@@ -228,7 +228,7 @@
     import { useI18n } from "vue-i18n";
 
     /* -- Start of SDK Test -- */
-    import { useSynthsSDK } from "../../stores/sdk-store";
+    import { useSynthsSDK } from "../stores/sdk-store";
     import { providers } from "ethers";
     /* -- End of SDK Test -- */
 
@@ -255,7 +255,7 @@
 
     let selected_option = 0;
     let isUseWallet = 0;
-    let isDropDown: boolean = true;
+    let isDropDown: boolean = false;
 
     export default {
         name: "Markets",
