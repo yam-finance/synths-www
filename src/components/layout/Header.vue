@@ -43,10 +43,11 @@
         },
       },
     }
-    </script>
-    <script setup>
+</script>
+
+<script setup>
     import { useWeb3 } from "@/composables/useWeb3"
-    import connectWalletModal from "../ConnectWallet.vue"
+    import ConnectWallet from "../ConnectWallet.vue"
     import { ref } from "vue"
     
     const { login, web3, logout } = useWeb3()
@@ -66,11 +67,10 @@
     function formatAddress(address) {
       return address.slice(0, 6) + "..." + address.slice(-6)
     }
-    </script>
-    
-    <template>
-      <nav
-    
+</script>
+
+<template>
+    <nav
         class="
           h-12
           sticky
@@ -266,12 +266,12 @@
             <span class="text-xs my-auto font-normal px-1">13224549</span>
           </div>
         </div>
-        <connectWalletModal
+        <ConnectWallet
           v-show="isModalVisible"
           @close="isModalVisible = false"
           @connect="handleConnect"
         >
-        </connectWalletModal>
+        </ConnectWallet>
       </nav>
     </template>
     

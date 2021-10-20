@@ -134,17 +134,17 @@
         </div>
       </div>
     </div>
-    <connectWalletModal
+    <ConnectWallet
       v-show="isModalVisible"
       @close="isModalVisible = false"
       @connect="handleConnect"
     >
-    </connectWalletModal>
+    </ConnectWallet>
   </nav>
 </template>
 <script setup>
 import { useWeb3 } from "@/composables/useWeb3"
-import connectWalletModal from "@/components/connectWallet/ConnectWallet.vue"
+import ConnectWallet from "@/components/ConnectWallet.vue"
 import { ref } from "vue"
 
 const { login, web3, logout } = useWeb3()
