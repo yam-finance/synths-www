@@ -258,8 +258,7 @@
         setup() {
             /* -- Start of SDK Test -- */
             /// @notice Synth SDK Init test
-            const url = "${process.env.INFURA_URL}";
-
+            const url = `${import.meta.env.VITE_INFURA_URL}`;
             const provider = new providers.JsonRpcProvider(url);
             const { connectTo, data, loading } = useSynthsSDK(provider);
 
