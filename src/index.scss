@@ -2,6 +2,12 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/utilities';
 
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
 @layer base {
     @font-face {
         font-family: 'Open Sauce Sans', sans-serif;
@@ -45,8 +51,12 @@ html, body {
         background: #19193F;
     }
 
-    .wallet-btn{
+    .primary-button{
         background: linear-gradient(180deg, #F77FA0 0%, #DA4CAB 100%);
+        box-shadow: 0px 0px 4px 0px #FF9BD4 inset, 0px 4px 4px 0px #00000040, 0px 4px 8px -4px #FF9BD480;
+        &:hover {
+          transform: translateY(-2px);
+        }
     }
 
     .txt-main{

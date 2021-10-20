@@ -5,12 +5,12 @@
         <router-link to="/">
         <div class="w-64 h-12 flex md:border-r bd-main">
             <img src="../../assets/images/yamIcon.png" class="m-2">
-            <h3 class="logo font-bold text-emerald-500 my-auto">Yam Synths</h3>
-            <span class="bg-blue-500 my-auto px-2 overflow-hidden ml-3 md:ml-16 rounded-full text-sm">v 3.0</span>
+            <h3 class="logo font-semibold text-emerald-500 my-auto">Yam Synths</h3>
+            <span class="bg-indigo-600 my-auto font-bold text-xs uppercase px-2 overflow-hidden ml-3 md:ml-16 rounded-full">v 3.0</span>
         </div>
         </router-link>
         <ul
-            class="flex space-x-8 overflow-hidden sticky left-64 my-auto px-4 rounded-full text-sm mx-4 py-1 font-semibold bg-dark txt-main invisible md:visible"
+            class="flex space-x-8 overflow-hidden sticky left-64 my-auto p-1 rounded-lg text-sm mx-4 font-semibold bg-dark txt-main invisible md:visible shadow-inner"
         >
             <li
                 class="min-w-max cursor-pointer px-2"
@@ -19,26 +19,26 @@
                 :class="tab.title==$route.name? 'bg-white rounded-md': ''"
             >
                 <router-link :to='"/" + tab.to'>
-                    <span v-if="tab.title==$route.name" class="text-black">{{ tab.title }}</span>
-                    <span v-else>{{ tab.title }}</span>
+                    <span v-if="tab.title==$route.name" class="text-black cursor-pointer">{{ tab.title }}</span>
+                    <span class="text-purpleLight cursor-pointer hover:text-white" v-else>{{ tab.title }}</span>
                 </router-link>
             </li>
         </ul>
         <div class="flex absolute w-96 right-0 p-2 mr-4 text-right h-12 lg:border-l bd-main invisible md:visible">
             <div class="flex absolute right-5">
                 <span
-                        class="flex px-4 py-1.5 text-sm cursor-pointer"
+                        class="flex px-4 py-1.5 text-sm cursor-pointer hover:opacity-50 text-purpleLight font-semibold"
                         @click="isDropDownOpen = !isDropDownOpen"
                 >
                     Help
-                    <img src="../../assets/images/dropdown.svg" class="mx-2 my-auto h-4">
+                    <img src="../../assets/images/dropdown.svg" class="ml-1 my-auto h-4">
                 </span>
-                <button class="hover:shadow-lg rounded-full px-4 py-1.5 my-auto text-sm wallet-btn">
+                <button class="hover:shadow-lg rounded-xl font-bold px-4 py-1.5 my-auto text-sm primary-button">
                     Connect Wallet
                 </button>
             </div>
             <ul
-                class="overflow-hidden my-auto p-2 text-sm text-left fixed top-9 right-44 bg-light rounded-xl"
+                class="overflow-hidden my-auto p-2 text-sm text-left fixed top-9 right-44 bg-light rounded-xl shadow-lg"
                 v-if="isDropDownOpen"
             >
                 <li class="min-w-max cursor-pointer p-1">
