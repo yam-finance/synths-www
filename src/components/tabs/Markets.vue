@@ -26,6 +26,12 @@
                     selected based on data from swaggystocks.com.
                 </p>
 
+                <!-- i18n Test Start -->
+                <p>`t` resource key completion: {{ t('menu.login') }}</p>
+                <p>`d` resource key completion: {{ d(new Date(), 'short') }}</p>
+                <p>`n` resource key completion: {{ n(1000, 'currency') }}</p>
+                <!-- i18n Test Start -->
+
                 <div class="grid grid-cols-3 mt-4">
                     <div>
                         <p class="text-sm inline mr-1 md:mr-2">Learn More</p>
@@ -171,7 +177,7 @@
                 :key="key"
                 :class="(option.id==selected_option)?'h-full':''"
         >
-            <SynthsSideBar
+            <SynthsInsideBar
                     :settle="(option.slug=='Settle')?false:true"
                     :title="option.title"
                     :sub-title="option.description"
@@ -184,7 +190,7 @@
                     <p><span>Long Token Expiry Price</span> <span>$120</span></p>
                     <p><span>Short Token Expiry Price</span> <span>$60</span></p>
                 </template>
-            </SynthsSideBar>
+            </SynthsInsideBar>
         </div>
     </div>
 </template>
@@ -193,10 +199,11 @@
     import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue";
     import SynthsSingleChart from "@/components/charts/SynthsSingleChart.vue";
     import SynthsLongShortChart from "@/components/charts/SynthsLongShortChart.vue";
-    import SynthsSideBar from "@/components/SynthsInsideBar.vue";
+    import SynthsInsideBar from "@/components/SynthsInsideBar.vue";
     import SynthsNew from "@/components/SynthsNew.vue";
     import synthsLogo from "@/assets/images/logo.png";
     import {inject} from "vue";
+    import { useI18n } from "vue-i18n";
 
     let options = [
         {
@@ -227,7 +234,7 @@
             SynthsSingleChart,
             SynthsLongShortChart,
             's-button': SynthsRoundedButton,
-            SynthsSideBar,
+            SynthsInsideBar,
             SynthsNew,
         },
         data() {
@@ -239,12 +246,20 @@
             };
         },
         setup() {
+            /// @dev Use global scope
+            const { t, d, n } = useI18n({
+                useScope: 'global',
+                inheritLocale: true
+            });
+
             const userDetails: any = inject("userDetails");
+
             return {
+                t,
+                d,
+                n,
                 userDetails
             };
-        },
-        methods: {
         }
     }
 </script>
