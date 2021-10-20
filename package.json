@@ -26,6 +26,7 @@
     "vue3-click-away": "^1.2.1"
   },
   "devDependencies": {
+    "@types/node": "^16.10.5",
     "@types/pathjs": "^0.8.36",
     "@typescript-eslint/eslint-plugin": "^5.1.0",
     "@typescript-eslint/parser": "^5.1.0",
