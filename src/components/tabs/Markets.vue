@@ -26,6 +26,12 @@
                     selected based on data from swaggystocks.com.
                 </p>
 
+                <!-- i18n Test Start -->
+                <p>`t` resource key completion: {{ t('menu.login') }}</p>
+                <p>`d` resource key completion: {{ d(new Date(), 'short') }}</p>
+                <p>`n` resource key completion: {{ n(1000, 'currency') }}</p>
+                <!-- i18n Test Start -->
+
                 <div class="grid grid-cols-3 mt-4">
                     <div>
                         <p class="text-sm inline mr-1 md:mr-2">Learn More</p>
@@ -171,7 +177,7 @@
                 :key="key"
                 :class="(option.id==selected_option)?'h-full':''"
         >
-            <SynthsSideBar
+            <SynthsInsideBar
                     :settle="(option.slug=='Settle')?false:true"
                     :title="option.title"
                     :sub-title="option.description"
@@ -183,8 +189,13 @@
                     <p><span>ETH Expiry Price</span> <span>$3,200</span></p>
                     <p><span>Long Token Expiry Price</span> <span>$120</span></p>
                     <p><span>Short Token Expiry Price</span> <span>$60</span></p>
+                    <!-- -- Start of SDK Test -- --> 
+                    <button @click="connectTo('ugas-0921')">Switch to ugas-0921</button>
+                    <p v-if="loading"><span>Expiry Price in WEI</span> <span>loading</span></p>
+                    <p v-else><span>Expiry Price in WEI</span> <span>{{data.empState.expiryPrice}}</span></p>
+                    <!-- -- End of SDK Test -- -->
                 </template>
-            </SynthsSideBar>
+            </SynthsInsideBar>
         </div>
     </div>
 </template>
@@ -193,10 +204,16 @@
     import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue";
     import SynthsSingleChart from "@/components/charts/SynthsSingleChart.vue";
     import SynthsLongShortChart from "@/components/charts/SynthsLongShortChart.vue";
-    import SynthsSideBar from "@/components/SynthsInsideBar.vue";
+    import SynthsInsideBar from "@/components/SynthsInsideBar.vue";
     import SynthsNew from "@/components/SynthsNew.vue";
     import synthsLogo from "@/assets/images/logo.png";
     import {inject} from "vue";
+    import { useI18n } from "vue-i18n";
+    
+    /* -- Start of SDK Test -- */
+    import { useSynthsSDK } from "../../stores/sdk-store";
+    import { providers } from "ethers";
+    /* -- End of SDK Test -- */
 
     let options = [
         {
@@ -227,7 +244,7 @@
             SynthsSingleChart,
             SynthsLongShortChart,
             's-button': SynthsRoundedButton,
-            SynthsSideBar,
+            SynthsInsideBar,
             SynthsNew,
         },
         data() {
@@ -239,12 +256,36 @@
             };
         },
         setup() {
+            /* -- Start of SDK Test -- */
+            /// @notice Synth SDK Init test
+            const url = "${process.env.INFURA_URL}";
+
+            const provider = new providers.JsonRpcProvider(url);
+            const { connectTo, data, loading } = useSynthsSDK(provider);
+
+            connectTo("upunks-0921");
+            /* -- End of SDK Init Test -- */
+            
+            /// @dev Use global scope
+            const { t, d, n } = useI18n({
+                useScope: 'global',
+                inheritLocale: true
+            });
+
             const userDetails: any = inject("userDetails");
+
             return {
-                userDetails
+                t,
+                d,
+                n,
+                userDetails,
+                
+                /* -- Start of SDK Test -- */
+                loading,
+                data,
+                connectTo
+                /* -- End of SDK Test -- */
             };
-        },
-        methods: {
         }
     }
 </script>
