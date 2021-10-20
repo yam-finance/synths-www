@@ -254,7 +254,7 @@ let options = [
   },
 ];
 
-let isDropDown = 0;
+let isDropDown: boolean = true;
 let selected_option = 0;
 let isUseWallet = 0;
 export default {
@@ -275,12 +275,6 @@ export default {
       isDropDown
 
     };
-  },
-  methods: {
-    closeDown(e: { stopPropagation: () => void; }) {
-      e.stopPropagation()
-      this.isDropDown = false
-    }
   },
   setup() {
     /* -- Start of SDK Test -- */
@@ -312,7 +306,14 @@ export default {
       connectTo
       /* -- End of SDK Test -- */
     };
-  }
+  },
+  methods: {
+    closeDown(e:any) {
+      e.stopPropagation();
+      isDropDown = false;
+    }
+  },
+
 }
 </script>
 <style scoped lang="scss">
