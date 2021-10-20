@@ -12,14 +12,14 @@ import VueClickAway from "vue3-click-away";
 import { i18n } from "./i18n";
 
 import "@/index.scss";
-
+const app = createApp(App).use(VueClickAway).use(router).use(LockPlugin, options).use(i18n);
 app.mount('#app');
 
 app.config.performance = true
 app.config.globalProperties.$web3 = 'web3';
 
 
-const app = createApp(App).use(VueClickAway).use(router).use(LockPlugin, options).use(i18n).mount('#app');
+
 
 //@ts-ignore
 app.config.devtools = true
