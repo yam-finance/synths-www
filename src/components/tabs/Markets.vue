@@ -12,10 +12,27 @@
                         <p class="font-semibold text-base inline ml-2">Sushi APY</p>
                     </div>
                     <div class="text-right mr-2 inline float-right">
-                        <span class="rounded-xl bg-main px-4 py-2 font-normal text-sm txt-main">
+                        <span class="rounded-xl bg-main px-4 py-2 font-normal text-sm txt-main" @click="isDropDown = !isDropDown">
                             Expiring 21st April
                             <img src="@/assets/images/arrow-down.png" class="h-6 inline mb-0.5 cursor-pointer">
                         </span>
+                      <ul
+                        class="overflow-hidden my-auto p-2 text-sm text-left fixed bg-main rounded-br-xl rounded-bl-xl"
+                        v-if="isDropDown"
+                        v-click-away="closeDown"
+                      >
+                        <RouterLink to="/#">
+                          <li class="min-w-max cursor-pointer p-1">
+                            <span class="rounded-xl bg-main px-4 py-2 font-normal text-sm txt-main"> Expiring 23st April</span>
+                          </li>
+                        </RouterLink>
+                        <RouterLink to="/#">
+
+                          <li class="min-w-max cursor-pointer p-1">
+                            <span class="rounded-xl bg-main px-4 py-2 font-normal text-sm txt-main"> Expiring 23st April</span>
+                          </li>
+                        </RouterLink>
+                      </ul>
                     </div>
                 </div>
 
@@ -33,18 +50,18 @@
                 <!-- i18n Test Start -->
 
                 <div class="grid grid-cols-3 mt-4">
-                    <div>
+                    <RouterLink to="/#" class="cursor-pointer">
                         <p class="text-sm inline mr-1 md:mr-2">Learn More</p>
                         <img src="@/assets/images/external-link.svg" class="inline cursor-pointer">
-                    </div>
-                    <div>
+                    </RouterLink>
+                    <RouterLink to="/#" class="cursor-pointer">
                         <p class="text-sm inline mr-1 md:mr-2">Tutorial</p>
                         <img src="@/assets/images/external-link.svg" class="inline cursor-pointer">
-                    </div>
-                    <div>
+                    </RouterLink>
+                    <RouterLink to="/#" class="cursor-pointer">
                         <p class="text-sm inline mr-0.5 md:mr-2">Connect Address</p>
                         <img src="@/assets/images/external-link.svg" class="inline cursor-pointer">
-                    </div>
+                    </RouterLink>
                 </div>
 
                 <div class="grid grid-cols-2">
@@ -100,7 +117,7 @@
                     >
                         <div class="w-full h-12 py-3 px-6 border-b bd-main cursor-pointer" :class="{'bg-[#4447BD]' : option.id==selected_option}">
                             <span class="font-semibold">{{option.title}}</span>
-                            <img src="@/assets/images/arrow-right-pink.png" v-if="option.id==1" class="inline float-right w-6 h-6 cursor-pointer">
+                            <img src="@/assets/images/arrow-right-pink.png" v-if="option.id==selected_option" class="inline float-right w-6 h-6 cursor-pointer">
                             <img src="@/assets/images/arrow-right.svg" v-else class="inline float-right w-6 h-6 cursor-pointer">
                         </div>
                     </div>
@@ -189,7 +206,7 @@
                     <p><span>ETH Expiry Price</span> <span>$3,200</span></p>
                     <p><span>Long Token Expiry Price</span> <span>$120</span></p>
                     <p><span>Short Token Expiry Price</span> <span>$60</span></p>
-                    <!-- -- Start of SDK Test -- --> 
+                    <!-- -- Start of SDK Test -- -->
                     <button @click="connectTo('ugas-0921')">Switch to ugas-0921</button>
                     <p v-if="loading"><span>Expiry Price in WEI</span> <span>loading</span></p>
                     <p v-else><span>Expiry Price in WEI</span> <span>{{data.empState.expiryPrice}}</span></p>
@@ -209,7 +226,7 @@
     import synthsLogo from "@/assets/images/logo.png";
     import {inject} from "vue";
     import { useI18n } from "vue-i18n";
-    
+
     /* -- Start of SDK Test -- */
     import { useSynthsSDK } from "../../stores/sdk-store";
     import { providers } from "ethers";
@@ -238,6 +255,8 @@
 
     let selected_option = 0;
     let isUseWallet = 0;
+    let isDropDown: boolean = true;
+
     export default {
         name: "Markets",
         components: {
@@ -253,6 +272,7 @@
                 options,
                 selected_option,
                 isUseWallet,
+              isDropDown
             };
         },
         setup() {
@@ -264,7 +284,7 @@
 
             connectTo("upunks-0921");
             /* -- End of SDK Init Test -- */
-            
+
             /// @dev Use global scope
             const { t, d, n } = useI18n({
                 useScope: 'global',
@@ -278,14 +298,21 @@
                 d,
                 n,
                 userDetails,
-                
+
                 /* -- Start of SDK Test -- */
                 loading,
                 data,
                 connectTo
                 /* -- End of SDK Test -- */
             };
+        },
+      methods: {
+        closeDown(e:any) {
+          e.stopPropagation();
+        isDropDown = false;
         }
+      },
+
     }
 </script>
 <style scoped lang="scss">

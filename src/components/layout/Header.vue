@@ -41,16 +41,21 @@
         </s-button>
       </div>
       <ul
-          class="overflow-hidden my-auto p-2 text-sm text-left fixed top-9 right-44 bg-light rounded-xl"
-          v-if="isDropDownOpen"
-          v-click-away="closePopup"
+        class="overflow-hidden my-auto p-2 text-sm text-left fixed top-9 right-44 bg-light rounded-xl"
+        v-if="isDropDownOpen"
+        v-click-away="closePopup"
       >
-        <li class="min-w-max cursor-pointer p-1">
-          <span>Documentation</span>
-        </li>
-        <li class="min-w-max cursor-pointer p-1">
-          <span>Tutorials</span>
-        </li>
+        <RouterLink to="/#">
+          <li class="min-w-max cursor-pointer p-1">
+            <span>Documentation</span>
+          </li>
+        </RouterLink>
+        <RouterLink to="/#">
+
+          <li class="min-w-max cursor-pointer p-1">
+            <span>Tutorials</span>
+          </li>
+        </RouterLink>
       </ul>
     </div>
     <div class="flex overflow-hidden absolute right-0 h-12 visible md:invisible">
