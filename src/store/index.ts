@@ -1,10 +1,3 @@
-import { createStore } from "vuex";
+import globalStore from "@/store/global";
 
-// @ts-ignore
-import global from "./global.ts";
-
-export default createStore({
-    modules: {
-        global,
-    }
-});
+export { globalStore }

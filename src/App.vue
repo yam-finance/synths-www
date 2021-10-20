@@ -19,7 +19,7 @@
 
 <script lang="ts">
 import {defineComponent, provide, reactive, ref, onUnmounted} from "vue";
-import {mapActions} from "vuex";
+import {globalStore} from "@/store";
 
 export default defineComponent({
   setup() {
@@ -37,6 +37,13 @@ export default defineComponent({
       state.email = email;
     };
 
+    const { loadBlockNumber } = globalStore();
+
+    loadBlockNumber();
+
+
+
+
     provide("userDetails", state);
     provide("updateUsername", updateUsername);
     provide("updateEmail", updateEmail);
@@ -48,24 +55,18 @@ export default defineComponent({
       screenWidth.value = window.innerWidth;
     }
 
+
     window.addEventListener("resize", resizeHandler);
 
     onUnmounted(() => {
       window.removeEventListener("resize", resizeHandler);
+
     });
 
     provide('screen', screenWidth);
 
     return {state, screenWidth};
   },
-  methods: {
-    ...mapActions({
-      getBlockNumber: 'loadBlockNumber'
-    }),
-  },
-  mounted() {
-    this.getBlockNumber()
-  }
 
 })
 </script>

@@ -2,11 +2,10 @@ import { createApp } from 'vue'
 import App from './App.vue'
 
 import router from "./router/index"
-import store from "./store";
 
 import './index.scss'
 
-const app = createApp(App).use(router).use(store);
+const app = createApp(App).use(router);
 app.mount('#app');
 
 app.config.performance = true
