@@ -1,97 +1,175 @@
 <template>
-    <nav
-        class="h-12 w-full overflow-hidden fixed bottom-0 left-0 z-20 text-white flex flex-col lg:flex-row border-t bd-main bg-main"
-    >
-        <div class="invisible md:visible">
-            <div class="flex overflow-hidden absolute w-64 h-12 border-r bd-main">
-                <div class="flex px-4 py-4 cursor-pointer">
-                    <img src="@/assets/images/green-dot.svg" class="h-full py-0.5">
-                    <span class="px-1 text-xs my-auto font-normal px-3">{{ blockNumber }}</span>
-                    <img src="@/assets/images/external-link.svg" >
-                </div>
-            </div>
-            <div class="flex absolute w-96 mr-4 right-0 p-2 text-right h-12 lg:border-l bd-main">
-                <div class="flex absolute right-2">
-                    <img src="@/assets/images/socials/twitter.svg" class="mx-2 my-auto cursor-pointer">
-                    <img src="@/assets/images/socials/discord.svg" class="mx-2 my-auto cursor-pointer">
-                </div>
-            </div>
+  <nav
+    class="
+      h-12
+      w-full
+      overflow-hidden
+      fixed
+      bottom-0
+      left-0
+      z-20
+      text-white
+      flex flex-col
+      lg:flex-row
+      border-t
+      bd-main
+      bg-main
+    "
+  >
+    <div class="invisible md:visible">
+      <div class="flex overflow-hidden absolute w-64 h-12 border-r bd-main">
+        <div class="flex px-4 py-4 cursor-pointer">
+          <img src="@/assets/images/green-dot.svg" class="h-full py-0.5" />
+          <span class="px-1 text-xs my-auto font-normal px-3">{{ blockNumber }}</span>
+          <img src="@/assets/images/external-link.svg" />
         </div>
+      </div>
+      <div class="flex absolute w-96 mr-4 right-0 p-2 text-right h-12 lg:border-l bd-main">
+        <div class="flex absolute right-2">
+          <img src="@/assets/images/socials/twitter.svg" class="mx-2 my-auto cursor-pointer" />
+          <img src="@/assets/images/socials/discord.svg" class="mx-2 my-auto cursor-pointer" />
+        </div>
+      </div>
+    </div>
 
     <transition
-        enter-active-class="transition ease-in-out duration-100"
-        leave-active-class="transition ease-in duration-75"
-        leave-class="transform opacity-100 scale-100"
-        leave-to-class="transform opacity-0 scale-95"
+      enter-active-class="transition ease-in-out duration-100"
+      leave-active-class="transition ease-in duration-75"
+      leave-class="transform opacity-100 scale-100"
+      leave-to-class="transform opacity-0 scale-95"
     >
-      <div
-          class="transition ease-in-out"
-          v-if="isMenuOpen"
-      >
+      <div class="transition ease-in-out" v-if="isMenuOpen">
         <ul
-            class="overflow-hidden w-full my-auto py-1 text-lg my-4 pt-8 text-left fixed bottom-8 z-30 visible md:invisible bg-main"
+          class="
+            overflow-hidden
+            w-full
+            my-auto
+            py-1
+            text-lg
+            my-4
+            pt-8
+            text-left
+            fixed
+            bottom-8
+            z-30
+            visible
+            md:invisible
+            bg-main
+          "
         >
           <span class="px-4 txt-main">Menu</span>
-          <li class="min-w-max cursor-pointer border-t bd-main px-4 py-3"
-              v-for="(tab, key) in tabs"
-              :key="key"
-              @click="isMenuOpen = !isMenuOpen"
+          <li
+            class="min-w-max cursor-pointer border-t bd-main px-4 py-3"
+            v-for="(tab, key) in tabs"
+            :key="key"
+            @click="isMenuOpen = !isMenuOpen"
           >
-            <router-link :to='"/" + tab.to'>
+            <router-link :to="'/' + tab.to">
               <span>{{ tab.title }}</span>
             </router-link>
           </li>
         </ul>
 
-                <ul
-                    class="overflow-hidden w-full my-auto py-1 text-lg my-4 text-left fixed bottom-60 z-30 visible md:invisible bg-main"
-                >
-                    <span class="px-4 txt-main">Help</span>
-                    <li class="min-w-max cursor-pointer border-t bd-main px-4 py-3">
-                        <span>Documentation</span>
-                    </li>
-                    <li class="min-w-max cursor-pointer border-t border-b bd-main px-4 py-3">
-                        <span>Tutorials</span>
-                    </li>
-                </ul>
+        <ul
+          class="
+            overflow-hidden
+            w-full
+            my-auto
+            py-1
+            text-lg
+            my-4
+            text-left
+            fixed
+            bottom-60
+            z-30
+            visible
+            md:invisible
+            bg-main
+          "
+        >
+          <span class="px-4 txt-main">Help</span>
+          <li class="min-w-max cursor-pointer border-t bd-main px-4 py-3">
+            <span>Documentation</span>
+          </li>
+          <li class="min-w-max cursor-pointer border-t border-b bd-main px-4 py-3">
+            <span>Tutorials</span>
+          </li>
+        </ul>
 
-                <div class="w-full flex fixed bottom-96 mb-2 visible md:invisible px-2 py-3 bg-main">
-                    <div class="flex">
-                        <img src="@/assets/images/socials/twitter.svg" class="mx-2 my-auto cursor-pointer">
-                        <img src="@/assets/images/socials/discord.svg" class="mx-2 my-auto cursor-pointer">
-                    </div>
-                </div>
-            </div>
-        </transition>
-
-        <div class="flex absolute w-full right-0 p-2 text-right h-12 lg:border-l bd-main visible md:invisible">
-            <div class="flex">
-                <img src="@/assets/images/x.svg" v-if="isMenuOpen" @click="isMenuOpen = !isMenuOpen">
-                <img src="@/assets/images/menu.svg" v-else @click="isMenuOpen = !isMenuOpen">
-                <div class="absolute right-5">
-                    <img src="@/assets/images/bell.png" class="mx-2 my-auto h-4 inline cursor-pointer">
-                    <button class="hover:shadow-lg rounded-full px-4 py-1.5 my-auto text-sm wallet-btn inline">
-                        Connect Wallet
-                    </button>
-                </div>
-            </div>
+        <div class="w-full flex fixed bottom-96 mb-2 visible md:invisible px-2 py-3 bg-main">
+          <div class="flex">
+            <img src="@/assets/images/socials/twitter.svg" class="mx-2 my-auto cursor-pointer" />
+            <img src="@/assets/images/socials/discord.svg" class="mx-2 my-auto cursor-pointer" />
+          </div>
         </div>
+      </div>
+    </transition>
 
-    <div class="flex absolute w-full right-0 p-2 text-right h-12 lg:border-l bd-main visible md:invisible">
+    <div
+      class="
+        flex
+        absolute
+        w-full
+        right-0
+        p-2
+        text-right
+        h-12
+        lg:border-l
+        bd-main
+        visible
+        md:invisible
+      "
+    >
       <div class="flex">
-        <img src="../../assets/images/x.svg" v-if="isMenuOpen" @click="isMenuOpen = !isMenuOpen">
-        <img src="../../assets/images/menu.svg" v-else @click="isMenuOpen = !isMenuOpen">
-        <button class="hover:shadow-lg rounded-full px-4 py-1.5 my-auto text-sm absolute right-5 wallet-btn">
-          Connect Wallet
-        </button>
+        <img src="@/assets/images/x.svg" v-if="isMenuOpen" @click="isMenuOpen = !isMenuOpen" />
+        <img src="@/assets/images/menu.svg" v-else @click="isMenuOpen = !isMenuOpen" />
+        <div class="absolute right-5">
+          <img src="@/assets/images/bell.png" class="mx-2 my-auto h-4 inline cursor-pointer" />
+          <button
+            @click="isModalVisible = true"
+            class="hover:shadow-lg rounded-full px-4 py-1.5 my-auto text-sm wallet-btn inline"
+          >
+            Connect Wallet
+          </button>
+        </div>
       </div>
     </div>
+    <connectWalletModal
+      v-show="isModalVisible"
+      @close="isModalVisible = false"
+      @connect="handleConnect"
+    >
+    </connectWalletModal>
   </nav>
 </template>
+<script setup>
+import { useWeb3 } from "@/composables/useWeb3"
+import connectWalletModal from "@/components/connectWallet/ConnectWallet.vue"
+import { ref } from "vue"
+
+const { login, web3, logout } = useWeb3()
+const isModalVisible = ref(false)
+
+const isWalletDropDownOpen = ref(false)
+const isDropDownOpen = ref(false)
+
+async function handleConnect(connector) {
+  isModalVisible.value = false
+  await login(connector)
+}
+async function handleLogout() {
+  await logout()
+  // emit('close');
+}
+function formatAddress(address) {
+  return address.slice(0, 6) + "..." + address.slice(-6)
+}
+</script>
 
 <script>
 import { globalStore } from "@/store/index";
 
+const closeModal = ref(false)
 
 let isMenuOpen = 0;
 let tabs = [
@@ -125,11 +203,10 @@ export default {
     return {
       isMenuOpen,
       tabs,
-    };
+    }
   },
+  methods: {},
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

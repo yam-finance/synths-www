@@ -1,13 +1,22 @@
+import { Buffer } from 'buffer';
+(window as any).global = window;
+(window as any).Buffer = Buffer;
 import { createApp } from 'vue'
 import App from '@/App.vue'
 import router from "@/router"
-
+import options from '@/utils/auth';
+import { LockPlugin } from '@snapshot-labs/lock/plugins/vue3';
+import 'vue-js-modal/dist/styles.css'
+import "@/index.scss";
 import VueClickAway from "vue3-click-away";
 import { i18n } from "./i18n";
 
-import "@/index.scss";
+const app = createApp(App)
+    .use(router)
+    .use(i18n)
+    .use(VueClickAway)
+    .use(LockPlugin, options);
 
-const app = createApp(App).use(i18n).use(VueClickAway).use(router);
 app.mount('#app');
 
 app.config.performance = true
