@@ -259,7 +259,6 @@
             /* -- Start of SDK Test -- */
             /// @notice Synth SDK Init test
             const url = `https://mainnet.infura.io/v3/${process.env.INFURA_API_KEY || ""}`;
-            console.log(url);
 
             const provider = new providers.JsonRpcProvider(url);
             const { connectTo, data, loading } = useSynthsSDK(provider);
