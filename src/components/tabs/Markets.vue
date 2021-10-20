@@ -177,7 +177,7 @@
                 :key="key"
                 :class="(option.id==selected_option)?'h-full':''"
         >
-            <SynthsSideBar
+            <SynthsInsideBar
                     :settle="(option.slug=='Settle')?false:true"
                     :title="option.title"
                     :sub-title="option.description"
@@ -190,7 +190,7 @@
                     <p><span>Long Token Expiry Price</span> <span>$120</span></p>
                     <p><span>Short Token Expiry Price</span> <span>$60</span></p>
                 </template>
-            </SynthsSideBar>
+            </SynthsInsideBar>
         </div>
     </div>
 </template>
@@ -234,7 +234,7 @@
             SynthsSingleChart,
             SynthsLongShortChart,
             's-button': SynthsRoundedButton,
-            SynthsSideBar,
+            SynthsInsideBar,
             SynthsNew,
         },
         data() {
