@@ -22,6 +22,9 @@ module.exports = {
     },
     placeholderColor: {
       'primary': '#525284',
+    },
+    backgroundImage: {
+      'checkbox': "url('/src/assets/images/tik.png')",
     }
   },
   purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
