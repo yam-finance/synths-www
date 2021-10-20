@@ -163,9 +163,15 @@
                 <ul
                     class="inline-flex space-x-8 text-[#CBCBFF] mt-8"
                 >
+                  <router-link to="/#" class="cursor-pointer">
                     <li class="cursor-pointer">Documentation</li>
+                  </router-link>
+                  <router-link to="/#" class="cursor-pointer">
                     <li class="cursor-pointer">FAQs</li>
+                  </router-link>
+                  <router-link to="/#" class="cursor-pointer">
                     <li class="cursor-pointer">Newsletter</li>
+                  </router-link>
                 </ul>
 
                 <div>
