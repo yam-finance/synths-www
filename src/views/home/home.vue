@@ -16,7 +16,7 @@
                         Learn
                     </span>
                     <router-link to="/explore-synths" class="my-auto">
-                        <s-button buttonStyles="wallet-btn px-4 py-1.5 my-auto text-sm font-normal mr-4">
+                        <s-button buttonStyles="wallet-btn px-2 py-1.5 my-auto text-sm font-semibold  mr-4">
                             <template #buttonTitle>
                                 Explore Synths
                             </template>
