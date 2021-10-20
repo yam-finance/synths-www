@@ -1,8 +1,6 @@
 <script>
 import  SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue";
 
-
-const closeModal = ref(false);
     let tabs = [
         {
             id: 1,
