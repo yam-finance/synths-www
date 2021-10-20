@@ -12,10 +12,28 @@
             <p class="font-semibold text-base inline ml-2">Sushi APY</p>
           </div>
           <div class="text-right mr-2 inline float-right">
-                        <span class="rounded-xl bg-main px-4 py-2 font-normal text-sm txt-main">
+                        <span class="rounded-xl bg-main px-4 py-2 font-normal text-sm txt-main"
+                              @click="isDropDown = !isDropDown">
                             Expiring 21st April
                             <img src="@/assets/images/arrow-down.png" class="h-6 inline mb-0.5 cursor-pointer">
                         </span>
+            <ul
+              class="overflow-hidden my-auto p-2 text-sm text-left fixed bg-main rounded-br-xl rounded-bl-xl"
+              v-if="isDropDown"
+              v-click-away="closeDown"
+            >
+              <RouterLink to="/#">
+                <li class="min-w-max cursor-pointer p-1">
+                  <span class="rounded-xl bg-main px-4 py-2 font-normal text-sm txt-main"> Expiring 23st April</span>
+                </li>
+              </RouterLink>
+              <RouterLink to="/#">
+
+                <li class="min-w-max cursor-pointer p-1">
+                  <span class="rounded-xl bg-main px-4 py-2 font-normal text-sm txt-main"> Expiring 23st April</span>
+                </li>
+              </RouterLink>
+            </ul>
           </div>
         </div>
 
@@ -33,18 +51,18 @@
         <!-- i18n Test Start -->
 
         <div class="grid grid-cols-3 mt-4">
-          <div>
+          <RouterLink to="/#" class="cursor-pointer">
             <p class="text-sm inline mr-1 md:mr-2">Learn More</p>
             <img src="@/assets/images/external-link.svg" class="inline cursor-pointer">
-          </div>
-          <div>
+          </RouterLink>
+          <RouterLink to="/#" class="cursor-pointer">
             <p class="text-sm inline mr-1 md:mr-2">Tutorial</p>
             <img src="@/assets/images/external-link.svg" class="inline cursor-pointer">
-          </div>
-          <div>
+          </RouterLink>
+          <RouterLink to="/#" class="cursor-pointer">
             <p class="text-sm inline mr-0.5 md:mr-2">Connect Address</p>
             <img src="@/assets/images/external-link.svg" class="inline cursor-pointer">
-          </div>
+          </RouterLink>
         </div>
 
         <div class="grid grid-cols-2">
@@ -100,7 +118,7 @@
           >
             <div class="w-full h-12 py-3 px-6 border-b bd-main cursor-pointer" :class="{'bg-[#4447BD]' : option.id==selected_option}">
               <span class="font-semibold">{{option.title}}</span>
-              <img src="@/assets/images/arrow-right-pink.png" v-if="option.id==1" class="inline float-right w-6 h-6 cursor-pointer">
+              <img src="@/assets/images/arrow-right-pink.png" v-if="option.id==selected_option" class="inline float-right w-6 h-6 cursor-pointer">
               <img src="@/assets/images/arrow-right.svg" v-else class="inline float-right w-6 h-6 cursor-pointer">
             </div>
           </div>
@@ -236,6 +254,7 @@ let options = [
   },
 ];
 
+let isDropDown = 0;
 let selected_option = 0;
 let isUseWallet = 0;
 export default {
@@ -253,7 +272,15 @@ export default {
       options,
       selected_option,
       isUseWallet,
+      isDropDown
+
     };
+  },
+  methods: {
+    closeDown(e: { stopPropagation: () => void; }) {
+      e.stopPropagation()
+      this.isDropDown = false
+    }
   },
   setup() {
     /* -- Start of SDK Test -- */
