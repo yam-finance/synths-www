@@ -261,7 +261,7 @@
                 userDetails
             };
         }
-    })
+    }
 </script>
 <style scoped lang="scss">
     @media (min-width: 1280px){
