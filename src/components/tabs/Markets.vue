@@ -16,23 +16,23 @@
                             Expiring 21st April
                             <img src="@/assets/images/arrow-down.png" class="h-6 inline mb-0.5 cursor-pointer">
                         </span>
-                      <ul
+                    <ul
                         class="overflow-hidden my-auto p-2 text-sm text-left fixed bg-main rounded-br-xl rounded-bl-xl"
                         v-if="isDropDown"
                         v-click-away="closeDown"
-                      >
+                    >
                         <RouterLink to="/#">
-                          <li class="min-w-max cursor-pointer p-1">
+                        <li class="min-w-max cursor-pointer p-1">
                             <span class="rounded-xl bg-main px-4 py-2 font-normal text-sm txt-main"> Expiring 23st April</span>
-                          </li>
+                        </li>
                         </RouterLink>
                         <RouterLink to="/#">
 
-                          <li class="min-w-max cursor-pointer p-1">
+                        <li class="min-w-max cursor-pointer p-1">
                             <span class="rounded-xl bg-main px-4 py-2 font-normal text-sm txt-main"> Expiring 23st April</span>
-                          </li>
+                        </li>
                         </RouterLink>
-                      </ul>
+                    </ul>
                     </div>
                 </div>
 
@@ -44,9 +44,9 @@
                 </p>
 
                 <!-- i18n Test Start -->
-                <p>`t` resource key completion: {{ t('menu.login') }}</p>
-                <p>`d` resource key completion: {{ d(new Date(), 'short') }}</p>
-                <p>`n` resource key completion: {{ n(1000, 'currency') }}</p>
+                <!-- <p>`t` resource key completion: {{ t('menu.login') }}</p> -->
+                <!-- <p>`d` resource key completion: {{ d(new Date(), 'short') }}</p> -->
+                <!-- <p>`n` resource key completion: {{ n(1000, 'currency') }}</p> -->
                 <!-- i18n Test Start -->
 
                 <div class="grid grid-cols-3 mt-4">
