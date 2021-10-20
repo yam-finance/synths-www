@@ -219,102 +219,102 @@
 </template>
 
 <script lang="ts">
-import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue";
-import SynthsSingleChart from "@/components/charts/SynthsSingleChart.vue";
-import SynthsLongShortChart from "@/components/charts/SynthsLongShortChart.vue";
-import SynthsInsideBar from "@/components/SynthsInsideBar.vue";
-import SynthsNew from "@/components/SynthsNew.vue";
-import synthsLogo from "@/assets/images/logo.png";
-import {inject} from "vue";
-import { useI18n } from "vue-i18n";
+    import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue";
+    import SynthsSingleChart from "@/components/charts/SynthsSingleChart.vue";
+    import SynthsLongShortChart from "@/components/charts/SynthsLongShortChart.vue";
+    import SynthsInsideBar from "@/components/SynthsInsideBar.vue";
+    import SynthsNew from "@/components/SynthsNew.vue";
+    import synthsLogo from "@/assets/images/logo.png";
+    import {inject} from "vue";
+    import { useI18n } from "vue-i18n";
 
-/* -- Start of SDK Test -- */
-import { useSynthsSDK } from "../../stores/sdk-store";
-import { providers } from "ethers";
-/* -- End of SDK Test -- */
-
-let options = [
-  {
-    id: 1,
-    title: "Mint a position",
-    description: 'Deposit WETH collateral to mint Long and Short tokens of equal value',
-    slug: "Mint"
-  },
-  {
-    id: 2,
-    title: "Redeem your position",
-    description: 'Burn Long and Short tokens to receive your WETH collateral',
-    slug: "Redeem"
-  },
-  {
-    id: 3,
-    title: "Settle",
-    description: 'Burn Long and Short tokens for ETH',
-    slug: "Settle"
-  },
-];
-
-let isDropDown: boolean = true;
-let selected_option = 0;
-let isUseWallet = 0;
-export default {
-  name: "Markets",
-  components: {
-    SynthsSingleChart,
-    SynthsLongShortChart,
-    's-button': SynthsRoundedButton,
-    SynthsInsideBar,
-    SynthsNew,
-  },
-  data() {
-    return {
-      synthsLogo,
-      options,
-      selected_option,
-      isUseWallet,
-      isDropDown
-
-    };
-  },
-  setup() {
     /* -- Start of SDK Test -- */
-    /// @notice Synth SDK Init test
-    const url = `${import.meta.env.VITE_INFURA_URL}`;
-    const provider = new providers.JsonRpcProvider(url);
-    const { connectTo, data, loading } = useSynthsSDK(provider);
+    import { useSynthsSDK } from "../../stores/sdk-store";
+    import { providers } from "ethers";
+    /* -- End of SDK Test -- */
 
-    connectTo("upunks-0921");
-    /* -- End of SDK Init Test -- */
+    let options = [
+      {
+        id: 1,
+        title: "Mint a position",
+        description: 'Deposit WETH collateral to mint Long and Short tokens of equal value',
+        slug: "Mint"
+      },
+      {
+        id: 2,
+        title: "Redeem your position",
+        description: 'Burn Long and Short tokens to receive your WETH collateral',
+        slug: "Redeem"
+      },
+      {
+        id: 3,
+        title: "Settle",
+        description: 'Burn Long and Short tokens for ETH',
+        slug: "Settle"
+      },
+    ];
 
-    /// @dev Use global scope
-    const { t, d, n } = useI18n({
-      useScope: 'global',
-      inheritLocale: true
-    });
+    let isDropDown: boolean = true;
+    let selected_option = 0;
+    let isUseWallet = 0;
+    export default {
+      name: "Markets",
+      components: {
+        SynthsSingleChart,
+        SynthsLongShortChart,
+        's-button': SynthsRoundedButton,
+        SynthsInsideBar,
+        SynthsNew,
+      },
+      data() {
+        return {
+          synthsLogo,
+          options,
+          selected_option,
+          isUseWallet,
+          isDropDown
 
-    const userDetails: any = inject("userDetails");
+        };
+      },
+      setup() {
+        /* -- Start of SDK Test -- */
+        /// @notice Synth SDK Init test
+        const url = `${import.meta.env.VITE_INFURA_URL}`;
+        const provider = new providers.JsonRpcProvider(url);
+        const { connectTo, data, loading } = useSynthsSDK(provider);
 
-    return {
-      t,
-      d,
-      n,
-      userDetails,
+        connectTo("upunks-0921");
+        /* -- End of SDK Init Test -- */
 
-      /* -- Start of SDK Test -- */
-      loading,
-      data,
-      connectTo
-      /* -- End of SDK Test -- */
-    };
-  },
-  methods: {
-    closeDown(e:any) {
-      e.stopPropagation();
-      isDropDown = false;
+        /// @dev Use global scope
+        const { t, d, n } = useI18n({
+          useScope: 'global',
+          inheritLocale: true
+        });
+
+        const userDetails: any = inject("userDetails");
+
+        return {
+          t,
+          d,
+          n,
+          userDetails,
+
+          /* -- Start of SDK Test -- */
+          loading,
+          data,
+          connectTo
+          /* -- End of SDK Test -- */
+        };
+      },
+      methods: {
+        closeDown(e:any) {
+          e.stopPropagation();
+          isDropDown = false;
+        }
+      },
+
     }
-  },
-
-}
 </script>
 <style scoped lang="scss">
 @media (min-width: 1280px){
