@@ -273,7 +273,6 @@
           selected_option,
           isUseWallet,
           isDropDown
-
         };
       },
       setup() {
