@@ -71,8 +71,8 @@
                             <span class="text-white">Live</span>
                         </div>
                         <div class="flex items-center" v-else>
-                            <span class="txt-main mr-0.5">Expired</span>
-                            <button class="rounded-xl primary-button text-xs text-white px-2 py-0.5 ml-2 font-bold block xl:inline">Settle</button>
+                            <span class="txt-main mr-2">Expired</span>
+                            <button class="rounded-xl primary-button text-xs text-white px-2 py-0.5 font-bold block xl:inline">Settle</button>
                         </div>
                     </td>
                     <td class="p-0 m-0">
@@ -99,8 +99,8 @@
         <table class="text-white border-b bd-main w-full font-normal">
             <thead class="text-sm txt-main text-left">
             <th class="py-2 px-4">Synths</th>
-            <th>Balance</th>
-            <th>Price</th>
+            <th>Balance <br> Price </th>
+            <th>Minted <br> LP</th>
             <th>Status</th>
             <th></th>
             </thead>
@@ -110,19 +110,19 @@
                     :key="key"
                     class="border-b bd-main"
             >
-                <td class="px-4 py-2 font-semibold flex">
-                    <img src="../../assets/images/zombie.png">
-                    &nbsp;{{synth.name}}
+                <td class="px-4 py-2 font-semibold">
+                    <img class="h-6" src="../../assets/images/zombie.png">
+                    {{synth.name}}
                 </td>
-                <td>{{synth.balance}}</td>
-                <td>${{synth.price}}</td>
+                <td>{{synth.balance}} <br> ${{synth.price}}</td>
+                <td>{{synth.minted_qty}} <br> {{synth.lp_qty}}</td>
                 <td>
                     <div v-if="synth.status">
                         <span class="text-white">Live</span>
                     </div>
-                    <div class="flex items-center" v-else>
-                        <span class="txt-main">Expired</span>
-                        <button class="rounded-xl primary-button text-xs text-white px-2 py-0.5 ml-2 font-bold block">Settle</button>
+                    <div v-else>
+                        <div class="txt-main mr-2">Expired</div>
+                        <button class="rounded-xl primary-button text-xs text-white px-2 py-0.5 font-bold block">Settle</button>
                     </div>
                 </td>
                 <td>

@@ -29,7 +29,7 @@
                     v-if="isMenuOpen"
             >
                 <ul
-                    class="overflow-hidden w-full my-auto py-1 text-lg my-4 pt-8 text-left fixed bottom-8 z-30 visible md:invisible bg-main"
+                    class="overflow-hidden w-full py-1 text-lg my-4 pt-8 text-left fixed bottom-8 z-30 visible md:invisible bg-main"
                 >
                     <span class="px-4 txt-main">Menu</span>
                     <li class="min-w-max cursor-pointer border-t bd-main px-4 py-3"
@@ -55,7 +55,7 @@
                     </li>
                 </ul>
 
-                <div class="w-full flex items-center fixed bottom-96 mb-2 visible md:invisible px-2 py-3 bg-main">
+                <div class="w-full flex items-center fixed bottom-96 visible md:invisible px-2 py-3 mb-8 bg-main">
                     <div class="flex">
                         <img src="../../assets/images/socials/twitter.svg" class="mx-2 my-auto cursor-pointer">
                         <img src="../../assets/images/socials/discord.svg" class="mx-2 my-auto cursor-pointer">
@@ -68,7 +68,7 @@
             <div class="flex">
                 <img class="hover:opacity-50" src="../../assets/images/x.svg" v-if="isMenuOpen" @click="isMenuOpen = !isMenuOpen">
                 <img class="hover:opacity-50" src="../../assets/images/menu.svg" v-else @click="isMenuOpen = !isMenuOpen">
-                <button class="hover:shadow-lg rounded-full px-4 py-1.5 my-auto text-sm absolute right-5 wallet-btn">
+                <button class="hover:shadow-lg rounded-xl font-bold px-4 py-1.5 text-sm absolute top-2 right-2 primary-button">
                     Connect Wallet
                 </button>
             </div>
