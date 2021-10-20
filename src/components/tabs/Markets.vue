@@ -12,31 +12,11 @@
             <p class="font-semibold text-base inline ml-2">Sushi APY</p>
           </div>
           <div class="text-right mr-2 inline float-right">
-                        <span class="rounded-xl bg-main px-4 py-2 font-normal text-sm txt-main"
-                              @click="isDropDown = !isDropDown"
-                        >
+                        <span class="rounded-xl bg-main px-4 py-2 font-normal text-sm txt-main">
                             Expiring 21st April
                             <img src="@/assets/images/arrow-down.png" class="h-6 inline mb-0.5 cursor-pointer">
                         </span>
-            <ul
-              class="overflow-hidden my-auto p-2 text-sm text-left fixed bg-main rounded-br-xl rounded-bl-xl"
-              v-if="isDropDown"
-              v-click-away="closeDown"
-            >
-              <RouterLink to="/#">
-                <li class="min-w-max cursor-pointer p-1">
-                  <span class="rounded-xl bg-main px-4 py-2 font-normal text-sm txt-main"> Expiring 23st April</span>
-                </li>
-              </RouterLink>
-              <RouterLink to="/#">
-
-                <li class="min-w-max cursor-pointer p-1">
-                  <span class="rounded-xl bg-main px-4 py-2 font-normal text-sm txt-main"> Expiring 23st April</span>
-                </li>
-              </RouterLink>
-            </ul>
           </div>
-
         </div>
 
         <p class="text-[#CBCBFF] mt-8">
@@ -53,33 +33,31 @@
         <!-- i18n Test Start -->
 
         <div class="grid grid-cols-3 mt-4">
-          <RouterLink to="/#" class="cursor-pointer">
+          <div>
             <p class="text-sm inline mr-1 md:mr-2">Learn More</p>
             <img src="@/assets/images/external-link.svg" class="inline cursor-pointer">
-          </RouterLink>
-          <RouterLink to="/#" class="cursor-pointer">
+          </div>
+          <div>
             <p class="text-sm inline mr-1 md:mr-2">Tutorial</p>
             <img src="@/assets/images/external-link.svg" class="inline cursor-pointer">
-          </RouterLink>
-          <RouterLink to="/#" class="cursor-pointer">
+          </div>
+          <div>
             <p class="text-sm inline mr-0.5 md:mr-2">Connect Address</p>
             <img src="@/assets/images/external-link.svg" class="inline cursor-pointer">
-          </RouterLink>
+          </div>
         </div>
 
         <div class="grid grid-cols-2">
           <div class="grid grid-cols-2">
             <div class="p-2 pl-0">
-              <s-button class="mt-2.5" :buttonStyles="'!text-sm'"
-                        :color="'linear-gradient(180deg, #C8FF2D 0%, #008C0E 100%)'">
+              <s-button class="mt-2.5" :buttonStyles="'!text-sm'" :color="'linear-gradient(180deg, #C8FF2D 0%, #008C0E 100%)'">
                 <template #buttonTitle>
                   Go Long
                 </template>
               </s-button>
             </div>
             <div class="p-2 pr-0">
-              <s-button class="mt-2.5" :buttonStyles="'!text-sm'"
-                        :color="'linear-gradient(180deg, #FF6ACC 0%, #DC1919 100%)'">
+              <s-button class="mt-2.5" :buttonStyles="'!text-sm'" :color="'linear-gradient(180deg, #FF6ACC 0%, #DC1919 100%)'">
                 <template #buttonTitle>
                   Go Short
                 </template>
@@ -120,11 +98,9 @@
             :key="key"
             @click="selected_option=option.id"
           >
-            <div class="w-full h-12 py-3 px-6 border-b bd-main cursor-pointer"
-                 :class="{'bg-[#4447BD]' : option.id==selected_option}">
-              <span class="font-semibold">{{ option.title }}</span>
-              <img src="@/assets/images/arrow-right-pink.png" v-if="option.id==selected_option"
-                   class="inline float-right w-6 h-6 cursor-pointer">
+            <div class="w-full h-12 py-3 px-6 border-b bd-main cursor-pointer" :class="{'bg-[#4447BD]' : option.id==selected_option}">
+              <span class="font-semibold">{{option.title}}</span>
+              <img src="@/assets/images/arrow-right-pink.png" v-if="option.id==1" class="inline float-right w-6 h-6 cursor-pointer">
               <img src="@/assets/images/arrow-right.svg" v-else class="inline float-right w-6 h-6 cursor-pointer">
             </div>
           </div>
@@ -154,13 +130,11 @@
           <div class="grid grid-cols-2 gap-4">
             <div>
               <label class="text-sm block pb-2">Long Tokens</label>
-              <input class="rounded-lg bg-main px-2 py-1 outline-none w-full" placeholder="0" name="long_token"
-                     id="long_token">
+              <input class="rounded-lg bg-main px-2 py-1 outline-none w-full" placeholder="0" name="long_token" id="long_token">
             </div>
             <div>
               <label class="text-sm block pb-2">Short Tokens</label>
-              <input class="rounded-lg bg-main px-2 py-1 outline-none w-full" placeholder="0" name="short_token"
-                     id="short_token">
+              <input class="rounded-lg bg-main px-2 py-1 outline-none w-full" placeholder="0" name="short_token" id="short_token">
             </div>
           </div>
 
@@ -218,7 +192,7 @@
           <!-- -- Start of SDK Test -- -->
           <button @click="connectTo('ugas-0921')">Switch to ugas-0921</button>
           <p v-if="loading"><span>Expiry Price in WEI</span> <span>loading</span></p>
-          <p v-else><span>Expiry Price in WEI</span> <span>{{ data.empState.expiryPrice }}</span></p>
+          <p v-else><span>Expiry Price in WEI</span> <span>{{data.empState.expiryPrice}}</span></p>
           <!-- -- End of SDK Test -- -->
         </template>
       </SynthsInsideBar>
@@ -234,11 +208,11 @@ import SynthsInsideBar from "@/components/SynthsInsideBar.vue";
 import SynthsNew from "@/components/SynthsNew.vue";
 import synthsLogo from "@/assets/images/logo.png";
 import {inject} from "vue";
-import {useI18n} from "vue-i18n";
+import { useI18n } from "vue-i18n";
 
 /* -- Start of SDK Test -- */
-import {useSynthsSDK} from "../../stores/sdk-store";
-import {providers} from "ethers";
+import { useSynthsSDK } from "../../stores/sdk-store";
+import { providers } from "ethers";
 /* -- End of SDK Test -- */
 
 let options = [
@@ -261,7 +235,7 @@ let options = [
     slug: "Settle"
   },
 ];
-let isDropDown = 0;
+
 let selected_option = 0;
 let isUseWallet = 0;
 export default {
@@ -279,28 +253,20 @@ export default {
       options,
       selected_option,
       isUseWallet,
-      isDropDown
     };
-  },
-  methods: {
-    closeDown(e: { stopPropagation: () => void; }) {
-      e.stopPropagation()
-      this.isDropDown = false
-    }
   },
   setup() {
     /* -- Start of SDK Test -- */
     /// @notice Synth SDK Init test
-    const url = "${process.env.INFURA_URL}";
-
+    const url = `${import.meta.env.VITE_INFURA_URL}`;
     const provider = new providers.JsonRpcProvider(url);
-    const {connectTo, data, loading} = useSynthsSDK(provider);
+    const { connectTo, data, loading } = useSynthsSDK(provider);
 
     connectTo("upunks-0921");
     /* -- End of SDK Init Test -- */
 
     /// @dev Use global scope
-    const {t, d, n} = useI18n({
+    const { t, d, n } = useI18n({
       useScope: 'global',
       inheritLocale: true
     });
@@ -323,8 +289,8 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-@media (min-width: 1280px) {
-  .card {
+@media (min-width: 1280px){
+  .card{
     @apply bg-blueDark;
   }
 }
