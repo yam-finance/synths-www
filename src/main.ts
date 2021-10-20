@@ -1,11 +1,13 @@
 import { createApp } from 'vue'
-import App from './App.vue'
+import App from '@/App.vue'
+import router from "@/router"
 
-import router from "./router/index"
+import VueClickAway from "vue3-click-away";
+import { i18n } from "./i18n";
 
-import './index.scss'
+import "@/index.scss";
 
-const app = createApp(App).use(router);
+const app = createApp(App)).use(i18n).use(VueClickAway).use(router);
 app.mount('#app');
 
 app.config.performance = true

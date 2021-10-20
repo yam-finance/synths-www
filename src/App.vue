@@ -23,6 +23,7 @@ import {globalStore} from "@/store";
 
 export default defineComponent({
   setup() {
+
     //Setup Simple Data
     const state = reactive({
       name: "John Doe",

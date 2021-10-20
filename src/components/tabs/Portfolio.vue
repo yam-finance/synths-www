@@ -19,7 +19,7 @@
                 </div>
                 <div class="text-xs txt-main flex">
                     Portential rewards this week
-                    <img src="../../assets/images/help-circle.png" class="ml-2 h-4">
+                    <img src="@/assets/images/help-circle.png" class="ml-2 h-4">
                 </div>
             </div>
             <div class="card rounded-lg bg-light px-6 py-4">
@@ -31,7 +31,7 @@
                     <span class="rounded-xl wallet-btn text-xs text-white px-2 pb-0.5 font-bold">Redeem</span>
                     &nbsp;for
                     <span class="text-xs text-white font-normal">&nbsp;30 UMA</span>
-                    <img src="../../assets/images/help-circle.png" class="ml-2 h-4">
+                    <img src="@/assets/images/help-circle.png" class="ml-2 h-4">
                 </div>
             </div>
         </div>
@@ -40,7 +40,7 @@
             Your Synths
         </div>
 
-        <table class="text-white border-b bd-main w-full font-normal hidden lg:table">
+        <table class="text-white border-b bd-main w-full font-normal hidden md:table">
             <thead class="lg:text-xs xl:text-sm txt-main text-left">
                 <th class="py-2 px-4">Synths</th>
                 <th>Balance</th>
@@ -58,7 +58,7 @@
                     class="border-b bd-main"
                 >
                     <td class="px-4 py-2 font-semibold flex">
-                        <img src="../../assets/images/zombie.png" class="h-6">
+                        <img src="@/assets/images/zombie.png" class="w-6 h-6">
                         &nbsp;{{synth.name}}
                     </td>
                     <td>{{synth.balance}}</td>
@@ -72,20 +72,26 @@
                         </div>
                         <div v-else>
                             <span class="txt-main mr-0.5">Expired</span>
-                            <button class="rounded-xl wallet-btn text-xs text-white px-2 pb-0.5 my-auto font-bold block xl:inline">Settle</button>
+                          <s-button buttonStyles="wallet-btn w-auto text-xs text-white px-2 !py-0.5 my-auto font-bold block xl:inline">
+                            <template #buttonTitle>
+                              Settle
+                            </template>
+                          </s-button>
                         </div>
                     </td>
                     <td class="p-0 m-0">
-                        <img src="../../assets/images/arrow-right.svg" class="cursor-pointer">
+                        <img src="@/assets/images/arrow-right.svg" class="cursor-pointer">
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-    <div class="w-screen font-semibold block md:hidden text-white"
-        v-if="1"
-    >
+    <div class="min-w-[400px] border-l bd-main hidden lg:block">
+        <!--Right Side-->
+    </div>
+
+    <div class="w-screen font-semibold block md:hidden text-white">
         <div class="w-full py-2 px-3 border-b bd-main">
             <span class="text-sm txt-main">Portfolio</span>
         </div>
@@ -111,7 +117,7 @@
                     class="border-b bd-main"
             >
                 <td class="px-4 py-2 font-semibold flex">
-                    <img src="../../assets/images/zombie.png">
+                    <img src="@/assets/images/zombie.png" class="w-6 h-6">
                     &nbsp;{{synth.name}}
                 </td>
                 <td>{{synth.balance}}</td>
@@ -122,11 +128,16 @@
                     </div>
                     <div v-else>
                         <span class="txt-main">Expired</span>
-                        <button class="rounded-xl wallet-btn text-xs text-white px-2 pb-0.5 m-auto ml-0 font-bold block">Settle</button>
+
+                      <s-button color="linear-gradient(180deg, #F77FA0 0%, #DA4CAB 100%)" buttonStyles="w-auto text-xs text-white px-2 pb-0.5 m-auto ml-0 font-bold">
+                        <template #buttonTitle>
+                          Settle
+                        </template>
+                      </s-button>
                     </div>
                 </td>
                 <td>
-                    <img src="../../assets/images/arrow-right.svg" class="cursor-pointer">
+                    <img src="@/assets/images/arrow-right.svg" class="cursor-pointer">
                 </td>
             </tr>
             </tbody>
@@ -187,8 +198,13 @@
             status: 1
         }
     ];
+
+    import  SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue";
     export default {
         name: "portfolio",
+      components: {
+        's-button': SynthsRoundedButton,
+      },
         data() {
             return {
                 synths,
