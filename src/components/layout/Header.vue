@@ -246,23 +246,23 @@ function formatAddress(address) {
                     <span class="t_network">Network</span>
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
-                    <label class="container"
+                    <label class="container "
                         >Mainnet
-                        <input type="radio" :checked="web3.network.key == 1" class="form-radio"/>
+                        <input type="radio" :checked="web3.network.key == 1" class="form-radio" disabled/>
                         <span class="checkmark"></span>
                     </label>
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
                     <label class="container"
                         >Polygon
-                        <input type="radio" :checked="web3.network.key == 137" class="form-radio"/>
+                        <input type="radio" :checked="web3.network.key == 137" class="form-radio" disabled/>
                         <span class="checkmark"></span>
                     </label>
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
                     <label class="container"
                         >Rinkeby
-                        <input type="radio" :checked="web3.network.key == 4" class="form-radio"/>
+                        <input type="radio" :checked="web3.network.key == 4" class="form-radio" disabled/>
                         <span class="checkmark"></span>
                     </label>
                 </li>
@@ -368,7 +368,7 @@ function formatAddress(address) {
     cursor: pointer;
     background: #14143a;
     border: 1px solid #7171b2;
-    border-radius: 8px;
+    border-radius: 10px;
     transform: scale(0.8);
 }
 
