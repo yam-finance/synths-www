@@ -1,4 +1,4 @@
-import { computed, reactive, ref, watchEffect } from "vue"
+import { computed, ref, watchEffect } from "vue"
 import { Web3Provider } from "@ethersproject/providers"
 import { getInstance } from "@snapshot-labs/lock/plugins/vue3"
 import networks from "@snapshot-labs/snapshot.js/src/networks.json"
