@@ -15,13 +15,13 @@
             hidden
             md:block
             border-r
-            bd-main
+            bg-main
             scrollbar
         "
         style="height: calc(100vh - 96px); scrollbar-width: none"
     >
         <div v-if="hasSideBar">
-            <div class="w-full h-12 py-3 px-3 border-b bd-main">
+            <div class="w-full h-12 py-3 px-3 border-b bg-main">
                 <span class="text-sm">All Synths</span>
             </div>
             <div class="w-full h-12 py-3 px-3 flex">
@@ -52,7 +52,7 @@
                     <router-link :to="'/synths/' + menu.to">
                         <div
                             v-if="menu.title.toLowerCase().includes(filter_string.toLowerCase())"
-                            class="px-4 py-2 my-auto flex border-b bd-main !cursor-pointer"
+                            class="px-4 py-2 my-auto flex border-b bg-main !cursor-pointer"
                             :class="activeTab === menu.id ? 'bg-light' : ''"
                         >
                             <img class="w-6" src="@/assets/images/zombie.png" />

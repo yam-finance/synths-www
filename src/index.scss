@@ -60,7 +60,7 @@ body {
         color: #7171b2;
     }
 
-    .bd-main {
+    .bg-main {
         border-color: #242449;
     }
 
@@ -81,6 +81,6 @@ body {
     }
 
     .basic-hover {
-        @apply hover:brightness-110 active:brightness-75;
+        @apply hover:brightness-150 active:brightness-75;
     }
 }
