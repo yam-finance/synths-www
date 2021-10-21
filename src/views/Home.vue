@@ -36,7 +36,9 @@
             </router-link>
             <div class="flex absolute right-2 p-2 w-96 h-12">
                 <div class="flex absolute right-2 align-middle my-auto">
+                  <router-link to="/#">
                     <span class="flex px-4 py-1.5 text-sm cursor-pointer"> Learn </span>
+                  </router-link>
                     <router-link to="/explore-synths" class="my-auto">
                         <s-button
                             buttonStyles="wallet-btn px-2 py-1.5 my-auto text-sm font-semibold  mr-4"
@@ -49,10 +51,13 @@
         </nav>
         <div class="container-fluid max-w-[1000px] m-auto">
             <div class="home-content text-center text-white mt-16">
+              <router-link to="/#">
                 <div class="inline">
-                    <span class="txt-main">BUILT BY</span>
-                    <img src="@/assets/images/logo.png" class="inline w-6 h-6" />YAM
+                  <span class="txt-main">BUILT BY</span>
+                  <img src="@/assets/images/logo.png" class="inline w-6 h-6" />YAM
                 </div>
+              </router-link>
+
                 <div class="text-3xl md:text-5xl lg:text-7xl mt-8 mb-16 font-semibold">
                     Go Long or Short<br />on Anything
                 </div>
@@ -267,12 +272,18 @@
                 </div>
 
                 <div class="mt-32 text-lg">
+                  <router-link to="/#">
                     <span class="txt-main">Build by</span>
                     🍠YAM
+                  </router-link>
+
                 </div>
                 <div class="text-lg">
+                  <router-link to="/#">
                     <span class="txt-main">Powered by </span>
                     🐙 UMA
+                  </router-link>
+
                 </div>
 
                 <ul class="inline-flex space-x-8 text-[#CBCBFF] mt-8">
@@ -289,14 +300,20 @@
 
                 <div>
                     <div class="inline-flex mt-8">
+                      <router-link to="/#">
                         <img
-                            src="@/assets/images/socials/twitter.svg"
-                            class="mx-2 my-auto cursor-pointer"
+                          src="@/assets/images/socials/twitter.svg"
+                          class="mx-2 my-auto cursor-pointer"
                         />
+                      </router-link>
+                      <router-link to="/#">
                         <img
-                            src="@/assets/images/socials/discord.svg"
-                            class="mx-2 my-auto cursor-pointer"
+                          src="@/assets/images/socials/discord.svg"
+                          class="mx-2 my-auto cursor-pointer"
                         />
+                      </router-link>
+
+
                     </div>
                 </div>
 
