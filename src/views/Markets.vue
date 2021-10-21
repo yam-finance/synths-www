@@ -290,8 +290,7 @@
                 :sub-title="option.description"
                 :button-name="option.slug"
                 :loading="loading"
-                :data="data"
-                :connectTo="connectTo"
+                :expiryPrice="expiryPrice"
                 v-if="option.id == selected_option"
             />
         </div>
@@ -309,8 +308,8 @@ import { inject } from "vue"
 import { useI18n } from "vue-i18n"
 
 /* -- Start of SDK Test -- */
-import { useSynthsSDK } from "@/stores/sdk-store"
-import { providers } from "ethers"
+import { useSynthsSDK } from "../composables/useSynthsSDK"
+import { computed } from "vue";
 /* -- End of SDK Test -- */
 
 let options = [
@@ -359,11 +358,9 @@ export default {
     setup() {
         /* -- Start of SDK Test -- */
         /// @notice Synth SDK Init test
-        const url = `${import.meta.env.VITE_INFURA_URL}`
-        const provider = new providers.JsonRpcProvider(url)
-        const { connectTo, data, loading } = useSynthsSDK(provider)
-
-        connectTo("upunks-0921")
+        // const url = `${import.meta.env.VITE_INFURA_URL}`
+        // const provider = new providers.JsonRpcProvider(url)
+        const { data, loading } = useSynthsSDK();
         /* -- End of SDK Init Test -- */
 
         /// @dev Use global scope
@@ -381,9 +378,8 @@ export default {
             userDetails,
 
             /* -- Start of SDK Test -- */
-            loading,
-            data,
-            connectTo,
+            loading: loading,
+            expiryPrice: computed(() =>  { if (!loading.value) return data.value["upunks-0921"]["empState"].expiryPrice })
             /* -- End of SDK Test -- */
         }
     },

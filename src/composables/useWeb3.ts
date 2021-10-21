@@ -1,37 +1,46 @@
-import { computed, reactive } from "vue"
+import { computed, ref, watchEffect } from "vue"
 import { Web3Provider } from "@ethersproject/providers"
 import { getInstance } from "@snapshot-labs/lock/plugins/vue3"
 import networks from "@snapshot-labs/snapshot.js/src/networks.json"
 import { formatUnits } from "@ethersproject/units"
+import { useSynthsSDK } from "./useSynthsSDK"
 
 let auth: any
 const defaultNetwork: any = import.meta.env.VITE_DEFAULT_NETWORK || Object.keys(networks)[0]
+const { init } = useSynthsSDK();
 
-const state = reactive({
+const state = ref({
     account: "",
     network: networks[defaultNetwork],
     authLoading: false,
     etherscanlink: "",
     walletConnectType: null,
+    ethersProvider: Web3Provider
+})
+
+// TODO Initialize with default provider if wallet is not connected
+watchEffect(() => { 
+    console.log("State changed!");
+    init(state.value.ethersProvider);
 })
 
 export function useWeb3() {
     async function login(connector = "injected") {
         auth = getInstance()
-        state.authLoading = true
+        state.value.authLoading = true
         await auth.login(connector)
         if (auth.provider.value) {
             auth.web3 = new Web3Provider(auth.provider.value, "any")
             await loadProvider()
         }
-        state.authLoading = false
+        state.value.authLoading = false
     }
 
     async function logout() {
         auth = getInstance()
         await auth.logout()
         auth.isAuthenticated = false
-        state.account = ""
+        state.value.account = ""
     }
 
     async function loadProvider() {
@@ -44,13 +53,13 @@ export function useWeb3() {
                 })
                 auth.provider.value.on("accountsChanged", async (accounts) => {
                     if (accounts.length !== 0) {
-                        state.account = accounts[0]
+                        state.value.account = accounts[0]
                         await login()
                     }
                 })
                 // auth.provider.on('disconnect', async () => {});
             }
-            console.log("Provider", auth.provider.value)
+            state.value.ethersProvider = auth.web3;
             let network, accounts
             try {
                 ;[network, accounts] = await Promise.all([
@@ -65,12 +74,12 @@ export function useWeb3() {
             handleChainChanged(network.chainId)
             const acc = accounts.length > 0 ? accounts[0] : null
 
-            state.account = acc
-            state.etherscanlink = "https://etherscan.io/address/" + acc
+            state.value.account = acc
+            state.value.etherscanlink = "https://etherscan.io/address/" + acc
 
-            state.walletConnectType = auth.provider.value?.wc?.peerMeta?.name || "unknown"
+            state.value.walletConnectType = auth.provider.value?.wc?.peerMeta?.name || "unknown"
         } catch (e) {
-            state.account = ""
+            state.value.account = ""
 
             return Promise.reject(e)
         }
@@ -86,7 +95,7 @@ export function useWeb3() {
                 unknown: true,
             }
         }
-        state.network = networks[chainId]
+        state.value.network = networks[chainId]
     }
 
     return {
@@ -94,6 +103,6 @@ export function useWeb3() {
         logout,
         loadProvider,
         handleChainChanged,
-        web3: computed(() => state),
+        web3: computed(() => state.value),
     }
 }
