@@ -3,7 +3,7 @@ import { Web3Provider } from "@ethersproject/providers"
 import { getInstance } from "@snapshot-labs/lock/plugins/vue3"
 import networks from "@snapshot-labs/snapshot.js/src/networks.json"
 import { formatUnits } from "@ethersproject/units"
-import { useSynthsSDK } from "../composables/sdk-store"
+import { useSynthsSDK } from "./useSynthsSDK"
 
 let auth: any
 const defaultNetwork: any = import.meta.env.VITE_DEFAULT_NETWORK || Object.keys(networks)[0]
