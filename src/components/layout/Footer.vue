@@ -176,6 +176,7 @@
 import { useWeb3 } from "@/composables/useWeb3"
 import ConnectWallet from "@/components/ConnectWallet.vue"
 import { ref } from "vue"
+import {globalStore} from "@/composables";
 
 const { login, web3, logout } = useWeb3()
 const isModalVisible = ref(false)
@@ -194,10 +195,13 @@ async function handleLogout() {
 function formatAddress(address) {
     return address.slice(0, 6) + "..." + address.slice(-6)
 }
+
+
+const { state } = globalStore()
+const blockNumber = state.blockNumber
 </script>
 
 <script>
-import { globalStore } from "@/store/index"
 
 const closeModal = ref(false)
 
@@ -221,13 +225,6 @@ let tabs = [
 ]
 export default {
     name: "Footer",
-    setup(props, context) {
-        const { state } = globalStore()
-
-        return {
-            blockNumber: state.blockNumber,
-        }
-    },
     data() {
         return {
             isMenuOpen,
