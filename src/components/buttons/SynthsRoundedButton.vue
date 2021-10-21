@@ -1,7 +1,7 @@
 <template>
     <button
         :class="buttonStyles"
-        class="leading-none items-center rounded-xl py-1 2xl:py-2 w-full font-bold basic-hover"
+        class="leading-none items-center rounded-xl w-full font-bold basic-hover"
         @click="$emit('btn-click')"
     >
         <slot name="buttonTitle"></slot>

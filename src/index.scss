@@ -25,6 +25,12 @@
     }
 }
 
+* {
+  -webkit-transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 html,
 body,
 #__nuxt,
@@ -54,6 +60,7 @@ body {
 
     .wallet-btn {
         background: linear-gradient(180deg, #f77fa0 0%, #da4cab 100%);
+        box-shadow: 0px 0px 2px 0px #FFB7E0 inset;
     }
 
     .txt-main {
@@ -81,6 +88,6 @@ body {
     }
 
     .basic-hover {
-        @apply hover:brightness-150 active:brightness-75;
+        @apply hover:brightness-110 active:brightness-75;
     }
 }
