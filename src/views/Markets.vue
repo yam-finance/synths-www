@@ -268,13 +268,6 @@
                         <div class="bg-[#212149] px-6 py-4 rounded-md rounded-tr-2xl">
                             <p class="text-lg font-bold inline">44%</p>
                             <p class="text-xs txt-main">xSUSHI APY at Expiry</p>
-                            <!-- -- Start of SDK Test -- -->
-                            <p>
-                                <span>Expiry Price in WEI </span>
-                                <span v-if="loading">...</span>
-                                <span v-else>{{ expiryPrice }}</span>
-                            </p>
-                            <!-- -- End of SDK Test -- -->
                         </div>
                     </div>
                     <div class="my-2">
@@ -367,10 +360,9 @@ export default {
     setup() {
         /* -- Start of SDK Test -- */
         /// @notice Synth SDK Init test
-        const url = `${import.meta.env.VITE_INFURA_URL}`
-        const provider = new providers.JsonRpcProvider(url)
-        const { init, data, loading } = useSynthsSDK();
-        init(provider);
+        // const url = `${import.meta.env.VITE_INFURA_URL}`
+        // const provider = new providers.JsonRpcProvider(url)
+        const { data, loading } = useSynthsSDK();
         /* -- End of SDK Init Test -- */
 
         /// @dev Use global scope
@@ -389,7 +381,7 @@ export default {
 
             /* -- Start of SDK Test -- */
             loading: loading,
-            expiryPrice: computed(() =>  data.value["upunks-0921"]["empState"].expiryPrice)
+            expiryPrice: computed(() =>  { if (!loading.value) return data.value["upunks-0921"]["empState"].expiryPrice })
             /* -- End of SDK Test -- */
         }
     },

@@ -1,14 +1,11 @@
 import { ref, computed } from "vue"
 import Synths from "synths-sdk"
-import Asset from "synths-sdk/dist/src/lib/Asset"
-import { providers } from "ethers"
-import { useWeb3 } from "@/composables/useWeb3";
-const { web3 } = useWeb3();
+
+const loading = ref(true)
+const data = ref({})
+let synthsSDK;
 
 export function useSynthsSDK() {
-    const loading = ref(true)
-    const data = ref({})
-    let synthsSDK;
 
     async function init(provider) {
         synthsSDK = await Synths.create({ ethersProvider: provider });
