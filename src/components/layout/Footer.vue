@@ -202,8 +202,7 @@ function formatAddress(address) {
 }
 
 
-const { state } = globalStore()
-const blockNumber = state.blockNumber
+
 </script>
 
 <script>
