@@ -30,8 +30,8 @@ export function useWeb3() {
     async function logout() {
         auth = getInstance()
         await auth.logout()
-        auth.isAuthenticated = false
-        state.account = ""
+       
+        
     }
 
     async function loadProvider() {

@@ -25,6 +25,7 @@ export default {
     components: {
         "s-button": SynthsRoundedButton,
     },
+    
     data() {
         return {
             tabs,
@@ -46,16 +47,21 @@ export default {
 </script>
 
 <script setup>
+import { copyText } from 'vue3-clipboard'
 import { useWeb3 } from "@/composables/useWeb3"
 import ConnectWallet from "../ConnectWallet.vue"
+import { globalStore } from "@/store/index"
 import { ref } from "vue"
+import useClipboard from '@/composables/useClipboard'
+let blockNumber;
+const { state } = globalStore()
 
 const { login, web3, logout } = useWeb3()
 const isModalVisible = ref(false)
 
 const isWalletDropDownOpen = ref(false)
 const isDropDownOpen = ref(false)
-
+blockNumber =  state.blockNumber;
 async function handleConnect(connector) {
     isModalVisible.value = false
     await login(connector)
@@ -63,6 +69,15 @@ async function handleConnect(connector) {
 async function handleLogout() {
     await logout()
     // emit('close');
+}
+const { toClipboard } = useClipboard()
+async function doCopy(address) {
+    try {
+        await toClipboard(address)
+        alert('copied');
+      } catch (e) {
+        console.error(e)
+      }
 }
 function formatAddress(address) {
     return address.slice(0, 6) + "..." + address.slice(-6)
@@ -233,34 +248,34 @@ function formatAddress(address) {
                 <li class="min-w-max cursor-pointer p-1">
                     <label class="container"
                         >Mainnet
-                        <input type="checkbox" :checked="web3.network.key == 1" />
+                        <input type="radio" :checked="web3.network.key == 1" class="form-radio"/>
                         <span class="checkmark"></span>
                     </label>
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
                     <label class="container"
                         >Polygon
-                        <input type="checkbox" :checked="web3.network.key == 137" />
+                        <input type="radio" :checked="web3.network.key == 137" class="form-radio"/>
                         <span class="checkmark"></span>
                     </label>
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
                     <label class="container"
                         >Rinkeby
-                        <input type="checkbox" :checked="web3.network.key == 4" />
+                        <input type="radio" :checked="web3.network.key == 4" class="form-radio"/>
                         <span class="checkmark"></span>
                     </label>
                 </li>
                 <li class="divider_dropdown_wallet"></li>
                 <li class="min-w-max cursor-pointer p-1">
-                    <span class="wallet_actions"
+                    <span class="wallet_actions" @click="doCopy(web3.account)"
                         ><img src="../../assets/icons/copy.svg" /> &nbsp; Copy Address</span
                     >
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
                     <span class="wallet_actions"
                         ><img class="image_icon" src="../../assets/icons/externalLink.svg" />&nbsp;
-                        <a :href="web3.etherscanlink">Etherscan</a></span
+                        <a :href="web3.etherscanlink" target="_blank" >Etherscan</a></span
                     >
                 </li>
                 <li
@@ -276,7 +291,7 @@ function formatAddress(address) {
         <div class="flex overflow-hidden absolute right-0 h-12 visible md:invisible">
             <div class="flex px-4 py-4 cursor-pointer">
                 <img src="@/assets/images/green-dot.svg" class="h-full py-0.5" />
-                <span class="text-xs my-auto font-normal px-1">13224549</span>
+                <span class="text-xs my-auto font-normal px-1">{{blockNumber}}</span>
             </div>
         </div>
         <ConnectWallet

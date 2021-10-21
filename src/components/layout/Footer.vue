@@ -176,10 +176,12 @@
 import { useWeb3 } from "@/composables/useWeb3"
 import ConnectWallet from "@/components/ConnectWallet.vue"
 import { ref } from "vue"
-
+import { globalStore } from "@/store/index"
 const { login, web3, logout } = useWeb3()
 const isModalVisible = ref(false)
-
+let blockNumber;
+ const { state } = globalStore()
+blockNumber =  state.blockNumber;
 const isWalletDropDownOpen = ref(false)
 const isDropDownOpen = ref(false)
 
@@ -197,7 +199,7 @@ function formatAddress(address) {
 </script>
 
 <script>
-import { globalStore } from "@/store/index"
+
 
 const closeModal = ref(false)
 
@@ -221,13 +223,7 @@ let tabs = [
 ]
 export default {
     name: "Footer",
-    setup(props, context) {
-        const { state } = globalStore()
-
-        return {
-            blockNumber: state.blockNumber,
-        }
-    },
+  
     data() {
         return {
             isMenuOpen,
