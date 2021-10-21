@@ -10,33 +10,27 @@ const routes = [
         path: "/",
         name: "Home",
         component: () => import("@/views/AppView.vue"),
-        meta: { hasSideBar: 1 },
+        meta: {hasSideBar: 1},
         children: [
             {
-                path: "/explore-synths",
+                path: "/explore",
                 name: "Explore Synths",
                 component: () => import("@/views/ExploreSynths.vue"),
-                meta: { hasSideBar: 1 },
+                meta: {hasSideBar: 0},
             },
             {
-                path: "/markets",
-                name: "Markets",
+                path: "/synths/:synth",
+                name: "Synths",
                 component: () => import("@/views/Markets.vue"),
-                meta: { hasSideBar: 1 },
+                meta: {hasSideBar: 1},
             },
             {
                 path: "/portfolio",
                 name: "Portfolio",
                 component: () => import("@/views/Portfolio.vue"),
-                meta: { hasSideBar: 0 },
+                meta: {hasSideBar: 0},
             },
-            {
-                path: "/synths/:synth",
-                name: "Synths",
-                component: () => import("@/views/ExploreSynths.vue"),
-                meta: { hasSideBar: 1 },
-            },
-        ],
+        ]
     },
     {
         path: "/testsidebar",

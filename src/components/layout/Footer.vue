@@ -12,19 +12,19 @@
             flex flex-col
             lg:flex-row
             border-t
-            bd-main
+            bg-main
             bg-main
         "
     >
         <div class="invisible md:visible">
-            <div class="flex overflow-hidden absolute w-64 h-12 border-r bd-main">
+            <div class="flex overflow-hidden absolute w-64 h-12 border-r bg-main">
                 <div class="flex px-4 py-4 cursor-pointer">
                     <img src="@/assets/images/green-dot.svg" class="h-full py-0.5" />
                     <span class="px-1 text-xs my-auto font-normal px-3">{{ blockNumber }}</span>
                     <img src="@/assets/images/external-link.svg" />
                 </div>
             </div>
-            <div class="flex absolute w-96 mr-4 right-0 p-2 text-right h-12 lg:border-l bd-main">
+            <div class="flex absolute w-96 mr-4 right-0 p-2 text-right h-12 lg:border-l bg-main">
                 <div class="flex absolute right-2">
                     <img
                         src="@/assets/images/socials/twitter.svg"
@@ -65,7 +65,7 @@
                 >
                     <span class="px-4 txt-main">Menu</span>
                     <li
-                        class="min-w-max cursor-pointer border-t bd-main px-4 py-3"
+                        class="min-w-max cursor-pointer border-t bg-main px-4 py-3"
                         v-for="(tab, key) in tabs"
                         :key="key"
                         @click="isMenuOpen = !isMenuOpen"
@@ -94,10 +94,10 @@
                     "
                 >
                     <span class="px-4 txt-main">Help</span>
-                    <li class="min-w-max cursor-pointer border-t bd-main px-4 py-3">
+                    <li class="min-w-max cursor-pointer border-t bg-main px-4 py-3">
                         <span>Documentation</span>
                     </li>
-                    <li class="min-w-max cursor-pointer border-t border-b bd-main px-4 py-3">
+                    <li class="min-w-max cursor-pointer border-t border-b bg-main px-4 py-3">
                         <span>Tutorials</span>
                     </li>
                 </ul>
@@ -129,12 +129,12 @@
                 text-right
                 h-12
                 lg:border-l
-                bd-main
+                bg-main
                 visible
                 md:invisible
             "
         >
-            <div class="flex">
+            <div class="flex cursor-pointer">
                 <img
                     src="@/assets/images/x.svg"
                     v-if="isMenuOpen"
@@ -207,20 +207,16 @@ function formatAddress(address) {
 
 <script>
 
-
-const closeModal = ref(false)
-
-let isMenuOpen = 0
 let tabs = [
     {
         id: 1,
         title: "Explore Synths",
-        to: "explore-synths",
+        to: "explore",
     },
     {
         id: 2,
         title: "Markets",
-        to: "markets",
+        to: "synths",
     },
     {
         id: 3,
@@ -232,7 +228,7 @@ export default {
     name: "Footer",
     data() {
         return {
-            isMenuOpen,
+            isMenuOpen:false,
             tabs,
         }
     },

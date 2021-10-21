@@ -5,12 +5,7 @@ let tabs = [
     {
         id: 1,
         title: "Explore Synths",
-        to: "explore-synths",
-    },
-    {
-        id: 2,
-        title: "Markets",
-        to: "markets",
+        to: "explore",
     },
     {
         id: 3,
@@ -103,12 +98,12 @@ function formatAddress(address) {
             flex flex-col
             lg:flex-row
             border-b
-            bd-main
+            bg-main
             bg-main
         "
     >
         <router-link to="/">
-            <div class="w-64 h-12 flex md:border-r bd-main">
+            <div class="w-64 h-12 flex md:border-r bg-main">
                 <img src="@/assets/images/yamIcon.png" class="m-2 h-8 w-8" />
                 <h3 class="logo font-bold text-emerald-500 my-auto">Yam Synths</h3>
                 <span
@@ -169,7 +164,7 @@ function formatAddress(address) {
                 text-right
                 h-12
                 lg:border-l
-                bd-main
+                bg-main
                 invisible
                 md:visible
             "
