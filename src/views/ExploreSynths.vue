@@ -74,9 +74,9 @@
       </thead>
       <tbody class="border-t bg-main lg:text-xs xl:text-sm 2xl:text-base">
       <tr v-for="(synth, key) in synths" :key="key" class="border-b bg-main basic-hover">
-        <td class="px-4 py-2">
-          <router-link class="font-semibold flex" :to="{name: 'Synths', params:{synth: synth.id}}">
-            <img src="@/assets/images/zombie.png" class="w-6 h-6" />
+        <td class="px-4 py-2 flex">
+          <img src="@/assets/images/zombie.png" class="w-6 h-6" />
+          <router-link class="font-semibold" :to="{name: 'Synths', params:{synth: synth.id}}">
             &nbsp;{{ synth.name }}
           </router-link>
         </td>
@@ -152,8 +152,8 @@
       <tbody class="border-t bg-main text-base">
       <tr v-for="(synth, key) in synths" :key="key" class="border-b bg-main basic-hover">
         <td class="px-4 py-2 font-semibold flex">
+          <img src="@/assets/images/zombie.png" class="w-6 h-6" />
           <router-link :to="{name: 'Synths', params:{synth: synth.id}}">
-            <img src="@/assets/images/zombie.png" class="w-6 h-6" />
             &nbsp;{{ synth.name }}
           </router-link>
         </td>

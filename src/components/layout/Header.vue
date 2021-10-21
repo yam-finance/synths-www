@@ -8,11 +8,6 @@ let tabs = [
         to: "explore-synths",
     },
     {
-        id: 2,
-        title: "Markets",
-        to: "markets",
-    },
-    {
         id: 3,
         title: "Portfolio",
         to: "portfolio",

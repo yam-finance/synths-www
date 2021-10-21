@@ -19,12 +19,6 @@ const routes = [
                 meta: { hasSideBar: 0 },
             },
             {
-                path: "/markets",
-                name: "Markets",
-                component: () => import("@/views/Markets.vue"),
-                meta: { hasSideBar: 1 },
-            },
-            {
                 path: "/portfolio",
                 name: "Portfolio",
                 component: () => import("@/views/Portfolio.vue"),
@@ -33,7 +27,7 @@ const routes = [
             {
                 path: "/synths/:synth",
                 name: "Synths",
-                component: () => import("@/views/ExploreSynths.vue"),
+                component: () => import("@/views/Markets.vue"),
                 meta: { hasSideBar: 1 },
             },
         ],
