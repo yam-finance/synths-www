@@ -80,7 +80,7 @@ const blockNumber = state.blockNumber
             z-20
             bg-navy-blue-800
             text-white
-            flex flex-col
+            flex
             lg:flex-row
             border-b
             bg-main
@@ -127,7 +127,7 @@ const blockNumber = state.blockNumber
             "
         >
             <li
-                class="min-w-max cursor-pointer px-2"
+                class="cursor-pointer px-2"
                 v-for="(tab, key) in tabs"
                 :key="key"
                 :class="tab.title == $route.name ? 'bg-white rounded-md' : ''"
@@ -142,7 +142,8 @@ const blockNumber = state.blockNumber
             class="
                 flex
                 absolute
-                w-96
+                md:w-48
+                lg:w-96
                 right-0
                 p-2
                 mr-4

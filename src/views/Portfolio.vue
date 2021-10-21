@@ -41,7 +41,7 @@
                     <div class="text-xs txt-main ml-2 mt-2">Success in wallet</div>
                 </div>
                 <div class="text-xs txt-main flex">
-                    <span class="rounded-xl wallet-btn text-xs text-white px-2 pb-0.5 font-bold"
+                    <span class="rounded-xl wallet-btn text-xs text-white px-2 pb-0.5 font-bold cursor-pointer"
                         >Redeem</span
                     >
                     &nbsp;for

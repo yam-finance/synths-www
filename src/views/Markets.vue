@@ -26,11 +26,12 @@
                             class="
                                 overflow-hidden
                                 my-auto
-                                p-2.5
+                                ml-4
+                                p-1
                                 text-sm text-left
                                 fixed
-                                bg-main
-                                rounded-br-xl rounded-bl-xl
+                                bg-light
+                                rounded-xl
                             "
                             v-if="isDropDown"
                             v-click-away="closeDown"
@@ -39,10 +40,8 @@
                                 <li class="min-w-max cursor-pointer p-1">
                                     <span
                                         class="
-                                            rounded-xl
-                                            bg-main
-                                            px-4
-                                            py-2
+                                            px-1
+                                            py-1
                                             font-normal
                                             text-sm
                                             txt-main
@@ -56,10 +55,8 @@
                                 <li class="min-w-max cursor-pointer p-1">
                                     <span
                                         class="
-                                            rounded-xl
-                                            bg-main
-                                            px-4
-                                            py-2
+                                            px-1
+                                            py-1
                                             font-normal
                                             text-sm
                                             txt-main
@@ -165,7 +162,7 @@
                         @click="selected_option = option.id"
                     >
                         <div
-                            class="w-full h-12 py-3 px-6 border-b bg-main cursor-pointer"
+                            class="w-full h-12 py-3 px-6  cursor-pointer"
                             :class="{ 'bg-[#4447BD]': option.id == selected_option }"
                         >
                             <span class="font-semibold">{{ option.title }}</span>
