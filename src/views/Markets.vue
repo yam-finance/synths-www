@@ -268,6 +268,13 @@
                         <div class="bg-[#212149] px-6 py-4 rounded-md rounded-tr-2xl">
                             <p class="text-lg font-bold inline">44%</p>
                             <p class="text-xs txt-main">xSUSHI APY at Expiry</p>
+                            <!-- -- Start of SDK Test -- -->
+                            <p>
+                                <span>Expiry Price in WEI </span>
+                                <span v-if="loading">...</span>
+                                <span v-else>{{ expiryPrice }}</span>
+                            </p>
+                            <!-- -- End of SDK Test -- -->
                         </div>
                     </div>
                     <div class="my-2">
@@ -290,8 +297,7 @@
                 :sub-title="option.description"
                 :button-name="option.slug"
                 :loading="loading"
-                :data="data"
-                :connectTo="connectTo"
+                :expiryPrice="expiryPrice"
                 v-if="option.id == selected_option"
             />
         </div>
@@ -299,6 +305,8 @@
 </template>
 
 <script lang="ts">
+import { computed, watch } from "vue";
+import _ from "lodash";
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
 import SynthsSingleChart from "@/components/charts/SynthsSingleChart.vue"
 import SynthsLongShortChart from "@/components/charts/SynthsLongShortChart.vue"
@@ -309,8 +317,8 @@ import { inject } from "vue"
 import { useI18n } from "vue-i18n"
 
 /* -- Start of SDK Test -- */
-import { useSynthsSDK } from "../stores/sdk-store"
-import { providers } from "ethers"
+import { useSynthsSDK } from "../composables/sdk-store"
+import { providers } from "ethers";
 /* -- End of SDK Test -- */
 
 let options = [
@@ -359,11 +367,9 @@ export default {
     setup() {
         /* -- Start of SDK Test -- */
         /// @notice Synth SDK Init test
-        const url = `${import.meta.env.VITE_INFURA_URL}`
-        const provider = new providers.JsonRpcProvider(url)
-        const { connectTo, data, loading } = useSynthsSDK(provider)
-
-        connectTo("upunks-0921")
+        // const url = `${import.meta.env.VITE_INFURA_URL}`
+        // const provider = new providers.JsonRpcProvider(url)
+        const { data, loading } = useSynthsSDK();
         /* -- End of SDK Init Test -- */
 
         /// @dev Use global scope
@@ -381,9 +387,8 @@ export default {
             userDetails,
 
             /* -- Start of SDK Test -- */
-            loading,
-            data,
-            connectTo,
+            loading: loading,
+            expiryPrice: computed(() =>  data.value["upunks-0921"]["empState"].expiryPrice)
             /* -- End of SDK Test -- */
         }
     },

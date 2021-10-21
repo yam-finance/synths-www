@@ -23,11 +23,10 @@
             <p><span>Long Token Expiry Price</span> <span>$120</span></p>
             <p><span>Short Token Expiry Price</span> <span>$60</span></p>
             <!-- -- Start of SDK Test -- -->
-            <button @click="connectTo('ugas-0921')">Switch to ugas-0921</button>
-            <p v-if="loading"><span>Expiry Price in WEI</span> <span>loading</span></p>
-            <p v-else>
+            <p>
               <span>Expiry Price in WEI</span>
-              <span>{{ data.empState.expiryPrice }}</span>
+              <span v-if="loading">...</span>
+              <span v-else>{{ expiryPrice }}</span>
             </p>
             <!-- -- End of SDK Test -- -->
           </div>
@@ -125,15 +124,9 @@ export default {
           type: Boolean,
           default: false
         },
-        data: {
+        expiryPrice: {
           type: String,
           default: ""
-        },
-        connectTo: {
-          type: Function,
-          default() {
-            return 'Default function'
-          }
         }
     },
     components: {
