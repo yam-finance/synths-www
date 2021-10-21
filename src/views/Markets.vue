@@ -26,7 +26,7 @@
                             class="
                                 overflow-hidden
                                 my-auto
-                                p-2
+                                p-2.5
                                 text-sm text-left
                                 fixed
                                 bg-main
@@ -289,23 +289,11 @@
                 :title="option.title"
                 :sub-title="option.description"
                 :button-name="option.slug"
+                :loading="loading"
+                :data="data"
+                :connectTo="connectTo"
                 v-if="option.id == selected_option"
-            >
-                <template #costs v-if="option.slug == 'Settle'">
-                    <hr class="bg-white opacity-10 mb-2" />
-                    <p><span>ETH Expiry Price</span> <span>$3,200</span></p>
-                    <p><span>Long Token Expiry Price</span> <span>$120</span></p>
-                    <p><span>Short Token Expiry Price</span> <span>$60</span></p>
-                    <!-- -- Start of SDK Test -- -->
-                    <button @click="connectTo('ugas-0921')">Switch to ugas-0921</button>
-                    <p v-if="loading"><span>Expiry Price in WEI</span> <span>loading</span></p>
-                    <p v-else>
-                        <span>Expiry Price in WEI</span>
-                        <span>{{ data.empState.expiryPrice }}</span>
-                    </p>
-                    <!-- -- End of SDK Test -- -->
-                </template>
-            </SynthsInsideBar>
+            />
         </div>
     </div>
 </template>
