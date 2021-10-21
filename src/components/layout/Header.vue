@@ -71,7 +71,6 @@ const { toClipboard } = useClipboard()
 async function doCopy(address) {
     try {
         await toClipboard(address)
-        alert('copied');
       } catch (e) {
         console.error(e)
       }
