@@ -216,7 +216,8 @@ const blockNumber = state.blockNumber
                 class="
                     overflow-hidden
                     my-auto
-                    w-64
+                    w-48
+                    shadow-lg
                     p-2
                     text-sm text-left
                     fixed
@@ -229,7 +230,7 @@ const blockNumber = state.blockNumber
                 v-click-away="closePopup"
             >
                 <li class="min-w-max cursor-pointer p-1">
-                    <span class="t_network">Network</span>
+                    <span class="text-sm text-purpleLight">Network</span>
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
                     <label class="container"
@@ -261,7 +262,7 @@ const blockNumber = state.blockNumber
                 <li class="min-w-max cursor-pointer p-1">
                     <span class="wallet_actions"
                         ><img class="image_icon" src="../../assets/icons/externalLink.svg" />&nbsp;
-                        <a :href="web3.etherscanlink">Etherscan</a></span
+                        <a class="ml-1" :href="web3.etherscanlink">Etherscan</a></span
                     >
                 </li>
                 <li
@@ -299,8 +300,8 @@ const blockNumber = state.blockNumber
     font-family: Open Sauce Sans;
     font-style: normal;
     font-weight: normal;
-    font-size: 12px;
-    line-height: 12px;
+    font-size: 14px;
+    line-height: 14px;
     color: #ffffff;
     cursor: pointer;
     flex: none;
@@ -309,14 +310,20 @@ const blockNumber = state.blockNumber
     flex-grow: 0;
     margin: 0px 8px;
 }
+
+.wallet_actions img {
+  margin-top: -2px;
+  width: 16px;
+  margin-right: 8px;
+}
 .container {
     display: block;
     position: relative;
-    padding-left: 35px;
+    padding-left: 32px;
     -webkit-user-select: none;
     height: 25px;
     width: 25px;
-    font-size: 12px;
+    font-size: 14px;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
@@ -326,7 +333,7 @@ const blockNumber = state.blockNumber
     font-family: Open Sauce Sans;
     font-style: normal;
     font-weight: 600;
-    font-size: 10px;
+    font-size: 12px;
     line-height: 12px;
     color: #7171b2;
 
@@ -355,7 +362,7 @@ const blockNumber = state.blockNumber
     background: #14143a;
     border: 1px solid #7171b2;
     border-radius: 8px;
-    transform: scale(0.8);
+    transform: scale(0.8) translateY(-4px);
 }
 
 /* When the checkbox is checked, add a blue background */
@@ -389,7 +396,7 @@ const blockNumber = state.blockNumber
 }
 
 .divider_dropdown_wallet {
-    border: 1px solid #303060;
+    border-bottom: 1px solid #303060;
 
     /* Inside Auto Layout */
 

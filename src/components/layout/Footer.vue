@@ -20,7 +20,7 @@
             <div class="flex overflow-hidden absolute w-64 h-12 border-r bg-main">
                 <div class="flex items-center px-4 py-4 cursor-pointer">
                     <img src="@/assets/images/green-dot.svg" class="-mb-1.5" />
-                    <div class="text-xs my-auto font-normal px-2">{{ blockNumber }}</div>
+                    <div class="text-xs my-auto font-normal px-2 -mb-1">{{ blockNumber }}</div>
                     <img src="@/assets/images/external-link.svg" class="-mb-1.5" />
                 </div>
             </div>
