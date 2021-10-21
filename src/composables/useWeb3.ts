@@ -18,6 +18,7 @@ const state = ref({
     ethersProvider: Web3Provider
 })
 
+// TODO Initialize with default provider if wallet is not connected
 watchEffect(() => { 
     console.log("State changed!");
     init(state.value.ethersProvider);
