@@ -134,7 +134,7 @@
                 md:invisible
             "
         >
-            <div class="flex">
+            <div class="flex cursor-pointer">
                 <img
                     src="@/assets/images/x.svg"
                     v-if="isMenuOpen"
@@ -199,23 +199,23 @@ function formatAddress(address) {
 
 const { state } = globalStore()
 const blockNumber = state.blockNumber
+const closeModal = ref(false)
+
 </script>
 
 <script>
 
-const closeModal = ref(false)
 
-let isMenuOpen = 0
 let tabs = [
     {
         id: 1,
         title: "Explore Synths",
-        to: "explore-synths",
+        to: "explore",
     },
     {
         id: 2,
         title: "Markets",
-        to: "markets",
+        to: "synth",
     },
     {
         id: 3,
@@ -227,7 +227,7 @@ export default {
     name: "Footer",
     data() {
         return {
-            isMenuOpen,
+            isMenuOpen:false,
             tabs,
         }
     },

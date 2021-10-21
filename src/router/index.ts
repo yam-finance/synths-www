@@ -14,7 +14,7 @@ const routes = [
         children: [
             {
                 path: "/explore",
-                name: "Explore",
+                name: "Explore Synths",
                 component: () => import("@/views/ExploreSynths.vue"),
                 meta: {hasSideBar: 0},
             },

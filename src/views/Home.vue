@@ -39,7 +39,7 @@
                   <router-link to="/#">
                     <span class="flex px-4 py-1.5 text-sm cursor-pointer"> Learn </span>
                   </router-link>
-                    <router-link to="/explore-synths" class="my-auto">
+                    <router-link to="/explore" class="my-auto">
                         <s-button
                             buttonStyles="wallet-btn px-2 py-1.5 my-auto text-sm font-semibold  mr-4"
                         >
@@ -141,7 +141,7 @@
                         </div>
                     </div>
                 </div>
-                <router-link to="/explore-synths">
+                <router-link to="/explore">
                     <button
                         class="
                             hover:shadow-lg

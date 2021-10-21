@@ -5,7 +5,7 @@ let tabs = [
     {
         id: 1,
         title: "Explore Synths",
-        to: "explore-synths",
+        to: "explore",
     },
     {
         id: 3,
