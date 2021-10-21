@@ -13,14 +13,14 @@ const routes = [
         meta: { hasSideBar: 1 },
         children: [
             {
-                path: "/explore-synths",
-                name: "Explore Synths",
+                path: "/explore",
+                name: "Explore",
                 component: () => import("@/views/ExploreSynths.vue"),
                 meta: { hasSideBar: 1 },
             },
             {
-                path: "/markets",
-                name: "Markets",
+                path: "/synths/:synth",
+                name: "Synths",
                 component: () => import("@/views/Markets.vue"),
                 meta: { hasSideBar: 1 },
             },
@@ -29,13 +29,7 @@ const routes = [
                 name: "Portfolio",
                 component: () => import("@/views/Portfolio.vue"),
                 meta: { hasSideBar: 0 },
-            },
-            {
-                path: "/synths/:synth",
-                name: "Synths",
-                component: () => import("@/views/ExploreSynths.vue"),
-                meta: { hasSideBar: 1 },
-            },
+            }
         ],
     },
     {
