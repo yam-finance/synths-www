@@ -85,7 +85,7 @@
             <s-crypto-input v-else v-model:modelValue="input" />
         </div>
 
-        <s-button class="mt-8" @btn-click="buttonClick">
+        <s-button class="mt-8 py-4 w-full" @btn-click="buttonClick">
             <template #buttonTitle>
                 {{ buttonName }}
             </template>

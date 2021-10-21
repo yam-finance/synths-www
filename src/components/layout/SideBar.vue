@@ -25,7 +25,7 @@
                 <span class="text-sm">All Synths</span>
             </div>
             <div class="w-full h-12 py-3 px-3 flex">
-                <img src="@/assets/images/search.svg" class="flex absolute my-1.5 mx-3" />
+                <img src="@/assets/images/search.svg" class="flex absolute my-2.5 mx-3" />
                 <input
                     class="
                         flex flex-wrap
@@ -33,12 +33,13 @@
                         fo
                         px-10
                         py-4
-                        h-full
+                        h-10
+                        shadow-inner
                         w-full
                         focus:text-gray-300
                         dark:focus:text-gray-300
                         bg-dark
-                        rounded-full
+                        rounded-lg
                         outline-none
                         placeholder-primary
                         txt-main
@@ -52,7 +53,7 @@
                     <router-link :to="'/synths/' + menu.to">
                         <div
                             v-if="menu.title.toLowerCase().includes(filter_string.toLowerCase())"
-                            class="px-4 py-2 my-auto flex border-b bg-main !cursor-pointer"
+                            class="px-4 py-2 my-auto flex border-b hover:bg-[#1a1842] bg-main !cursor-pointer"
                             :class="activeTab === menu.id ? 'bg-light' : ''"
                         >
                             <img class="w-6" src="@/assets/images/zombie.png" />
@@ -61,12 +62,12 @@
                                 class="flex my-0.5 absolute"
                                 :class="activeTab === menu.id ? 'left-32' : 'left-40'"
                             >
-                                <span class="px-1 text-sm my-auto font-normal">$120</span>
+                                <span class="px-1 text-sm my-auto text-purpleLight font-normal">$120</span>
                                 <img
                                     src="@/assets/images/arrow-up-right.svg"
                                     class="h-full py-0.5"
                                 />
-                                <span class="px-1 text-sm my-auto font-normal">15%</span>
+                                <span class="px-1 text-sm my-auto text-purpleDark font-normal">15%</span>
                                 <img
                                     src="@/assets/images/arrow-right.svg"
                                     v-if="activeTab === menu.id"

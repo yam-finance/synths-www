@@ -1,10 +1,10 @@
 <template>
     <div
         @click="$emit('close')"
-        class="modal-backdrop flex items-center justify-center fixed inset-0"
+        class="modal-backdrop backdrop-blur-lg flex items-center justify-center fixed inset-0"
     >
-        <div class="modal rounded-lg flex flex-col items-start h-56 p-4 absolute">
-            <img class="wallet_gif h-32 absolute w-40" src="@/assets/icons/Wallet.png" />
+        <div class="modal rounded-lg flex flex-col items-start shadow-2xl p-4 absolute">
+            <img class="wallet_gif absolute w-40" src="@/assets/images/wallet.gif" />
 
             <div
                 class="
@@ -16,6 +16,7 @@
                     relative
                     text-white
                     not-italic
+                    pt-0
                 "
             >
                 <div
@@ -26,9 +27,7 @@
                         order-none
                         font-semibold
                         text-base
-                        leading-5
                         mx-0
-                        my-2
                         text-white
                         not-italic
                     "
@@ -42,14 +41,15 @@
                         h-10
                         text-sm
                         mx-0
-                        my-2
+                        mt-0.5
                         font-normal
                         static
                         not-italic
                         w-56
+                        text-purpleLighter
                     "
                 >
-                    Start using Yarn Synths with your favourite wallet
+                    Start using Yam Synths with your favourite wallet
                 </div>
             </div>
 
@@ -59,10 +59,8 @@
                     rounded-2xl
                     flex flex-wrap
                     items-start
-                    h-24
-                    px-2
-                    py-3
-                    absolute
+                    mt-2
+                    shadow-inner
                 "
             >
                 <div
@@ -78,14 +76,15 @@
                         order-none
                         h-8
                         text-xs
-                        my-0
-                        mx-2
+                        m-2
+                        mr-0
                         py-2
                         pl-2
                         pr-4
                         static
                         top-0
                         left-0
+                        hover:brightness-150
                     "
                 >
                     <img src="@/assets/icons/metamask.svg" />
@@ -97,12 +96,11 @@
                             h-4
                             text-xs
                             leading-4
-                            my-0
-                            mx-2
                             static
                             text-white
                             not-italic
                             wallet_name
+                            
                         "
                     >
                         Metamask
@@ -121,14 +119,15 @@
                         order-none
                         h-8
                         text-xs
-                        my-0
-                        mx-2
+                        m-2
+                        mr-0
                         py-2
                         pl-2
                         pr-4
                         static
                         top-0
                         left-0
+                        hover:brightness-150
                     "
                 >
                     <img src="@/assets/icons/walletconnect.png" />
@@ -164,14 +163,16 @@
                         order-none
                         h-8
                         text-xs
-                        my-0
                         mx-2
+                        mr-2
+                        mb-2
                         py-2
                         pl-2
                         pr-4
                         static
                         top-0
                         left-0
+                        hover:brightness-150
                     "
                 >
                     <img src="@/assets/icons/formatic.png" />
@@ -208,14 +209,15 @@
                         order-none
                         h-8
                         text-xs
-                        my-0
-                        mx-2
+                        mr-2
+                        mb-2
                         py-2
                         pl-2
                         pr-4
                         static
                         top-0
                         left-0
+                        hover:brightness-150
                     "
                 >
                     <img src="@/assets/icons/portis.png" />
@@ -244,13 +246,9 @@
                     learn_more_box
                     flex-none
                     order-none
-                    h-4
                     text-xs
                     leading-4
-                    mt-1
-                    py-3
-                    mx-4
-                    absolute
+                    mt-2
                     left-0
                     not-italic
                     w-auto
@@ -288,8 +286,8 @@ export default {
 }
 
 .wallet_gif {
-    right: -10%;
-    top: -20%;
+    right: -15%;
+    top: -25%;
 }
 
 .wallet_name {
