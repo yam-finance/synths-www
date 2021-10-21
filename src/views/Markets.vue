@@ -367,9 +367,10 @@ export default {
     setup() {
         /* -- Start of SDK Test -- */
         /// @notice Synth SDK Init test
-        // const url = `${import.meta.env.VITE_INFURA_URL}`
-        // const provider = new providers.JsonRpcProvider(url)
-        const { data, loading } = useSynthsSDK();
+        const url = `${import.meta.env.VITE_INFURA_URL}`
+        const provider = new providers.JsonRpcProvider(url)
+        const { init, data, loading } = useSynthsSDK();
+        init(provider);
         /* -- End of SDK Init Test -- */
 
         /// @dev Use global scope
