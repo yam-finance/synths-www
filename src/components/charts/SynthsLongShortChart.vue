@@ -1,22 +1,22 @@
 <template>
-    <div class="slsc-wrapper bg-blueDark rounded-xl p-4 grid items-start">
+    <div class="slsc-wrapper rounded-xl p-4 grid items-start">
         <div class="slsc__stats-item !rounded-tl-xl">
-            <p class="flex items-end font-semibold leading-5">$323k</p>
-            <p class="text-[10px] text-purpleLight">Long Token Liquidity</p>
+            <p class="flex items-end font-semibold text-2xl">$323k</p>
+            <p class="text-xs text-purpleLight">Long Token Liquidity</p>
         </div>
         <div class="slsc__stats-item">
-            <p class="flex items-end font-semibold leading-5">$323k</p>
-            <p class="text-[10px] text-purpleLight">Long Token Liquidity</p>
+            <p class="flex items-end font-semibold text-2xl">$323k</p>
+            <p class="text-xs text-purpleLight">Long Token Liquidity</p>
         </div>
         <div class="slsc__stats-item">
-            <p class="flex items-end font-semibold leading-5">$323k</p>
-            <p class="text-[10px] text-purpleLight">Long Token Liquidity</p>
+            <p class="flex items-end font-semibold text-2xl">$323k</p>
+            <p class="text-xs text-purpleLight">Long Token Liquidity</p>
         </div>
         <div class="slsc__stats-item !rounded-bl-xl">
-            <p class="text-[10px] text-purpleLight">Buy on Balancer</p>
+            <p class="text-xs text-purpleLight">Buy on Balancer</p>
             <s-button
-                class="mt-2.5"
-                :buttonStyles="'!w-[83px] !py-2 !text-xs'"
+                class="mt-2.5 long"
+                :buttonStyles="'py-3'"
                 :color="'linear-gradient(180deg, #C8FF2D 0%, #008C0E 100%)'"
             >
                 <template #buttonTitle> Go Long </template>
@@ -26,7 +26,7 @@
             <div class="slsc__charts-stats flex justify-start w-full">
                 <div class="slsc__charts-stat">
                     <p class="flex items-end font-semibold leading-5">
-                        <span>42%</span>
+                        <span class="text-2xl">42%</span>
                         <svg
                             class="w-4 h-4 stroke-current text-[#2DFF42]"
                             viewBox="0 0 24 24"
@@ -55,7 +55,7 @@
                 </div>
                 <div class="slsc__charts-stat">
                     <p class="flex items-end font-semibold leading-5">
-                        <span>42%</span>
+                        <span class="text-2xl">42%</span>
                         <svg
                             class="w-4 h-4 stroke-current text-[#2DFF42]"
                             viewBox="0 0 24 24"
@@ -84,7 +84,7 @@
                 </div>
                 <div class="slsc__charts-stat">
                     <p class="flex items-end font-semibold leading-5">
-                        <span>42%</span>
+                        <span class="text-2xl">42%</span>
                         <svg
                             class="w-4 h-4 stroke-current text-[#2DFF42]"
                             viewBox="0 0 24 24"
@@ -121,6 +121,7 @@
                     border-b border-[#3E3E6B]
                     text-[10px]
                     pb-1
+                    mt-4
                     mb-4 mb-auto
                 "
             >
@@ -128,7 +129,7 @@
             </p>
             <line-chart class="h-full overflow-auto my-3 relative" />
             <p class="slsc__charts__upper-bound border-t border-[#3E3E6B] text-[10px] pt-1 mt-4">
-                <span class="text-purpleLight">Upper bound</span> $300
+                <span class="text-purpleLight">Lower bound</span> $300
             </p>
         </div>
     </div>
@@ -150,15 +151,14 @@ export default {
 <style scoped lang="scss">
 .slsc {
     &-wrapper {
-        grid-template-columns: 29% 70%;
+        grid-template-columns: 20% 80%;
         grid-template-rows: repeat(4, 1fr);
-        gap: 1%;
+        gap: 4px;
         grid-template-areas:
             ". chart"
             ". chart"
             ". chart"
             ". chart";
-        @apply bg-[#19193F];
     }
 
     &__charts {
@@ -170,7 +170,7 @@ export default {
     }
 
     &__stats-item {
-        @apply bg-blueDark rounded px-2 py-3 h-full flex flex-col justify-center min-w-[90px];
+        @apply bg-blueDark rounded p-4 h-full flex flex-col justify-center min-w-[90px];
         box-shadow: 0 16px 16px -4px rgba(0, 0, 0, 0.15), 0px 4px 4px rgba(0, 0, 0, 0.1);
 
         p {

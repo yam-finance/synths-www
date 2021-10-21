@@ -1,27 +1,27 @@
 <template>
-    <div class="markets bg-light pb-10">
+    <div class="markets pb-10 bg-light">
         <div class="w-full h-12 py-3 px-6 border-b bg-main">
             <span class="text-sm txt-main">Information</span>
         </div>
 
-        <div class="grid grid-cols-1 2xl:grid-cols-2 border-b bg-main">
+        <div class="grid grid-cols-1 2xl:grid-cols-2 border-b bg-main bg-light">
             <div class="px-6 py-4 border-r bg-main">
                 <div class="w-full">
                     <div class="inline">
                         <img src="@/assets/images/zombie.png" class="h-6 inline mb-0.5" />
                         <p class="font-semibold text-base inline ml-2">Sushi APY</p>
                     </div>
-                    <div class="text-right mr-2 inline float-right">
-                        <span
-                            class="rounded-xl bg-main px-4 py-2 font-normal text-sm txt-main"
+                    <div class="text-right mr-0 inline float-right">
+                        <div
+                            class="rounded-xl bg-main p-2 shadow-inner font-normal text-sm txt-main text-white"
                             @click="isDropDown = !isDropDown"
                         >
                             Expiring 21st April
                             <img
                                 src="@/assets/images/arrow-down.png"
-                                class="h-6 inline mb-0.5 cursor-pointer"
+                                class="h-6 inline ml-2 mb-0.5 cursor-pointer"
                             />
-                        </span>
+                        </div>
                         <ul
                             class="
                                 overflow-hidden
@@ -85,7 +85,7 @@
                 <!-- <p>`n` resource key completion: {{ n(1000, "currency") }}</p> -->
                 <!-- i18n Test Start -->
 
-                <div class="grid grid-cols-3 mt-4">
+                <div class="flex flex-wrap space-x-4 mt-4">
                     <RouterLink to="/#" class="cursor-pointer">
                         <p class="text-sm inline mr-1 md:mr-2">Learn More</p>
                         <img
@@ -113,7 +113,7 @@
                     <div class="grid grid-cols-2">
                         <div class="p-2 pl-0">
                             <s-button
-                                class="mt-2.5"
+                                class="mt-2.5 py-3 long"
                                 :buttonStyles="'!text-sm'"
                                 :color="'linear-gradient(180deg, #C8FF2D 0%, #008C0E 100%)'"
                             >
@@ -122,7 +122,7 @@
                         </div>
                         <div class="p-2 pr-0">
                             <s-button
-                                class="mt-2.5"
+                                class="mt-2.5 py-3 short"
                                 :buttonStyles="'!text-sm'"
                                 :color="'linear-gradient(180deg, #FF6ACC 0%, #DC1919 100%)'"
                             >
@@ -140,17 +140,17 @@
                 <div class="px-6 py-4">
                     <span class="text-sm txt-main">Manage your position</span>
                     <div class="grid grid-cols-3 xl:gap-4 mt-4">
-                        <div class="card md:rounded-lg md:bg-light md:p-2">
+                        <div class="card md:rounded-lg shadow-lg md:bg-light md:p-2">
                             <p class="text-lg font-bold inline">12</p>
                             <p class="text-xs txt-main inline ml-1">ETH</p>
                             <p class="text-xs txt-main">Collateral Used</p>
                         </div>
-                        <div class="card md:rounded-lg md:bg-light md:p-2">
+                        <div class="card md:rounded-lg shadow-lg md:bg-light md:p-2">
                             <p class="text-lg font-bold inline">120</p>
                             <p class="text-xs txt-main inline ml-1">SHI-A-L-1221</p>
                             <p class="text-xs txt-main">Longs Minted</p>
                         </div>
-                        <div class="card md:rounded-lg md:bg-light md:p-2">
+                        <div class="card md:rounded-lg shadow-lg md:bg-light md:p-2">
                             <p class="text-lg font-bold inline">120</p>
                             <p class="text-xs txt-main inline ml-1">SHI-A-S-1221</p>
                             <p class="text-xs txt-main">Short Tokens Minted</p>
@@ -186,13 +186,13 @@
         </div>
 
         <div class="px-6 py-4 border-b md:border-0 bg-main">
-            <SynthsSingleChart class="h-[200px]" />
+            <SynthsSingleChart class="h-[220px]" />
         </div>
         <div class="px-6 py-4 border-b md:border-0 bg-main hidden xl:block">
-            <SynthsLongShortChart class="h-[400px] p-0" />
+            <SynthsLongShortChart class="p-0" />
         </div>
         <div class="px-6 py-4 border-b md:border-0 bg-main hidden xl:block">
-            <SynthsLongShortChart class="h-[400px] p-0"> </SynthsLongShortChart>
+            <SynthsLongShortChart class="p-0"> </SynthsLongShortChart>
         </div>
         <div class="border-t bg-main">
             <div class="grid grid-cols-1 xl:grid-cols-2">
@@ -392,6 +392,7 @@ export default {
 }
 </script>
 <style scoped lang="scss">
+
 @media (min-width: 1280px) {
     .card {
         @apply bg-blueDark;
