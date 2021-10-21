@@ -50,11 +50,13 @@ export default {
 import { copyText } from 'vue3-clipboard'
 import { useWeb3 } from "@/composables/useWeb3"
 import ConnectWallet from "../ConnectWallet.vue"
-import { globalStore } from "@/store/index"
+import {globalStore} from "@/composables";
 import { ref } from "vue"
+
 import useClipboard from '@/composables/useClipboard'
 let blockNumber;
 const { state } = globalStore()
+
 
 const { login, web3, logout } = useWeb3()
 const isModalVisible = ref(false)
@@ -82,6 +84,10 @@ async function doCopy(address) {
 function formatAddress(address) {
     return address.slice(0, 6) + "..." + address.slice(-6)
 }
+
+
+const { state } = globalStore()
+const blockNumber = state.blockNumber
 </script>
 
 <template>
@@ -291,7 +297,7 @@ function formatAddress(address) {
         <div class="flex overflow-hidden absolute right-0 h-12 visible md:invisible">
             <div class="flex px-4 py-4 cursor-pointer">
                 <img src="@/assets/images/green-dot.svg" class="h-full py-0.5" />
-                <span class="text-xs my-auto font-normal px-1">{{blockNumber}}</span>
+                <span class="text-xs my-auto font-normal px-1">{{ blockNumber }}</span>
             </div>
         </div>
         <ConnectWallet

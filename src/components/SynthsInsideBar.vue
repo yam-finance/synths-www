@@ -16,8 +16,21 @@
 
         <h3 class="text-[#CBCBFF] text-sm mb-8 text-center">{{ subTitle }}</h3>
 
-        <div class="ssb__costs mb-8 w-full">
-            <slot name="costs" />
+        <div class="mb-8 w-full">
+          <div v-if="buttonName=='Settle'" class="ssb__costs">
+            <hr class="bg-white opacity-10 mb-2" />
+            <p><span>ETH Expiry Price</span> <span>$3,200</span></p>
+            <p><span>Long Token Expiry Price</span> <span>$120</span></p>
+            <p><span>Short Token Expiry Price</span> <span>$60</span></p>
+            <!-- -- Start of SDK Test -- -->
+            <button @click="connectTo('ugas-0921')">Switch to ugas-0921</button>
+            <p v-if="loading"><span>Expiry Price in WEI</span> <span>loading</span></p>
+            <p v-else>
+              <span>Expiry Price in WEI</span>
+              <span>{{ data.empState.expiryPrice }}</span>
+            </p>
+            <!-- -- End of SDK Test -- -->
+          </div>
         </div>
 
         <div
@@ -108,6 +121,20 @@ export default {
             type: Boolean,
             default: false,
         },
+        loading:{
+          type: Boolean,
+          default: false
+        },
+        data: {
+          type: String,
+          default: ""
+        },
+        connectTo: {
+          type: Function,
+          default() {
+            return 'Default function'
+          }
+        }
     },
     components: {
         "s-button": SynthsRoundedButton,

@@ -19,7 +19,7 @@
 
 <script lang="ts">
 import { defineComponent, provide, reactive, ref, onUnmounted } from "vue"
-import { globalStore } from "@/store"
+import { globalStore } from "@/composables"
 
 export default defineComponent({
     setup() {
