@@ -25,8 +25,6 @@ export function useSynthsSDK() {
             "empState": empState
         };
 
-        console.log(data.value["upunks-0921"]["empState"].expiryPrice);
-
         loading.value = false
     }
 

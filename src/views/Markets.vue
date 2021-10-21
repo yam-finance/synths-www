@@ -298,8 +298,6 @@
 </template>
 
 <script lang="ts">
-import { computed, watch } from "vue";
-import _ from "lodash";
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
 import SynthsSingleChart from "@/components/charts/SynthsSingleChart.vue"
 import SynthsLongShortChart from "@/components/charts/SynthsLongShortChart.vue"
@@ -311,7 +309,7 @@ import { useI18n } from "vue-i18n"
 
 /* -- Start of SDK Test -- */
 import { useSynthsSDK } from "../composables/sdk-store"
-import { providers } from "ethers";
+import { computed } from "vue";
 /* -- End of SDK Test -- */
 
 let options = [
@@ -381,7 +379,7 @@ export default {
 
             /* -- Start of SDK Test -- */
             loading: loading,
-            expiryPrice: computed(() =>  { if (!loading.value) return data.value["upunks-0921"]["empState"].expiryPrice })
+            expiryPrice: computed(() =>  { if (!loading.value) return data.value["upunks-0921"]["empState"].expiryPrice })
             /* -- End of SDK Test -- */
         }
     },
