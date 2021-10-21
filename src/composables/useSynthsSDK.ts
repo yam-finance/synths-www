@@ -31,6 +31,7 @@ export function useSynthsSDK() {
     return {
         loading: computed(() => loading.value),
         data: computed(() => data.value),
+        synthsSDK,
         connectTo,
         init
     }
