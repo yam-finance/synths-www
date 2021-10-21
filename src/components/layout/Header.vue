@@ -49,7 +49,7 @@ export default {
 <script setup>
 import { copyText } from 'vue3-clipboard'
 import { useWeb3 } from "@/composables/useWeb3"
-import ConnectWallet from "../ConnectWallet.vue"
+import ConnectWallet from "@/components/ConnectWallet.vue"
 import {globalStore} from "@/composables";
 import { ref } from "vue"
 

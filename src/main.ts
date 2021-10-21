@@ -9,12 +9,11 @@ import { LockPlugin } from "@snapshot-labs/lock/plugins/vue3"
 import "vue-js-modal/dist/styles.css"
 import "@/index.scss"
 import VueClickAway from "vue3-click-away"
-import { i18n } from "./i18n"
+import { i18n } from "@/i18n"
 import VueClipboard from 'vue3-clipboard'
 const app = createApp(App).use(router).use(i18n).use(VueClickAway).use(LockPlugin, options).use(VueClipboard)
 
 app.mount("#app")
-
 app.config.performance = true
 app.config.globalProperties.$web3 = "web3"
 
