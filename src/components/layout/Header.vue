@@ -42,7 +42,7 @@ export default {
 
 <script setup>
 import { useWeb3 } from "@/composables/useWeb3"
-import ConnectWallet from "../ConnectWallet.vue"
+import ConnectWallet from "@/components/ConnectWallet.vue"
 import { ref } from "vue"
 import {globalStore} from "@/composables";
 

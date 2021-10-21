@@ -13,15 +13,9 @@ const routes = [
         meta: { hasSideBar: 1 },
         children: [
             {
-                path: "/explore-synths",
-                name: "Explore Synths",
+                path: "/explore",
+                name: "Explore",
                 component: () => import("@/views/ExploreSynths.vue"),
-                meta: { hasSideBar: 0 },
-            },
-            {
-                path: "/portfolio",
-                name: "Portfolio",
-                component: () => import("@/views/Portfolio.vue"),
                 meta: { hasSideBar: 0 },
             },
             {
@@ -30,6 +24,11 @@ const routes = [
                 component: () => import("@/views/Markets.vue"),
                 meta: { hasSideBar: 1 },
             },
+            {
+                path: "/portfolio",
+                name: "Portfolio",
+                component: () => import("@/views/Portfolio.vue"),
+                meta: { hasSideBar: 0 },
         ],
     },
     {

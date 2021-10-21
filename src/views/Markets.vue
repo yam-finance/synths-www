@@ -309,7 +309,7 @@ import { inject } from "vue"
 import { useI18n } from "vue-i18n"
 
 /* -- Start of SDK Test -- */
-import { useSynthsSDK } from "../stores/sdk-store"
+import { useSynthsSDK } from "@/stores/sdk-store"
 import { providers } from "ethers"
 /* -- End of SDK Test -- */
 
