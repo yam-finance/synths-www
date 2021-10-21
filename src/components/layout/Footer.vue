@@ -215,7 +215,7 @@ let tabs = [
     {
         id: 2,
         title: "Markets",
-        to: "synth",
+        to: "synths",
     },
     {
         id: 3,
