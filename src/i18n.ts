@@ -3,7 +3,7 @@ import { createI18n } from "vue-i18n"
 /**
  * @notice Import locale messages resource from json for global scope
  */
-import enUS from "./locales/en-US.json"
+import enUS from "@/locales/en-US.json"
 
 /// @notice Type-define 'en-US' as the master schema for the resource
 type MessageSchema = typeof enUS

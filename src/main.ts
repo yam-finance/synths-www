@@ -9,7 +9,7 @@ import { LockPlugin } from "@snapshot-labs/lock/plugins/vue3"
 import "vue-js-modal/dist/styles.css"
 import "@/index.scss"
 import VueClickAway from "vue3-click-away"
-import { i18n } from "./i18n"
+import { i18n } from "@/i18n"
 
 const app = createApp(App).use(router).use(i18n).use(VueClickAway).use(LockPlugin, options)
 
