@@ -1,6 +1,6 @@
 <template>
   <div class="w-full font-semibold hidden md:block mb-10">
-    <div class="w-full h-12 py-3 px-3 border-b bd-main">
+    <div class="w-full h-12 py-3 px-3 border-b bg-main">
       <span class="text-sm txt-main">Explore Synths</span>
     </div>
     <div
@@ -14,24 +14,24 @@
                 gap-4
                 text-white
                 border-b
-                bd-main
+                bg-main
             "
     >
-      <div class="card rounded-lg bg-light px-6 py-4">
+      <div class="card min-h-[78px] rounded-lg bg-light px-6 py-4">
         <div class="text-lg font-bold">$12.9M</div>
         <div class="text-xs txt-main">Total Value Locked</div>
       </div>
-      <div class="card rounded-lg bg-light px-6 py-4">
+      <div class="card min-h-[78px] rounded-lg bg-light px-6 py-4">
         <div class="text-lg font-bold">$3.7M</div>
         <div class="text-xs txt-main">Trading Volume</div>
       </div>
-      <div class="card rounded-lg bg-light px-6 py-4">
+      <div class="card min-h-[78px] rounded-lg bg-light px-6 py-4">
         <div class="text-lg font-bold">5</div>
         <div class="text-xs txt-main">Total Synths</div>
       </div>
     </div>
 
-    <div class="w-full h-12 border-b bd-main text-white text-lg flex text-center justify-between">
+    <div class="w-full h-12 border-b bg-main text-white text-lg flex text-center justify-between">
       <span class="py-3 px-4">
               All Synths
       </span>
@@ -62,7 +62,7 @@
       </div>
     </div>
 
-    <table class="text-white border-b bd-main w-full font-normal hidden md:table">
+    <table class="text-white border-b bg-main w-full font-normal hidden md:table">
       <thead class="lg:text-xs xl:text-sm txt-main text-left">
       <th class="py-2 px-4">Synth</th>
       <th>Price</th>
@@ -72,11 +72,13 @@
       <th>APR</th>
       <th></th>
       </thead>
-      <tbody class="border-t bd-main lg:text-xs xl:text-sm 2xl:text-base">
-      <tr v-for="(synth, key) in synths" :key="key" class="border-b bd-main">
-        <td class="px-4 py-2 font-semibold flex">
-          <img src="@/assets/images/zombie.png" class="w-6 h-6"/>
-          &nbsp;{{ synth.name }}
+      <tbody class="border-t bg-main lg:text-xs xl:text-sm 2xl:text-base">
+      <tr v-for="(synth, key) in synths" :key="key" class="border-b bg-main basic-hover">
+        <td class="px-4 py-2">
+          <router-link class="font-semibold flex" :to="{name: 'Synths', params:{synth: synth.id}}">
+            <img src="@/assets/images/zombie.png" class="w-6 h-6" />
+            &nbsp;{{ synth.name }}
+          </router-link>
         </td>
         <td>{{ synth.price }}</td>
         <td class="flex">
@@ -90,24 +92,26 @@
         <td>{{ synth.liquidity }}</td>
         <td>${{ synth.apr }}</td>
         <td class="p-0 m-0">
-          <img src="@/assets/images/arrow-right.svg" class="cursor-pointer"/>
+          <router-link :to="{name: 'Synths', params:{synth: synth.id}}">
+            <img src="@/assets/images/arrow-right.svg" class="cursor-pointer"/>
+          </router-link>
         </td>
       </tr>
       </tbody>
     </table>
   </div>
-  <div class="min-w-[400px] border-l bd-main hidden lg:block">
+  <div class="min-w-[400px] border-l bg-main hidden lg:block">
     <!--Right Side-->
   </div>
   <div class="w-screen font-semibold block md:hidden text-white">
-    <div class="w-full py-2 px-3 border-b bd-main">
+    <div class="w-full py-2 px-3 border-b bg-main">
       <span class="text-sm txt-main">Explore Synths</span>
     </div>
-    <div class="card p-3 border-b bd-main">
+    <div class="card p-3 border-b bg-main">
       <div class="text-lg font-bold">$12.9M</div>
       <div class="text-xs txt-main">Total Value Locked</div>
     </div>
-    <div class="w-full h-12 border-b bd-main text-white text-lg flex text-center justify-between">
+    <div class="w-full h-12 border-b bg-main text-white text-lg flex text-center justify-between">
       <span class="py-3 px-4">
               All Synths
       </span>
@@ -138,18 +142,20 @@
       </div>
     </div>
 
-    <table class="text-white border-b bd-main w-full font-normal">
+    <table class="text-white border-b bg-main w-full font-normal">
       <thead class="text-sm txt-main text-left">
       <th class="py-2 px-4">Synth</th>
       <th>Price</th>
       <th>24h Change</th>
       <th></th>
       </thead>
-      <tbody class="border-t bd-main text-base">
-      <tr v-for="(synth, key) in synths" :key="key" class="border-b bd-main">
+      <tbody class="border-t bg-main text-base">
+      <tr v-for="(synth, key) in synths" :key="key" class="border-b bg-main basic-hover">
         <td class="px-4 py-2 font-semibold flex">
-          <img src="@/assets/images/zombie.png" class="w-6 h-6" />
-          &nbsp;{{ synth.name }}
+          <router-link :to="{name: 'Synths', params:{synth: synth.id}}">
+            <img src="@/assets/images/zombie.png" class="w-6 h-6" />
+            &nbsp;{{ synth.name }}
+          </router-link>
         </td>
         <td>{{ synth.price }}</td>
         <td class="flex">
@@ -159,9 +165,9 @@
           />
           {{ synth.day_change }}
         </td>
-        <td>
-          <img src="@/assets/images/arrow-right.svg" class="cursor-pointer" />
-        </td>
+        <router-link :to="{name: 'Synths', params:{synth: synth.id}}">
+          <img src="@/assets/images/arrow-right.svg" class="cursor-pointer"/>
+        </router-link>
       </tr>
       </tbody>
     </table>

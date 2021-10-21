@@ -16,7 +16,7 @@ const routes = [
                 path: "/explore-synths",
                 name: "Explore Synths",
                 component: () => import("@/views/ExploreSynths.vue"),
-                meta: { hasSideBar: 1 },
+                meta: { hasSideBar: 0 },
             },
             {
                 path: "/markets",

@@ -1,11 +1,11 @@
 <template>
     <div class="markets bg-light pb-10">
-        <div class="w-full h-12 py-3 px-6 border-b bd-main">
+        <div class="w-full h-12 py-3 px-6 border-b bg-main">
             <span class="text-sm txt-main">Information</span>
         </div>
 
-        <div class="grid grid-cols-1 2xl:grid-cols-2 border-b bd-main">
-            <div class="px-6 py-4 border-r bd-main">
+        <div class="grid grid-cols-1 2xl:grid-cols-2 border-b bg-main">
+            <div class="px-6 py-4 border-r bg-main">
                 <div class="w-full">
                     <div class="inline">
                         <img src="@/assets/images/zombie.png" class="h-6 inline mb-0.5" />
@@ -136,7 +136,7 @@
                 </div>
             </div>
 
-            <div class="border-t bd-main">
+            <div class="border-t bg-main">
                 <div class="px-6 py-4">
                     <span class="text-sm txt-main">Manage your position</span>
                     <div class="grid grid-cols-3 xl:gap-4 mt-4">
@@ -158,14 +158,14 @@
                     </div>
                 </div>
 
-                <div class="w-full text-white border-t bd-main">
+                <div class="w-full text-white border-t bg-main">
                     <div
                         v-for="(option, key) in options"
                         :key="key"
                         @click="selected_option = option.id"
                     >
                         <div
-                            class="w-full h-12 py-3 px-6 border-b bd-main cursor-pointer"
+                            class="w-full h-12 py-3 px-6 border-b bg-main cursor-pointer"
                             :class="{ 'bg-[#4447BD]': option.id == selected_option }"
                         >
                             <span class="font-semibold">{{ option.title }}</span>
@@ -185,18 +185,18 @@
             </div>
         </div>
 
-        <div class="px-6 py-4 border-b md:border-0 bd-main">
+        <div class="px-6 py-4 border-b md:border-0 bg-main">
             <SynthsSingleChart class="h-[200px]" />
         </div>
-        <div class="px-6 py-4 border-b md:border-0 bd-main hidden xl:block">
+        <div class="px-6 py-4 border-b md:border-0 bg-main hidden xl:block">
             <SynthsLongShortChart class="h-[400px] p-0" />
         </div>
-        <div class="px-6 py-4 border-b md:border-0 bd-main hidden xl:block">
+        <div class="px-6 py-4 border-b md:border-0 bg-main hidden xl:block">
             <SynthsLongShortChart class="h-[400px] p-0"> </SynthsLongShortChart>
         </div>
-        <div class="border-t bd-main">
+        <div class="border-t bg-main">
             <div class="grid grid-cols-1 xl:grid-cols-2">
-                <div class="px-6 py-4 pb-8 border-r border-b bd-main">
+                <div class="px-6 py-4 pb-8 border-r border-b bg-main">
                     <p class="pb-4 text-lg font-semibold">Calculate returns at expiry</p>
                     <p class="text-sm txt-main pb-8">
                         Simulate your potential returns at expiry. Edit the number of short or long
