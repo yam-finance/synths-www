@@ -43,7 +43,9 @@ div {
     cursor: inherit;
     @apply text-white;
 }
-
+body {
+  background-color: #11112f;
+}
 html,
 body {
     .bg-main {
@@ -57,6 +59,13 @@ body {
     .bg-light {
         background: #19193f;
     }
+
+    .long {
+  box-shadow: 0px 0px 4px 0px #C8FF2D inset;
+}
+.short {
+  box-shadow: 0px 0px 4px 0px #FF6ACC inset;
+}
 
     .wallet-btn {
         background: linear-gradient(180deg, #f77fa0 0%, #da4cab 100%);

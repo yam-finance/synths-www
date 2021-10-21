@@ -18,34 +18,34 @@
             "
         >
             <div class="card min-h-[78px] rounded-lg bg-light px-6 py-4">
-                <div class="text-lg font-bold">$42,000</div>
-                <div class="text-xs txt-main">Total Portfolio Value</div>
+                <div class="text-xl font-bold">$42,000</div>
+                <div class="text-sm font-normal txt-main">Total Portfolio Value</div>
             </div>
             <div class="card min-h-[78px] rounded-lg bg-light px-6 py-4">
-                <div class="text-lg font-bold">5</div>
-                <div class="text-xs txt-main">Synths Minted</div>
+                <div class="text-xl font-bold">5</div>
+                <div class="text-sm font-normal txt-main">Synths Minted</div>
             </div>
             <div class="card min-h-[78px] rounded-lg bg-light px-6 py-4">
                 <div class="flex">
-                    <div class="text-lg font-bold">200</div>
-                    <div class="text-xs txt-main ml-2 mt-2">Success</div>
+                    <div class="text-xl font-bold">200</div>
+                    <div class="text-sm txt-main ml-1 mt-2">Success</div>
                 </div>
-                <div class="text-xs txt-main flex">
-                    Portential rewards
+                <div class="text-sm font-normal txt-main flex">
+                    Potential rewards
                     <img src="@/assets/images/help-circle.png" class="ml-2 h-4" />
                 </div>
             </div>
             <div class="card min-h-[78px] rounded-lg bg-light px-6 py-4">
                 <div class="flex">
-                    <div class="text-lg font-bold">200</div>
-                    <div class="text-xs txt-main ml-2 mt-2">Success in wallet</div>
+                    <div class="text-xl font-bold">200</div>
+                    <div class="text-sm txt-main ml-1 mt-2">Success in wallet</div>
                 </div>
-                <div class="text-xs txt-main flex">
+                <div class="text-xs mt-1 txt-main flex items-center">
                     <span class="rounded-xl wallet-btn text-xs text-white px-2 pb-0.5 font-bold"
                         >Redeem</span
                     >
                     &nbsp;for
-                    <span class="text-xs text-white font-normal">&nbsp;30 UMA</span>
+                    <span class="text-sm text-white font-normal">&nbsp;30 UMA</span>
                     <img src="@/assets/images/help-circle.png" class="ml-2 h-4" />
                 </div>
             </div>
@@ -79,10 +79,10 @@
                         <div v-if="synth.status">
                             <span class="text-white">Live</span>
                         </div>
-                        <div v-else>
+                        <div class="flex items-center" v-else>
                             <span class="txt-main mr-0.5">Expired</span>
                             <s-button
-                                buttonStyles="wallet-btn w-auto text-xs text-white px-2 !py-0.5 my-auto font-bold block xl:inline"
+                                buttonStyles="wallet-btn ml-1 w-auto text-xs text-white px-2 py-0.5 my-auto font-bold block xl:inline"
                             >
                                 <template #buttonTitle> Settle </template>
                             </s-button>

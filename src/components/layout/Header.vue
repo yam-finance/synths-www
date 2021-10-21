@@ -88,9 +88,9 @@ const blockNumber = state.blockNumber
         "
     >
         <router-link to="/">
-            <div class="w-64 h-12 flex md:border-r bg-main">
-                <img src="@/assets/images/yamIcon.png" class="m-2 h-8 w-8" />
-                <h3 class="logo font-bold text-emerald-500 my-auto">Yam Synths</h3>
+            <div class="w-64 h-12 flex items-center p-4 md:border-r bg-main">
+                <img src="@/assets/images/yamIcon.png" class="h-8 w-8" />
+                <h3 class="logo font-bold text-emerald-500 ml-2 flex-grow">Yam Synths</h3>
                 <span
                     class="
                         bg-[#3468FF]
@@ -98,11 +98,11 @@ const blockNumber = state.blockNumber
                         px-2
                         overflow-hidden
                         ml-3
-                        md:ml-16
                         rounded-full
                         text-sm
+                        font-bold
                     "
-                    >v 3.0</span
+                    >V 3.0</span
                 >
             </div>
         </router-link>
@@ -114,11 +114,11 @@ const blockNumber = state.blockNumber
                 sticky
                 left-64
                 my-auto
-                px-4
-                rounded-full
+                rounded-lg
+                shadow-inner
                 text-sm
                 mx-4
-                py-1
+                p-1
                 font-semibold
                 bg-dark
                 txt-main
@@ -134,7 +134,7 @@ const blockNumber = state.blockNumber
             >
                 <router-link :to="'/' + tab.to">
                     <span v-if="tab.title == $route.name" class="text-black">{{ tab.title }}</span>
-                    <span v-else>{{ tab.title }}</span>
+                    <span v-else class="text-purpleLight hover:text-white" >{{ tab.title }}</span>
                 </router-link>
             </li>
         </ul>
@@ -158,16 +158,16 @@ const blockNumber = state.blockNumber
                 <img src="@/assets/images/bell.png" class="cursor-pointer my-auto h-4" />
 
                 <span
-                    class="flex px-4 py-1.5 text-sm cursor-pointer"
+                    class="flex px-4 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer"
                     @click="isDropDownOpen = !isDropDownOpen"
                 >
                     Help
-                    <img src="@/assets/images/dropdown.svg" class="mx-2 my-auto h-4" />
+                    <img src="@/assets/images/dropdown.svg" class="mx-2 ml-1 my-auto h-4" />
                 </span>
                 <s-button
                     v-if="!$auth.isAuthenticated.value"
                     @click="isModalVisible = true"
-                    buttonStyles="wallet-btn px-4 py-1.5 my-auto text-sm font-normal"
+                    buttonStyles="wallet-btn px-4 py-2 my-auto text-sm font-normal"
                 >
                     <template #buttonTitle> Connect Wallet </template>
                 </s-button>
@@ -199,6 +199,7 @@ const blockNumber = state.blockNumber
                     right-44
                     bg-light
                     rounded-xl
+                    shadow-lg
                 "
                 v-if="isDropDownOpen"
                 v-click-away="closePopup"

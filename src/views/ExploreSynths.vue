@@ -1,6 +1,6 @@
 <template>
   <div class="w-full font-semibold hidden md:block mb-10">
-    <div class="w-full h-12 py-3 px-3 border-b bg-main">
+    <div class="w-full h-12 py-3 px-4 border-b bg-main">
       <span class="text-sm txt-main">Explore Synths</span>
     </div>
     <div
@@ -17,15 +17,15 @@
                 bg-main
             "
     >
-      <div class="card min-h-[78px] rounded-lg bg-light px-6 py-4">
+      <div class="card min-h-[78px] rounded-lg shadow-md bg-light px-6 py-4">
         <div class="text-lg font-bold">$12.9M</div>
         <div class="text-xs txt-main">Total Value Locked</div>
       </div>
-      <div class="card min-h-[78px] rounded-lg bg-light px-6 py-4">
+      <div class="card min-h-[78px] rounded-lg shadow-md bg-light px-6 py-4">
         <div class="text-lg font-bold">$3.7M</div>
         <div class="text-xs txt-main">Trading Volume</div>
       </div>
-      <div class="card min-h-[78px] rounded-lg bg-light px-6 py-4">
+      <div class="card min-h-[78px] rounded-lg shadow-md bg-light px-6 py-4">
         <div class="text-lg font-bold">5</div>
         <div class="text-xs txt-main">Total Synths</div>
       </div>
@@ -51,7 +51,8 @@
                         focus:text-gray-300
                         dark:focus:text-gray-300
                         bg-dark
-                        rounded-full
+                        rounded-lg
+                        shadow-inner
                         outline-none
                         placeholder-primary
                         txt-main
@@ -73,7 +74,7 @@
       <th></th>
       </thead>
       <tbody class="border-t bg-main lg:text-xs xl:text-sm 2xl:text-base">
-      <tr v-for="(synth, key) in synths" :key="key" class="border-b bg-main basic-hover">
+      <tr v-for="(synth, key) in synths" :key="key" class="cursor-pointer border-b bg-main basic-hover">
         <td class="px-4 py-2 flex">
           <img src="@/assets/images/zombie.png" class="w-6 h-6" />
           <router-link class="font-semibold" :to="{name: 'Synths', params:{synth: synth.id}}">
@@ -81,10 +82,10 @@
           </router-link>
         </td>
         <td>{{ synth.price }}</td>
-        <td class="flex">
+        <td>
           <img
             src="@/assets/images/arrow-up-right.svg"
-            class="h-full py-0.5"
+            class="h-4 inline -translate-y-0.5"
           />
           {{ synth.day_change }}
         </td>
@@ -150,7 +151,7 @@
       <th></th>
       </thead>
       <tbody class="border-t bg-main text-base">
-      <tr v-for="(synth, key) in synths" :key="key" class="border-b bg-main basic-hover">
+      <tr v-for="(synth, key) in synths" :key="key" class="cursor-pointer border-b bg-main basic-hover">
         <td class="px-4 py-2 font-semibold flex">
           <img src="@/assets/images/zombie.png" class="w-6 h-6" />
           <router-link :to="{name: 'Synths', params:{synth: synth.id}}">
@@ -158,10 +159,10 @@
           </router-link>
         </td>
         <td>{{ synth.price }}</td>
-        <td class="flex">
+        <td>
           <img
-              src="@/assets/images/arrow-up-right.svg"
-              class="h-full py-0.5"
+            src="@/assets/images/arrow-up-right.svg"
+            class="h-4 inline -translate-y-0.5"
           />
           {{ synth.day_change }}
         </td>
