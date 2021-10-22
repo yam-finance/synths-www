@@ -20,7 +20,7 @@ export default {
     components: {
         "s-button": SynthsRoundedButton,
     },
-    
+
     data() {
         return {
             tabs,
@@ -94,7 +94,7 @@ function formatAddress(address) {
             z-20
             bg-navy-blue-800
             text-white
-            flex flex-col
+            flex
             lg:flex-row
             border-b
             bg-main
@@ -132,16 +132,15 @@ function formatAddress(address) {
                 shadow-inner
                 text-sm
                 mx-4
-                p-1
+                px-4
+                py-1
                 font-semibold
                 bg-dark
                 txt-main
-                invisible
-                md:visible
             "
         >
             <li
-                class="min-w-max cursor-pointer px-2"
+                class="cursor-pointer px-2"
                 v-for="(tab, key) in tabs"
                 :key="key"
                 :class="tab.title == $route.name ? 'bg-white rounded-md' : ''"
@@ -156,7 +155,8 @@ function formatAddress(address) {
             class="
                 flex
                 absolute
-                w-96
+                md:w-64
+                lg:w-96
                 right-0
                 p-2
                 mr-4
