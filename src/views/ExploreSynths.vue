@@ -18,16 +18,16 @@
             "
     >
       <div class="card min-h-[78px] rounded-lg shadow-md bg-light px-6 py-4">
-        <div class="text-lg font-bold">$12.9M</div>
-        <div class="text-xs txt-main">Total Value Locked</div>
+        <div class="text-xl font-bold">$12.9M</div>
+        <div class="text-sm font-normal pt-1 txt-main">Total Value Locked</div>
       </div>
       <div class="card min-h-[78px] rounded-lg shadow-md bg-light px-6 py-4">
-        <div class="text-lg font-bold">$3.7M</div>
-        <div class="text-xs txt-main">Trading Volume</div>
+        <div class="text-xl font-bold">$3.7M</div>
+        <div class="text-sm font-normal pt-1 txt-main">Trading Volume</div>
       </div>
       <div class="card min-h-[78px] rounded-lg shadow-md bg-light px-6 py-4">
-        <div class="text-lg font-bold">5</div>
-        <div class="text-xs txt-main">Total Synths</div>
+        <div class="text-xl font-bold">5</div>
+        <div class="text-sm font-normal pt-1 txt-main">Total Synths</div>
       </div>
     </div>
 

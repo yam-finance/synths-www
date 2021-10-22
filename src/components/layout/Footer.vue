@@ -18,10 +18,10 @@
     >
         <div class="invisible md:visible">
             <div class="flex overflow-hidden absolute w-64 h-12 border-r bg-main">
-                <div class="flex items-center px-4 py-4 cursor-pointer">
-                    <img src="@/assets/images/green-dot.svg" class="-mb-1.5" />
-                    <div class="text-xs my-auto font-normal px-2 -mb-1">{{ blockNumber }}</div>
-                    <img src="@/assets/images/external-link.svg" class="-mb-1.5" />
+                <div class="flex items-center px-4 cursor-pointer">
+                    <img src="@/assets/images/green-dot.svg" class="" />
+                    <div class="text-xs font-normal translate-y-px px-2">{{ blockNumber }}</div>
+                    <img src="@/assets/images/external-link.svg" class="" />
                 </div>
             </div>
             <div class="flex absolute w-96 mr-4 right-0 p-2 text-right h-12 lg:border-l bg-main">
