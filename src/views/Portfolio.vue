@@ -51,7 +51,34 @@
             </div>
         </div>
 
-        <div class="w-full h-12 py-3 px-4 border-b bg-main text-white text-lg">Your Synths</div>
+        <div class="w-full h-12  px-4 border-b bg-main text-white text-lg flex justify-between">
+          <span class="py-2 px-4">Your Synths</span>
+          <div class="h-full w-[230px] py-2 px-3 flex">
+            <img src="@/assets/images/search.svg" class="flex absolute my-1.5 mx-3" />
+            <input
+              class="
+                        flex flex-wrap
+                        placeholder-gray-500
+                        fo
+                        pl-10
+                        pr-1
+                        py-4
+                        h-full
+                        w-full
+                        focus:text-gray-300
+                        dark:focus:text-gray-300
+                        bg-dark
+                        rounded-full
+                        outline-none
+                        placeholder-primary
+                        txt-main
+                    "
+              placeholder="Search Synths"
+              @keyup="filter($event)"
+            />
+          </div>
+
+        </div>
 
         <table class="text-white border-b bg-main w-full font-normal hidden md:table">
             <thead class="lg:text-xs xl:text-sm txt-main text-left">
@@ -212,8 +239,22 @@ export default {
     data() {
         return {
             synths,
+            filter_string: ''
+
         }
     },
+    methods: {
+      filter(event) {
+        this.filter_string = event.target.value
+      },
+    },
+    computed:{
+      synths() {
+        if (this.filter_string !== '') {
+          return this.synths.filter(item => item.name.toLowerCase().includes(this.filter_string.toLowerCase()))
+        } else return this.synths
+      }
+    }
 }
 </script>
 
