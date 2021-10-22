@@ -18,8 +18,9 @@
 </style>
 
 <script lang="ts">
-import { defineComponent, provide, reactive, ref, onUnmounted } from "vue"
+import { defineComponent, provide, reactive, ref, onUnmounted, onMounted } from "vue"
 import { globalStore } from "@/composables"
+import { useApp } from '@/composables/useApp'
 
 export default defineComponent({
     setup() {
@@ -28,7 +29,7 @@ export default defineComponent({
             name: "John Doe",
             email: "john@gmail.com",
         })
-
+     
         const updateUsername = (name: string) => {
             state.name = name
         }
@@ -40,6 +41,8 @@ export default defineComponent({
         const { loadBlockNumber } = globalStore()
 
         loadBlockNumber()
+
+        
 
         provide("userDetails", state)
         provide("updateUsername", updateUsername)
@@ -60,7 +63,16 @@ export default defineComponent({
 
         provide("screen", screenWidth)
 
+        const { init } = useApp();
+
+        onMounted(async () => {
+             init();
+        })
+        
+
         return { state, screenWidth }
     },
+    
 })
 </script>
+
