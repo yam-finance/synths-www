@@ -51,12 +51,12 @@
             </div>
         </div>
 
-        <div class="w-full h-12  px-4 border-b bg-main text-white text-lg flex justify-between">
-          <span class="py-2 px-4">Your Synths</span>
-          <div class="h-full w-[230px] py-2 px-3 flex">
-            <img src="@/assets/images/search.svg" class="flex absolute my-1.5 mx-3" />
-            <input
-              class="
+        <div class="w-full h-12 px-4 border-b bg-main text-white text-lg flex justify-between">
+            <span class="py-2 px-4">Your Synths</span>
+            <div class="h-full w-[230px] py-2 px-3 flex">
+                <img src="@/assets/images/search.svg" class="flex absolute my-1.5 mx-3" />
+                <input
+                    class="
                         flex flex-wrap
                         placeholder-gray-500
                         fo
@@ -73,11 +73,10 @@
                         placeholder-primary
                         txt-main
                     "
-              placeholder="Search Synths"
-              @keyup="filter($event)"
-            />
-          </div>
-
+                    placeholder="Search Synths"
+                    @keyup="filter($event)"
+                />
+            </div>
         </div>
 
         <table class="text-white border-b bg-main w-full font-normal hidden md:table">
@@ -92,7 +91,11 @@
                 <th></th>
             </thead>
             <tbody class="border-t bg-main lg:text-xs xl:text-sm 2xl:text-base">
-                <tr v-for="(synth, key) in synths" :key="key" class="border-b bg-main cursor-pointer basic-hover">
+                <tr
+                    v-for="(synth, key) in synths"
+                    :key="key"
+                    class="border-b bg-main cursor-pointer basic-hover"
+                >
                     <td class="px-4 py-2 font-semibold flex">
                         <img src="@/assets/images/zombie.png" class="w-6 h-6" />
                         &nbsp;{{ synth.name }}
@@ -239,22 +242,23 @@ export default {
     data() {
         return {
             synths,
-            filter_string: ''
-
+            filter_string: "",
         }
     },
     methods: {
-      filter(event) {
-        this.filter_string = event.target.value
-      },
+        filter(event) {
+            this.filter_string = event.target.value
+        },
     },
-    computed:{
-      synths() {
-        if (this.filter_string !== '') {
-          return this.synths.filter(item => item.name.toLowerCase().includes(this.filter_string.toLowerCase()))
-        } else return this.synths
-      }
-    }
+    computed: {
+        synths() {
+            if (this.filter_string !== "") {
+                return this.synths.filter((item) =>
+                    item.name.toLowerCase().includes(this.filter_string.toLowerCase())
+                )
+            } else return this.synths
+        },
+    },
 }
 </script>
 

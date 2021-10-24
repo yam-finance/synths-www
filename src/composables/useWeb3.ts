@@ -7,7 +7,7 @@ import { useSynthsSDK } from "./useSynthsSDK"
 
 let auth: any
 const defaultNetwork: any = import.meta.env.VITE_DEFAULT_NETWORK || Object.keys(networks)[0]
-const { init } = useSynthsSDK();
+const { init } = useSynthsSDK()
 
 const state = ref({
     account: "",
@@ -15,13 +15,13 @@ const state = ref({
     authLoading: false,
     etherscanlink: "",
     walletConnectType: null,
-    ethersProvider: Web3Provider
+    ethersProvider: Web3Provider,
 })
 
 // TODO Initialize with default provider if wallet is not connected
-watchEffect(() => { 
-    console.log("State changed!");
-    init(state.value.ethersProvider);
+watchEffect(() => {
+    console.log("State changed!")
+    init(state.value.ethersProvider)
 })
 
 export function useWeb3() {
@@ -38,7 +38,7 @@ export function useWeb3() {
 
     async function logout() {
         auth = getInstance()
-        await auth.logout() 
+        await auth.logout()
     }
 
     async function loadProvider() {
@@ -57,7 +57,7 @@ export function useWeb3() {
                 })
                 // auth.provider.on('disconnect', async () => {});
             }
-            state.value.ethersProvider = auth.web3;
+            state.value.ethersProvider = auth.web3
             let network, accounts
             try {
                 ;[network, accounts] = await Promise.all([
