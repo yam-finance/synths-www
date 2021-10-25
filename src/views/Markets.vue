@@ -26,10 +26,9 @@
                             class="
                                 overflow-hidden
                                 my-auto
-                                p-2.5
                                 text-sm text-left
                                 fixed
-                                bg-main
+                                bg-light
                                 rounded-br-xl rounded-bl-xl
                             "
                             v-if="isDropDown"
@@ -39,8 +38,6 @@
                                 <li class="min-w-max cursor-pointer p-1">
                                     <span
                                         class="
-                                            rounded-xl
-                                            bg-main
                                             px-4
                                             py-2
                                             font-normal
@@ -56,8 +53,6 @@
                                 <li class="min-w-max cursor-pointer p-1">
                                     <span
                                         class="
-                                            rounded-xl
-                                            bg-main
                                             px-4
                                             py-2
                                             font-normal
@@ -113,7 +108,7 @@
                     <div class="grid grid-cols-2">
                         <div class="p-2 pl-0">
                             <s-button
-                                class="mt-2.5 py-3 long"
+                                class="mt-2.5 py-2 px-4 long rounded-full"
                                 :buttonStyles="'!text-sm'"
                                 :color="'linear-gradient(180deg, #C8FF2D 0%, #008C0E 100%)'"
                             >
@@ -122,7 +117,7 @@
                         </div>
                         <div class="p-2 pr-0">
                             <s-button
-                                class="mt-2.5 py-3 short"
+                                class="mt-2.5 py-2 px-4 short rounded-full"
                                 :buttonStyles="'!text-sm'"
                                 :color="'linear-gradient(180deg, #FF6ACC 0%, #DC1919 100%)'"
                             >
@@ -165,7 +160,7 @@
                         @click="selected_option = option.id"
                     >
                         <div
-                            class="w-full h-12 py-3 px-6 border-b bg-main cursor-pointer"
+                            class="w-full h-12 py-3 px-6  cursor-pointer"
                             :class="{ 'bg-[#4447BD]': option.id == selected_option }"
                         >
                             <span class="font-semibold">{{ option.title }}</span>
