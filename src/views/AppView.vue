@@ -15,6 +15,7 @@
             </div>
         </main>
         <Footer />
+        <Notification v-if="true" />
     </div>
 </template>
 
@@ -22,6 +23,7 @@
 import SideBar from "@/components/layout/SideBar.vue"
 import Header from "@/components/layout/Header.vue"
 import Footer from "@/components/layout/Footer.vue"
+import Notification from "@/components/layout/Notification.vue"
 
 export default {
     name: "Home",
@@ -29,6 +31,7 @@ export default {
         SideBar,
         Header,
         Footer,
+        Notification,
     },
 }
 </script>

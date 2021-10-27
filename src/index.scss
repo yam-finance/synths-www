@@ -48,9 +48,7 @@ body {
 }
 html,
 body {
-    .bg-main {
-        background: #11112f;
-    }
+
 
     .bg-dark {
         background: #0c0c28;
@@ -61,11 +59,11 @@ body {
     }
 
     .long {
-  box-shadow: 0px 0px 4px 0px #C8FF2D inset;
-}
-.short {
-  box-shadow: 0px 0px 4px 0px #FF6ACC inset;
-}
+      box-shadow: 0px 0px 4px 0px #C8FF2D inset;
+    }
+    .short {
+      box-shadow: 0px 0px 4px 0px #FF6ACC inset;
+    }
 
     .wallet-btn {
         background: linear-gradient(180deg, #f77fa0 0%, #da4cab 100%);
@@ -74,6 +72,10 @@ body {
 
     .txt-main {
         color: #7171b2;
+    }
+
+    .bg-main {
+        background: #11112f;
     }
 
     .bg-main {
