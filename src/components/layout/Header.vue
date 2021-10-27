@@ -42,22 +42,23 @@ export default {
 </script>
 
 <script setup>
-import { copyText } from "vue3-clipboard"
+import { copyText } from 'vue3-clipboard'
 import { useWeb3 } from "@/composables/useWeb3"
 import ConnectWallet from "@/components/ConnectWallet.vue"
-import { globalStore } from "@/composables"
+import {globalStore} from "@/composables";
 import { ref } from "vue"
 
-import useClipboard from "@/composables/useClipboard"
-let blockNumber
+import useClipboard from '@/composables/useClipboard'
+let blockNumber;
 const { state } = globalStore()
+
 
 const { login, web3, logout } = useWeb3()
 const isModalVisible = ref(false)
 
 const isWalletDropDownOpen = ref(false)
 const isDropDownOpen = ref(false)
-blockNumber = state.blockNumber
+blockNumber =  state.blockNumber;
 async function handleConnect(connector) {
     isModalVisible.value = false
     await login(connector)
@@ -70,13 +71,16 @@ const { toClipboard } = useClipboard()
 async function doCopy(address) {
     try {
         await toClipboard(address)
-    } catch (e) {
+      } catch (e) {
         console.error(e)
-    }
+      }
 }
 function formatAddress(address) {
     return address.slice(0, 6) + "..." + address.slice(-6)
 }
+
+
+
 </script>
 
 <template>
@@ -93,7 +97,8 @@ function formatAddress(address) {
             flex
             lg:flex-row
             border-b
-            bg-main bg-main
+            bg-main
+            bg-main
         "
     >
         <router-link to="/">
@@ -142,7 +147,7 @@ function formatAddress(address) {
             >
                 <router-link :to="'/' + tab.to">
                     <span v-if="tab.title == $route.name" class="text-black">{{ tab.title }}</span>
-                    <span v-else class="text-purpleLight hover:text-white">{{ tab.title }}</span>
+                    <span v-else class="text-purpleLight hover:text-white" >{{ tab.title }}</span>
                 </router-link>
             </li>
         </ul>
@@ -242,38 +247,23 @@ function formatAddress(address) {
                     <span class="text-sm text-purpleLight">Network</span>
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
-                    <label class="container"
+                    <label class="container "
                         >Mainnet
-                        <input
-                            type="radio"
-                            :checked="web3.network.key == 1"
-                            class="form-radio"
-                            disabled
-                        />
+                        <input type="radio" :checked="web3.network.key == 1" class="form-radio" disabled/>
                         <span class="checkmark"></span>
                     </label>
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
                     <label class="container"
                         >Polygon
-                        <input
-                            type="radio"
-                            :checked="web3.network.key == 137"
-                            class="form-radio"
-                            disabled
-                        />
+                        <input type="radio" :checked="web3.network.key == 137" class="form-radio" disabled/>
                         <span class="checkmark"></span>
                     </label>
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
                     <label class="container"
                         >Rinkeby
-                        <input
-                            type="radio"
-                            :checked="web3.network.key == 4"
-                            class="form-radio"
-                            disabled
-                        />
+                        <input type="radio" :checked="web3.network.key == 4" class="form-radio" disabled/>
                         <span class="checkmark"></span>
                     </label>
                 </li>
@@ -286,9 +276,7 @@ function formatAddress(address) {
                 <li class="min-w-max cursor-pointer p-1">
                     <span class="wallet_actions"
                         ><img class="image_icon" src="../../assets/icons/externalLink.svg" />&nbsp;
-                        <a class="ml-1" :href="web3.etherscanlink" target="_blank"
-                            >Etherscan</a
-                        ></span
+                        <a class="ml-1" :href="web3.etherscanlink" target="_blank" >Etherscan</a></span
                     >
                 </li>
                 <li
@@ -338,9 +326,9 @@ function formatAddress(address) {
 }
 
 .wallet_actions img {
-    margin-top: -2px;
-    width: 16px;
-    margin-right: 8px;
+  margin-top: -2px;
+  width: 16px;
+  margin-right: 8px;
 }
 .container {
     display: block;

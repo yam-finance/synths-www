@@ -100,6 +100,7 @@
                             text-white
                             not-italic
                             wallet_name
+                            
                         "
                     >
                         Metamask

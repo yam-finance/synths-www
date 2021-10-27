@@ -17,19 +17,19 @@
         <h3 class="text-[#CBCBFF] text-sm mb-8 text-center">{{ subTitle }}</h3>
 
         <div class="mb-8 w-full">
-            <div v-if="buttonName == 'Settle'" class="ssb__costs">
-                <hr class="bg-white opacity-10 mb-2" />
-                <p><span>ETH Expiry Price</span> <span>$3,200</span></p>
-                <p><span>Long Token Expiry Price</span> <span>$120</span></p>
-                <p><span>Short Token Expiry Price</span> <span>$60</span></p>
-                <!-- -- Start of SDK Test -- -->
-                <p>
-                    <span>Expiry Price in WEI</span>
-                    <span v-if="loading">...</span>
-                    <span v-else>{{ expiryPrice }}</span>
-                </p>
-                <!-- -- End of SDK Test -- -->
-            </div>
+          <div v-if="buttonName=='Settle'" class="ssb__costs">
+            <hr class="bg-white opacity-10 mb-2" />
+            <p><span>ETH Expiry Price</span> <span>$3,200</span></p>
+            <p><span>Long Token Expiry Price</span> <span>$120</span></p>
+            <p><span>Short Token Expiry Price</span> <span>$60</span></p>
+            <!-- -- Start of SDK Test -- -->
+            <p>
+              <span>Expiry Price in WEI</span>
+              <span v-if="loading">...</span>
+              <span v-else>{{ expiryPrice }}</span>
+            </p>
+            <!-- -- End of SDK Test -- -->
+          </div>
         </div>
 
         <div
@@ -120,14 +120,14 @@ export default {
             type: Boolean,
             default: false,
         },
-        loading: {
-            type: Boolean,
-            default: false,
+        loading:{
+          type: Boolean,
+          default: false
         },
         expiryPrice: {
-            type: String,
-            default: "",
-        },
+          type: String,
+          default: ""
+        }
     },
     components: {
         "s-button": SynthsRoundedButton,
