@@ -42,19 +42,4 @@ const router = createRouter({
     history: createWebHistory(),
     routes,
 })
-router.beforeResolve((to, from, next) => {
-  // If this isn't an initial page load.
-  if (to.name) {
-    // Start the route progress bar.
-    // @ts-ignore
-    NProgress.start()
-  }
-  next()
-})
-
-router.afterEach((to, from) => {
-  // Complete the animation of the route progress bar.
-  // @ts-ignore
-  NProgress.done()
-})
 export default router

@@ -1,5 +1,13 @@
 <template>
-    <router-view />
+  <Suspense >
+    <template v-if="!loadingStatus">
+      <router-view />
+    </template>
+    <template v-else-if="loadingStatus">
+      loading.......
+    </template>
+  </Suspense>
+
 </template>
 
 <style lang="scss">
@@ -62,5 +70,26 @@ export default defineComponent({
 
         return { state, screenWidth }
     },
+  data() {
+      return {
+        loadingStatus: true
+      }
+  },
+  mounted() {
+      this.setLoading()
+  },
+  methods: {
+      setLoading() {
+        setTimeout(() => {
+          this.loadingStatus = false
+        }, 2000)
+      }
+  },
+  watch: {
+      $route(to, from) {
+        this.loadingStatus = true;
+        setTimeout(() => {this.loadingStatus = false}, 2000)
+      }
+  }
 })
 </script>
