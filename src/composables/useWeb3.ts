@@ -21,6 +21,7 @@ const state = ref({
 // TODO Initialize with default provider if wallet is not connected
 watchEffect(() => { 
     console.log("State changed!");
+    console.log("provider = ", state.value.ethersProvider);
     init(state.value.ethersProvider);
 })
 
