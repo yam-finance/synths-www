@@ -83,7 +83,7 @@ export default defineComponent({
                 addNewNotifications({
                     style: 0,
                     link: "https://github.com/yam-finance/synths-www/issues/75",
-                    title: "Title4",
+                    title: "Title244",
                     content: "Transaction sent. Minting 8 Long & 8 Short with 4 ETH",
                 })
             }, 4000)

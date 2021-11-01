@@ -10,6 +10,14 @@
                     <img src="@/assets/images/external-link.svg" alt="External Link" />
                 </a>
             </div>
+            <div class="sn-close">
+                <img
+                    class="cursor-pointer basic-hover"
+                    src="@/assets/images/x.svg"
+                    alt="Close Icon"
+                    @click="closeNotification"
+                />
+            </div>
             <div class="sn-text" v-html="content"></div>
         </div>
     </transition>
@@ -22,6 +30,7 @@ import successCircle from "@/assets/icons/success-circle.svg"
 export default {
     name: "NotificationItem",
     props: {
+        index: Number,
         title: String,
         iconStyle: Number,
         // 0 - info
@@ -39,6 +48,9 @@ export default {
 
             if (style === 1) return successCircle
         },
+        closeNotification() {
+            this.$emit("close")
+        },
     },
     beforeUnmount() {
         this.show = false
@@ -50,11 +62,11 @@ export default {
 .sn {
     @apply bg-blueDark rounded-lg grid gap-2 items-center;
     box-shadow: 0 16px 16px -4px rgba(0, 0, 0, 0.15), 0px 4px 4px rgba(0, 0, 0, 0.1);
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr auto auto;
     grid-template-rows: repeat(2, auto);
     grid-template-areas:
-        "icon title link"
-        "text text text";
+        "icon title link close"
+        "text text text text";
 
     &-title {
         grid-area: title;
@@ -65,6 +77,14 @@ export default {
     &-link {
         @apply w-4 h-4;
         grid-area: link;
+
+        img {
+            @apply w-full h-full;
+        }
+    }
+    &-close {
+        @apply w-4 h-4;
+        grid-area: close;
 
         img {
             @apply w-full h-full;

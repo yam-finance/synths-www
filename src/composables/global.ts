@@ -1,6 +1,8 @@
 import { reactive, toRefs } from "vue"
 import { web3 } from "@/plugins/web3"
 
+let newNotificationTimer
+
 const globalState = reactive({
     //Block NUmber
     blockNumber: 0 as number,
@@ -47,12 +49,22 @@ export default () => {
         globalState.isNotificationOpen = !globalState.isNotificationOpen
     }
 
+    const deleteNotification = (index: number) => {
+        globalState.notifications.splice(index, 1)
+    }
+
+    const deleteNewNotification = (index: number) => {
+        clearTimeout(newNotificationTimer)
+        globalState.notifications.push(globalState.newNotifications[index])
+        globalState.newNotifications.splice(index, 1)
+    }
+
     const addNewNotifications = (payload: object) => {
         globalState.newNotifications.push(payload)
-        setTimeout(() => {
+        newNotificationTimer = setTimeout(() => {
             globalState.notifications.push(payload)
             globalState.newNotifications.shift()
-        }, 5000)
+        }, 10000)
     }
 
     return {
@@ -64,6 +76,8 @@ export default () => {
 
         //Notifications
         toggleNotificationOpen,
+        deleteNotification,
+        deleteNewNotification,
         addNewNotifications,
     }
 }

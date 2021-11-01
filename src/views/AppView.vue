@@ -19,12 +19,14 @@
         <div class="fade-notification">
             <notification
                 class="notification-content__item p-2 mb-2"
-                v-for="item in notifications"
+                v-for="(item, index) in notifications"
                 :key="item.title"
                 :icon-style="item.style"
                 :title="item.title"
                 :link="item.link"
                 :content="item.content"
+                :index="index"
+                @close="deleteNewNotification(index)"
             />
         </div>
     </div>
@@ -42,10 +44,12 @@ export default {
     name: "Home",
     setup() {
         const { state } = globalStore()
+        const { deleteNewNotification } = globalStore()
 
         const notifications = state.newNotifications
         return {
             notifications,
+            deleteNewNotification,
         }
     },
     components: {
@@ -60,6 +64,6 @@ export default {
 <style scoped lang="scss">
 .fade-notification {
     @apply absolute top-[70px] right-[20px] max-w-[300px];
-    z-index: 100000;
+    z-index: 999;
 }
 </style>

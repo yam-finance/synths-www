@@ -1,7 +1,7 @@
 <template>
     <transition name="slide">
         <div v-if="notifications && isNotificationOpen" class="notification-wrapper bg-main">
-            <div v-click-away="toggleNotification" class="notification bg-main">
+            <div class="notification bg-main">
                 <img
                     class="notification-close basic-hover"
                     src="@/assets/images/x.svg"
@@ -12,12 +12,14 @@
                 <div class="notification-content">
                     <notification
                         class="notification-content__item p-2 mb-2"
-                        v-for="item in notifications"
+                        v-for="(item, index) in notifications"
                         :key="item.title"
                         :icon-style="item.style"
                         :title="item.title"
                         :link="item.link"
                         :content="item.content"
+                        :index="index"
+                        @close="deleteNotification(index)"
                     />
                 </div>
             </div>
@@ -34,7 +36,7 @@ export default {
         notification: SynthsNotification,
     },
     methods: {
-        toggleNotification() {
+        toggleNotification(e) {
             this.toggleNotificationOpen()
         },
     },
@@ -45,6 +47,7 @@ import { globalStore } from "@/composables"
 
 const { state } = globalStore()
 const { toggleNotificationOpen } = globalStore()
+const { deleteNotification } = globalStore()
 
 let notifications = state.notifications
 let isNotificationOpen = state.isNotificationOpen
