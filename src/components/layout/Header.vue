@@ -98,7 +98,7 @@ function formatAddress(address) {
             flex
             lg:flex-row
             border-b
-            bg-main bg-main
+            bg-main
         "
     >
         <router-link to="/">
