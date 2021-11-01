@@ -18,7 +18,7 @@
 </style>
 
 <script lang="ts">
-import { defineComponent, provide, reactive, ref, onUnmounted } from "vue"
+import { defineComponent, provide, reactive, ref, onUnmounted, onMounted } from "vue"
 import { globalStore } from "@/composables"
 
 export default defineComponent({
@@ -53,6 +53,41 @@ export default defineComponent({
         }
 
         window.addEventListener("resize", resizeHandler)
+
+        const { addNewNotifications } = globalStore()
+
+        onMounted(() => {
+            addNewNotifications({
+                style: 0,
+                link: "https://github.com/yam-finance/synths-www/issues/75",
+                title: "Title1",
+                content: "Transaction sent. Minting 8 Long & 8 Short with 4 ETH",
+            })
+            setTimeout(() => {
+                addNewNotifications({
+                    style: 0,
+                    link: "https://github.com/yam-finance/synths-www/issues/75",
+                    title: "Title2",
+                    content: "Transaction sent. Minting 8 Long & 8 Short with 4 ETH",
+                })
+            }, 2000)
+            setTimeout(() => {
+                addNewNotifications({
+                    style: 0,
+                    link: "https://github.com/yam-finance/synths-www/issues/75",
+                    title: "Title3",
+                    content: "Transaction sent. Minting 8 Long & 8 Short with 4 ETH",
+                })
+            }, 3000)
+            setTimeout(() => {
+                addNewNotifications({
+                    style: 0,
+                    link: "https://github.com/yam-finance/synths-www/issues/75",
+                    title: "Title4",
+                    content: "Transaction sent. Minting 8 Long & 8 Short with 4 ETH",
+                })
+            }, 4000)
+        })
 
         onUnmounted(() => {
             window.removeEventListener("resize", resizeHandler)

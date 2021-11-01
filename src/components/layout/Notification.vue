@@ -1,6 +1,6 @@
 <template>
     <transition name="slide">
-        <div v-if="isNotificationOpen" class="notification-wrapper bg-main">
+        <div v-if="notifications && isNotificationOpen" class="notification-wrapper bg-main">
             <div v-click-away="toggleNotification" class="notification bg-main">
                 <img
                     class="notification-close basic-hover"
@@ -10,22 +10,15 @@
                 />
                 <h2>Notification</h2>
                 <div class="notification-content">
-                    <div
-                        class="notification-content__item"
-                        :key="item.title"
+                    <notification
+                        class="notification-content__item p-2 mb-2"
                         v-for="item in notifications"
-                    >
-                        <div class="notification-content__item-title">{{ item.title }}</div>
-                        <div class="notification-content__item-icon">
-                            <img :src="getIcon(item.style)" alt="Notification Status" />
-                        </div>
-                        <div class="notification-content__item-link">
-                            <a :href="item.link">
-                                <img src="@/assets/images/external-link.svg" alt="External Link" />
-                            </a>
-                        </div>
-                        <div class="notification-content__item-text" v-html="item.content"></div>
-                    </div>
+                        :key="item.title"
+                        :icon-style="item.style"
+                        :title="item.title"
+                        :link="item.link"
+                        :content="item.content"
+                    />
                 </div>
             </div>
         </div>
@@ -33,21 +26,14 @@
 </template>
 
 <script>
-// style
-// 0 - info
-// 1 - success
-// 2 - error
-import infoCircle from "@/assets/icons/info-circle.svg"
-import successCircle from "@/assets/icons/success-circle.svg"
+import SynthsNotification from "@/components/notifications/SynthsNotification.vue"
 
 export default {
-    name: "Notification",
+    name: "NotificationLayout",
+    components: {
+        notification: SynthsNotification,
+    },
     methods: {
-        getIcon(style) {
-            if (style === 0) return infoCircle
-
-            if (style === 1) return successCircle
-        },
         toggleNotification() {
             this.toggleNotificationOpen()
         },
@@ -79,37 +65,6 @@ h2 {
 
     &-close {
         @apply ml-auto mt-5 cursor-pointer;
-    }
-
-    &-content {
-        &__item {
-            @apply bg-blueDark rounded-lg p-2 mb-2 grid gap-2 items-center;
-            box-shadow: 0 16px 16px -4px rgba(0, 0, 0, 0.15), 0px 4px 4px rgba(0, 0, 0, 0.1);
-            grid-template-columns: auto 1fr auto;
-            grid-template-rows: repeat(2, auto);
-            grid-template-areas:
-                "icon title link"
-                "text text text";
-
-            &-title {
-                grid-area: title;
-            }
-            &-icon {
-                grid-area: icon;
-            }
-            &-link {
-                @apply w-4 h-4;
-                grid-area: link;
-
-                img {
-                    @apply w-full h-full;
-                }
-            }
-
-            &-text {
-                grid-area: text;
-            }
-        }
     }
 }
 

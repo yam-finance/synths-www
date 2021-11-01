@@ -15,7 +15,18 @@
             </div>
         </main>
         <Footer />
-        <Notification v-if="true" />
+        <notification-layout v-if="true" />
+        <div class="fade-notification">
+            <notification
+                class="notification-content__item p-2 mb-2"
+                v-for="item in notifications"
+                :key="item.title"
+                :icon-style="item.style"
+                :title="item.title"
+                :link="item.link"
+                :content="item.content"
+            />
+        </div>
     </div>
 </template>
 
@@ -23,15 +34,32 @@
 import SideBar from "@/components/layout/SideBar.vue"
 import Header from "@/components/layout/Header.vue"
 import Footer from "@/components/layout/Footer.vue"
-import Notification from "@/components/layout/Notification.vue"
+import NotificationLayout from "@/components/layout/Notification.vue"
+import SynthsNotification from "@/components/notifications/SynthsNotification.vue"
+import { globalStore } from "@/composables"
 
 export default {
     name: "Home",
+    setup() {
+        const { state } = globalStore()
+
+        const notifications = state.newNotifications
+        return {
+            notifications,
+        }
+    },
     components: {
         SideBar,
         Header,
         Footer,
-        Notification,
+        NotificationLayout,
+        notification: SynthsNotification,
     },
 }
 </script>
+<style scoped lang="scss">
+.fade-notification {
+    @apply absolute top-[70px] right-[20px] max-w-[300px];
+    z-index: 100000;
+}
+</style>

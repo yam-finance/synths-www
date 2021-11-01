@@ -3,10 +3,10 @@ import { web3 } from "@/plugins/web3"
 
 const globalState = reactive({
     //Block NUmber
-    blockNumber: 0,
+    blockNumber: 0 as number,
 
     //Notifications
-    isNotificationOpen: false,
+    isNotificationOpen: false as boolean,
     notifications: [
         {
             style: 0,
@@ -17,10 +17,11 @@ const globalState = reactive({
         {
             style: 1,
             link: "https://github.com/yam-finance/synths-www/issues/75",
-            title: "Title",
+            title: "Title2",
             content: "Transaction sent. Minting 8 Long & 8 Short with 4 ETH",
         },
-    ],
+    ] as object[],
+    newNotifications: [] as object[],
 })
 
 export default () => {
@@ -46,6 +47,14 @@ export default () => {
         globalState.isNotificationOpen = !globalState.isNotificationOpen
     }
 
+    const addNewNotifications = (payload: object) => {
+        globalState.newNotifications.push(payload)
+        setTimeout(() => {
+            globalState.notifications.push(payload)
+            globalState.newNotifications.shift()
+        }, 5000)
+    }
+
     return {
         state: toRefs(globalState),
 
@@ -55,5 +64,6 @@ export default () => {
 
         //Notifications
         toggleNotificationOpen,
+        addNewNotifications,
     }
 }
