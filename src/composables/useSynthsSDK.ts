@@ -1,13 +1,14 @@
 import { ref, computed } from "vue"
 import Synths from "synths-sdk"
+import {Web3Provider} from "@ethersproject/providers";
 
 const loading = ref(true)
 const data = ref({})
-let synthsSDK;
+let synthsSDK: Synths;
 
 export function useSynthsSDK() {
 
-    async function init(provider) {
+    async function init(provider: Web3Provider) {
         synthsSDK = await Synths.create({ ethersProvider: provider });
         // TODO Loop to connect to all assets
         connectTo("upunks-0921")
