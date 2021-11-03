@@ -36,7 +36,7 @@
 import SideBar from "@/components/layout/SideBar.vue"
 import Header from "@/components/layout/Header.vue"
 import Footer from "@/components/layout/Footer.vue"
-import NotificationLayout from "@/components/layout/Notification.vue"
+import NotificationLayout from "@/components/layout/NotificationSidebar.vue"
 import SynthsNotification from "@/components/notifications/SynthsNotification.vue"
 import { globalStore } from "@/composables"
 

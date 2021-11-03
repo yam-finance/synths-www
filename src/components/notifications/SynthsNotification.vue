@@ -6,7 +6,7 @@
                 <img :src="getIcon(iconStyle)" alt="Notification Status" />
             </div>
             <div class="sn-link">
-                <a :href="link">
+                <a :href="link" target="_blank">
                     <img src="@/assets/images/external-link.svg" alt="External Link" />
                 </a>
             </div>
