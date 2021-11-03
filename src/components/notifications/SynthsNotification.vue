@@ -32,10 +32,7 @@ export default {
     props: {
         index: Number,
         title: String,
-        iconStyle: Number,
-        // 0 - info
-        // 1 - success
-        // 2 - error
+        iconStyle: Number, // 0 - info, 1 - success, 2 - error
         link: String,
         content: String,
     },
