@@ -15,7 +15,6 @@
         "@portis/web3": "^4.0.6",
         "@snapshot-labs/lock": "github:snapshot-labs/lock",
         "@snapshot-labs/snapshot.js": "^0.2.14",
-        "@vue/eslint-config-prettier": "^6.0.0",
         "@walletconnect/web3-provider": "^1.6.6",
         "autoprefixer": "^10.3.5",
         "chart.js": "^3.5.1",
