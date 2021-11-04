@@ -9,20 +9,7 @@ const globalState = reactive({
 
     //Notifications
     isNotificationOpen: false as boolean,
-    notifications: [
-        {
-            style: 0,
-            link: "https://github.com/yam-finance/synths-www/issues/75",
-            title: "Title",
-            content: "Transaction sent. Minting 8 Long & 8 Short with 4 ETH",
-        },
-        {
-            style: 1,
-            link: "https://github.com/yam-finance/synths-www/issues/75",
-            title: "Title2",
-            content: "Transaction sent. Minting 8 Long & 8 Short with 4 ETH",
-        },
-    ] as object[],
+    notifications: [] as object[],
     newNotifications: [] as object[],
 })
 
