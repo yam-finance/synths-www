@@ -1,5 +1,12 @@
 <template>
-    <router-view />
+    <Suspense >
+        <template v-if="!loadingStatus">
+            <router-view />
+        </template>
+        <template v-else-if="loadingStatus">
+            <p class="absolute left-1/2 top-1/2">Loading...</p>
+        </template>
+    </Suspense>
 </template>
 
 <style lang="scss">
@@ -62,5 +69,38 @@ export default defineComponent({
 
         return { state, screenWidth }
     },
+    data() {
+        return {
+            loadingStatus: true
+        }
+    },
+    mounted() {
+        var obj = this;
+        debugger;
+        document.onreadystatechange = function () {
+            var state = document.readyState
+            if (state == 'interactive') {
+                obj.loadingStatus = true;
+            } else if (state == 'complete') {
+                obj.loadingStatus = false;
+            }
+        }
+    },
+    methods: {
+    },
+    watch: {
+        $route(to, from) {
+            debugger;
+            var obj = this;
+            document.onreadystatechange = function () {
+                var state = document.readyState;
+                if (state == 'interactive') {
+                    obj.loadingStatus = true;
+                } else if (state == 'complete') {
+                    obj.loadingStatus = false;
+                }
+            }
+        },
+    }
 })
 </script>
