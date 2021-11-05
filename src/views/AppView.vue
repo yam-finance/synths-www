@@ -2,14 +2,14 @@
     <div class="home bg-main">
         <Header />
         <main>
-            <div class="w-full" style="display: -webkit-inline-box">
+            <div class="w-full content">
                 <div>
                     <SideBar />
                 </div>
-                <div class="hidden md:flex" style="width: calc(100vw - 256px)">
+                <div class="hidden md:flex content-desktop">
                     <router-view />
                 </div>
-                <div class="block md:hidden" style="height: calc(100vh - 64px)">
+                <div class="block md:hidden content-mobile">
                     <router-view />
                 </div>
             </div>
@@ -61,9 +61,20 @@ export default {
     },
 }
 </script>
-<style scoped lang="scss">
+<style lang="scss">
 .fade-notification {
     @apply absolute top-[70px] right-[20px] max-w-[300px];
     z-index: 999;
+ }
+.content {
+    display: -webkit-inline-box;
+
+    &-desktop {
+        width: calc(100vw - 256px);
+    }
+
+    &-mobile {
+        height: calc(100vh - 64px);
+    }
 }
 </style>
