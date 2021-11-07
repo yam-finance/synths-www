@@ -264,7 +264,6 @@ export default {
   methods: {
     filter(event) {
       this.filter_string = event.target.value;
-      console.log(this.synths)
     },
   },
   computed:{
