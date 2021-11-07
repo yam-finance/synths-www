@@ -72,6 +72,7 @@
                         outline-none
                         placeholder-primary
                         txt-main
+                        text-sm
                     "
               placeholder="Search Synths"
               @keyup="filter($event)"
@@ -121,6 +122,9 @@
                 </tr>
             </tbody>
         </table>
+        <div v-if="!synths.length" class="cursor-pointer bg-main text-center flex justify-center w-full mt-3">
+          no synths to show
+        </div>
     </div>
 
     <div class="min-w-[400px] border-l bg-main hidden lg:block">
