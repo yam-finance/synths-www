@@ -145,6 +145,7 @@
                     <img
                         src="@/assets/images/bell.png"
                         class="mx-2 my-auto h-4 inline cursor-pointer"
+                        @click="toggleNotificationOpen"
                     />
                     <button
                         @click="isModalVisible = true"
@@ -183,9 +184,10 @@ import {globalStore} from "@/composables";
 
 const { login, web3, logout } = useWeb3()
 const isModalVisible = ref(false)
-let blockNumber;
- const { state } = globalStore()
-blockNumber =  state.blockNumber;
+
+const { toggleNotificationOpen } = globalStore()
+const { state } = globalStore()
+let blockNumber =  state.blockNumber;
 const isWalletDropDownOpen = ref(false)
 const isDropDownOpen = ref(false)
 

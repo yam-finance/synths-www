@@ -6,14 +6,14 @@
                     class="notification-close basic-hover"
                     src="@/assets/images/x.svg"
                     alt="Close Icon"
-                    @click="toggleNotification"
+                    @click="toggleNotificationOpen"
                 />
                 <h2>Notification</h2>
                 <div class="notification-content">
                     <notification
-                        class="notification-content__item p-2 mb-2"
                         v-for="(item, index) in notifications"
                         :key="item.title"
+                        class="notification-content__item p-2 mb-2"
                         :icon-style="item.style"
                         :title="item.title"
                         :link="item.link"
@@ -34,11 +34,6 @@ export default {
     name: "NotificationLayout",
     components: {
         notification: SynthsNotification,
-    },
-    methods: {
-        toggleNotification(e) {
-            this.toggleNotificationOpen()
-        },
     },
 }
 </script>

@@ -1,3 +1,44 @@
+<script setup>
+import { copyText } from "vue3-clipboard"
+import { useWeb3 } from "@/composables/useWeb3"
+import ConnectWallet from "@/components/ConnectWallet.vue"
+import { globalStore } from "@/composables"
+import { ref } from "vue"
+
+import useClipboard from "@/composables/useClipboard"
+const { state } = globalStore()
+
+
+const { login, web3, logout } = useWeb3()
+const isModalVisible = ref(false)
+
+const isWalletDropDownOpen = ref(false)
+const isDropDownOpen = ref(false)
+const { toggleNotificationOpen } = globalStore()
+
+let blockNumber = state.blockNumber
+async function handleConnect(connector) {
+  isModalVisible.value = false
+  await login(connector)
+}
+async function handleLogout() {
+  await logout()
+  // emit('close');
+}
+const { toClipboard } = useClipboard()
+async function doCopy(address) {
+  try {
+    await toClipboard(address)
+  } catch (e) {
+    console.error(e)
+  }
+}
+function formatAddress(address) {
+  return address.slice(0, 6) + "..." + address.slice(-6)
+}
+
+</script>
+
 <script>
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
 
@@ -37,52 +78,10 @@ export default {
             this.isWalletDropDownOpen = false
             // this.isModalVisible = false;
         },
-        toggleNotification() {
-            this.toggleNotificationOpen()
-        },
     },
 }
 </script>
 
-<script setup>
-import { copyText } from "vue3-clipboard"
-import { useWeb3 } from "@/composables/useWeb3"
-import ConnectWallet from "@/components/ConnectWallet.vue"
-import { globalStore } from "@/composables"
-import { ref } from "vue"
-
-import useClipboard from "@/composables/useClipboard"
-let blockNumber
-const { state } = globalStore()
-
-const { toggleNotificationOpen } = globalStore()
-
-const { login, web3, logout } = useWeb3()
-const isModalVisible = ref(false)
-
-const isWalletDropDownOpen = ref(false)
-const isDropDownOpen = ref(false)
-blockNumber = state.blockNumber
-async function handleConnect(connector) {
-    isModalVisible.value = false
-    await login(connector)
-}
-async function handleLogout() {
-    await logout()
-    // emit('close');
-}
-const { toClipboard } = useClipboard()
-async function doCopy(address) {
-    try {
-        await toClipboard(address)
-    } catch (e) {
-        console.error(e)
-    }
-}
-function formatAddress(address) {
-    return address.slice(0, 6) + "..." + address.slice(-6)
-}
-</script>
 
 <template>
     <nav
@@ -171,7 +170,7 @@ function formatAddress(address) {
             <div class="flex absolute right-1">
                 <img
                     src="@/assets/images/bell.png"
-                    @click="toggleNotification"
+                    @click="toggleNotificationOpen"
                     class="cursor-pointer my-auto h-4 basic-hover"
                 />
 
