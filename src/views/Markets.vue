@@ -303,7 +303,7 @@ import { inject } from "vue"
 import { useI18n } from "vue-i18n"
 
 /* -- Start of SDK Test -- */
-import { useSynthsSDK } from "../composables/useSynthsSDK"
+import { useSynthsSDK } from "../composables/useSynthsSDK";
 import { computed } from "vue";
 /* -- End of SDK Test -- */
 

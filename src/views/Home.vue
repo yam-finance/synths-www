@@ -173,19 +173,21 @@
 
                 <div class="grid grid-cols-2 md:grid-cols-4 m-4 my-16">
                     <div class="font-semibold">
-                        <p class="text-4xl md:text-5xl lg:text-6xl">$2.0m</p>
+                        <p class="text-4xl md:text-5xl lg:text-6xl">{totalMarketData.totalTVL}$</p>
                         <p class="text-sm txt-main mt-2">TOTAL VALUE LOCKED</p>
                     </div>
+                    <!--
                     <div class="font-semibold">
                         <p class="text-4xl md:text-5xl lg:text-6xl">$324k</p>
                         <p class="text-sm txt-main mt-2">TOTAL SYNTH MARKETCAP</p>
                     </div>
+                    -->
                     <div class="font-semibold">
-                        <p class="text-4xl md:text-5xl lg:text-6xl">$1.4m</p>
-                        <p class="text-sm txt-main mt-2">TOTAL SYNTH LIQUIDITY</p>
+                        <p class="text-4xl md:text-5xl lg:text-6xl">{totalMarketData.total24hLiquidity}$</p>
+                        <p class="text-sm txt-main mt-2">SYNTH LIQUIDITY LAST 24h</p>
                     </div>
                     <div class="font-semibold">
-                        <p class="text-4xl md:text-5xl lg:text-6xl">$500k</p>
+                        <p class="text-4xl md:text-5xl lg:text-6xl">{totalMarketData.total24hVolume}$</p>
                         <p class="text-sm txt-main mt-2">VOLUME LAST 24H</p>
                     </div>
                 </div>
@@ -340,6 +342,8 @@
 
 <script>
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
+import { useSynthsSDK } from "../composables/useSynthsSDK";
+
 let menus = [
     {
         id: 1,
@@ -382,6 +386,14 @@ export default {
             menus,
         }
     },
+    setup() {
+        const { totalMarketData, recentSynthData, loading } = useSynthsSDK();
+
+        return {
+           totalMarketData: computed(() => { if (!loading.value) return totalMarketData.value }),
+           recentSynthData: computed(() => { if (!loading.value) return recentSynthData.value }) 
+        }
+    }
 }
 </script>
 
