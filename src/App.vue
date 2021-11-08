@@ -1,26 +1,26 @@
 <template>
-    <Suspense >
-        <template v-if="!loadingStatus">
-            <router-view />
-        </template>
-        <template v-else-if="loadingStatus">
-            <p class="absolute left-1/2 top-1/2">Loading...</p>
-        </template>
-    </Suspense>
+  <Suspense >
+    <template v-if="!loadingStatus">
+      <router-view />
+    </template>
+    <template v-else-if="loadingStatus">
+      <p class="absolute left-1/2 top-1/2">Loading...</p>
+    </template>
+  </Suspense>
 </template>
 
 <style lang="scss">
 #nav {
-    padding: 30px;
+  padding: 30px;
 
-    a {
-        font-weight: bold;
-        color: #2c3e50;
+  a {
+    font-weight: bold;
+    color: #2c3e50;
 
-        &.router-link-exact-active {
-            color: #42b983;
-        }
+    &.router-link-exact-active {
+      color: #42b983;
     }
+  }
 }
 </style>
 
@@ -29,78 +29,78 @@ import { defineComponent, provide, reactive, ref, onUnmounted } from "vue"
 import { globalStore } from "@/composables"
 
 export default defineComponent({
-    setup() {
-        //Setup Simple Data
-        const state = reactive({
-            name: "John Doe",
-            email: "john@gmail.com",
-        })
+  setup() {
+    //Setup Simple Data
+    const state = reactive({
+      name: "John Doe",
+      email: "john@gmail.com",
+    })
 
-        const updateUsername = (name: string) => {
-            state.name = name
-        }
-
-        const updateEmail = (email: string) => {
-            state.email = email
-        }
-
-        const { loadBlockNumber } = globalStore()
-
-        loadBlockNumber()
-
-        provide("userDetails", state)
-        provide("updateUsername", updateUsername)
-        provide("updateEmail", updateEmail)
-
-        //Setup window resize watcher
-        const screenWidth = ref<number | null>(null)
-
-        const resizeHandler = () => {
-            screenWidth.value = window.innerWidth
-        }
-
-        window.addEventListener("resize", resizeHandler)
-
-        onUnmounted(() => {
-            window.removeEventListener("resize", resizeHandler)
-        })
-
-        provide("screen", screenWidth)
-
-        return { state, screenWidth }
-    },
-    data() {
-        return {
-            loadingStatus: true
-        }
-    },
-    mounted() {
-        var obj = this;
-        debugger;
-        document.onreadystatechange = function () {
-            var state = document.readyState
-            if (state == 'interactive') {
-                obj.loadingStatus = true;
-            } else if (state == 'complete') {
-                obj.loadingStatus = false;
-            }
-        }
-    },
-    methods: {
-    },
-    watch: {
-        $route(to, from) {
-            debugger;
-            var obj = this;
-            document.onreadystatechange = function () {
-                var state = document.readyState;
-                if (state == 'interactive') {
-                    obj.loadingStatus = true;
-                } else if (state == 'complete') {
-                    obj.loadingStatus = false;
-                }
-            }
-        },
+    const updateUsername = (name: string) => {
+      state.name = name
     }
+
+    const updateEmail = (email: string) => {
+      state.email = email
+    }
+
+    const { loadBlockNumber } = globalStore()
+
+    loadBlockNumber()
+
+    provide("userDetails", state)
+    provide("updateUsername", updateUsername)
+    provide("updateEmail", updateEmail)
+
+    //Setup window resize watcher
+    const screenWidth = ref<number | null>(null)
+
+    const resizeHandler = () => {
+      screenWidth.value = window.innerWidth
+    }
+
+    window.addEventListener("resize", resizeHandler)
+
+    onUnmounted(() => {
+      window.removeEventListener("resize", resizeHandler)
+    })
+
+    provide("screen", screenWidth)
+
+    return { state, screenWidth }
+  },
+  data() {
+    return {
+      loadingStatus: true
+    }
+  },
+  mounted() {
+    var obj = this;
+    debugger;
+    document.onreadystatechange = function () {
+      var state = document.readyState
+      if (state == 'interactive') {
+        obj.loadingStatus = true;
+      } else if (state == 'complete') {
+        obj.loadingStatus = false;
+      }
+    }
+  },
+  methods: {
+  },
+  watch: {
+    $route(to, from) {
+      debugger;
+      var obj = this;
+      document.onreadystatechange = function () {
+        var state = document.readyState;
+        if (state == 'interactive') {
+          obj.loadingStatus = true;
+        } else if (state == 'complete') {
+          obj.loadingStatus = false;
+        }
+      }
+    },
+  }
 })
 </script>
