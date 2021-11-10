@@ -21,8 +21,9 @@ export default defineConfig({
         PrerenderSpaPlugin({
             // Absolute path to compiled SPA
             staticDir: path.resolve(__dirname, './dist'),
+            indexPath: path.resolve(__dirname, './dist/index.html'),
             // List of routes to prerender
-            routes: [ '/', '/portfolio', '/explore' ],
+            routes: [ '*' ],
             // Options
             postProcess(context) {
                 let titles = {
