@@ -99,4 +99,13 @@ body {
     .basic-hover {
         @apply hover:brightness-110 active:brightness-75;
     }
+  #nprogress {
+    .spinner {
+      display: block;
+      position: fixed;
+      z-index: 1031;
+      top: 68% !important;
+      right: 49% !important;
+    }
+  }
 }
