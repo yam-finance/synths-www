@@ -187,7 +187,7 @@ let blockNumber;
  const { state } = globalStore()
 blockNumber =  state.blockNumber;
 const isWalletDropDownOpen = ref(false)
-const isDropDownOpen = ref(false)
+const isHelpDropDownOpen = ref(false)
 
 async function handleConnect(connector) {
     isModalVisible.value = false

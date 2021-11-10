@@ -76,7 +76,6 @@ export default defineComponent({
   },
   mounted() {
     var obj = this;
-    debugger;
     document.onreadystatechange = function () {
       var state = document.readyState
       if (state == 'interactive') {

@@ -1,5 +1,5 @@
 <template>
-    <div class="markets pb-10 bg-light">
+    <div class="markets pb-10 bg-light border-r bg-main">
         <div class="w-full h-12 py-3 px-6 border-b bg-main">
             <span class="text-sm txt-main">Information</span>
         </div>
@@ -45,7 +45,7 @@
                                             txt-main
                                         "
                                     >
-                                        Expiring 23st April</span
+                                        Expiring 23rd April</span
                                     >
                                 </li>
                             </RouterLink>
@@ -60,7 +60,7 @@
                                             txt-main
                                         "
                                     >
-                                        Expiring 23st April</span
+                                        Expiring 23rd April</span
                                     >
                                 </li>
                             </RouterLink>
@@ -131,7 +131,7 @@
                 </div>
             </div>
 
-            <div class="border-t bg-main">
+            <div class="bg-main">
                 <div class="px-6 py-4">
                     <span class="text-sm txt-main">Manage your position</span>
                     <div class="grid grid-cols-3 xl:gap-4 mt-4">
@@ -153,14 +153,15 @@
                     </div>
                 </div>
 
-                <div class="w-full text-white border-t bg-main">
+                <div class="w-full text-white">
                     <div
                         v-for="(option, key) in options"
                         :key="key"
                         @click="selected_option = option.id"
+                        class="border-t bg-main"
                     >
                         <div
-                            class="w-full h-12 py-3 px-6  cursor-pointer"
+                            class="w-full h-12 py-3 px-6 cursor-pointer"
                             :class="{ 'bg-[#4447BD]': option.id == selected_option }"
                         >
                             <span class="font-semibold">{{ option.title }}</span>
