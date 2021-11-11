@@ -172,13 +172,13 @@ function formatAddress(address) {
         >
             <div class="flex absolute right-1">
                 <span
-                    class="flex px-4 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer"
+                    class="flex px-2 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer"
                     @click="isLangDropDownOpen = !isLangDropDownOpen"
                 >
                     English
                     <img src="@/assets/images/dropdown.svg" class="mx-2 ml-1 my-auto h-4" />
                 </span>
-                <img src="@/assets/images/bell.png" class="cursor-pointer my-auto h-4" />
+
 
                 <span
                     class="flex px-4 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer"
@@ -187,6 +187,9 @@ function formatAddress(address) {
                     Help
                     <img src="@/assets/images/dropdown.svg" class="mx-2 ml-1 my-auto h-4" />
                 </span>
+
+                <img src="@/assets/images/bell.png" class="cursor-pointer my-auto h-4 pr-4" />
+
                 <s-button
                     v-if="!$auth.isAuthenticated.value"
                     @click="isModalVisible = true"
