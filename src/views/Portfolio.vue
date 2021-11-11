@@ -123,7 +123,7 @@
             </tbody>
         </table>
         <div v-if="!synths.length" class="cursor-pointer bg-main text-center flex justify-center w-full mt-3">
-          no synths to show
+          No synths to show
         </div>
     </div>
 

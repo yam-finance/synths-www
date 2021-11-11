@@ -48,7 +48,10 @@ body {
 }
 html,
 body {
-
+    .bg-main {
+        background: #11112f;
+        border-color: #242449; 
+    }
 
     .bg-dark {
         background: #0c0c28;
@@ -74,9 +77,8 @@ body {
         color: #7171b2;
     }
 
-    .bg-main {
-        background: #11112f;
-        border-color: #242449;
+    .bd-main {
+        border-color: #242449; 
     }
 
     ::-webkit-scrollbar {
