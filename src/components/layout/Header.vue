@@ -33,7 +33,8 @@ export default {
         },
         closePopup(e) {
             e.stopPropagation()
-            this.isDropDownOpen = false
+            this.isHelpDropDownOpen = false
+            this.isLangDropDownOpen = false
             this.isWalletDropDownOpen = false
             // this.isModalVisible = false;
         },
@@ -57,7 +58,8 @@ const { login, web3, logout } = useWeb3()
 const isModalVisible = ref(false)
 
 const isWalletDropDownOpen = ref(false)
-const isDropDownOpen = ref(false)
+const isHelpDropDownOpen = ref(false)
+const isLangDropDownOpen = ref(false)
 blockNumber =  state.blockNumber;
 async function handleConnect(connector) {
     isModalVisible.value = false
@@ -169,15 +171,25 @@ function formatAddress(address) {
             "
         >
             <div class="flex absolute right-1">
-                <img src="@/assets/images/bell.png" class="cursor-pointer my-auto h-4" />
+                <span
+                    class="flex px-2 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer"
+                    @click="isLangDropDownOpen = !isLangDropDownOpen"
+                >
+                    English
+                    <img src="@/assets/images/dropdown.svg" class="mx-2 ml-1 my-auto h-4" />
+                </span>
+
 
                 <span
                     class="flex px-4 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer"
-                    @click="isDropDownOpen = !isDropDownOpen"
+                    @click="isHelpDropDownOpen = !isHelpDropDownOpen"
                 >
                     Help
                     <img src="@/assets/images/dropdown.svg" class="mx-2 ml-1 my-auto h-4" />
                 </span>
+
+                <img src="@/assets/images/bell.png" class="cursor-pointer my-auto h-4 pr-4" />
+
                 <s-button
                     v-if="!$auth.isAuthenticated.value"
                     @click="isModalVisible = true"
@@ -192,16 +204,39 @@ function formatAddress(address) {
                             class="flex px-4 py-1.5 text-sm cursor-pointer"
                             @click="
                                 ;(isWalletDropDownOpen = !isWalletDropDownOpen),
-                                    (isDropDownOpen = false)
+                                    (isHelpDropDownOpen = false),
+                                    (isLangDropDownOpen = false)
                             "
                         >
-                            <img src="../../assets/icons/metamask.svg" class="mx-2 my-auto h-4" />
+                            <img src="@/assets/icons/metamask.svg" class="mx-2 my-auto h-4" />
                             {{ formatAddress(web3.account) }}
-                            <img src="../../assets/images/dropdown.svg" class="mx-2 my-auto h-4" />
+                            <img src="@/assets/images/dropdown.svg" class="mx-2 my-auto h-4" />
                         </span>
                     </template>
                 </div>
             </div>
+
+            <ul
+                class="
+                    overflow-hidden
+                    my-auto
+                    p-2
+                    text-sm text-left
+                    fixed
+                    top-9
+                    right-72
+                    bg-light
+                    rounded-xl
+                    shadow-lg
+                "
+                v-if="isLangDropDownOpen"
+                v-click-away="closePopup"
+            >
+                <li class="min-w-max cursor-pointer p-1">
+                    <span>Spanish</span>
+                </li>
+            </ul>
+
             <ul
                 class="
                     overflow-hidden
@@ -215,7 +250,7 @@ function formatAddress(address) {
                     rounded-xl
                     shadow-lg
                 "
-                v-if="isDropDownOpen"
+                v-if="isHelpDropDownOpen"
                 v-click-away="closePopup"
             >
                 <li class="min-w-max cursor-pointer p-1">
@@ -225,6 +260,7 @@ function formatAddress(address) {
                     <span>Tutorials</span>
                 </li>
             </ul>
+
             <!-- wallet info dropdown -->
             <ul
                 class="
@@ -243,6 +279,88 @@ function formatAddress(address) {
                 v-if="isWalletDropDownOpen"
                 v-click-away="closePopup"
             >
+                <li class="min-w-max cursor-pointer p-1">
+                    <span class="wallet_actions"
+                        ><img src="@/assets/icons/play-circle.png" /> &nbsp; Run Simulation</span
+                    >
+                </li>
+                <li class="divider_dropdown_wallet"></li>
+                <li class="min-w-max cursor-pointer p-1">
+                    <span class="text-sm text-purpleLight">Network</span>
+                </li>
+                <li class="min-w-max cursor-pointer p-1">
+                    <label class="container "
+                        >Mainnet
+                        <input type="radio" :checked="web3.network.key == 1" class="form-radio" disabled/>
+                        <span class="checkmark"></span>
+                    </label>
+                </li>
+                <li class="min-w-max cursor-pointer p-1">
+                    <label class="container"
+                        >Polygon
+                        <input type="radio" :checked="web3.network.key == 137" class="form-radio" disabled/>
+                        <span class="checkmark"></span>
+                    </label>
+                </li>
+                <li class="min-w-max cursor-pointer p-1">
+                    <label class="container"
+                        >Rinkeby
+                        <input type="radio" :checked="web3.network.key == 4" class="form-radio" disabled/>
+                        <span class="checkmark"></span>
+                    </label>
+                </li>
+                <li class="divider_dropdown_wallet"></li>
+                <li class="min-w-max cursor-pointer p-1">
+                    <span class="wallet_actions"
+                        ><img src="@/assets/icons/play-circle.png" /> &nbsp; Run Simulation</span
+                    >
+                </li>
+                <li class="min-w-max cursor-pointer p-1">
+                    <span class="wallet_actions" @click="doCopy(web3.account)"
+                        ><img src="@/assets/icons/copy.svg" /> &nbsp; Copy Address</span
+                    >
+                </li>
+                <li class="min-w-max cursor-pointer p-1">
+                    <span class="wallet_actions"
+                        ><img src="@/assets/icons/externalLink.svg" />&nbsp;
+                        <a class="ml-1" :href="web3.etherscanlink" target="_blank" >Etherscan</a></span
+                    >
+                </li>
+                <li
+                    @click="handleLogout(), (isWalletDropDownOpen = false)"
+                    class="min-w-max cursor-pointer p-1"
+                >
+                    <span class="wallet_actions"
+                        ><img src="@/assets/icons/disconnect.svg" />&nbsp; Disconnect</span
+                    >
+                </li>
+            </ul>
+
+
+            <!-- wallet info dropdown 2 -->
+            <ul
+                class="
+                    overflow-hidden
+                    my-auto
+                    w-48
+                    shadow-lg
+                    p-2
+                    text-sm text-left
+                    fixed
+                    top-9
+                    right-2
+                    bg-light
+                    rounded-xl
+                "
+                v-if="0"
+                v-click-away="closePopup"
+            >
+                <li class="min-w-max cursor-pointer p-1">
+                    <span class="wallet_actions"
+                        ><img src="@/assets/icons/stop-circle.png" /> &nbsp; Stop Simulation</span
+                    >
+                </li>
+                <li class="divider_dropdown_wallet"></li>
                 <li class="min-w-max cursor-pointer p-1">
                     <span class="text-sm text-purpleLight">Network</span>
                 </li>
@@ -270,12 +388,12 @@ function formatAddress(address) {
                 <li class="divider_dropdown_wallet"></li>
                 <li class="min-w-max cursor-pointer p-1">
                     <span class="wallet_actions" @click="doCopy(web3.account)"
-                        ><img src="../../assets/icons/copy.svg" /> &nbsp; Copy Address</span
+                        ><img src="@/assets/icons/copy.svg" /> &nbsp; Copy Address</span
                     >
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
                     <span class="wallet_actions"
-                        ><img class="image_icon" src="../../assets/icons/externalLink.svg" />&nbsp;
+                        ><img src="@/assets/icons/externalLink.svg" />&nbsp;
                         <a class="ml-1" :href="web3.etherscanlink" target="_blank" >Etherscan</a></span
                     >
                 </li>
@@ -284,7 +402,7 @@ function formatAddress(address) {
                     class="min-w-max cursor-pointer p-1"
                 >
                     <span class="wallet_actions"
-                        ><img src="../../assets/icons/disconnect.svg" />&nbsp; Disconnect</span
+                        ><img src="@/assets/icons/disconnect.svg" />&nbsp; Disconnect</span
                     >
                 </li>
             </ul>
@@ -311,7 +429,7 @@ function formatAddress(address) {
 }
 .wallet_actions {
     display: inline-flex;
-    font-family: Open Sauce Sans;
+    /* font-family: Open Sauce Sans; */
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
@@ -322,13 +440,13 @@ function formatAddress(address) {
     order: 1;
 
     flex-grow: 0;
-    margin: 0px 8px;
+    margin: 2px 0px;
 }
 
 .wallet_actions img {
   margin-top: -2px;
-  width: 16px;
-  margin-right: 8px;
+  width: 20px;
+  margin-right: 4px;
 }
 .container {
     display: block;

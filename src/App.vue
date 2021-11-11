@@ -76,7 +76,6 @@ export default defineComponent({
   },
   mounted() {
     var obj = this;
-    debugger;
     document.onreadystatechange = function () {
       var state = document.readyState
       if (state == 'interactive') {
@@ -90,7 +89,6 @@ export default defineComponent({
   },
   watch: {
     $route(to, from) {
-      debugger;
       var obj = this;
       document.onreadystatechange = function () {
         var state = document.readyState;
