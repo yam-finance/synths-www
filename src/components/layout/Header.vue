@@ -46,6 +46,8 @@ export default {
 import { copyText } from 'vue3-clipboard'
 import { useWeb3 } from "@/composables/useWeb3"
 import ConnectWallet from "@/components/ConnectWallet.vue"
+import Simulator from "@/components/Simulator.vue"
+import HeaderDropdown from "@/components/HeaderDropdown.vue"
 import {globalStore} from "@/composables";
 import { ref } from "vue"
 
@@ -56,6 +58,7 @@ const { state } = globalStore()
 
 const { login, web3, logout } = useWeb3()
 const isModalVisible = ref(false)
+const isSimulatorVisible = ref(false)
 
 const isWalletDropDownOpen = ref(false)
 const isHelpDropDownOpen = ref(false)
@@ -216,50 +219,24 @@ function formatAddress(address) {
                 </div>
             </div>
 
-            <ul
-                class="
-                    overflow-hidden
-                    my-auto
-                    p-2
-                    text-sm text-left
-                    fixed
-                    top-9
-                    right-72
-                    bg-light
-                    rounded-xl
-                    shadow-lg
-                "
+            <HeaderDropdown
                 v-if="isLangDropDownOpen"
+                @close="closePopup"
                 v-click-away="closePopup"
+                right="right-72"
+                menu1="Spanish"
             >
-                <li class="min-w-max cursor-pointer p-1">
-                    <span>Spanish</span>
-                </li>
-            </ul>
+            </HeaderDropdown>
 
-            <ul
-                class="
-                    overflow-hidden
-                    my-auto
-                    p-2
-                    text-sm text-left
-                    fixed
-                    top-9
-                    right-44
-                    bg-light
-                    rounded-xl
-                    shadow-lg
-                "
+            <HeaderDropdown
                 v-if="isHelpDropDownOpen"
+                @close="closePopup"
                 v-click-away="closePopup"
+                right="right-44"
+                menu1="Documentation"
+                menu2="Tutorials"
             >
-                <li class="min-w-max cursor-pointer p-1">
-                    <span>Documentation</span>
-                </li>
-                <li class="min-w-max cursor-pointer p-1">
-                    <span>Tutorials</span>
-                </li>
-            </ul>
+            </HeaderDropdown>
 
             <!-- wallet info dropdown -->
             <ul
@@ -280,49 +257,49 @@ function formatAddress(address) {
                 v-click-away="closePopup"
             >
                 <li class="min-w-max cursor-pointer p-1">
-                    <span class="wallet_actions"
-                        ><img src="@/assets/icons/play-circle.png" /> &nbsp; Run Simulation</span
+                    <span class="inline-flex font-normal text-sm leading-4 text-white cursor-pointer mx-0 my-0.5 flex-grow-0"
+                        ><img src="@/assets/icons/play-circle.png" class="-mt-0.5 w-5 mr-1"/> &nbsp; Run Simulation</span
                     >
                 </li>
-                <li class="divider_dropdown_wallet"></li>
+                <li class="border-b border-[#303060] flex-none order-4 flex-grow-0 my-2 mx-0"></li>
                 <li class="min-w-max cursor-pointer p-1">
                     <span class="text-sm text-purpleLight">Network</span>
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
-                    <label class="container "
+                    <label class="container"
                         >Mainnet
-                        <input type="radio" :checked="web3.network.key == 1" class="form-radio" disabled/>
+                        <input type="radio" :checked="web3.network.key == 1" class="form-radio absolute opacity-0 h-0 w-0" disabled/>
                         <span class="checkmark"></span>
                     </label>
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
                     <label class="container"
                         >Polygon
-                        <input type="radio" :checked="web3.network.key == 137" class="form-radio" disabled/>
+                        <input type="radio" :checked="web3.network.key == 137" class="form-radio absolute opacity-0 h-0 w-0" disabled/>
                         <span class="checkmark"></span>
                     </label>
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
                     <label class="container"
                         >Rinkeby
-                        <input type="radio" :checked="web3.network.key == 4" class="form-radio" disabled/>
+                        <input type="radio" :checked="web3.network.key == 4" class="form-radio absolute opacity-0 h-0 w-0" disabled/>
                         <span class="checkmark"></span>
                     </label>
                 </li>
-                <li class="divider_dropdown_wallet"></li>
+                <li class="border-b border-[#303060] flex-none order-4 flex-grow-0 my-2 mx-0"></li>
                 <li class="min-w-max cursor-pointer p-1">
-                    <span class="wallet_actions"
-                        ><img src="@/assets/icons/play-circle.png" /> &nbsp; Run Simulation</span
+                    <span class="inline-flex font-normal text-sm leading-4 text-white cursor-pointer mx-0 my-0.5 flex-grow-0"
+                        ><img src="@/assets/icons/play-circle.png" class="-mt-0.5 w-5 mr-1"/> &nbsp; Run Simulation</span
                     >
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
-                    <span class="wallet_actions" @click="doCopy(web3.account)"
-                        ><img src="@/assets/icons/copy.svg" /> &nbsp; Copy Address</span
+                    <span class="inline-flex font-normal text-sm leading-4 text-white cursor-pointer mx-0 my-0.5 flex-grow-0" @click="doCopy(web3.account)"
+                        ><img src="@/assets/icons/copy.svg" class="-mt-0.5 w-5 mr-1"/> &nbsp; Copy Address</span
                     >
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
-                    <span class="wallet_actions"
-                        ><img src="@/assets/icons/externalLink.svg" />&nbsp;
+                    <span class="inline-flex font-normal text-sm leading-4 text-white cursor-pointer mx-0 my-0.5 flex-grow-0"
+                        ><img src="@/assets/icons/externalLink.svg" class="-mt-0.5 w-5 mr-1"/>&nbsp;
                         <a class="ml-1" :href="web3.etherscanlink" target="_blank" >Etherscan</a></span
                     >
                 </li>
@@ -330,8 +307,8 @@ function formatAddress(address) {
                     @click="handleLogout(), (isWalletDropDownOpen = false)"
                     class="min-w-max cursor-pointer p-1"
                 >
-                    <span class="wallet_actions"
-                        ><img src="@/assets/icons/disconnect.svg" />&nbsp; Disconnect</span
+                    <span class="inline-flex font-normal text-sm leading-4 text-white cursor-pointer mx-0 my-0.5 flex-grow-0"
+                        ><img src="@/assets/icons/disconnect.svg" class="-mt-0.5 w-5 mr-1"/>&nbsp; Disconnect</span
                     >
                 </li>
             </ul>
@@ -356,44 +333,44 @@ function formatAddress(address) {
                 v-click-away="closePopup"
             >
                 <li class="min-w-max cursor-pointer p-1">
-                    <span class="wallet_actions"
-                        ><img src="@/assets/icons/stop-circle.png" /> &nbsp; Stop Simulation</span
+                    <span class="inline-flex font-normal text-sm leading-4 text-white cursor-pointer mx-0 my-0.5 flex-grow-0"
+                        ><img src="@/assets/icons/stop-circle.png" class="-mt-0.5 w-5 mr-1"/> &nbsp; Stop Simulation</span
                     >
                 </li>
-                <li class="divider_dropdown_wallet"></li>
+                <li class="border-b border-[#303060] flex-none order-4 flex-grow-0 my-2 mx-0"></li>
                 <li class="min-w-max cursor-pointer p-1">
                     <span class="text-sm text-purpleLight">Network</span>
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
-                    <label class="container "
+                    <label class="container"
                         >Mainnet
-                        <input type="radio" :checked="web3.network.key == 1" class="form-radio" disabled/>
+                        <input type="radio" :checked="web3.network.key == 1" class="form-radio absolute opacity-0 h-0 w-0" disabled/>
                         <span class="checkmark"></span>
                     </label>
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
                     <label class="container"
                         >Polygon
-                        <input type="radio" :checked="web3.network.key == 137" class="form-radio" disabled/>
+                        <input type="radio" :checked="web3.network.key == 137" class="form-radio absolute opacity-0 h-0 w-0" disabled/>
                         <span class="checkmark"></span>
                     </label>
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
                     <label class="container"
                         >Rinkeby
-                        <input type="radio" :checked="web3.network.key == 4" class="form-radio" disabled/>
+                        <input type="radio" :checked="web3.network.key == 4" class="form-radio absolute opacity-0 h-0 w-0" disabled/>
                         <span class="checkmark"></span>
                     </label>
                 </li>
-                <li class="divider_dropdown_wallet"></li>
+                <li class="border-b border-[#303060] flex-none order-4 flex-grow-0 my-2 mx-0"></li>
                 <li class="min-w-max cursor-pointer p-1">
-                    <span class="wallet_actions" @click="doCopy(web3.account)"
-                        ><img src="@/assets/icons/copy.svg" /> &nbsp; Copy Address</span
+                    <span class="inline-flex font-normal text-sm leading-4 text-white cursor-pointer mx-0 my-0.5 flex-grow-0" @click="doCopy(web3.account)"
+                        ><img src="@/assets/icons/copy.svg" class="-mt-0.5 w-5 mr-1"/> &nbsp; Copy Address</span
                     >
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
-                    <span class="wallet_actions"
-                        ><img src="@/assets/icons/externalLink.svg" />&nbsp;
+                    <span class="inline-flex font-normal text-sm leading-4 text-white cursor-pointer mx-0 my-0.5 flex-grow-0"
+                        ><img src="@/assets/icons/externalLink.svg" class="-mt-0.5 w-5 mr-1"/>&nbsp;
                         <a class="ml-1" :href="web3.etherscanlink" target="_blank" >Etherscan</a></span
                     >
                 </li>
@@ -401,8 +378,8 @@ function formatAddress(address) {
                     @click="handleLogout(), (isWalletDropDownOpen = false)"
                     class="min-w-max cursor-pointer p-1"
                 >
-                    <span class="wallet_actions"
-                        ><img src="@/assets/icons/disconnect.svg" />&nbsp; Disconnect</span
+                    <span class="inline-flex font-normal text-sm leading-4 text-white cursor-pointer mx-0 my-0.5 flex-grow-0"
+                        ><img src="@/assets/icons/disconnect.svg" class="-mt-0.5 w-5 mr-1"/>&nbsp; Disconnect</span
                     >
                 </li>
             </ul>
@@ -419,35 +396,16 @@ function formatAddress(address) {
             @connect="handleConnect"
         >
         </ConnectWallet>
+        <Simulator
+            v-show="isSimulatorVisible"
+            @close="isSimulatorVisible = false"
+        >
+        </Simulator>
     </nav>
 </template>
 
 <style scoped>
-.image_icon {
-    height: 16px;
-    width: 16px;
-}
-.wallet_actions {
-    display: inline-flex;
-    /* font-family: Open Sauce Sans; */
-    font-style: normal;
-    font-weight: normal;
-    font-size: 14px;
-    line-height: 14px;
-    color: #ffffff;
-    cursor: pointer;
-    flex: none;
-    order: 1;
 
-    flex-grow: 0;
-    margin: 2px 0px;
-}
-
-.wallet_actions img {
-  margin-top: -2px;
-  width: 20px;
-  margin-right: 4px;
-}
 .container {
     display: block;
     position: relative;
@@ -461,27 +419,6 @@ function formatAddress(address) {
     user-select: none;
 }
 
-.t_network {
-    font-family: Open Sauce Sans;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 12px;
-    color: #7171b2;
-
-    /* Inside Auto Layout */
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    margin: 8px 0px;
-}
-
-.container input {
-    position: absolute;
-    opacity: 0;
-    height: 0;
-    width: 0;
-}
 
 /* Create a custom checkbox */
 .checkmark {
@@ -525,17 +462,5 @@ function formatAddress(address) {
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
-}
-
-.divider_dropdown_wallet {
-    border-bottom: 1px solid #303060;
-
-    /* Inside Auto Layout */
-
-    flex: none;
-    order: 4;
-    align-self: stretch;
-    flex-grow: 0;
-    margin: 8px 0px;
 }
 </style>
