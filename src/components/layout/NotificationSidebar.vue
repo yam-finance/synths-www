@@ -1,7 +1,11 @@
 <template>
     <transition name="slide">
-        <div v-if="notifications && isNotificationOpen" class="notification-wrapper bg-main">
-            <div class="notification bg-main">
+        <div
+            v-if="notifications && isNotificationOpen"
+            class="notification-wrapper bg-main"
+            @click="toggleNotificationOpen"
+        >
+            <div class="notification bg-main box-content" @click.stop="">
                 <img
                     class="notification-close basic-hover"
                     src="@/assets/images/x.svg"
@@ -53,9 +57,9 @@ h2 {
     @apply font-semibold mb-2;
 }
 .notification {
-    @apply absolute top-0 right-0 h-full w-full md:w-[240px] px-4;
+    @apply fixed top-0 right-0 h-full w-full md:w-[240px] px-4;
     &-wrapper {
-        @apply absolute top-0 right-0 h-full w-full;
+        @apply fixed top-0 right-0 h-full w-full;
         z-index: 1000;
         backdrop-filter: blur(5px);
         background: rgba(#11112f, 0.1);

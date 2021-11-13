@@ -1,5 +1,5 @@
 <template>
-    <div class="home bg-main">
+    <div class="home bg-main" :class="{ '!overflow-hidden': isOverflowHidden }">
         <Header />
         <main>
             <div class="w-full content">
@@ -15,12 +15,12 @@
             </div>
         </main>
         <Footer />
-        <notification-layout v-if="true" />
+        <notification-layout />
         <div class="fade-notification">
             <notification
-                class="notification-content__item p-2 mb-2"
                 v-for="(item, index) in notifications"
                 :key="item.title"
+                class="p-2 mb-2 sticky"
                 :icon-style="item.style"
                 :title="item.title"
                 :link="item.link"
@@ -32,26 +32,15 @@
     </div>
 </template>
 
-<script lang="ts">
+<script>
 import SideBar from "@/components/layout/SideBar.vue"
 import Header from "@/components/layout/Header.vue"
 import Footer from "@/components/layout/Footer.vue"
 import NotificationLayout from "@/components/layout/NotificationSidebar.vue"
 import SynthsNotification from "@/components/notifications/SynthsNotification.vue"
-import { globalStore } from "@/composables"
 
 export default {
     name: "Home",
-    setup() {
-        const { state } = globalStore()
-        const { deleteNewNotification } = globalStore()
-
-        const notifications = state.newNotifications
-        return {
-            notifications,
-            deleteNewNotification,
-        }
-    },
     components: {
         SideBar,
         Header,
@@ -59,13 +48,61 @@ export default {
         NotificationLayout,
         notification: SynthsNotification,
     },
+    computed: {
+        isOverflowHidden() {
+            return this.isNotificationOpen
+        },
+    },
 }
 </script>
+<script setup>
+import { globalStore } from "@/composables"
+import { onMounted } from "vue"
+
+let { state } = globalStore()
+let { deleteNewNotification } = globalStore()
+let { addNewNotifications } = globalStore()
+
+let notifications = state.newNotifications
+let isNotificationOpen = state.isNotificationOpen
+
+onMounted(() => {
+    addNewNotifications({
+        style: 0,
+        link: "https://github.com/yam-finance/synths-www/issues/75",
+        title: "Title1",
+        content: "Transaction sent. Minting 8 Long & 8 Short with 4 ETH",
+    })
+    setTimeout(() => {
+        addNewNotifications({
+            style: 0,
+            link: "https://github.com/yam-finance/synths-www/issues/75",
+            title: "Title2",
+            content: "Transaction sent. Minting 8 Long & 8 Short with 4 ETH",
+        })
+    }, 2000)
+    setTimeout(() => {
+        addNewNotifications({
+            style: 0,
+            link: "https://github.com/yam-finance/synths-www/issues/75",
+            title: "Title3",
+            content: "Transaction sent. Minting 8 Long & 8 Short with 4 ETH",
+        })
+    }, 3000)
+    setTimeout(() => {
+        addNewNotifications({
+            style: 0,
+            link: "https://github.com/yam-finance/synths-www/issues/75",
+            title: "Title244",
+            content: "Transaction sent. Minting 8 Long & 8 Short with 4 ETH",
+        })
+    }, 4000)
+})
+</script>
 <style lang="scss">
-.fade-notification {
-    @apply absolute top-[70px] right-[20px] max-w-[300px];
-    z-index: 999;
- }
+.home {
+    @apply relative h-full overflow-auto;
+}
 .content {
     display: -webkit-inline-box;
 
@@ -76,5 +113,10 @@ export default {
     &-mobile {
         height: calc(100vh - 64px);
     }
+}
+
+.fade-notification {
+    @apply fixed top-[70px] right-[20px] max-w-[300px] h-full;
+    z-index: 999;
 }
 </style>

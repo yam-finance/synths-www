@@ -1,139 +1,91 @@
 <template>
-  <Suspense >
-    <template v-if="!loadingStatus">
-      <router-view />
-    </template>
-    <template v-else-if="loadingStatus">
-      <p class="absolute left-1/2 top-1/2">Loading...</p>
-    </template>
-  </Suspense>
+    <!--    TODO: experimental new feature Suspense-->
+    <Suspense>
+        <template v-if="!loadingStatus">
+            <router-view />
+        </template>
+        <template v-else-if="loadingStatus">
+            <p class="absolute left-1/2 top-1/2">Loading...</p>
+        </template>
+    </Suspense>
 </template>
 
 <style lang="scss">
+#app {
+    @apply relative h-full overflow-auto;
+}
 #nav {
-  padding: 30px;
+    padding: 30px;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+    a {
+        font-weight: bold;
+        color: #2c3e50;
 
-    &.router-link-exact-active {
-      color: #42b983;
+        &.router-link-exact-active {
+            color: #42b983;
+        }
     }
-  }
 }
 </style>
 
 <script lang="ts">
-import { defineComponent, provide, reactive, ref, onUnmounted, onMounted } from "vue"
+import { defineComponent, provide, ref, onUnmounted, onMounted } from "vue"
+
 import { globalStore } from "@/composables"
 
 export default defineComponent({
-  setup() {
-    //Setup Simple Data
-    const state = reactive({
-      name: "John Doe",
-      email: "john@gmail.com",
-    })
+    setup() {
+        // block number Eth
+        const { loadBlockNumber } = globalStore()
 
-    const updateUsername = (name: string) => {
-      state.name = name
-    }
+        loadBlockNumber()
 
-    const updateEmail = (email: string) => {
-      state.email = email
-    }
+        //Setup window resize watcher
+        const screenWidth = ref<number | null>(null)
 
-    const { loadBlockNumber } = globalStore()
+        const resizeHandler = () => {
+            screenWidth.value = window.innerWidth
+        }
 
-    loadBlockNumber()
-
-    provide("userDetails", state)
-    provide("updateUsername", updateUsername)
-    provide("updateEmail", updateEmail)
-
-    //Setup window resize watcher
-    const screenWidth = ref<number | null>(null)
-
-    const resizeHandler = () => {
-      screenWidth.value = window.innerWidth
-    }
-
-    window.addEventListener("resize", resizeHandler)
+        window.addEventListener("resize", resizeHandler)
 
         const { addNewNotifications } = globalStore()
-
-        onMounted(() => {
-            addNewNotifications({
-                style: 0,
-                link: "https://github.com/yam-finance/synths-www/issues/75",
-                title: "Title1",
-                content: "Transaction sent. Minting 8 Long & 8 Short with 4 ETH",
-            })
-            setTimeout(() => {
-                addNewNotifications({
-                    style: 0,
-                    link: "https://github.com/yam-finance/synths-www/issues/75",
-                    title: "Title2",
-                    content: "Transaction sent. Minting 8 Long & 8 Short with 4 ETH",
-                })
-            }, 2000)
-            setTimeout(() => {
-                addNewNotifications({
-                    style: 0,
-                    link: "https://github.com/yam-finance/synths-www/issues/75",
-                    title: "Title3",
-                    content: "Transaction sent. Minting 8 Long & 8 Short with 4 ETH",
-                })
-            }, 3000)
-            setTimeout(() => {
-                addNewNotifications({
-                    style: 0,
-                    link: "https://github.com/yam-finance/synths-www/issues/75",
-                    title: "Title244",
-                    content: "Transaction sent. Minting 8 Long & 8 Short with 4 ETH",
-                })
-            }, 4000)
-        })
 
         onUnmounted(() => {
             window.removeEventListener("resize", resizeHandler)
         })
 
-    provide("screen", screenWidth)
+        provide("screen", screenWidth)
 
-    return { state, screenWidth }
-  },
-  data() {
-    return {
-      loadingStatus: true
-    }
-  },
-  mounted() {
-    var obj = this;
-    document.onreadystatechange = function () {
-      var state = document.readyState
-      if (state == 'interactive') {
-        obj.loadingStatus = true;
-      } else if (state == 'complete') {
-        obj.loadingStatus = false;
-      }
-    }
-  },
-  methods: {
-  },
-  watch: {
-    $route(to, from) {
-      var obj = this;
-      document.onreadystatechange = function () {
-        var state = document.readyState;
-        if (state == 'interactive') {
-          obj.loadingStatus = true;
-        } else if (state == 'complete') {
-          obj.loadingStatus = false;
-        }
-      }
+        return { screenWidth }
     },
-  }
+    data() {
+        return {
+            loadingStatus: true,
+        }
+    },
+    watch: {
+        $route(to, from) {
+            document.onreadystatechange = () => {
+                let state = document.readyState
+                if (state == "interactive") {
+                    this.loadingStatus = true
+                } else if (state == "complete") {
+                    this.loadingStatus = false
+                }
+            }
+        },
+    },
+    mounted() {
+        document.onreadystatechange = () => {
+            let state = document.readyState
+            if (state == "interactive") {
+                this.loadingStatus = true
+            } else if (state == "complete") {
+                this.loadingStatus = false
+            }
+        }
+    },
+    methods: {},
 })
 </script>

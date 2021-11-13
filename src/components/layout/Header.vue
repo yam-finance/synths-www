@@ -82,6 +82,9 @@ export default {
             this.isWalletDropDownOpen = false
             // this.isModalVisible = false;
         },
+        goToBlockLink() {
+          window.open(`https://etherscan.io/block/${this.blockNumber}`, '_blank');
+        }
     },
 }
 </script>
@@ -426,7 +429,7 @@ export default {
             </ul>
         </div>
         <div class="flex overflow-hidden absolute right-0 h-12 visible md:invisible">
-            <div class="flex px-4 py-4 cursor-pointer">
+            <div class="flex px-4 py-4 cursor-pointer" @click="goToBlockLink">
                 <img src="@/assets/images/green-dot.svg" class="h-full py-0.5" />
                 <span class="text-xs my-auto font-normal px-1">{{ blockNumber }}</span>
             </div>

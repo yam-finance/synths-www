@@ -18,7 +18,7 @@
     >
         <div class="invisible md:visible">
             <div class="flex overflow-hidden absolute w-64 h-12 border-r bg-main">
-                <div class="flex items-center px-4 cursor-pointer">
+                <div class="flex items-center px-4 cursor-pointer" @click="goToBlockLink">
                     <img src="@/assets/images/green-dot.svg" class="" />
                     <div class="text-xs font-normal translate-y-px px-2">{{ blockNumber }}</div>
                     <img src="@/assets/images/external-link.svg" class="" />
@@ -234,7 +234,11 @@ export default {
             tabs,
         }
     },
-    methods: {},
+    methods: {
+      goToBlockLink() {
+        window.open(`https://etherscan.io/block/${this.blockNumber}`, '_blank');
+      }
+    },
 }
 </script>
 
