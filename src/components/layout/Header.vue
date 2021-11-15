@@ -11,11 +11,12 @@ const { state } = globalStore()
 const { login, web3, logout } = useWeb3()
 const isModalVisible = ref(false)
 
-const isWalletDropDownOpen = ref(false)
+const isWalletDropDownOpen = ref(true)
 const isHelpDropDownOpen = ref(false)
 const isLangDropDownOpen = ref(false)
 const isDropDownOpen = ref(false)
 const { toggleNotificationOpen } = globalStore()
+const { addNewNotifications } = globalStore()
 
 let blockNumber = state.blockNumber
 async function handleConnect(connector) {
@@ -29,8 +30,22 @@ async function handleLogout() {
 const { toClipboard } = useClipboard()
 async function doCopy(address) {
     try {
-        await toClipboard(address)
+        await toClipboard('address')
+
+      addNewNotifications({
+        style: 1,
+        link: null,
+        title: "Success!",
+        content: 'Copied',
+      }, false)
     } catch (e) {
+      // TODO: Can't catch error
+      addNewNotifications({
+        style: 0,
+        link: null,
+        title: "Error!",
+        content: 'Please try again or reload page',
+      }, false)
         console.error(e)
     }
 }

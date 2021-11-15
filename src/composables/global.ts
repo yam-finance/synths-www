@@ -46,10 +46,10 @@ export default () => {
         globalState.newNotifications.splice(index, 1)
     }
 
-    const addNewNotifications = (payload: object) => {
+    const addNewNotifications = (payload: object, saveGlobally = true) => {
         globalState.newNotifications.push(payload)
         newNotificationTimer = setTimeout(() => {
-            globalState.notifications.push(payload)
+            if (saveGlobally) globalState.notifications.push(payload)
             globalState.newNotifications.shift()
         }, 3000)
     }
