@@ -239,7 +239,6 @@ export default {
 
     methods: {
         close() {
-            console.log("sadfasdf")
             this.$emit("close")
         },
         saveWalletType() {
@@ -248,6 +247,8 @@ export default {
     },
 }
 </script>
+
+<!-- TODO convert to tailwind -->
 <style>
 .modal-backdrop {
     background-color: rgba(0, 0, 0, 0.3);
