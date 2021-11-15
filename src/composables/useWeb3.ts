@@ -21,6 +21,7 @@ const state = ref({
 // TODO Initialize with default provider if wallet is not connected
 watchEffect(() => { 
     console.log("State changed!");
+    console.log("provider = ", state.value.ethersProvider);
     init(state.value.ethersProvider);
 })
 
@@ -31,6 +32,7 @@ export function useWeb3() {
         await auth.login(connector)
         if (auth.provider.value) {
             auth.web3 = new Web3Provider(auth.provider.value, "any")
+           
             await loadProvider()
         }
         state.value.authLoading = false
@@ -42,9 +44,12 @@ export function useWeb3() {
     }
 
     async function loadProvider() {
+        console.log("on changes");
         try {
             if (auth.provider.value.removeAllListeners && !auth.provider.value.isTorus)
                 auth.provider.value.removeAllListeners()
+                
+
             if (auth.provider.value.on) {
                 auth.provider.value.on("chainChanged", async (chainId) => {
                     handleChainChanged(parseInt(formatUnits(chainId, 0)))
@@ -57,6 +62,8 @@ export function useWeb3() {
                 })
                 // auth.provider.on('disconnect', async () => {});
             }
+            console.log("on changes");
+            console.log('Provider', auth.provider.value);
             state.value.ethersProvider = auth.web3;
             let network, accounts
             try {

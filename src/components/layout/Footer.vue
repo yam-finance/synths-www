@@ -18,7 +18,7 @@
     >
         <div class="invisible md:visible">
             <div class="flex overflow-hidden absolute w-64 h-12 border-r bg-main">
-                <div class="flex items-center px-4 cursor-pointer">
+                <div class="flex items-center px-4 cursor-pointer" @click="goToBlockLink">
                     <img src="@/assets/images/green-dot.svg" class="" />
                     <div class="text-xs font-normal translate-y-px px-2">{{ blockNumber }}</div>
                     <img src="@/assets/images/external-link.svg" class="" />
@@ -145,6 +145,7 @@
                     <img
                         src="@/assets/images/bell.png"
                         class="mx-2 my-auto h-4 inline cursor-pointer"
+                        @click="toggleNotificationOpen"
                     />
                     <button
                         @click="isModalVisible = true"
@@ -183,11 +184,12 @@ import {globalStore} from "@/composables";
 
 const { login, web3, logout } = useWeb3()
 const isModalVisible = ref(false)
-let blockNumber;
- const { state } = globalStore()
-blockNumber =  state.blockNumber;
+
+const { toggleNotificationOpen } = globalStore()
+const { state } = globalStore()
+let blockNumber =  state.blockNumber;
 const isWalletDropDownOpen = ref(false)
-const isDropDownOpen = ref(false)
+const isHelpDropDownOpen = ref(false)
 
 async function handleConnect(connector) {
     isModalVisible.value = false
@@ -232,7 +234,11 @@ export default {
             tabs,
         }
     },
-    methods: {},
+    methods: {
+      goToBlockLink() {
+        window.open(`https://etherscan.io/block/${this.blockNumber}`, '_blank');
+      }
+    },
 }
 </script>
 
