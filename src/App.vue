@@ -1,37 +1,44 @@
 <template>
-    <!--    TODO: experimental new feature Suspense-->
-    <Suspense>
-        <template v-if="!loadingStatus">
-            <router-view />
-        </template>
-        <template v-else-if="loadingStatus">
-            <p class="absolute left-1/2 top-1/2">Loading...</p>
-        </template>
-    </Suspense>
+  <!--    TODO: experimental new feature Suspense-->
+  <Suspense>
+    <template v-if="!loadingStatus">
+      <router-view />
+    </template>
+    <template v-else-if="loadingStatus">
+      <p class="absolute left-1/2 top-1/2">Loading...</p>
+    </template>
+  </Suspense>
 </template>
 
 <style lang="scss">
 #app {
-    @apply relative h-full overflow-auto;
+  @apply relative h-full overflow-auto;
 }
 #nav {
-    padding: 30px;
+  padding: 30px;
 
-    a {
-        font-weight: bold;
-        color: #2c3e50;
+  a {
+    font-weight: bold;
+    color: #2c3e50;
 
-        &.router-link-exact-active {
-            color: #42b983;
-        }
+    &.router-link-exact-active {
+      color: #42b983;
     }
+  }
 }
 </style>
 
 <script lang="ts">
-import { defineComponent, provide, reactive, ref, onUnmounted, onMounted } from "vue"
-import { globalStore } from "@/composables"
-import { useApp } from '@/composables/useApp'
+import {
+  defineComponent,
+  provide,
+  reactive,
+  ref,
+  onUnmounted,
+  onMounted,
+} from "vue";
+import { globalStore } from "@/composables";
+import { useApp } from "@/composables/useApp";
 
 export default defineComponent({
   setup() {
@@ -39,71 +46,70 @@ export default defineComponent({
     const state = reactive({
       name: "John Doe",
       email: "john@gmail.com",
-    })
+    });
 
     const updateUsername = (name: string) => {
-      state.name = name
-    }
+      state.name = name;
+    };
 
     const updateEmail = (email: string) => {
-      state.email = email
-    }
+      state.email = email;
+    };
 
-    const { loadBlockNumber } = globalStore()
+    const { loadBlockNumber } = globalStore();
 
-        loadBlockNumber()
+    loadBlockNumber();
 
-        //Setup window resize watcher
-        const screenWidth = ref<number | null>(null)
+    //Setup window resize watcher
+    const screenWidth = ref<number | null>(null);
 
-        const resizeHandler = () => {
-            screenWidth.value = window.innerWidth
-        }
+    const resizeHandler = () => {
+      screenWidth.value = window.innerWidth;
+    };
 
-        window.addEventListener("resize", resizeHandler)
+    window.addEventListener("resize", resizeHandler);
 
-        const { addNewNotifications } = globalStore()
+    // const { addNewNotifications } = globalStore();
 
-        onUnmounted(() => {
-            window.removeEventListener("resize", resizeHandler)
-        })
+    onUnmounted(() => {
+      window.removeEventListener("resize", resizeHandler);
+    });
 
-        provide("screen", screenWidth)
-
+    provide("screen", screenWidth);
 
     const { init } = useApp();
     onMounted(async () => {
-       init();
-    })
-    return { state, screenWidth }
+      init();
+    });
+    return { state, screenWidth };
   },
   data() {
     return {
-      loadingStatus: true
-    }
+      loadingStatus: true,
+    };
   },
   mounted() {
     document.onreadystatechange = () => {
-      let state = document.readyState
+      let state = document.readyState;
       if (state == "interactive") {
-        this.loadingStatus = true
+        this.loadingStatus = true;
       } else if (state == "complete") {
-        this.loadingStatus = false
+        this.loadingStatus = false;
       }
-    }
+    };
   },
-  methods: {
-  },
+  methods: {},
   watch: {
     $route(to, from) {
       document.onreadystatechange = () => {
-        let state = document.readyState
+        let state = document.readyState;
         if (state == "interactive") {
-          this.loadingStatus = true
+          this.loadingStatus = true;
         } else if (state == "complete") {
-          this.loadingStatus = false
+          this.loadingStatus = false;
         }
+      };
     },
-})
+  },
+});
 </script>
-
