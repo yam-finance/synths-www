@@ -108,14 +108,16 @@
                 </div>
                 <div class="flex flex-wrap justify-center mb-8">
                     <div
-                        v-for="(menu, key) in menus"
+                        v-if="!loading"
+                        v-for="(menu, key) in recentSynthData"
                         :key="key"
                         class="card rounded-lg bg-[#272760] shadow-lg p-4 m-2 hover:-translate-y-0.5 cursor-pointer lg:w-64"
                     >
                         <div class="flex items-center mb-5">
                             <div class="flex items-center flex-grow">
                                 <img src="@/assets/images/zombie.png" class="w-6 h-6" />
-                                <span class="text-sm font-semibold ml-2">{{ menu.title }}</span>
+                                <span class="text-sm font-semibold ml-2">{{ menu.tokenSymbol }}</span>
+                                <span class="text-sm font-semibold ml-2">loading</span>
                             </div>
                             <div>
                                 <div
@@ -131,20 +133,20 @@
                                         float-right
                                     "
                                 >
-                                    30% APY
+                                    {{ Number(menu.apr).toFixed(2) }}% APR
                                 </div>
                             </div>
                         </div>
                         <div class="grid grid-cols-2">
                             <div class="flex items-end">
-                                <span class="px-1 font-bold">${{ menu.price }}</span>
+                                <span class="px-1 font-bold">{{ menu.price.toFixed(4) }} {{ menu.collateralSymbol }}</span>
                                 <img
                                     src="@/assets/images/arrow-up-right.svg"
                                     class="h-4 mb-0.5"
                                 />
-                                <span class="px-1 text-sm text-[#9A9AC8]">15%</span>
+                                <span class="px-1 text-sm text-[#9A9AC8]">{{ menu.priceChanged24h }}%</span>
                             </div>
-                            <router-link :to="'/synths/' + menu.to">
+                            <router-link :to="'/synths/' + menu.tokenSymbol">
                                 <div>
                                     <img
                                         src="@/assets/images/arrow-right-light.png"
@@ -152,6 +154,52 @@
                                     />
                                 </div>
                             </router-link>
+                        </div>
+                    </div>
+
+                    <div
+                        v-else
+                        class="card rounded-lg bg-[#272760] shadow-lg p-4 m-2 hover:-translate-y-0.5 cursor-pointer lg:w-64"
+                    >
+                        <div class="flex items-center mb-5">
+                            <div class="flex items-center flex-grow">
+                                <img src="@/assets/images/zombie.png" class="w-6 h-6" />
+                                <span class="animate-pulse text-sm font-semibold ml-2">name</span>
+                            </div>
+                            <div>
+                                <div
+                                    class="
+                                        loading-pulse
+                                        bg-[#3468FF]
+                                        my-auto
+                                        px-2
+                                        py-0.5
+                                        mt-0.5
+                                        rounded-full
+                                        text-xs
+                                        font-bold
+                                        float-right
+                                    "
+                                >
+                                   apr 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="flex items-end">
+                                <span class="animate-pulse px-1 font-bold">price</span>
+                                <img
+                                    src="@/assets/images/arrow-up-right.svg"
+                                    class="h-4 mb-0.5"
+                                />
+                                <span class="animate-pulse px-1 text-sm text-[#9A9AC8]">changed</span>
+                            </div>
+                                <div>
+                                    <img
+                                        src="@/assets/images/arrow-right-light.png"
+                                        class="animate-loading float-right h-6"
+                                    />
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -171,9 +219,10 @@
                     </button>
                 </router-link>
 
-                <div class="grid grid-cols-2 md:grid-cols-4 m-4 my-16">
+                <div class="grid grid-cols-2 md:grid-cols-3 m-4 my-16">
                     <div class="font-semibold">
-                        <p class="text-4xl md:text-5xl lg:text-6xl">{totalMarketData.totalTVL}$</p>
+                        <p v-if="!loading" class="text-4xl md:text-5xl lg:text-6xl">{{ Number(totalMarketData.totalTVL).toFixed(0) }}$</p>
+                        <p v-else class="animate-pulse text-4xl md:text-5xl lg:text-6xl">...</p>
                         <p class="text-sm txt-main mt-2">TOTAL VALUE LOCKED</p>
                     </div>
                     <!--
@@ -183,11 +232,13 @@
                     </div>
                     -->
                     <div class="font-semibold">
-                        <p class="text-4xl md:text-5xl lg:text-6xl">{totalMarketData.total24hLiquidity}$</p>
+                        <p v-if="!loading" class="text-4xl md:text-5xl lg:text-6xl">{{ Number(totalMarketData.totalLiquidity).toFixed(0) }}$</p>
+                        <p v-else class="animate-pulse text-4xl md:text-5xl lg:text-6xl">...</p>
                         <p class="text-sm txt-main mt-2">SYNTH LIQUIDITY LAST 24h</p>
                     </div>
                     <div class="font-semibold">
-                        <p class="text-4xl md:text-5xl lg:text-6xl">{totalMarketData.total24hVolume}$</p>
+                        <p v-if="!loading" class="text-4xl md:text-5xl lg:text-6xl">{{ Number(totalMarketData.total24hVolume).toFixed(0) }}$</p>
+                        <p v-else class="animate-pulse text-4xl md:text-5xl lg:text-6xl">...</p>
                         <p class="text-sm txt-main mt-2">VOLUME LAST 24H</p>
                     </div>
                 </div>
@@ -341,41 +392,72 @@
 </template>
 
 <script>
+import { computed } from "vue"
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
 import { useSynthsSDK } from "../composables/useSynthsSDK";
 
-let menus = [
-    {
-        id: 1,
-        title: "ETH/DAI IL",
-        price: 120,
-        to: "eth-dai-il",
-    },
-    {
-        id: 2,
-        title: "ETH/DAI IL",
-        price: 120,
-        to: "eth-dai-il",
-    },
-    {
-        id: 3,
-        title: "ETH/DAI IL",
-        price: 120,
-        to: "eth-dai-il",
-    },
-    {
-        id: 4,
-        title: "ETH/DAI IL",
-        price: 120,
-        to: "eth-dai-il",
-    },
-    {
-        id: 5,
-        title: "ETH/DAI IL",
-        price: 120,
-        to: "eth-dai-il",
-    },
-]
+let recentSynthData = [
+  {
+    tokenId: '0xe3df5e08b72704c23229cb92fe847b23bfde9dbd',
+    tokenSymbol: 'uGAS-1221',
+    collateralSymbol: 'WETH',
+    apr: '80.53810453070447',
+    price: 0.08702954272788446,
+    priceChanged24h: 0,
+    liquidity: '785668.8706461301417345368447751548',
+    volume24h: 0
+  },
+  {
+    tokenId: '0x37a572b95d3fb5007a3519e73d4e9d6e0fc9de50',
+    tokenSymbol: 'uPUNKS-1221',
+    collateralSymbol: 'WETH',
+    apr: '77.52320098059948',
+    price: 0.12021159090909089,
+    priceChanged24h: 0,
+    liquidity: '272252.5503443591485622458646405356',
+    volume24h: 0
+  }
+];
+
+let totalMarketData = {
+  totalLiquidity: 1059817.0555786034,
+  total24hVolume: 1059817.0555786034,
+  totalTVL: 3012466.25
+};
+
+// let menuds = [
+//     {
+//         id: 1,
+//         title: "ETH/DAI IL",
+//         price: 120,
+//         to: "eth-dai-il",
+//     },
+//     {
+//         id: 2,
+//         title: "ETH/DAI IL",
+//         price: 120,
+//         to: "eth-dai-il",
+//     },
+//     {
+//         id: 3,
+//         title: "ETH/DAI IL",
+//         price: 120,
+//         to: "eth-dai-il",
+//     },
+//     {
+//         id: 4,
+//         title: "ETH/DAI IL",
+//         price: 120,
+//         to: "eth-dai-il",
+//     },
+//     {
+//         id: 5,
+//         title: "ETH/DAI IL",
+//         price: 120,
+//         to: "eth-dai-il",
+//     },
+// ]
+
 export default {
     name: "HomePage",
     components: {
@@ -383,7 +465,8 @@ export default {
     },
     data() {
         return {
-            menus,
+            // recentSynthData,
+            // totalMarketData,
         }
     },
     setup() {
@@ -391,7 +474,8 @@ export default {
 
         return {
            totalMarketData: computed(() => { if (!loading.value) return totalMarketData.value }),
-           recentSynthData: computed(() => { if (!loading.value) return recentSynthData.value }) 
+           recentSynthData: computed(() => { if (!loading.value) return recentSynthData.value }),
+           loading: computed(() => loading.value),
         }
     }
 }

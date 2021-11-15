@@ -6,6 +6,7 @@ const loading = ref(true)
 const data = ref({})
 const totalMarketData = ref()
 const recentSynthData = ref()
+const lspPortfolio = ref()
 let synthsSDK: Synths;
 
 export function useSynthsSDK() {
@@ -15,11 +16,11 @@ export function useSynthsSDK() {
      * @param provider The web3 provider instance.
      */
     async function init(provider: Web3Provider) {
+        const networkId: number = (await provider.getNetwork()).chainId;
         synthsSDK = await Synths.create({ ethersProvider: provider });
-        // TODO Update network array.
-        totalMarketData.value = await getTotalMarketData([1]);
-        recentSynthData.value = await getRecentSynthData(1);
-        connectTo("upunks-0921")
+        recentSynthData.value = await getRecentSynthData(networkId);
+        totalMarketData.value = await getTotalMarketData([networkId]);
+        // lspPortfolio.value = await getLSPPortfolio(provider.getSigner()._address);
     }
 
     /**
@@ -45,6 +46,7 @@ export function useSynthsSDK() {
         data: computed(() => data.value),
         totalMarketData: computed(() => totalMarketData.value),
         recentSynthData: computed(() => recentSynthData.value),
+        lspPortfolio: computed(() => lspPortfolio.value),
         synthsSDK,
         connectTo,
         init
