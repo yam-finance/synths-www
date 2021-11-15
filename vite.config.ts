@@ -31,10 +31,7 @@ export default defineConfig({
                     "/explore": "Explore",
                     "/portfolio": "Portfolio",
                 }
-                context.html = context.html.replace(
-                    /<title>[^<]*<\/title>/i,
-                    `<title>${titles[context.route]}</title>`
-                )
+                context.html = context.html.replace(/<title>[^<]*<\/title>/i, `<title>${titles[context.route]}</title>`)
                 return context
             },
         }),

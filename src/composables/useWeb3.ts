@@ -66,10 +66,7 @@ export function useWeb3() {
             state.value.ethersProvider = auth.web3
             let network, accounts
             try {
-                ;[network, accounts] = await Promise.all([
-                    auth.web3.getNetwork(),
-                    auth.web3.listAccounts(),
-                ])
+                ;[network, accounts] = await Promise.all([auth.web3.getNetwork(), auth.web3.listAccounts()])
             } catch (e) {
                 console.log(e)
             }

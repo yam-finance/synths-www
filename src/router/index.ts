@@ -3,18 +3,18 @@ import { createRouter, createWebHistory } from "vue-router"
 const routes = [
     {
         path: "/",
-        name: "HomePage",
+        name: "Home",
         component: () => import("@/views/Home.vue"),
     },
     {
         path: "/",
-        name: "Home",
+        name: "AppView",
         component: () => import("@/views/AppView.vue"),
         meta: { hasSideBar: 1 },
         children: [
             {
                 path: "/explore",
-                name: "Explore Synths",
+                name: "Explore",
                 component: () => import("@/views/ExploreSynths.vue"),
                 meta: { hasSideBar: 0 },
             },

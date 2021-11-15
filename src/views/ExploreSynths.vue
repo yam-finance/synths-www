@@ -31,9 +31,7 @@
             </div>
         </div>
 
-        <div
-            class="w-full h-12 border-b bg-main text-white text-lg flex text-center justify-between"
-        >
+        <div class="w-full h-12 border-b bg-main text-white text-lg flex text-center justify-between">
             <span class="py-3 px-4"> All Synths </span>
 
             <div class="h-full w-[230px] py-2 px-3 flex">
@@ -75,26 +73,16 @@
                 <th></th>
             </thead>
             <tbody class="border-t bg-main lg:text-xs xl:text-sm 2xl:text-base">
-                <tr
-                    v-for="(synth, key) in synths"
-                    :key="key"
-                    class="cursor-pointer border-b bg-main basic-hover"
-                >
+                <tr v-for="(synth, key) in synths" :key="key" class="cursor-pointer border-b bg-main basic-hover">
                     <td class="px-4 py-2 flex">
                         <img src="@/assets/images/zombie.png" class="w-6 h-6" />
-                        <router-link
-                            class="font-semibold"
-                            :to="{ name: 'Synths', params: { synth: synth.id } }"
-                        >
+                        <router-link class="font-semibold" :to="{ name: 'Synths', params: { synth: synth.id } }">
                             &nbsp;{{ synth.name }}
                         </router-link>
                     </td>
                     <td>{{ synth.price }}</td>
                     <td>
-                        <img
-                            src="@/assets/images/arrow-up-right.svg"
-                            class="h-4 inline -translate-y-0.5"
-                        />
+                        <img src="@/assets/images/arrow-up-right.svg" class="h-4 inline -translate-y-0.5" />
                         {{ synth.day_change }}
                     </td>
                     <td>{{ synth.day_volume }}</td>
@@ -108,10 +96,7 @@
                 </tr>
             </tbody>
         </table>
-        <div
-            v-if="!synths.length"
-            class="cursor-pointer bg-main text-center flex justify-center w-full mt-3"
-        >
+        <div v-if="!synths.length" class="cursor-pointer bg-main text-center flex justify-center w-full mt-3">
             No synths to show
         </div>
     </div>
@@ -126,9 +111,7 @@
             <div class="text-lg font-bold">$12.9M</div>
             <div class="text-xs txt-main">Total Value Locked</div>
         </div>
-        <div
-            class="w-full h-12 border-b bg-main text-white text-lg flex text-center justify-between"
-        >
+        <div class="w-full h-12 border-b bg-main text-white text-lg flex text-center justify-between">
             <span class="py-3 px-4"> All Synths </span>
 
             <div class="h-full w-[230px] py-2 px-3 flex">
@@ -165,11 +148,7 @@
                 <th></th>
             </thead>
             <tbody class="border-t bg-main text-base">
-                <tr
-                    v-for="(synth, key) in synths"
-                    :key="key"
-                    class="cursor-pointer border-b bg-main basic-hover"
-                >
+                <tr v-for="(synth, key) in synths" :key="key" class="cursor-pointer border-b bg-main basic-hover">
                     <td class="px-4 py-2 font-semibold flex">
                         <img src="@/assets/images/zombie.png" class="w-6 h-6" />
                         <router-link :to="{ name: 'Synths', params: { synth: synth.id } }">
@@ -178,10 +157,7 @@
                     </td>
                     <td>{{ synth.price }}</td>
                     <td>
-                        <img
-                            src="@/assets/images/arrow-up-right.svg"
-                            class="h-4 inline -translate-y-0.5"
-                        />
+                        <img src="@/assets/images/arrow-up-right.svg" class="h-4 inline -translate-y-0.5" />
                         {{ synth.day_change }}
                     </td>
                     <router-link :to="{ name: 'Synths', params: { synth: synth.id } }">

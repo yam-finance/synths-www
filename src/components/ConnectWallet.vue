@@ -3,25 +3,10 @@
         class="modal-backdrop backdrop-blur-lg flex items-center justify-center fixed inset-0"
         @click.prevent="$emit('close')"
     >
-        <div
-            class="modal rounded-lg flex flex-col items-start shadow-2xl p-4 absolute"
-            @click.stop=""
-        >
+        <div class="modal rounded-lg flex flex-col items-start shadow-2xl p-4 absolute" @click.stop="">
             <img class="wallet_gif absolute w-40" src="@/assets/images/wallet.gif" />
 
-            <div
-                class="
-                    title
-                    justify-between
-                    font-semibold
-                    text-base
-                    leading-5
-                    relative
-                    text-white
-                    not-italic
-                    pt-0
-                "
-            >
+            <div class="title justify-between font-semibold text-base leading-5 relative text-white not-italic pt-0">
                 <div
                     class="
                         header
@@ -56,16 +41,7 @@
                 </div>
             </div>
 
-            <div
-                class="
-                    connect_wallet_container
-                    rounded-2xl
-                    flex flex-wrap
-                    items-start
-                    mt-2
-                    shadow-inner
-                "
-            >
+            <div class="connect_wallet_container rounded-2xl flex flex-wrap items-start mt-2 shadow-inner">
                 <div
                     class="
                         wallet_box
@@ -99,6 +75,8 @@
                             h-4
                             text-xs
                             leading-4
+                            my-0
+                            mx-2
                             static
                             text-white
                             not-italic
@@ -243,19 +221,7 @@
                     </div>
                 </div>
             </div>
-            <div
-                class="
-                    learn_more_box
-                    flex-none
-                    order-none
-                    text-xs
-                    leading-4
-                    mt-2
-                    left-0
-                    not-italic
-                    w-auto
-                "
-            >
+            <div class="learn_more_box flex-none order-none text-xs leading-4 mt-2 left-0 not-italic w-auto">
                 <router-link to="#">
                     Not sure how connect wallet works?
                     <span class="inline-flex text-white">

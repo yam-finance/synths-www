@@ -51,7 +51,7 @@ export default () => {
         newNotificationTimer = setTimeout(() => {
             globalState.notifications.push(payload)
             globalState.newNotifications.shift()
-        }, 10000)
+        }, 3000)
     }
 
     return {

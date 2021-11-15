@@ -42,11 +42,17 @@ function formatAddress(address) {
 <script>
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
 
+const featuredSynth = "dpi-2x"
 let tabs = [
     {
         id: 1,
-        title: "Explore Synths",
+        title: "Explore",
         to: "explore",
+    },
+    {
+        id: 2,
+        title: "New!",
+        to: "synths/" + featuredSynth,
     },
     {
         id: 3,
@@ -107,19 +113,7 @@ export default {
             <div class="w-64 h-12 flex items-center p-4 md:border-r bg-main">
                 <img src="@/assets/images/yamIcon.png" class="h-8 w-8" />
                 <h3 class="logo font-bold text-emerald-500 ml-2 flex-grow">Yam Synths</h3>
-                <span
-                    class="
-                        bg-[#3468FF]
-                        my-auto
-                        px-2
-                        overflow-hidden
-                        ml-3
-                        rounded-full
-                        text-sm
-                        font-bold
-                    "
-                    >V 3.0</span
-                >
+                <span class="bg-[#3468FF] my-auto px-2 overflow-hidden ml-3 rounded-full text-sm font-bold">V 3.0</span>
             </div>
         </router-link>
         <ul
@@ -134,8 +128,8 @@ export default {
                 shadow-inner
                 text-sm
                 mx-4
-                px-4
-                py-1
+                px-2
+                py-2
                 font-semibold
                 bg-dark
                 txt-main
@@ -185,12 +179,13 @@ export default {
                     Help
                     <img src="@/assets/images/dropdown.svg" class="mx-2 ml-1 my-auto h-4" />
                 </span>
-
-                <img
-                    src="@/assets/images/bell.png"
-                    @click="toggleNotificationOpen"
-                    class="cursor-pointer my-auto h-4 basic-hover"
-                />
+                <span class="flex pr-4 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer">
+                    <img
+                        src="@/assets/images/bell.png"
+                        @click="toggleNotificationOpen"
+                        class="cursor-pointer my-auto h-4 basic-hover"
+                    />
+                </span>
 
                 <s-button
                     v-if="!$auth.isAuthenticated.value"
@@ -219,18 +214,7 @@ export default {
             </div>
 
             <ul
-                class="
-                    overflow-hidden
-                    my-auto
-                    p-2
-                    text-sm text-left
-                    fixed
-                    top-9
-                    right-72
-                    bg-light
-                    rounded-xl
-                    shadow-lg
-                "
+                class="overflow-hidden my-auto p-2 text-sm text-left fixed top-9 right-72 bg-light rounded-xl shadow-lg"
                 v-if="isLangDropDownOpen"
                 v-click-away="closePopup"
             >
@@ -240,18 +224,7 @@ export default {
             </ul>
 
             <ul
-                class="
-                    overflow-hidden
-                    my-auto
-                    p-2
-                    text-sm text-left
-                    fixed
-                    top-9
-                    right-44
-                    bg-light
-                    rounded-xl
-                    shadow-lg
-                "
+                class="overflow-hidden my-auto p-2 text-sm text-left fixed top-9 right-44 bg-light rounded-xl shadow-lg"
                 v-if="isHelpDropDownOpen"
                 v-click-away="closePopup"
             >
@@ -293,36 +266,21 @@ export default {
                 <li class="min-w-max cursor-pointer p-1">
                     <label class="container"
                         >Mainnet
-                        <input
-                            type="radio"
-                            :checked="web3.network.key == 1"
-                            class="form-radio"
-                            disabled
-                        />
+                        <input type="radio" :checked="web3.network.key == 1" class="form-radio" disabled />
                         <span class="checkmark"></span>
                     </label>
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
                     <label class="container"
                         >Polygon
-                        <input
-                            type="radio"
-                            :checked="web3.network.key == 137"
-                            class="form-radio"
-                            disabled
-                        />
+                        <input type="radio" :checked="web3.network.key == 137" class="form-radio" disabled />
                         <span class="checkmark"></span>
                     </label>
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
                     <label class="container"
                         >Rinkeby
-                        <input
-                            type="radio"
-                            :checked="web3.network.key == 4"
-                            class="form-radio"
-                            disabled
-                        />
+                        <input type="radio" :checked="web3.network.key == 4" class="form-radio" disabled />
                         <span class="checkmark"></span>
                     </label>
                 </li>
@@ -340,18 +298,11 @@ export default {
                 <li class="min-w-max cursor-pointer p-1">
                     <span class="wallet_actions"
                         ><img src="@/assets/icons/externalLink.svg" />&nbsp;
-                        <a class="ml-1" :href="web3.etherscanlink" target="_blank"
-                            >Etherscan</a
-                        ></span
+                        <a class="ml-1" :href="web3.etherscanlink" target="_blank">Etherscan</a></span
                     >
                 </li>
-                <li
-                    @click="handleLogout(), (isWalletDropDownOpen = false)"
-                    class="min-w-max cursor-pointer p-1"
-                >
-                    <span class="wallet_actions"
-                        ><img src="@/assets/icons/disconnect.svg" />&nbsp; Disconnect</span
-                    >
+                <li @click="handleLogout(), (isWalletDropDownOpen = false)" class="min-w-max cursor-pointer p-1">
+                    <span class="wallet_actions"><img src="@/assets/icons/disconnect.svg" />&nbsp; Disconnect</span>
                 </li>
             </ul>
 
@@ -385,36 +336,21 @@ export default {
                 <li class="min-w-max cursor-pointer p-1">
                     <label class="container"
                         >Mainnet
-                        <input
-                            type="radio"
-                            :checked="web3.network.key == 1"
-                            class="form-radio"
-                            disabled
-                        />
+                        <input type="radio" :checked="web3.network.key == 1" class="form-radio" disabled />
                         <span class="checkmark"></span>
                     </label>
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
                     <label class="container"
                         >Polygon
-                        <input
-                            type="radio"
-                            :checked="web3.network.key == 137"
-                            class="form-radio"
-                            disabled
-                        />
+                        <input type="radio" :checked="web3.network.key == 137" class="form-radio" disabled />
                         <span class="checkmark"></span>
                     </label>
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
                     <label class="container"
                         >Rinkeby
-                        <input
-                            type="radio"
-                            :checked="web3.network.key == 4"
-                            class="form-radio"
-                            disabled
-                        />
+                        <input type="radio" :checked="web3.network.key == 4" class="form-radio" disabled />
                         <span class="checkmark"></span>
                     </label>
                 </li>
@@ -427,18 +363,11 @@ export default {
                 <li class="min-w-max cursor-pointer p-1">
                     <span class="wallet_actions"
                         ><img src="@/assets/icons/externalLink.svg" />&nbsp;
-                        <a class="ml-1" :href="web3.etherscanlink" target="_blank"
-                            >Etherscan</a
-                        ></span
+                        <a class="ml-1" :href="web3.etherscanlink" target="_blank">Etherscan</a></span
                     >
                 </li>
-                <li
-                    @click="handleLogout(), (isWalletDropDownOpen = false)"
-                    class="min-w-max cursor-pointer p-1"
-                >
-                    <span class="wallet_actions"
-                        ><img src="@/assets/icons/disconnect.svg" />&nbsp; Disconnect</span
-                    >
+                <li @click="handleLogout(), (isWalletDropDownOpen = false)" class="min-w-max cursor-pointer p-1">
+                    <span class="wallet_actions"><img src="@/assets/icons/disconnect.svg" />&nbsp; Disconnect</span>
                 </li>
             </ul>
         </div>
@@ -448,15 +377,12 @@ export default {
                 <span class="text-xs my-auto font-normal px-1">{{ blockNumber }}</span>
             </div>
         </div>
-        <ConnectWallet
-            v-show="isModalVisible"
-            @close="isModalVisible = false"
-            @connect="handleConnect"
-        >
+        <ConnectWallet v-show="isModalVisible" @close="isModalVisible = false" @connect="handleConnect">
         </ConnectWallet>
     </nav>
 </template>
 
+// convert to tailwind
 <style scoped>
 .image_icon {
     height: 16px;

@@ -63,11 +63,7 @@
                 {{ item }}
             </div>
         </div>
-        <line-chart
-            class="ssc__charts h-full overflow-auto relative"
-            :labels="labels"
-            :chartData="chartData"
-        />
+        <line-chart class="ssc__charts h-full overflow-auto relative" :labels="labels" :chartData="chartData" />
     </div>
 </template>
 

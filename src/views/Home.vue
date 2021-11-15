@@ -31,18 +31,7 @@
                 <div class="w-64 flex">
                     <img src="@/assets/images/yamIcon.png" class="mr-2 h-8 w-8" />
                     <h3 class="logo font-bold text-emerald-500 my-auto">Yam Synths</h3>
-                    <span
-                        class="
-                            bg-[#3468FF]
-                            my-auto
-                            px-2
-                            overflow-hidden
-                            ml-3
-                            md:ml-16
-                            rounded-full
-                            text-sm
-                            font-bold
-                        "
+                    <span class="bg-[#3468FF] my-auto px-2 overflow-hidden ml-3 md:ml-16 rounded-full text-sm font-bold"
                         >V 3.0</span
                     >
                 </div>
@@ -50,23 +39,10 @@
             <div class="flex absolute right-2 w-96 h-16">
                 <div class="flex absolute right-2 align-middle my-auto">
                     <router-link to="/#">
-                        <span
-                            class="
-                                flex
-                                px-4
-                                py-1.5
-                                cursor-pointer
-                                text-[#CBCBFF]
-                                hover:brightness-125
-                            "
-                        >
-                            Learn
-                        </span>
+                        <span class="flex px-4 py-1.5 cursor-pointer text-[#CBCBFF] hover:brightness-125"> Learn </span>
                     </router-link>
                     <router-link to="/explore" class="my-auto">
-                        <s-button
-                            buttonStyles="wallet-btn px-4 py-3 my-auto text-sm font-semibold mr-4"
-                        >
+                        <s-button buttonStyles="wallet-btn px-4 py-3 my-auto text-sm font-semibold mr-4">
                             <template #buttonTitle> Explore Synths </template>
                         </s-button>
                     </router-link>
@@ -76,10 +52,7 @@
         <div class="relative container-fluid max-w-[1000px] m-auto">
             <div class="home-content text-center text-white mt-16">
                 <router-link to="/#">
-                    <img
-                        class="absolute ml-12 max-w-4xl -top-10 opacity-60"
-                        src="@/assets/images/yam-synths-bg.png"
-                    />
+                    <img class="absolute ml-12 max-w-4xl -top-10 opacity-60" src="@/assets/images/yam-synths-bg.png" />
                     <div class="relative inline">
                         <span class="txt-main">BUILT BY</span>
                         <img src="@/assets/images/logo.png" class="inline w-6 h-6" />YAM
@@ -90,18 +63,14 @@
                     Go Long. Go Short.<br />Go Without Limits.
                 </div>
                 <div class="relative">
-                    <img
-                        src="@/assets/images/pages/market.png"
-                        class="m-auto mb-20 shadow-2xl max-w-3xl"
-                    />
+                    <img src="@/assets/images/pages/market.png" class="m-auto mb-20 shadow-2xl max-w-3xl" />
                 </div>
                 <div class="text-xl md:text-3xl lg:text-4xl font-semibold">
                     Messing with collateral ratios & getting <br />
                     liquidated on leverage isn't fun
                 </div>
                 <div class="text-lg md:text-xl font-normal lg:text-2xl text-[#CBCBFF] m-4 sm:mx-40">
-                    Yam Synths’ LSP* contracts enable easy minting and low risk leverage on all
-                    sorts of Synths.
+                    Yam Synths’ LSP* contracts enable easy minting and low risk leverage on all sorts of Synths.
                 </div>
                 <div class="text-sm txt-main m-4">*Long & Short Position</div>
                 <div class="flex space-x-8 m-auto max-w-2xl mt-8">
@@ -117,17 +86,13 @@
                         <img src="@/assets/images/check.png" class="w-5 mb-1 inline" />
                         <span class="ml-1"
                             >Now on Polygon
-                            <span class="bg-[#e763a6] px-1 text-xs font-semibold rounded"
-                                >New</span
-                            ></span
+                            <span class="bg-[#e763a6] px-1 text-xs font-semibold rounded">New</span></span
                         >
                     </div>
                 </div>
 
                 <div class="mt-16 lg:mt-40 txt-main text-sm">GET STARTED</div>
-                <div class="m-4 text-xl md:text-3xl lg:text-4xl font-semibold">
-                    Hedge, trade or earn on our synths
-                </div>
+                <div class="m-4 text-xl md:text-3xl lg:text-4xl font-semibold">Hedge, trade or earn on our synths</div>
                 <div class="flex flex-wrap justify-center mb-8">
                     <div
                         v-for="(menu, key) in menus"
@@ -175,19 +140,14 @@
                             </div>
                             <router-link :to="'/synths/' + menu.to">
                                 <div>
-                                    <img
-                                        src="@/assets/images/arrow-right-light.png"
-                                        class="float-right h-6"
-                                    />
+                                    <img src="@/assets/images/arrow-right-light.png" class="float-right h-6" />
                                 </div>
                             </router-link>
                         </div>
                     </div>
                 </div>
                 <router-link to="/explore">
-                    <button class="rounded-2xl px-4 py-3 my-auto text-base font-bold wallet-btn">
-                        Explore Synths
-                    </button>
+                    <button class="rounded-2xl px-4 py-3 my-auto text-base font-bold wallet-btn">Explore Synths</button>
                 </router-link>
 
                 <div class="grid grid-cols-2 md:grid-cols-4 m-4 my-16">
@@ -212,68 +172,23 @@
                 <div class="mx-20 md:mx-10 lg:mx-40 font-semibold">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="grid grid-rows-2 gap-4">
-                            <div
-                                class="
-                                    card
-                                    rounded-xl
-                                    bg-[#272760]
-                                    h-56
-                                    p-8
-                                    sm:px-16
-                                    shadow-lg
-                                    flex flex-col
-                                "
-                            >
+                            <div class="card rounded-xl bg-[#272760] h-56 p-8 sm:px-16 shadow-lg flex flex-col">
                                 <div class="mt-auto">
-                                    <p class="text-[#CBCBFF] text-xs leading-8 font-medium">
-                                        CAPITAL EFFICIENT
-                                    </p>
-                                    <p class="text-xl font-semibold leading-6">
-                                        Mint positions at a 1:1 ratio, always
-                                    </p>
+                                    <p class="text-[#CBCBFF] text-xs leading-8 font-medium">CAPITAL EFFICIENT</p>
+                                    <p class="text-xl font-semibold leading-6">Mint positions at a 1:1 ratio, always</p>
                                 </div>
                             </div>
-                            <div
-                                class="
-                                    card
-                                    rounded-xl
-                                    bg-[#272760]
-                                    h-56
-                                    p-8
-                                    sm:px-16
-                                    flex flex-col
-                                    shadow-lg
-                                "
-                            >
+                            <div class="card rounded-xl bg-[#272760] h-56 p-8 sm:px-16 flex flex-col shadow-lg">
                                 <div class="mt-auto">
-                                    <p class="text-[#CBCBFF] text-xs leading-8 font-medium">
-                                        CAPITAL EFFICIENT
-                                    </p>
-                                    <p class="text-xl font-semibold leading-6">
-                                        Mint positions at a 1:1 ratio, always
-                                    </p>
+                                    <p class="text-[#CBCBFF] text-xs leading-8 font-medium">CAPITAL EFFICIENT</p>
+                                    <p class="text-xl font-semibold leading-6">Mint positions at a 1:1 ratio, always</p>
                                 </div>
                             </div>
                         </div>
-                        <div
-                            class="
-                                card
-                                rounded-xl
-                                bg-[#272760]
-                                p-8
-                                sm:px-16
-                                flex flex-col
-                                min-h-[224px]
-                                shadow-lg
-                            "
-                        >
+                        <div class="card rounded-xl bg-[#272760] p-8 sm:px-16 flex flex-col min-h-[224px] shadow-lg">
                             <div class="mt-auto">
-                                <p class="text-[#CBCBFF] text-xs leading-8 font-semibold">
-                                    LOW RISK LEVERAGE
-                                </p>
-                                <p class="text-xl font-semibold leading-6">
-                                    Market buy up to 6x leverage positions
-                                </p>
+                                <p class="text-[#CBCBFF] text-xs leading-8 font-semibold">LOW RISK LEVERAGE</p>
+                                <p class="text-xl font-semibold leading-6">Market buy up to 6x leverage positions</p>
                             </div>
                         </div>
                     </div>
@@ -293,9 +208,7 @@
                         "
                     >
                         <div class="mt-auto">
-                            <p class="text-[#CBCBFF] text-xs leading-8 font-normal">
-                                OPTIONATED LP
-                            </p>
+                            <p class="text-[#CBCBFF] text-xs leading-8 font-normal">OPTIONATED LP</p>
                             <p class="text-xl font-semibold leading-6">
                                 Provide liquidity in neutral, bullish, or bearish pools
                             </p>
@@ -345,9 +258,7 @@
                     </div>
                 </div>
 
-                <div class="p-8 font-normal text-sm txt-main">
-                    © 2021 Yam Synths. All rights reserved.
-                </div>
+                <div class="p-8 font-normal text-sm txt-main">© 2021 Yam Synths. All rights reserved.</div>
             </div>
         </div>
     </div>
@@ -445,11 +356,7 @@ export default {
     height: 416.33px;
     left: calc(50% - 457.45px / 2 + 546.9px);
     top: 1529.75px;
-    background: radial-gradient(
-        44.89% 296.12% at 45.16% 37.01%,
-        #569aff 0%,
-        rgba(111, 0, 164, 0.29) 100%
-    );
+    background: radial-gradient(44.89% 296.12% at 45.16% 37.01%, #569aff 0%, rgba(111, 0, 164, 0.29) 100%);
     opacity: 0.6;
     filter: blur(150px);
     transform: rotate(109.99deg);
@@ -510,11 +417,7 @@ export default {
     height: 602.05px;
     left: calc(50% - 997.37px / 2 - 140.55px);
     top: 1989.71px;
-    background: radial-gradient(
-        35.64% 354.48% at 53.4% 47.81%,
-        #5667ff 0%,
-        rgba(111, 0, 164, 0.29) 100%
-    );
+    background: radial-gradient(35.64% 354.48% at 53.4% 47.81%, #5667ff 0%, rgba(111, 0, 164, 0.29) 100%);
     opacity: 0.3;
     filter: blur(100px);
     transform: rotate(168.86deg);
@@ -526,11 +429,7 @@ export default {
     height: 347.79px;
     left: calc(50% - 576.15px / 2 + 420.92px);
     top: 2429.82px;
-    background: radial-gradient(
-        35.64% 354.48% at 53.4% 47.81%,
-        #8956ff 0%,
-        rgba(180, 20, 255, 0.29) 100%
-    );
+    background: radial-gradient(35.64% 354.48% at 53.4% 47.81%, #8956ff 0%, rgba(180, 20, 255, 0.29) 100%);
     opacity: 0.2;
     filter: blur(100px);
     transform: rotate(155.24deg);
@@ -542,11 +441,7 @@ export default {
     height: 347.79px;
     left: calc(50% - 576.15px / 2 - 217.76px);
     top: 3047.02px;
-    background: radial-gradient(
-        35.64% 354.48% at 53.4% 47.81%,
-        #569aff 0%,
-        rgba(180, 20, 255, 0.29) 100%
-    );
+    background: radial-gradient(35.64% 354.48% at 53.4% 47.81%, #569aff 0%, rgba(180, 20, 255, 0.29) 100%);
     opacity: 0.6;
     filter: blur(150px);
     transform: rotate(15deg);

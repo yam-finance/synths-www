@@ -41,9 +41,7 @@
                     <div class="text-sm txt-main ml-1 mt-2">Success in wallet</div>
                 </div>
                 <div class="text-sm mt-1 txt-main flex items-center">
-                    <span class="rounded-xl wallet-btn text-xs text-white px-2 pb-0.5 font-bold"
-                        >Redeem</span
-                    >
+                    <span class="rounded-xl wallet-btn text-xs text-white px-2 pb-0.5 font-bold">Redeem</span>
                     &nbsp;for
                     <span class="text-white font-normal">&nbsp;30 UMA</span>
                     <img src="@/assets/images/help-circle.png" class="ml-2 h-4" />
@@ -92,11 +90,7 @@
                 <th></th>
             </thead>
             <tbody class="border-t bg-main lg:text-xs xl:text-sm 2xl:text-base">
-                <tr
-                    v-for="(synth, key) in synths"
-                    :key="key"
-                    class="border-b bg-main cursor-pointer basic-hover"
-                >
+                <tr v-for="(synth, key) in synths" :key="key" class="border-b bg-main cursor-pointer basic-hover">
                     <td class="px-4 py-2 font-semibold flex">
                         <img src="@/assets/images/zombie.png" class="w-6 h-6" />
                         &nbsp;{{ synth.name }}
@@ -125,10 +119,7 @@
                 </tr>
             </tbody>
         </table>
-        <div
-            v-if="!synths.length"
-            class="cursor-pointer bg-main text-center flex justify-center w-full mt-3"
-        >
+        <div v-if="!synths.length" class="cursor-pointer bg-main text-center flex justify-center w-full mt-3">
             No synths to show
         </div>
     </div>
@@ -178,7 +169,9 @@
                         </div>
                     </td>
                     <td>
-                        <img src="@/assets/images/arrow-right.svg" class="cursor-pointer" />
+                        <router-link :to="{ name: 'Synths', params: { synth: synth.id } }">
+                            <img src="@/assets/images/arrow-right.svg" class="cursor-pointer" />
+                        </router-link>
                     </td>
                 </tr>
             </tbody>
@@ -260,9 +253,7 @@ export default {
     computed: {
         synths() {
             if (this.filter_string !== "") {
-                return this.synths.filter((item) =>
-                    item.name.toLowerCase().includes(this.filter_string.toLowerCase())
-                )
+                return this.synths.filter((item) => item.name.toLowerCase().includes(this.filter_string.toLowerCase()))
             } else return this.synths
         },
     },

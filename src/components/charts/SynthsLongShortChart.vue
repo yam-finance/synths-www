@@ -115,16 +115,7 @@
                     14 April - 21 April
                 </div>
             </div>
-            <p
-                class="
-                    slsc__charts__upper-bound
-                    border-b border-[#3E3E6B]
-                    text-[10px]
-                    pb-1
-                    mt-4
-                    mb-4 mb-auto
-                "
-            >
+            <p class="slsc__charts__upper-bound border-b border-[#3E3E6B] text-[10px] pb-1 mt-4 mb-4 mb-auto">
                 <span class="text-purpleLight">Upper bound</span> $300
             </p>
             <line-chart class="h-full overflow-auto my-3 relative" />

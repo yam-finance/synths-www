@@ -73,30 +73,6 @@ onMounted(() => {
         title: "Title1",
         content: "Transaction sent. Minting 8 Long & 8 Short with 4 ETH",
     })
-    setTimeout(() => {
-        addNewNotifications({
-            style: 0,
-            link: "https://github.com/yam-finance/synths-www/issues/75",
-            title: "Title2",
-            content: "Transaction sent. Minting 8 Long & 8 Short with 4 ETH",
-        })
-    }, 2000)
-    setTimeout(() => {
-        addNewNotifications({
-            style: 0,
-            link: "https://github.com/yam-finance/synths-www/issues/75",
-            title: "Title3",
-            content: "Transaction sent. Minting 8 Long & 8 Short with 4 ETH",
-        })
-    }, 3000)
-    setTimeout(() => {
-        addNewNotifications({
-            style: 0,
-            link: "https://github.com/yam-finance/synths-www/issues/75",
-            title: "Title244",
-            content: "Transaction sent. Minting 8 Long & 8 Short with 4 ETH",
-        })
-    }, 4000)
 })
 </script>
 <style lang="scss">

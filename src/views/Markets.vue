@@ -13,48 +13,25 @@
                     </div>
                     <div class="text-right mr-0 inline float-right">
                         <div
-                            class="
-                                rounded-xl
-                                bg-main
-                                p-2
-                                shadow-inner
-                                font-normal
-                                text-sm
-                                txt-main
-                                text-white
-                            "
+                            class="rounded-xl bg-main p-2 shadow-inner font-normal text-sm txt-main text-white"
                             @click="isDropDown = !isDropDown"
                         >
                             Expiring 21st April
-                            <img
-                                src="@/assets/images/arrow-down.png"
-                                class="h-6 inline ml-2 mb-0.5 cursor-pointer"
-                            />
+                            <img src="@/assets/images/arrow-down.png" class="h-6 inline ml-2 mb-0.5 cursor-pointer" />
                         </div>
                         <ul
-                            class="
-                                overflow-hidden
-                                my-auto
-                                text-sm text-left
-                                fixed
-                                bg-light
-                                rounded-br-xl rounded-bl-xl
-                            "
+                            class="overflow-hidden my-auto text-sm text-left fixed bg-light rounded-br-xl rounded-bl-xl"
                             v-if="isDropDown"
                             v-click-away="closeDown"
                         >
                             <RouterLink to="/#">
                                 <li class="min-w-max cursor-pointer p-1">
-                                    <span class="px-4 py-2 font-normal text-sm txt-main">
-                                        Expiring 23rd April</span
-                                    >
+                                    <span class="px-4 py-2 font-normal text-sm txt-main"> Expiring 23rd April</span>
                                 </li>
                             </RouterLink>
                             <RouterLink to="/#">
                                 <li class="min-w-max cursor-pointer p-1">
-                                    <span class="px-4 py-2 font-normal text-sm txt-main">
-                                        Expiring 23rd April</span
-                                    >
+                                    <span class="px-4 py-2 font-normal text-sm txt-main"> Expiring 23rd April</span>
                                 </li>
                             </RouterLink>
                         </ul>
@@ -62,9 +39,8 @@
                 </div>
 
                 <p class="text-[#CBCBFF] mt-8">
-                    Sushi APY Long and Short tokens track an index consisting of ten stocks that are
-                    most commented on r/wallstreetbets. The initial Index constituents are selected
-                    based on data from swaggystocks.com.
+                    Sushi APY Long and Short tokens track an index consisting of ten stocks that are most commented on
+                    r/wallstreetbets. The initial Index constituents are selected based on data from swaggystocks.com.
                 </p>
 
                 <!-- i18n Test Start -->
@@ -76,24 +52,15 @@
                 <div class="flex flex-wrap space-x-4 mt-4">
                     <RouterLink to="/#" class="cursor-pointer">
                         <p class="text-sm inline mr-1 md:mr-2">Learn More</p>
-                        <img
-                            src="@/assets/images/external-link.svg"
-                            class="inline cursor-pointer"
-                        />
+                        <img src="@/assets/images/external-link.svg" class="inline cursor-pointer" />
                     </RouterLink>
                     <RouterLink to="/#" class="cursor-pointer">
                         <p class="text-sm inline mr-1 md:mr-2">Tutorial</p>
-                        <img
-                            src="@/assets/images/external-link.svg"
-                            class="inline cursor-pointer"
-                        />
+                        <img src="@/assets/images/external-link.svg" class="inline cursor-pointer" />
                     </RouterLink>
                     <RouterLink to="/#" class="cursor-pointer">
                         <p class="text-sm inline mr-0.5 md:mr-2">Connect Address</p>
-                        <img
-                            src="@/assets/images/external-link.svg"
-                            class="inline cursor-pointer"
-                        />
+                        <img src="@/assets/images/external-link.svg" class="inline cursor-pointer" />
                     </RouterLink>
                 </div>
 
@@ -188,8 +155,8 @@
                 <div class="px-6 py-4 pb-8 border-r border-b bg-main">
                     <p class="pb-4 text-lg font-semibold">Calculate returns at expiry</p>
                     <p class="text-sm txt-main pb-8">
-                        Simulate your potential returns at expiry. Edit the number of short or long
-                        tokens in your wallet. with the chart to see your expected profit or loss
+                        Simulate your potential returns at expiry. Edit the number of short or long tokens in your
+                        wallet. with the chart to see your expected profit or loss
                     </p>
                     <div class="grid grid-cols-2 gap-4">
                         <div>
@@ -214,11 +181,7 @@
 
                     <div class="mt-2">
                         <div class="checkbox inline-flex items-center mt-4 cursor-pointer">
-                            <input
-                                type="checkbox"
-                                class="form-checkbox h-5 w-5 opacity-0"
-                                id="chk_wallet"
-                            />
+                            <input type="checkbox" class="form-checkbox h-5 w-5 opacity-0" id="chk_wallet" />
                             <label
                                 for="chk_wallet"
                                 @click="isUseWallet = 1 - isUseWallet"
@@ -235,11 +198,7 @@
                                     before:border
                                     before:border-purpleLight
                                     before:rounded-md
-                                    after:absolute
-                                    after:w-6
-                                    after:h-6
-                                    after:-left-8
-                                    after:bg-checkbox
+                                    after:absolute after:w-6 after:h-6 after:-left-8 after:bg-checkbox
                                 "
                                 :class="{ 'after:content-none': isUseWallet === 0 }"
                             >
@@ -268,11 +227,7 @@
     </div>
 
     <div class="min-w-[400px] hidden lg:block">
-        <div
-            v-for="(option, key) in options"
-            :key="key"
-            :class="option.id == selected_option ? 'h-full' : ''"
-        >
+        <div v-for="(option, key) in options" :key="key" :class="option.id == selected_option ? 'h-full' : ''">
             <SynthsInsideBar
                 :settle="option.slug == 'Settle' ? false : true"
                 :title="option.title"

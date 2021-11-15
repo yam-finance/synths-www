@@ -16,7 +16,7 @@
 </style>
 
 <script lang="ts">
-import { defineComponent, provide, reactive, ref, onUnmounted } from "vue"
+import { defineComponent, provide, reactive, ref, onUnmounted, onMounted } from "vue"
 import { globalStore } from "@/composables"
 import { useApp } from "@/composables/useApp"
 export default defineComponent({

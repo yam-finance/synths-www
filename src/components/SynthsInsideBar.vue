@@ -1,17 +1,5 @@
 <template>
-    <div
-        class="
-            ssb-wrapper
-            bg-[#4447BD]
-            flex flex-col
-            justify-start
-            items-center
-            py-16
-            px-8
-            max-w-[400px]
-            h-full
-        "
-    >
+    <div class="ssb-wrapper bg-[#4447BD] flex flex-col justify-start items-center py-16 px-8 max-w-[400px] h-full">
         <h2 class="text-[32px] mb-5 font-semibold">{{ title }}</h2>
 
         <h3 class="text-[#CBCBFF] text-sm mb-8 text-center">{{ subTitle }}</h3>
@@ -32,37 +20,19 @@
             </div>
         </div>
 
-        <div
-            class="ssb__order flex flex-col items-center"
-            :class="{ 'flex-col-reverse': arrowReverse }"
-        >
+        <div class="ssb__order flex flex-col items-center" :class="{ 'flex-col-reverse': arrowReverse }">
             <div class="ssb__tokens grid grid-cols-2 gap-5">
                 <div
-                    class="
-                        ssb__tokens-item
-                        bg-[#5356CD]
-                        py-4
-                        px-[35px]
-                        rounded-lg
-                        text-center
-                        shadow--black
-                    "
+                    class="ssb__tokens-item bg-[#5356CD] py-4 px-[35px] rounded-lg text-center shadow--black"
                     v-for="item in tokens"
                     :key="item.title"
                 >
-                    <p class="font-bold text-xs pb-2.5">
-                        <span class="text-base">0</span> {{ item.title }}
-                    </p>
+                    <p class="font-bold text-xs pb-2.5"><span class="text-base">0</span> {{ item.title }}</p>
                     <p class="text-[10px]">{{ item.subTitle }} 0 ETH</p>
                 </div>
             </div>
 
-            <img
-                v-if="!arrowReverse"
-                src="../assets/sidebarArrow.svg"
-                class="my-2 max-w-[50%]"
-                alt=""
-            />
+            <img v-if="!arrowReverse" src="../assets/sidebarArrow.svg" class="my-2 max-w-[50%]" alt="" />
             <img v-else src="../assets/sidebarArrowReverse.svg" class="my-2 max-w-[50%]" alt="" />
 
             <div
