@@ -3,6 +3,7 @@ import vue from "@vitejs/plugin-vue"
 import path from "path"
 import visualizer from "rollup-plugin-visualizer"
 import ViteComponents from "unplugin-vue-components/vite"
+import PrerenderSpaPlugin from "prerender-spa-plugin"
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [
@@ -16,6 +17,26 @@ export default defineConfig({
             filename: "./dist/stats.html",
             template: "sunburst",
             gzipSize: true,
+        }),
+        PrerenderSpaPlugin({
+            // Absolute path to compiled SPA
+            staticDir: path.resolve(__dirname, './dist'),
+            indexPath: path.resolve(__dirname, './dist/index.html'),
+            // List of routes to prerender
+            routes: [ '*' ],
+            // Options
+            postProcess(context) {
+                let titles = {
+                    '/': 'Home',
+                    '/explore': 'Explore',
+                    '/portfolio': 'Portfolio'
+                };
+                context.html = context.html.replace(
+                    /<title>[^<]*<\/title>/i,
+                    `<title>${titles[context.route]}</title>`
+                )
+                return context
+            }
         }),
     ],
     resolve: {
