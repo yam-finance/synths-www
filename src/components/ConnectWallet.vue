@@ -1,17 +1,15 @@
 <template>
     <div
-        class="modal-backdrop backdrop-blur-lg flex items-center justify-center fixed inset-0"
-        @click.prevent="$emit('close')"
+        class="bg-opacity-30 backdrop-blur-lg flex items-center justify-center fixed inset-0"
+	@click.prevent="$emit('close')"
     >
-        <div
-            class="modal rounded-lg flex flex-col items-start shadow-2xl p-4 absolute"
-            @click.stop=""
-        >
-            <img class="wallet_gif absolute w-40" src="@/assets/images/wallet.gif" />
+        <div class="rounded-lg flex flex-col items-start shadow-2xl p-4 absolute w-[340px] bg-[#252562] shadow-xl"
+		@click.stop=""
+	>
+            <img class="absolute w-40 -top-1/4 -right-1/4" src="@/assets/images/wallet.gif" />
 
             <div
                 class="
-                    title
                     justify-between
                     font-semibold
                     text-base
@@ -25,7 +23,6 @@
                 <div
                     class="
                         header
-                        connect_wallet_header
                         flex-none
                         order-none
                         font-semibold
@@ -58,12 +55,16 @@
 
             <div
                 class="
-                    connect_wallet_container
                     rounded-2xl
                     flex flex-wrap
                     items-start
                     mt-2
                     shadow-inner
+                    w-[310px]
+                    bg-[#1D1D52]
+                    left-4
+                    top-96
+                    shadow-md
                 "
             >
                 <div
@@ -102,7 +103,8 @@
                             static
                             text-white
                             not-italic
-                            wallet_name
+                            left-8
+                            top-2
                         "
                     >
                         Metamask
@@ -146,7 +148,8 @@
                             static
                             text-white
                             not-italic
-                            wallet_name
+                            left-8
+                            top-2
                         "
                     >
                         WalletConnect &nbsp;
@@ -191,7 +194,8 @@
                             static
                             text-white
                             not-italic
-                            wallet_name
+                            left-8
+                            top-2
                         "
                         @click="$emit('connect', 'fortmatic')"
                     >
@@ -236,7 +240,8 @@
                             static
                             text-white
                             not-italic
-                            wallet_name
+                            left-8
+                            top-2
                         "
                     >
                         Portis
@@ -245,7 +250,6 @@
             </div>
             <div
                 class="
-                    learn_more_box
                     flex-none
                     order-none
                     text-xs
@@ -254,6 +258,9 @@
                     left-0
                     not-italic
                     w-auto
+                    bottom-5
+                    font-normal
+                    text-[#CBCBFF]
                 "
             >
                 <router-link to="#">
@@ -270,7 +277,6 @@
 <script>
 export default {
     name: "ConnectWallet",
-
     methods: {
         close() {
             console.log("sadfasdf")
@@ -282,63 +288,9 @@ export default {
     },
 }
 </script>
-<style>
-.modal-backdrop {
-    background-color: rgba(0, 0, 0, 0.3);
-}
-
-.wallet_gif {
-    right: -15%;
-    top: -25%;
-}
-
-.wallet_name {
-    left: 33.23px;
-    top: 8.5px;
-    font-family: inherit;
-}
+<style scoped>
 .wallet_box {
     background: linear-gradient(180deg, rgba(143, 143, 255, 0.2) 0%, rgba(143, 143, 255, 0) 100%);
     box-shadow: inset 0px 0px 4px rgba(143, 143, 255, 0.2);
-}
-
-.modal {
-    width: 340px;
-    left: 50vw;
-    top: 50vh;
-    transform: translate(-50%, -50%);
-    background-color: rgba(37, 37, 98, 1);
-    box-shadow: 0px 32px 64px -8px rgba(0, 0, 0, 0.1);
-}
-
-.connect_wallet_header {
-    font-family: inherit;
-}
-
-.learn_more_box {
-    bottom: 20px;
-    font-family: inherit;
-    font-weight: normal;
-    color: rgba(203, 203, 255, 1);
-}
-
-.connect_wallet_info {
-    left: 16px;
-    top: 44px;
-    font-family: inherit;
-    font-weight: normal;
-    line-height: 160%;
-    color: rgba(203, 203, 255, 1);
-}
-
-.connect_wallet_container {
-    width: 310px;
-    left: 16px;
-    top: 96px;
-    background-color: rgba(29, 29, 82, 1);
-    box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1);
-}
-.title {
-    font-family: inherit;
 }
 </style>

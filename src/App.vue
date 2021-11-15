@@ -1,13 +1,10 @@
 <template>
-  <!--    TODO: experimental new feature Suspense-->
-  <Suspense>
-    <template v-if="!loadingStatus">
-      <router-view />
-    </template>
-    <template v-else-if="loadingStatus">
-      <p class="absolute left-1/2 top-1/2">Loading...</p>
-    </template>
-  </Suspense>
+  <template v-if="!loadingStatus">
+    <router-view />
+  </template>
+  <template v-else-if="loadingStatus">
+    <p class="absolute left-1/2 top-1/2">Loading...</p>
+  </template>
 </template>
 
 <style lang="scss">
@@ -89,27 +86,27 @@ export default defineComponent({
     };
   },
   mounted() {
-    document.onreadystatechange = () => {
-      let state = document.readyState;
-      if (state == "interactive") {
-        this.loadingStatus = true;
-      } else if (state == "complete") {
-        this.loadingStatus = false;
-      }
-    };
+    this.loadingHandler();
   },
-  methods: {},
+  methods: {
+    loadingHandler() {
+      let obj = this;
+      document.onreadystatechange = function () {
+        let state = document.readyState
+        if (state == 'interactive') {
+          obj.loadingStatus = true;
+        } else if (state == 'complete') {
+          obj.loadingStatus = false;
+        }
+      }
+    }
+  },
   watch: {
     $route(to, from) {
-      document.onreadystatechange = () => {
-        let state = document.readyState;
-        if (state == "interactive") {
-          this.loadingStatus = true;
-        } else if (state == "complete") {
-          this.loadingStatus = false;
-        }
-      };
+      if(from.fullPath !== "/" || (from.fullPath == "/" && from.name)) {
+        this.loadingHandler();
+      }
     },
-  },
+  }
 });
 </script>
