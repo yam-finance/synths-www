@@ -1,5 +1,6 @@
 <template>
-  <Suspense >
+  <!--    TODO: experimental new feature Suspense-->
+  <Suspense>
     <template v-if="!loadingStatus">
       <router-view />
     </template>
@@ -10,6 +11,9 @@
 </template>
 
 <style lang="scss">
+#app {
+  @apply relative h-full overflow-auto;
+}
 #nav {
   padding: 30px;
 
@@ -25,87 +29,87 @@
 </style>
 
 <script lang="ts">
-import { defineComponent, provide, reactive, ref, onUnmounted, onMounted } from "vue"
-import { globalStore } from "@/composables"
-import { useApp } from '@/composables/useApp'
+import {
+  defineComponent,
+  provide,
+  reactive,
+  ref,
+  onUnmounted,
+  onMounted,
+} from "vue";
+import { globalStore } from "@/composables";
+import { useApp } from "@/composables/useApp";
 
 export default defineComponent({
-
   setup() {
     //Setup Simple Data
     const state = reactive({
       name: "John Doe",
       email: "john@gmail.com",
-    })
+    });
 
     const updateUsername = (name: string) => {
-      state.name = name
-    }
+      state.name = name;
+    };
 
     const updateEmail = (email: string) => {
-      state.email = email
-    }
+      state.email = email;
+    };
 
-    const { loadBlockNumber } = globalStore()
+    const { loadBlockNumber } = globalStore();
 
-    loadBlockNumber()
-
-    provide("userDetails", state)
-    provide("updateUsername", updateUsername)
-    provide("updateEmail", updateEmail)
+    loadBlockNumber();
 
     //Setup window resize watcher
-    const screenWidth = ref<number | null>(null)
+    const screenWidth = ref<number | null>(null);
 
     const resizeHandler = () => {
-      screenWidth.value = window.innerWidth
-    }
+      screenWidth.value = window.innerWidth;
+    };
 
-    window.addEventListener("resize", resizeHandler)
+    window.addEventListener("resize", resizeHandler);
+
+    // const { addNewNotifications } = globalStore();
 
     onUnmounted(() => {
-      window.removeEventListener("resize", resizeHandler)
-    })
+      window.removeEventListener("resize", resizeHandler);
+    });
 
-    provide("screen", screenWidth)
+    provide("screen", screenWidth);
 
     const { init } = useApp();
     onMounted(async () => {
-       init();
-    })
-    return { state, screenWidth }
+      init();
+    });
+    return { state, screenWidth };
   },
   data() {
     return {
-      loadingStatus: true
-    }
+      loadingStatus: true,
+    };
   },
   mounted() {
-    var obj = this;
-    document.onreadystatechange = function () {
-      var state = document.readyState
-      if (state == 'interactive') {
-        obj.loadingStatus = true;
-      } else if (state == 'complete') {
-        obj.loadingStatus = false;
+    document.onreadystatechange = () => {
+      let state = document.readyState;
+      if (state == "interactive") {
+        this.loadingStatus = true;
+      } else if (state == "complete") {
+        this.loadingStatus = false;
       }
-    }
+    };
   },
-  methods: {
-  },
+  methods: {},
   watch: {
     $route(to, from) {
-      var obj = this;
-      document.onreadystatechange = function () {
-        var state = document.readyState;
-        if (state == 'interactive') {
-          obj.loadingStatus = true;
-        } else if (state == 'complete') {
-          obj.loadingStatus = false;
+      document.onreadystatechange = () => {
+        let state = document.readyState;
+        if (state == "interactive") {
+          this.loadingStatus = true;
+        } else if (state == "complete") {
+          this.loadingStatus = false;
         }
-      }
+      };
     },
-  }
-})
+  },
+});
 </script>
-

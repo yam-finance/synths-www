@@ -1,11 +1,20 @@
 import { reactive, toRefs } from "vue"
 import { web3 } from "@/plugins/web3"
 
+let newNotificationTimer
+
 const globalState = reactive({
-    blockNumber: 0,
+    //Block NUmber
+    blockNumber: 0 as number,
+
+    //Notifications
+    isNotificationOpen: false as boolean,
+    notifications: [] as object[],
+    newNotifications: [] as object[],
 })
 
 export default () => {
+    //Block NUmber
     const setBlockNumber = (payload: number) => {
         globalState.blockNumber = payload
     }
@@ -22,9 +31,40 @@ export default () => {
         }, 40000)
     }
 
+    //Notifications
+    const toggleNotificationOpen = () => {
+        globalState.isNotificationOpen = !globalState.isNotificationOpen
+    }
+
+    const deleteNotification = (index: number) => {
+        globalState.notifications.splice(index, 1)
+    }
+
+    const deleteNewNotification = (index: number) => {
+        clearTimeout(newNotificationTimer)
+        globalState.notifications.push(globalState.newNotifications[index])
+        globalState.newNotifications.splice(index, 1)
+    }
+
+    const addNewNotifications = (payload: object) => {
+        globalState.newNotifications.push(payload)
+        newNotificationTimer = setTimeout(() => {
+            globalState.notifications.push(payload)
+            globalState.newNotifications.shift()
+        }, 10000)
+    }
+
     return {
+        state: toRefs(globalState),
+
+        //Block NUmber
         setBlockNumber,
         loadBlockNumber,
-        state: toRefs(globalState),
+
+        //Notifications
+        toggleNotificationOpen,
+        deleteNotification,
+        deleteNewNotification,
+        addNewNotifications,
     }
 }

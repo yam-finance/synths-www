@@ -1,0 +1,87 @@
+<template>
+    <transition name="slide">
+        <div
+            v-if="notifications && isNotificationOpen"
+            class="notification-wrapper bg-main"
+            @click="toggleNotificationOpen"
+        >
+            <div class="notification bg-main box-content" @click.stop="">
+                <img
+                    class="notification-close basic-hover"
+                    src="@/assets/images/x.svg"
+                    alt="Close Icon"
+                    @click="toggleNotificationOpen"
+                />
+                <h2>Notification</h2>
+                <div class="notification-content">
+                    <notification
+                        v-for="(item, index) in notifications"
+                        :key="item.title"
+                        class="notification-content__item p-2 mb-2"
+                        :icon-style="item.style"
+                        :title="item.title"
+                        :link="item.link"
+                        :content="item.content"
+                        :index="index"
+                        @close="deleteNotification(index)"
+                    />
+                </div>
+            </div>
+        </div>
+    </transition>
+</template>
+
+<script>
+import SynthsNotification from "@/components/notifications/SynthsNotification.vue"
+
+export default {
+    name: "NotificationLayout",
+    components: {
+        notification: SynthsNotification,
+    },
+}
+</script>
+<script setup>
+import { globalStore } from "@/composables"
+
+const { state } = globalStore()
+const { toggleNotificationOpen } = globalStore()
+const { deleteNotification } = globalStore()
+
+let notifications = state.notifications
+let isNotificationOpen = state.isNotificationOpen
+</script>
+
+<style scoped lang="scss">
+h2 {
+    @apply font-semibold mb-2;
+}
+.notification {
+    @apply fixed top-0 right-0 h-full w-full md:w-[240px] px-4;
+    &-wrapper {
+        @apply fixed top-0 right-0 h-full w-full;
+        z-index: 1000;
+        backdrop-filter: blur(5px);
+        background: rgba(#11112f, 0.1);
+    }
+
+    &-close {
+        @apply ml-auto mt-5 cursor-pointer;
+    }
+}
+
+.slide-enter-active,
+.slide-leave-active {
+    transition: 50ms ease;
+    .notification {
+        transition: 50ms ease;
+    }
+}
+
+.slide-enter-from,
+.slide-leave-to {
+    .notification {
+        right: -300px;
+    }
+}
+</style>

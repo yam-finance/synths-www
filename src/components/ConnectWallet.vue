@@ -1,9 +1,12 @@
 <template>
     <div
-        @click="$emit('close')"
         class="modal-backdrop backdrop-blur-lg flex items-center justify-center fixed inset-0"
+        @click.prevent="$emit('close')"
     >
-        <div class="modal rounded-lg flex flex-col items-start shadow-2xl p-4 absolute">
+        <div
+            class="modal rounded-lg flex flex-col items-start shadow-2xl p-4 absolute"
+            @click.stop=""
+        >
             <img class="wallet_gif absolute w-40" src="@/assets/images/wallet.gif" />
 
             <div
@@ -64,7 +67,6 @@
                 "
             >
                 <div
-                    @click="$emit('connect', 'injected')"
                     class="
                         wallet_box
                         rounded-xl
@@ -86,6 +88,7 @@
                         left-0
                         hover:brightness-150
                     "
+                    @click="$emit('connect', 'injected')"
                 >
                     <img src="@/assets/icons/metamask.svg" />
                     <div
@@ -100,14 +103,12 @@
                             text-white
                             not-italic
                             wallet_name
-                            
                         "
                     >
                         Metamask
                     </div>
                 </div>
                 <div
-                    @click="$emit('connect', 'walletconnect')"
                     class="
                         wallet_box
                         rounded-xl
@@ -129,6 +130,7 @@
                         left-0
                         hover:brightness-150
                     "
+                    @click="$emit('connect', 'walletconnect')"
                 >
                     <img src="@/assets/icons/walletconnect.png" />
                     <div
@@ -151,7 +153,6 @@
                     </div>
                 </div>
                 <div
-                    @click="$emit('connect', 'fortmatic')"
                     class="
                         wallet_box
                         rounded-xl
@@ -174,6 +175,7 @@
                         left-0
                         hover:brightness-150
                     "
+                    @click="$emit('connect', 'fortmatic')"
                 >
                     <img src="@/assets/icons/formatic.png" />
                     <div
@@ -197,7 +199,6 @@
                     </div>
                 </div>
                 <div
-                    @click="$emit('connect', 'portis')"
                     class="
                         wallet_box
                         rounded-xl
@@ -219,6 +220,7 @@
                         left-0
                         hover:brightness-150
                     "
+                    @click="$emit('connect', 'portis')"
                 >
                     <img src="@/assets/icons/portis.png" />
                     <div

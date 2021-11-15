@@ -1,3 +1,47 @@
+
+<script setup>
+import { copyText } from "vue3-clipboard"
+import { useWeb3 } from "@/composables/useWeb3"
+import ConnectWallet from "@/components/ConnectWallet.vue"
+import { globalStore } from "@/composables"
+import { ref } from "vue"
+
+import useClipboard from "@/composables/useClipboard"
+const { state } = globalStore()
+
+
+const { login, web3, logout } = useWeb3()
+const isModalVisible = ref(false)
+
+const isWalletDropDownOpen = ref(false)
+const isHelpDropDownOpen = ref(false)
+const isLangDropDownOpen = ref(false)
+const isDropDownOpen = ref(false)
+const { toggleNotificationOpen } = globalStore()
+
+let blockNumber = state.blockNumber
+async function handleConnect(connector) {
+  isModalVisible.value = false
+  await login(connector)
+}
+async function handleLogout() {
+  await logout()
+  // emit('close');
+}
+const { toClipboard } = useClipboard()
+async function doCopy(address) {
+  try {
+    await toClipboard(address)
+  } catch (e) {
+    console.error(e)
+  }
+}
+function formatAddress(address) {
+  return address.slice(0, 6) + "..." + address.slice(-6)
+}
+
+</script>
+
 <script>
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
 
@@ -38,52 +82,13 @@ export default {
             this.isWalletDropDownOpen = false
             // this.isModalVisible = false;
         },
+        goToBlockLink() {
+          window.open(`https://etherscan.io/block/${this.blockNumber}`, '_blank');
+        }
     },
 }
 </script>
 
-<script setup>
-import { copyText } from 'vue3-clipboard'
-import { useWeb3 } from "@/composables/useWeb3"
-import ConnectWallet from "@/components/ConnectWallet.vue"
-import {globalStore} from "@/composables";
-import { ref } from "vue"
-
-import useClipboard from '@/composables/useClipboard'
-let blockNumber;
-const { state } = globalStore()
-
-
-const { login, web3, logout } = useWeb3()
-const isModalVisible = ref(false)
-
-const isWalletDropDownOpen = ref(false)
-const isHelpDropDownOpen = ref(false)
-const isLangDropDownOpen = ref(false)
-blockNumber =  state.blockNumber;
-async function handleConnect(connector) {
-    isModalVisible.value = false
-    await login(connector)
-}
-async function handleLogout() {
-    await logout()
-    // emit('close');
-}
-const { toClipboard } = useClipboard()
-async function doCopy(address) {
-    try {
-        await toClipboard(address)
-      } catch (e) {
-        console.error(e)
-      }
-}
-function formatAddress(address) {
-    return address.slice(0, 6) + "..." + address.slice(-6)
-}
-
-
-
-</script>
 
 <template>
     <nav
@@ -99,7 +104,6 @@ function formatAddress(address) {
             flex
             lg:flex-row
             border-b
-            bg-main
             bg-main
         "
     >
@@ -149,7 +153,7 @@ function formatAddress(address) {
             >
                 <router-link :to="'/' + tab.to">
                     <span v-if="tab.title == $route.name" class="text-black">{{ tab.title }}</span>
-                    <span v-else class="text-purpleLight hover:text-white" >{{ tab.title }}</span>
+                    <span v-else class="text-purpleLight hover:text-white">{{ tab.title }}</span>
                 </router-link>
             </li>
         </ul>
@@ -178,8 +182,6 @@ function formatAddress(address) {
                     English
                     <img src="@/assets/images/dropdown.svg" class="mx-2 ml-1 my-auto h-4" />
                 </span>
-
-
                 <span
                     class="flex px-4 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer"
                     @click="isHelpDropDownOpen = !isHelpDropDownOpen"
@@ -188,7 +190,11 @@ function formatAddress(address) {
                     <img src="@/assets/images/dropdown.svg" class="mx-2 ml-1 my-auto h-4" />
                 </span>
 
-                <img src="@/assets/images/bell.png" class="cursor-pointer my-auto h-4 pr-4" />
+                <img
+                    src="@/assets/images/bell.png"
+                    @click="toggleNotificationOpen"
+                    class="cursor-pointer my-auto h-4 basic-hover"
+                />
 
                 <s-button
                     v-if="!$auth.isAuthenticated.value"
@@ -365,23 +371,38 @@ function formatAddress(address) {
                     <span class="text-sm text-purpleLight">Network</span>
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
-                    <label class="container "
+                    <label class="container"
                         >Mainnet
-                        <input type="radio" :checked="web3.network.key == 1" class="form-radio" disabled/>
+                        <input
+                            type="radio"
+                            :checked="web3.network.key == 1"
+                            class="form-radio"
+                            disabled
+                        />
                         <span class="checkmark"></span>
                     </label>
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
                     <label class="container"
                         >Polygon
-                        <input type="radio" :checked="web3.network.key == 137" class="form-radio" disabled/>
+                        <input
+                            type="radio"
+                            :checked="web3.network.key == 137"
+                            class="form-radio"
+                            disabled
+                        />
                         <span class="checkmark"></span>
                     </label>
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
                     <label class="container"
                         >Rinkeby
-                        <input type="radio" :checked="web3.network.key == 4" class="form-radio" disabled/>
+                        <input
+                            type="radio"
+                            :checked="web3.network.key == 4"
+                            class="form-radio"
+                            disabled
+                        />
                         <span class="checkmark"></span>
                     </label>
                 </li>
@@ -408,7 +429,7 @@ function formatAddress(address) {
             </ul>
         </div>
         <div class="flex overflow-hidden absolute right-0 h-12 visible md:invisible">
-            <div class="flex px-4 py-4 cursor-pointer">
+            <div class="flex px-4 py-4 cursor-pointer" @click="goToBlockLink">
                 <img src="@/assets/images/green-dot.svg" class="h-full py-0.5" />
                 <span class="text-xs my-auto font-normal px-1">{{ blockNumber }}</span>
             </div>
@@ -444,9 +465,9 @@ function formatAddress(address) {
 }
 
 .wallet_actions img {
-  margin-top: -2px;
-  width: 20px;
-  margin-right: 4px;
+    margin-top: -2px;
+    width: 20px;
+    margin-right: 4px;
 }
 .container {
     display: block;
