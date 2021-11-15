@@ -73,7 +73,7 @@
               </router-link>
 
                 <div class="relative text-3xl md:text-5xl lg:text-7xl mt-8 mb-16 font-semibold">
-                    Go Long or Short<br />on Anything
+                    Go Long. Go Short.<br />Go Without Limits.
                 </div>
                 <div class="relative">
                     <img src="@/assets/images/pages/market.png" class="m-auto mb-20 shadow-2xl max-w-3xl" />
@@ -98,7 +98,7 @@
                     </div>
                     <div>
                         <img src="@/assets/images/check.png" class="w-5 mb-1 inline" />
-                        <span class="ml-1">Another benefit here</span>
+                        <span class="ml-1">Now on Polygon <span class="bg-[#e763a6] px-1 text-xs font-semibold rounded">New</span></span>
                     </div>
                 </div>
 

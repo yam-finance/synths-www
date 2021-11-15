@@ -2,14 +2,14 @@
     <div class="home bg-main">
         <Header />
         <main>
-            <div class="w-full" style="display: -webkit-inline-box">
+            <div class="w-full content">
                 <div>
                     <SideBar />
                 </div>
-                <div class="hidden md:flex" style="width: calc(100vw - 256px)">
+                <div class="hidden md:flex content-desktop">
                     <router-view />
                 </div>
-                <div class="block md:hidden" style="height: calc(100vh - 64px)">
+                <div class="block md:hidden content-mobile">
                     <router-view />
                 </div>
             </div>
@@ -32,3 +32,16 @@ export default {
     },
 }
 </script>
+<style lang="scss">
+.content {
+    display: -webkit-inline-box;
+
+    &-desktop {
+        width: calc(100vw - 256px);
+    }
+
+    &-mobile {
+        height: calc(100vh - 64px);
+    }
+}
+</style>

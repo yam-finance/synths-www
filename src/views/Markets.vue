@@ -1,5 +1,5 @@
 <template>
-    <div class="markets pb-10 bg-light">
+    <div class="markets pb-10 bg-light border-r bg-main">
         <div class="w-full h-12 py-3 px-6 border-b bg-main">
             <span class="text-sm txt-main">Information</span>
         </div>
@@ -26,10 +26,9 @@
                             class="
                                 overflow-hidden
                                 my-auto
-                                p-2.5
                                 text-sm text-left
                                 fixed
-                                bg-main
+                                bg-light
                                 rounded-br-xl rounded-bl-xl
                             "
                             v-if="isDropDown"
@@ -39,8 +38,6 @@
                                 <li class="min-w-max cursor-pointer p-1">
                                     <span
                                         class="
-                                            rounded-xl
-                                            bg-main
                                             px-4
                                             py-2
                                             font-normal
@@ -48,7 +45,7 @@
                                             txt-main
                                         "
                                     >
-                                        Expiring 23st April</span
+                                        Expiring 23rd April</span
                                     >
                                 </li>
                             </RouterLink>
@@ -56,8 +53,6 @@
                                 <li class="min-w-max cursor-pointer p-1">
                                     <span
                                         class="
-                                            rounded-xl
-                                            bg-main
                                             px-4
                                             py-2
                                             font-normal
@@ -65,7 +60,7 @@
                                             txt-main
                                         "
                                     >
-                                        Expiring 23st April</span
+                                        Expiring 23rd April</span
                                     >
                                 </li>
                             </RouterLink>
@@ -113,7 +108,7 @@
                     <div class="grid grid-cols-2">
                         <div class="p-2 pl-0">
                             <s-button
-                                class="mt-2.5 py-3 long"
+                                class="mt-2.5 py-2 px-4 long rounded-full"
                                 :buttonStyles="'!text-sm'"
                                 :color="'linear-gradient(180deg, #C8FF2D 0%, #008C0E 100%)'"
                             >
@@ -122,7 +117,7 @@
                         </div>
                         <div class="p-2 pr-0">
                             <s-button
-                                class="mt-2.5 py-3 short"
+                                class="mt-2.5 py-2 px-4 short rounded-full"
                                 :buttonStyles="'!text-sm'"
                                 :color="'linear-gradient(180deg, #FF6ACC 0%, #DC1919 100%)'"
                             >
@@ -136,7 +131,7 @@
                 </div>
             </div>
 
-            <div class="border-t bg-main">
+            <div class="bg-main">
                 <div class="px-6 py-4">
                     <span class="text-sm txt-main">Manage your position</span>
                     <div class="grid grid-cols-3 xl:gap-4 mt-4">
@@ -158,14 +153,15 @@
                     </div>
                 </div>
 
-                <div class="w-full text-white border-t bg-main">
+                <div class="w-full text-white">
                     <div
                         v-for="(option, key) in options"
                         :key="key"
                         @click="selected_option = option.id"
+                        class="border-t bg-main"
                     >
                         <div
-                            class="w-full h-12 py-3 px-6 border-b bg-main cursor-pointer"
+                            class="w-full h-12 py-3 px-6 cursor-pointer"
                             :class="{ 'bg-[#4447BD]': option.id == selected_option }"
                         >
                             <span class="font-semibold">{{ option.title }}</span>
