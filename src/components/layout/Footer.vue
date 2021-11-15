@@ -12,8 +12,7 @@
             flex flex-col
             lg:flex-row
             border-t
-            bg-main
-            bg-main
+            bg-main bg-main
         "
     >
         <div class="invisible md:visible">
@@ -178,16 +177,14 @@ import { useWeb3 } from "@/composables/useWeb3"
 import ConnectWallet from "@/components/ConnectWallet.vue"
 import { ref } from "vue"
 
-
-import {globalStore} from "@/composables";
-
+import { globalStore } from "@/composables"
 
 const { login, web3, logout } = useWeb3()
 const isModalVisible = ref(false)
 
 const { toggleNotificationOpen } = globalStore()
 const { state } = globalStore()
-let blockNumber =  state.blockNumber;
+let blockNumber = state.blockNumber
 const isWalletDropDownOpen = ref(false)
 const isHelpDropDownOpen = ref(false)
 
@@ -202,13 +199,9 @@ async function handleLogout() {
 function formatAddress(address) {
     return address.slice(0, 6) + "..." + address.slice(-6)
 }
-
-
-
 </script>
 
 <script>
-
 let tabs = [
     {
         id: 1,
@@ -230,14 +223,14 @@ export default {
     name: "Footer",
     data() {
         return {
-            isMenuOpen:false,
+            isMenuOpen: false,
             tabs,
         }
     },
     methods: {
-      goToBlockLink() {
-        window.open(`https://etherscan.io/block/${this.blockNumber}`, '_blank');
-      }
+        goToBlockLink() {
+            window.open(`https://etherscan.io/block/${this.blockNumber}`, "_blank")
+        },
     },
 }
 </script>

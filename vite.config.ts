@@ -20,23 +20,23 @@ export default defineConfig({
         }),
         PrerenderSpaPlugin({
             // Absolute path to compiled SPA
-            staticDir: path.resolve(__dirname, './dist'),
-            indexPath: path.resolve(__dirname, './dist/index.html'),
+            staticDir: path.resolve(__dirname, "./dist"),
+            indexPath: path.resolve(__dirname, "./dist/index.html"),
             // List of routes to prerender
-            routes: [ '*' ],
+            routes: ["*"],
             // Options
             postProcess(context) {
                 let titles = {
-                    '/': 'Home',
-                    '/explore': 'Explore',
-                    '/portfolio': 'Portfolio'
-                };
+                    "/": "Home",
+                    "/explore": "Explore",
+                    "/portfolio": "Portfolio",
+                }
                 context.html = context.html.replace(
                     /<title>[^<]*<\/title>/i,
                     `<title>${titles[context.route]}</title>`
                 )
                 return context
-            }
+            },
         }),
     ],
     resolve: {

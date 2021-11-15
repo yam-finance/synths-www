@@ -7,7 +7,7 @@ import { useSynthsSDK } from "./useSynthsSDK"
 
 let auth: any
 const defaultNetwork: any = import.meta.env.VITE_DEFAULT_NETWORK || Object.keys(networks)[0]
-const { init } = useSynthsSDK();
+const { init } = useSynthsSDK()
 
 const state = ref({
     account: "",
@@ -15,14 +15,14 @@ const state = ref({
     authLoading: false,
     etherscanlink: "",
     walletConnectType: null,
-    ethersProvider: Web3Provider
+    ethersProvider: Web3Provider,
 })
 
 // TODO Initialize with default provider if wallet is not connected
-watchEffect(() => { 
-    console.log("State changed!");
-    console.log("provider = ", state.value.ethersProvider);
-    init(state.value.ethersProvider);
+watchEffect(() => {
+    console.log("State changed!")
+    console.log("provider = ", state.value.ethersProvider)
+    init(state.value.ethersProvider)
 })
 
 export function useWeb3() {
@@ -32,7 +32,7 @@ export function useWeb3() {
         await auth.login(connector)
         if (auth.provider.value) {
             auth.web3 = new Web3Provider(auth.provider.value, "any")
-           
+
             await loadProvider()
         }
         state.value.authLoading = false
@@ -40,15 +40,14 @@ export function useWeb3() {
 
     async function logout() {
         auth = getInstance()
-        await auth.logout() 
+        await auth.logout()
     }
 
     async function loadProvider() {
-        console.log("on changes");
+        console.log("on changes")
         try {
             if (auth.provider.value.removeAllListeners && !auth.provider.value.isTorus)
                 auth.provider.value.removeAllListeners()
-                
 
             if (auth.provider.value.on) {
                 auth.provider.value.on("chainChanged", async (chainId) => {
@@ -62,9 +61,9 @@ export function useWeb3() {
                 })
                 // auth.provider.on('disconnect', async () => {});
             }
-            console.log("on changes");
-            console.log('Provider', auth.provider.value);
-            state.value.ethersProvider = auth.web3;
+            console.log("on changes")
+            console.log("Provider", auth.provider.value)
+            state.value.ethersProvider = auth.web3
             let network, accounts
             try {
                 ;[network, accounts] = await Promise.all([

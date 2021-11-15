@@ -13,7 +13,16 @@
                     </div>
                     <div class="text-right mr-0 inline float-right">
                         <div
-                            class="rounded-xl bg-main p-2 shadow-inner font-normal text-sm txt-main text-white"
+                            class="
+                                rounded-xl
+                                bg-main
+                                p-2
+                                shadow-inner
+                                font-normal
+                                text-sm
+                                txt-main
+                                text-white
+                            "
                             @click="isDropDown = !isDropDown"
                         >
                             Expiring 21st April
@@ -36,30 +45,14 @@
                         >
                             <RouterLink to="/#">
                                 <li class="min-w-max cursor-pointer p-1">
-                                    <span
-                                        class="
-                                            px-4
-                                            py-2
-                                            font-normal
-                                            text-sm
-                                            txt-main
-                                        "
-                                    >
+                                    <span class="px-4 py-2 font-normal text-sm txt-main">
                                         Expiring 23rd April</span
                                     >
                                 </li>
                             </RouterLink>
                             <RouterLink to="/#">
                                 <li class="min-w-max cursor-pointer p-1">
-                                    <span
-                                        class="
-                                            px-4
-                                            py-2
-                                            font-normal
-                                            text-sm
-                                            txt-main
-                                        "
-                                    >
+                                    <span class="px-4 py-2 font-normal text-sm txt-main">
                                         Expiring 23rd April</span
                                     >
                                 </li>
@@ -305,7 +298,7 @@ import { useI18n } from "vue-i18n"
 
 /* -- Start of SDK Test -- */
 import { useSynthsSDK } from "../composables/useSynthsSDK"
-import { computed } from "vue";
+import { computed } from "vue"
 /* -- End of SDK Test -- */
 
 let options = [
@@ -356,7 +349,7 @@ export default {
         /// @notice Synth SDK Init test
         // const url = `${import.meta.env.VITE_INFURA_URL}`
         // const provider = new providers.JsonRpcProvider(url)
-        const { data, loading } = useSynthsSDK();
+        const { data, loading } = useSynthsSDK()
         /* -- End of SDK Init Test -- */
 
         /// @dev Use global scope
@@ -375,7 +368,9 @@ export default {
 
             /* -- Start of SDK Test -- */
             loading: loading,
-            expiryPrice: computed(() =>  { if (!loading.value) return data.value["upunks-0921"]["empState"].expiryPrice })
+            expiryPrice: computed(() => {
+                if (!loading.value) return data.value["upunks-0921"]["empState"].expiryPrice
+            }),
             /* -- End of SDK Test -- */
         }
     },
@@ -388,7 +383,6 @@ export default {
 }
 </script>
 <style scoped lang="scss">
-
 @media (min-width: 1280px) {
     .card {
         @apply bg-blueDark;

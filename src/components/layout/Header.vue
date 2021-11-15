@@ -1,4 +1,3 @@
-
 <script setup>
 import { copyText } from "vue3-clipboard"
 import { useWeb3 } from "@/composables/useWeb3"
@@ -8,7 +7,6 @@ import { ref } from "vue"
 
 import useClipboard from "@/composables/useClipboard"
 const { state } = globalStore()
-
 
 const { login, web3, logout } = useWeb3()
 const isModalVisible = ref(false)
@@ -21,25 +19,24 @@ const { toggleNotificationOpen } = globalStore()
 
 let blockNumber = state.blockNumber
 async function handleConnect(connector) {
-  isModalVisible.value = false
-  await login(connector)
+    isModalVisible.value = false
+    await login(connector)
 }
 async function handleLogout() {
-  await logout()
-  // emit('close');
+    await logout()
+    // emit('close');
 }
 const { toClipboard } = useClipboard()
 async function doCopy(address) {
-  try {
-    await toClipboard(address)
-  } catch (e) {
-    console.error(e)
-  }
+    try {
+        await toClipboard(address)
+    } catch (e) {
+        console.error(e)
+    }
 }
 function formatAddress(address) {
-  return address.slice(0, 6) + "..." + address.slice(-6)
+    return address.slice(0, 6) + "..." + address.slice(-6)
 }
-
 </script>
 
 <script>
@@ -83,12 +80,11 @@ export default {
             // this.isModalVisible = false;
         },
         goToBlockLink() {
-          window.open(`https://etherscan.io/block/${this.blockNumber}`, '_blank');
-        }
+            window.open(`https://etherscan.io/block/${this.blockNumber}`, "_blank")
+        },
     },
 }
 </script>
-
 
 <template>
     <nav
@@ -295,23 +291,38 @@ export default {
                     <span class="text-sm text-purpleLight">Network</span>
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
-                    <label class="container "
+                    <label class="container"
                         >Mainnet
-                        <input type="radio" :checked="web3.network.key == 1" class="form-radio" disabled/>
+                        <input
+                            type="radio"
+                            :checked="web3.network.key == 1"
+                            class="form-radio"
+                            disabled
+                        />
                         <span class="checkmark"></span>
                     </label>
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
                     <label class="container"
                         >Polygon
-                        <input type="radio" :checked="web3.network.key == 137" class="form-radio" disabled/>
+                        <input
+                            type="radio"
+                            :checked="web3.network.key == 137"
+                            class="form-radio"
+                            disabled
+                        />
                         <span class="checkmark"></span>
                     </label>
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
                     <label class="container"
                         >Rinkeby
-                        <input type="radio" :checked="web3.network.key == 4" class="form-radio" disabled/>
+                        <input
+                            type="radio"
+                            :checked="web3.network.key == 4"
+                            class="form-radio"
+                            disabled
+                        />
                         <span class="checkmark"></span>
                     </label>
                 </li>
@@ -329,7 +340,9 @@ export default {
                 <li class="min-w-max cursor-pointer p-1">
                     <span class="wallet_actions"
                         ><img src="@/assets/icons/externalLink.svg" />&nbsp;
-                        <a class="ml-1" :href="web3.etherscanlink" target="_blank" >Etherscan</a></span
+                        <a class="ml-1" :href="web3.etherscanlink" target="_blank"
+                            >Etherscan</a
+                        ></span
                     >
                 </li>
                 <li
@@ -341,7 +354,6 @@ export default {
                     >
                 </li>
             </ul>
-
 
             <!-- wallet info dropdown 2 -->
             <ul
@@ -415,7 +427,9 @@ export default {
                 <li class="min-w-max cursor-pointer p-1">
                     <span class="wallet_actions"
                         ><img src="@/assets/icons/externalLink.svg" />&nbsp;
-                        <a class="ml-1" :href="web3.etherscanlink" target="_blank" >Etherscan</a></span
+                        <a class="ml-1" :href="web3.etherscanlink" target="_blank"
+                            >Etherscan</a
+                        ></span
                     >
                 </li>
                 <li

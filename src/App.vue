@@ -1,60 +1,60 @@
 <template>
-  <router-view />
+    <router-view />
 </template>
 
 <style lang="scss">
 #nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
+    padding: 30px;
+    a {
+        font-weight: bold;
+        color: #2c3e50;
+        &.router-link-exact-active {
+            color: #42b983;
+        }
     }
-  }
 }
 </style>
 
 <script lang="ts">
-import { defineComponent, provide, reactive, ref, onUnmounted } from "vue";
-import { globalStore } from "@/composables";
-import { useApp } from "@/composables/useApp";
+import { defineComponent, provide, reactive, ref, onUnmounted } from "vue"
+import { globalStore } from "@/composables"
+import { useApp } from "@/composables/useApp"
 export default defineComponent({
-  setup() {
-    // Simple Data
-    const state = reactive({
-      name: "John Doe",
-      email: "john@gmail.com",
-    });
-    const updateUsername = (name: string) => {
-      state.name = name;
-    };
-    const updateEmail = (email: string) => {
-      state.email = email;
-    };
-    provide("userDetails", state);
-    provide("updateUsername", updateUsername);
-    provide("updateEmail", updateEmail);
-    
-    const { loadBlockNumber } = globalStore();
-    loadBlockNumber();
-    
-    const screenWidth = ref<number | null>(null);
-    const resizeHandler = () => {
-      screenWidth.value = window.innerWidth;
-    };
-    window.addEventListener("resize", resizeHandler);
-    onUnmounted(() => {
-      window.removeEventListener("resize", resizeHandler);
-    });
-    provide("screen", screenWidth);
-    
-    const { init } = useApp();
-    onMounted(async () => {
-      init();
-    });
-    
-    return { state, screenWidth };
-  },
-});
+    setup() {
+        // Simple Data
+        const state = reactive({
+            name: "John Doe",
+            email: "john@gmail.com",
+        })
+        const updateUsername = (name: string) => {
+            state.name = name
+        }
+        const updateEmail = (email: string) => {
+            state.email = email
+        }
+        provide("userDetails", state)
+        provide("updateUsername", updateUsername)
+        provide("updateEmail", updateEmail)
+
+        const { loadBlockNumber } = globalStore()
+        loadBlockNumber()
+
+        const screenWidth = ref<number | null>(null)
+        const resizeHandler = () => {
+            screenWidth.value = window.innerWidth
+        }
+        window.addEventListener("resize", resizeHandler)
+        onUnmounted(() => {
+            window.removeEventListener("resize", resizeHandler)
+        })
+        provide("screen", screenWidth)
+
+        const { init } = useApp()
+        onMounted(async () => {
+            init()
+        })
+
+        return { state, screenWidth }
+    },
+})
 </script>

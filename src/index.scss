@@ -26,9 +26,9 @@
 }
 
 * {
-  -webkit-transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    -webkit-transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 html,
@@ -44,13 +44,13 @@ div {
     @apply text-white;
 }
 body {
-  background-color: #11112f;
+    background-color: #11112f;
 }
 html,
 body {
     .bg-main {
         background: #11112f;
-        border-color: #242449; 
+        border-color: #242449;
     }
 
     .bg-dark {
@@ -62,15 +62,15 @@ body {
     }
 
     .long {
-      box-shadow: 0px 0px 4px 0px #C8FF2D inset;
+        box-shadow: 0px 0px 4px 0px #c8ff2d inset;
     }
     .short {
-      box-shadow: 0px 0px 4px 0px #FF6ACC inset;
+        box-shadow: 0px 0px 4px 0px #ff6acc inset;
     }
 
     .wallet-btn {
         background: linear-gradient(180deg, #f77fa0 0%, #da4cab 100%);
-        box-shadow: 0px 0px 2px 0px #FFB7E0 inset;
+        box-shadow: 0px 0px 2px 0px #ffb7e0 inset;
     }
 
     .txt-main {
@@ -78,7 +78,7 @@ body {
     }
 
     .bd-main {
-        border-color: #242449; 
+        border-color: #242449;
     }
 
     ::-webkit-scrollbar {
@@ -100,13 +100,13 @@ body {
     .basic-hover {
         @apply hover:brightness-110 active:brightness-75;
     }
-  #nprogress {
-    .spinner {
-      display: block;
-      position: fixed;
-      z-index: 1031;
-      top: 68% !important;
-      right: 49% !important;
+    #nprogress {
+        .spinner {
+            display: block;
+            position: fixed;
+            z-index: 1031;
+            top: 68% !important;
+            right: 49% !important;
+        }
     }
-  }
 }
