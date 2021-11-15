@@ -11,7 +11,7 @@ const { state } = globalStore()
 const { login, web3, logout } = useWeb3()
 const isModalVisible = ref(false)
 
-const isWalletDropDownOpen = ref(true)
+const isWalletDropDownOpen = ref(false)
 const isHelpDropDownOpen = ref(false)
 const isLangDropDownOpen = ref(false)
 const isDropDownOpen = ref(false)
@@ -30,7 +30,7 @@ async function handleLogout() {
 const { toClipboard } = useClipboard()
 async function doCopy(address) {
     try {
-        await toClipboard('address')
+        await toClipboard(address)
 
       addNewNotifications({
         style: 1,
