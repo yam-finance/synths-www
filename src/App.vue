@@ -29,14 +29,27 @@
 </style>
 
 <script lang="ts">
-import { defineComponent, provide, ref, onUnmounted, onMounted } from "vue"
-
+import { defineComponent, provide, reactive, ref, onUnmounted, onMounted } from "vue"
 import { globalStore } from "@/composables"
+import { useApp } from '@/composables/useApp'
 
 export default defineComponent({
-    setup() {
-        // block number Eth
-        const { loadBlockNumber } = globalStore()
+  setup() {
+    //Setup Simple Data
+    const state = reactive({
+      name: "John Doe",
+      email: "john@gmail.com",
+    })
+
+    const updateUsername = (name: string) => {
+      state.name = name
+    }
+
+    const updateEmail = (email: string) => {
+      state.email = email
+    }
+
+    const { loadBlockNumber } = globalStore()
 
         loadBlockNumber()
 
@@ -57,35 +70,41 @@ export default defineComponent({
 
         provide("screen", screenWidth)
 
-        return { screenWidth }
-    },
-    data() {
-        return {
-            loadingStatus: true,
-        }
-    },
-    watch: {
-        $route(to, from) {
-            document.onreadystatechange = () => {
-                let state = document.readyState
-                if (state == "interactive") {
-                    this.loadingStatus = true
-                } else if (state == "complete") {
-                    this.loadingStatus = false
-                }
-            }
-        },
-    },
-    mounted() {
-        document.onreadystatechange = () => {
-            let state = document.readyState
-            if (state == "interactive") {
-                this.loadingStatus = true
-            } else if (state == "complete") {
-                this.loadingStatus = false
-            }
+
+    const { init } = useApp();
+    onMounted(async () => {
+       init();
+    })
+    return { state, screenWidth }
+  },
+  data() {
+    return {
+      loadingStatus: true
+    }
+  },
+  mounted() {
+    document.onreadystatechange = () => {
+      let state = document.readyState
+      if (state == "interactive") {
+        this.loadingStatus = true
+      } else if (state == "complete") {
+        this.loadingStatus = false
+      }
+    }
+  },
+  methods: {
+  },
+  watch: {
+    $route(to, from) {
+      document.onreadystatechange = () => {
+        let state = document.readyState
+        if (state == "interactive") {
+          this.loadingStatus = true
+        } else if (state == "complete") {
+          this.loadingStatus = false
         }
     },
     methods: {},
 })
 </script>
+
