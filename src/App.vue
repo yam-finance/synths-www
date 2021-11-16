@@ -90,9 +90,9 @@ export default defineComponent({
   },
   methods: {
     loadingHandler() {
-      var obj = this;
+      let obj = this;
       document.onreadystatechange = function () {
-        var state = document.readyState
+        let state = document.readyState
         if (state == 'interactive') {
           obj.loadingStatus = true;
         } else if (state == 'complete') {
