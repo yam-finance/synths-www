@@ -5,7 +5,7 @@
             <div class="sn-icon">
                 <img :src="getIcon(iconStyle)" alt="Notification Status" />
             </div>
-            <div class="sn-link">
+            <div v-show="link" class="sn-link">
                 <a :href="link" target="_blank">
                     <img src="@/assets/images/external-link.svg" alt="External Link" />
                 </a>
@@ -39,6 +39,9 @@ export default {
     data: () => ({
         show: true,
     }),
+    beforeUnmount() {
+        this.show = false
+    },
     methods: {
         getIcon(style) {
             if (style === 0) return infoCircle
@@ -48,9 +51,6 @@ export default {
         closeNotification() {
             this.$emit("close")
         },
-    },
-    beforeUnmount() {
-        this.show = false
     },
 }
 </script>

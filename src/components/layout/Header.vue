@@ -16,6 +16,7 @@ const isHelpDropDownOpen = ref(false)
 const isLangDropDownOpen = ref(false)
 const isDropDownOpen = ref(false)
 const { toggleNotificationOpen } = globalStore()
+const { addNewNotifications } = globalStore()
 
 let blockNumber = state.blockNumber
 async function handleConnect(connector) {
@@ -30,7 +31,21 @@ const { toClipboard } = useClipboard()
 async function doCopy(address) {
     try {
         await toClipboard(address)
+
+      addNewNotifications({
+        style: 1,
+        link: null,
+        title: "Success!",
+        content: 'Copied',
+      }, false)
     } catch (e) {
+      // TODO: Can't catch error
+      addNewNotifications({
+        style: 0,
+        link: null,
+        title: "Error!",
+        content: 'Please try again or reload page',
+      }, false)
         console.error(e)
     }
 }

@@ -92,7 +92,7 @@ onMounted(() => {
 }
 
 .fade-notification {
-    @apply fixed top-[70px] right-[20px] max-w-[300px] h-full;
+    @apply fixed top-[70px] right-[20px] w-[300px];
     z-index: 999;
 }
 </style>
