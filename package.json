@@ -25,7 +25,7 @@
         "postcss": "^8.3.7",
         "rollup-plugin-visualizer": "^5.5.2",
         "sass": "^1.42.1",
-        "synths-sdk": "^1.1.1",
+        "synths-sdk": "^1.1.2",
         "tailwind-config-viewer": "^1.6.2",
         "tailwindcss": "^2.2.15",
         "unplugin-vue-components": "^0.15.6",
