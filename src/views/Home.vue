@@ -157,7 +157,7 @@
                     </div>
 
                     <div
-                        v-if="!loading"
+                        v-if="loading"
                         class="card rounded-lg bg-[#272760] shadow-lg p-4 m-2 hover:-translate-y-0.5 cursor-pointer lg:w-64"
                     >
                         <div class="flex items-center mb-5">

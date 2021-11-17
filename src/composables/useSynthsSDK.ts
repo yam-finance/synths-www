@@ -1,5 +1,6 @@
 import { ref, computed } from "vue"
 import Synths, { getTotalMarketData, getRecentSynthData } from "synths-sdk"
+import { defaultAssetsConfig } from "synths-sdk/dist/src/lib/config/index"
 import { Web3Provider } from "@ethersproject/providers"
 
 const loading = ref(true)
@@ -18,9 +19,10 @@ export function useSynthsSDK() {
         loading.value = true
 
         const networkId: number = (await provider.getNetwork()).chainId
+        console.log(networkId)
         synthsSDK.value = await Synths.create({ ethersProvider: provider })
-        recentSynthData.value = await getRecentSynthData(networkId, synthsSDK.value.assets)
-        totalMarketData.value = await getTotalMarketData([networkId], synthsSDK.value.assets)
+        recentSynthData.value = await getRecentSynthData(networkId, defaultAssetsConfig)
+        totalMarketData.value = await getTotalMarketData([networkId], defaultAssetsConfig)
         console.log(recentSynthData.value)
         console.log(totalMarketData.value)
         // lspPortfolio.value = await getLSPPortfolio(provider.getSigner()._address);
