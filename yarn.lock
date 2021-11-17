@@ -1157,9 +1157,9 @@
     "@types/node" ">=12.12.47"
 
 "@grpc/proto-loader@^0.6.1", "@grpc/proto-loader@^0.6.4":
-  version "0.6.6"
-  resolved "https://registry.yarnpkg.com/@grpc/proto-loader/-/proto-loader-0.6.6.tgz#d8e51ea808ec5fa54d9defbecbf859336fb2da71"
-  integrity sha512-cdMaPZ8AiFz6ua6PUbP+LKbhwJbFXnrQ/mlnKGUyzDUZ3wp7vPLksnmLCBX6SHgSmjX7CbNVNLFYD5GmmjO4GQ==
+  version "0.6.7"
+  resolved "https://registry.yarnpkg.com/@grpc/proto-loader/-/proto-loader-0.6.7.tgz#e62a202f4cf5897bdd0e244dec1dbc80d84bdfa1"
+  integrity sha512-QzTPIyJxU0u+r2qGe8VMl3j/W2ryhEvBv7hc42OjYfthSj370fUrb7na65rG6w3YLZS/fb8p89iTBobfWGDgdw==
   dependencies:
     "@types/long" "^4.0.1"
     lodash.camelcase "^4.3.0"
@@ -10210,9 +10210,9 @@ object.pick@^1.3.0:
     isobject "^3.0.1"
 
 obliterator@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/obliterator/-/obliterator-2.0.0.tgz#fdff649d1131a1a90b51cc97c865b5560dcb3dfa"
-  integrity sha512-DJaXYKqe9Rs7c2+Xu08Knkt8P60rTeByyy7IWoXLqyc6ln9ph9NAo6ZbiylDpAshsygzBr81pZL5q6/dqi0RtQ==
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/obliterator/-/obliterator-2.0.1.tgz#fbdd873bf39fc4f365a53b1fc86617a22526987c"
+  integrity sha512-XnkiCrrBcIZQitJPAI36mrrpEUvatbte8hLcTcQwKA1v9NkCKasSi+UAguLsLDs/out7MoRzAlmz7VXvY6ph6w==
 
 oboe@2.1.5:
   version "2.1.5"
@@ -12560,10 +12560,10 @@ sync-rpc@^1.2.1:
   dependencies:
     get-port "^3.1.0"
 
-synths-sdk@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/synths-sdk/-/synths-sdk-1.1.2.tgz#eababa32c951a307962c185e09c6d72ccd72c022"
-  integrity sha512-Xxz3OmALamOL66/WPjlziTr+jqZTJ5WXuleGket0dxR4ug9ZDOoC83nuMa+CQPOCsrAEccUydg1MDMocUe0qEg==
+synths-sdk@^1.1.3:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/synths-sdk/-/synths-sdk-1.1.3.tgz#b62958e803b3d9361cf9144d37c72d7b9c363584"
+  integrity sha512-whlAaTR1ouivNrCelE87l/H9LG3R4mhT/jdPeIMf6uwCUYMQoFu87ikI7ffz54TqKEsmvBYEvOysjBMaMuohVQ==
   dependencies:
     "@0xsequence/multicall" "^0.29.6"
     "@openzeppelin/contracts" "^4.2.0"

@@ -108,7 +108,6 @@
                 </div>
                 <div class="flex flex-wrap justify-center mb-8">
                     <div
-                        v-if="!loading"
                         v-for="(menu, key) in recentSynthData"
                         :key="key"
                         class="card rounded-lg bg-[#272760] shadow-lg p-4 m-2 hover:-translate-y-0.5 cursor-pointer lg:w-64"
@@ -158,7 +157,7 @@
                     </div>
 
                     <div
-                        v-else
+                        v-if="!loading"
                         class="card rounded-lg bg-[#272760] shadow-lg p-4 m-2 hover:-translate-y-0.5 cursor-pointer lg:w-64"
                     >
                         <div class="flex items-center mb-5">
@@ -219,9 +218,9 @@
                     </button>
                 </router-link>
 
-                <div class="grid grid-cols-2 md:grid-cols-3 m-4 my-16">
+                <div class="grid grid-cols-3 md:grid-cols-3 m-4 my-16">
                     <div class="font-semibold">
-                        <p v-if="!loading" class="text-4xl md:text-5xl lg:text-6xl">{{ Number(totalMarketData.totalTVL).toFixed(0) }}$</p>
+                        <p v-if="!loading" class="text-4xl md:text-5xl lg:text-6xl">{{ Number(totalMarketData.totalTVL).toFixed(0) }} $</p>
                         <p v-else class="animate-pulse text-4xl md:text-5xl lg:text-6xl">...</p>
                         <p class="text-sm txt-main mt-2">TOTAL VALUE LOCKED</p>
                     </div>
@@ -232,12 +231,12 @@
                     </div>
                     -->
                     <div class="font-semibold">
-                        <p v-if="!loading" class="text-4xl md:text-5xl lg:text-6xl">{{ Number(totalMarketData.totalLiquidity).toFixed(0) }}$</p>
+                        <p v-if="!loading" class="text-4xl md:text-5xl lg:text-6xl">{{ Number(totalMarketData.totalLiquidity).toFixed(0) }} $</p>
                         <p v-else class="animate-pulse text-4xl md:text-5xl lg:text-6xl">...</p>
                         <p class="text-sm txt-main mt-2">SYNTH LIQUIDITY LAST 24h</p>
                     </div>
                     <div class="font-semibold">
-                        <p v-if="!loading" class="text-4xl md:text-5xl lg:text-6xl">{{ Number(totalMarketData.total24hVolume).toFixed(0) }}$</p>
+                        <p v-if="!loading" class="text-4xl md:text-5xl lg:text-6xl">{{ Number(totalMarketData.total24hVolume).toFixed(0) }} $</p>
                         <p v-else class="animate-pulse text-4xl md:text-5xl lg:text-6xl">...</p>
                         <p class="text-sm txt-main mt-2">VOLUME LAST 24H</p>
                     </div>
@@ -394,36 +393,7 @@
 <script>
 import { computed } from "vue"
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
-import { useSynthsSDK } from "../composables/useSynthsSDK";
-
-let recentSynthData = [
-  {
-    tokenId: '0xe3df5e08b72704c23229cb92fe847b23bfde9dbd',
-    tokenSymbol: 'uGAS-1221',
-    collateralSymbol: 'WETH',
-    apr: '80.53810453070447',
-    price: 0.08702954272788446,
-    priceChanged24h: 0,
-    liquidity: '785668.8706461301417345368447751548',
-    volume24h: 0
-  },
-  {
-    tokenId: '0x37a572b95d3fb5007a3519e73d4e9d6e0fc9de50',
-    tokenSymbol: 'uPUNKS-1221',
-    collateralSymbol: 'WETH',
-    apr: '77.52320098059948',
-    price: 0.12021159090909089,
-    priceChanged24h: 0,
-    liquidity: '272252.5503443591485622458646405356',
-    volume24h: 0
-  }
-];
-
-let totalMarketData = {
-  totalLiquidity: 1059817.0555786034,
-  total24hVolume: 1059817.0555786034,
-  totalTVL: 3012466.25
-};
+import { useSynthsSDK } from "../composables/useSynthsSDK"
 
 // let menuds = [
 //     {
@@ -458,26 +428,24 @@ let totalMarketData = {
 //     },
 // ]
 
+
 export default {
     name: "HomePage",
     components: {
         "s-button": SynthsRoundedButton,
     },
-    data() {
-        return {
-            // recentSynthData,
-            // totalMarketData,
-        }
-    },
     setup() {
-        const { totalMarketData, recentSynthData, loading } = useSynthsSDK();
+        const { totalMarketData, recentSynthData, loading } = useSynthsSDK()
 
         return {
            totalMarketData: computed(() => { if (!loading.value) return totalMarketData.value }),
            recentSynthData: computed(() => { if (!loading.value) return recentSynthData.value }),
            loading: computed(() => loading.value),
         }
-    }
+    },
+    data() {
+        return {}
+    },
 }
 </script>
 

@@ -15,11 +15,17 @@ export function useSynthsSDK() {
      * @param provider The web3 provider instance.
      */
     async function init(provider: Web3Provider) {
+        loading.value = true
+
         const networkId: number = (await provider.getNetwork()).chainId
-        // synthsSDK.value = await Synths.create({ ethersProvider: provider });
-        // recentSynthData.value = await getRecentSynthData(networkId, synthsSDK.value.assets)
-        // totalMarketData.value = await getTotalMarketData([networkId], synthsSDK.value.assets)
+        synthsSDK.value = await Synths.create({ ethersProvider: provider })
+        recentSynthData.value = await getRecentSynthData(networkId, synthsSDK.value.assets)
+        totalMarketData.value = await getTotalMarketData([networkId], synthsSDK.value.assets)
+        console.log(recentSynthData.value)
+        console.log(totalMarketData.value)
         // lspPortfolio.value = await getLSPPortfolio(provider.getSigner()._address);
+
+        loading.value = false
     }
 
     /**
