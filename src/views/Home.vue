@@ -95,7 +95,7 @@
                 <div class="m-4 text-xl md:text-3xl lg:text-4xl font-semibold">Hedge, trade or earn on our synths</div>
                 <div class="flex flex-wrap justify-center mb-8">
                     <div
-                        v-for="(menu, key) in menus"
+                        v-for="(synth, key) in recentSynthData"
                         :key="key"
                         class="
                             card
@@ -112,7 +112,7 @@
                         <div class="flex items-center mb-5">
                             <div class="flex items-center flex-grow">
                                 <img src="@/assets/images/zombie.png" class="w-6 h-6" />
-                                <span class="text-sm font-semibold ml-2">{{ menu.title }}</span>
+                                <span class="text-sm font-semibold ml-2">{{ synth.tokenSymbol }}</span>
                             </div>
                             <div>
                                 <div
@@ -128,21 +128,69 @@
                                         float-right
                                     "
                                 >
-                                    30% APY
+                                    {{ Number(synth.apr).toFixed(2) }}% APR
                                 </div>
                             </div>
                         </div>
                         <div class="grid grid-cols-2">
                             <div class="flex items-end">
-                                <span class="px-1 font-bold">${{ menu.price }}</span>
-                                <img src="@/assets/images/arrow-up-right.svg" class="h-4 mb-0.5" />
-                                <span class="px-1 text-sm text-[#9A9AC8]">15%</span>
+                                <span class="px-1 font-bold">{{ synth.price.toFixed(4) }}</span>
+                                <span class="px-1 font-bold">{{ synth.collateralSymbol }}</span>
+                                <img v-if="synth.priceChanged24h >= 0" src="@/assets/images/arrow-up-right.svg" class="h-4 mb-0.5" />
+                                <img v-else src="@/assets/images/arrow-down-right.svg" class="h-4 mb-0.5" />
+                                <span class="px-1 text-sm text-[#9A9AC8]">{{ synth.priceChanged24h }}%</span>
                             </div>
-                            <router-link :to="'/synths/' + menu.to">
+                            <router-link :to="'/synths/' + synth.tokenSymbol">
                                 <div>
                                     <img src="@/assets/images/arrow-right-light.png" class="float-right h-6" />
                                 </div>
                             </router-link>
+                        </div>
+                    </div>
+                    <div
+                        v-if="loading"
+                        class="
+                            card
+                            rounded-lg
+                            bg-[#272760]
+                            shadow-lg
+                            p-4
+                            m-2
+                            hover:-translate-y-0.5
+                            cursor-pointer
+                            lg:w-64
+                        "
+                    >
+                        <div class="flex items-center mb-5">
+                            <div class="flex items-center flex-grow">
+                                <div class="rounded-full animate-pulse bg-white w-6 h-6" />
+                                <span class="rounded animate-pulse bg-white w-2/3 text-sm font-semibold ml-2">.</span>
+                            </div>
+                            <div>
+                                <div
+                                    class="
+                                        rounded animate-pulse bg-white 
+                                        my-auto
+                                        px-2
+                                        py-0.5
+                                        mt-0.5
+                                        rounded-full
+                                        text-xs
+                                        font-bold
+                                        float-right
+                                    "
+                                >
+                                   .
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2">
+                            <div class="flex items-end">
+                                <span class="rounded animate-pulse bg-white w-2/3 px-1 font-bold">.</span>
+                            </div>
+                            <div>
+                                <img src="@/assets/images/arrow-right-light.png" class="float-right h-6" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -150,21 +198,26 @@
                     <button class="rounded-2xl px-4 py-3 my-auto text-base font-bold wallet-btn">Explore Synths</button>
                 </router-link>
 
-                <div class="grid grid-cols-2 md:grid-cols-4 m-4 my-16">
+                <div class="grid gap-x-4 grid-cols-2 md:grid-cols-3 m-4 my-16">
                     <div class="font-semibold">
-                        <p class="text-4xl md:text-5xl lg:text-6xl">$2.0m</p>
+                        <p v-if="!loading" class="text-4xl md:text-5xl lg:text-6xl">{{ Number(totalMarketData.totalTVL).toFixed(0) }} $</p>
+                        <p v-else class="rounded animate-pulse bg-white text-4xl md:text-5xl lg:text-6xl">.</p>
                         <p class="text-sm txt-main mt-2">TOTAL VALUE LOCKED</p>
                     </div>
+                    <!--
                     <div class="font-semibold">
                         <p class="text-4xl md:text-5xl lg:text-6xl">$324k</p>
                         <p class="text-sm txt-main mt-2">TOTAL SYNTH MARKETCAP</p>
                     </div>
+                    -->
                     <div class="font-semibold">
-                        <p class="text-4xl md:text-5xl lg:text-6xl">$1.4m</p>
+                        <p v-if="!loading" class="text-4xl md:text-5xl lg:text-6xl">{{ Number(totalMarketData.totalLiquidity).toFixed(0) }} $</p>
+                        <p v-else class="rounded animate-pulse bg-white text-4xl md:text-5xl lg:text-6xl">.</p>
                         <p class="text-sm txt-main mt-2">TOTAL SYNTH LIQUIDITY</p>
                     </div>
                     <div class="font-semibold">
-                        <p class="text-4xl md:text-5xl lg:text-6xl">$500k</p>
+                        <p v-if="!loading" class="text-4xl md:text-5xl lg:text-6xl">{{ Number(totalMarketData.total24hVolume).toFixed(0) }} $</p>
+                        <p v-else class="rounded animate-pulse bg-white text-4xl md:text-5xl lg:text-6xl">.</p>
                         <p class="text-sm txt-main mt-2">VOLUME LAST 24H</p>
                     </div>
                 </div>
@@ -265,7 +318,11 @@
 </template>
 
 <script>
+import { computed } from "vue"
+import { useSynthsSDK } from "../composables/useSynthsSDK"
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
+
+/*
 let menus = [
     {
         id: 1,
@@ -298,14 +355,25 @@ let menus = [
         to: "eth-dai-il",
     },
 ]
+*/
+
 export default {
     name: "HomePage",
     components: {
         "s-button": SynthsRoundedButton,
     },
+    setup() {
+        const { loading, totalMarketData, recentSynthData } = useSynthsSDK()
+
+        return {
+           loading: computed(() => loading.value),
+           totalMarketData: computed(() => { if (!loading.value) return totalMarketData.value }),
+           recentSynthData: computed(() => { if (!loading.value) return recentSynthData.value }),
+        }
+    },
     data() {
         return {
-            menus,
+            // menus,
         }
     },
 }
