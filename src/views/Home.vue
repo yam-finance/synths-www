@@ -201,7 +201,7 @@
                 <div class="grid gap-x-4 grid-cols-2 md:grid-cols-3 m-4 my-16">
                     <div class="font-semibold">
                         <p v-if="!loading" class="text-4xl md:text-5xl lg:text-6xl">{{ Number(totalMarketData.totalTVL).toFixed(0) }} $</p>
-                        <p v-else class="rounded animate-pulse bg-white text-4xl md:text-5xl lg:text-6xl">.</p>
+                        <p v-else class="animate-pulse text-4xl md:text-5xl lg:text-6xl">...</p>
                         <p class="text-sm txt-main mt-2">TOTAL VALUE LOCKED</p>
                     </div>
                     <!--
@@ -212,12 +212,12 @@
                     -->
                     <div class="font-semibold">
                         <p v-if="!loading" class="text-4xl md:text-5xl lg:text-6xl">{{ Number(totalMarketData.totalLiquidity).toFixed(0) }} $</p>
-                        <p v-else class="rounded animate-pulse bg-white text-4xl md:text-5xl lg:text-6xl">.</p>
+                        <p v-else class="animate-pulse text-4xl md:text-5xl lg:text-6xl">...</p>
                         <p class="text-sm txt-main mt-2">TOTAL SYNTH LIQUIDITY</p>
                     </div>
                     <div class="font-semibold">
                         <p v-if="!loading" class="text-4xl md:text-5xl lg:text-6xl">{{ Number(totalMarketData.total24hVolume).toFixed(0) }} $</p>
-                        <p v-else class="rounded animate-pulse bg-white text-4xl md:text-5xl lg:text-6xl">.</p>
+                        <p v-else class="animate-pulse text-4xl md:text-5xl lg:text-6xl">...</p>
                         <p class="text-sm txt-main mt-2">VOLUME LAST 24H</p>
                     </div>
                 </div>
