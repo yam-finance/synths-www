@@ -14,13 +14,15 @@
         </div>
         <div class="slsc__stats-item !rounded-bl-xl">
             <p class="text-xs text-purpleLight">Buy on Balancer</p>
-            <s-button
-                class="mt-2.5 long"
-                :buttonStyles="'py-3'"
-                :color="'linear-gradient(180deg, #C8FF2D 0%, #008C0E 100%)'"
-            >
-                <template #buttonTitle> Go Long </template>
-            </s-button>
+            <div>
+                <s-button
+                    class="mt-2.5 py-2 px-8 long rounded-3xl"
+                    :buttonStyles="'!text-sm'"
+                    :color="'linear-gradient(180deg, #C8FF2D 0%, #008C0E 100%)'"
+                >
+                    <template #buttonTitle> Go Long </template>
+                </s-button>
+            </div>
         </div>
         <div class="slsc__charts h-full flex flex-col justify-between">
             <div class="slsc__charts-stats flex justify-start w-full">
