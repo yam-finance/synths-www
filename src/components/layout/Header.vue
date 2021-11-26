@@ -12,8 +12,8 @@ const { login, web3, logout } = useWeb3()
 const isModalVisible = ref(false)
 
 const isWalletDropDownOpen = ref(false)
-const isHelpDropDownOpen = ref(false)
-const isLangDropDownOpen = ref(false)
+// const isHelpDropDownOpen = ref(false)
+// const isLangDropDownOpen = ref(false)
 const isDropDownOpen = ref(false)
 const { toggleNotificationOpen } = globalStore()
 const { addNewNotifications } = globalStore()
@@ -56,9 +56,12 @@ function formatAddress(address) {
 
 <script>
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
-import { mixin as VueClickAway,directive  } from "vue3-click-away";
+import { mixin as VueClickAway,directive as onClickaway  } from "vue3-click-away";
+import { ref } from "vue";
 
 const featuredSynth = "dpi-2x"
+const isHelpDropDownOpen = ref(false)
+const isLangDropDownOpen = ref(false)
 let tabs = [
     {
         id: 1,
@@ -85,7 +88,16 @@ export default {
     },
     mixins: [VueClickAway],
     directives: {
-      ClickAway: directive
+      ClickAway: onClickaway
+    },
+    setup() {
+      const closePopup = (event) => {
+        event.stopPropagation()
+        this.isHelpDropDownOpen = false
+        this.isLangDropDownOpen = false
+      }
+
+      return { closePopup }
     },
   data() {
         return {
@@ -97,13 +109,13 @@ export default {
         selectTab(item) {
             this.activeTab = item.id
         },
-        closePopup(e) {
-            e.stopPropagation()
-            this.isHelpDropDownOpen = false
-            this.isLangDropDownOpen = false
-            this.isWalletDropDownOpen = false
-            // this.isModalVisible = false;
-        },
+        // closePopup(e) {
+        //     e.stopPropagation()
+        //     this.isHelpDropDownOpen = false
+        //     this.isLangDropDownOpen = false
+        //     this.isWalletDropDownOpen = false
+        //     // this.isModalVisible = false;
+        // },
         goToBlockLink() {
             window.open(`https://etherscan.io/block/${this.blockNumber}`, "_blank")
         },
