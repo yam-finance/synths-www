@@ -109,13 +109,13 @@ export default {
         selectTab(item) {
             this.activeTab = item.id
         },
-        // closePopup(e) {
-        //     e.stopPropagation()
-        //     this.isHelpDropDownOpen = false
-        //     this.isLangDropDownOpen = false
-        //     this.isWalletDropDownOpen = false
-        //     // this.isModalVisible = false;
-        // },
+        closePopup(e) {
+            e.stopPropagation()
+            this.isHelpDropDownOpen = false
+            this.isLangDropDownOpen = false
+            this.isWalletDropDownOpen = false
+            // this.isModalVisible = false;
+        },
         goToBlockLink() {
             window.open(`https://etherscan.io/block/${this.blockNumber}`, "_blank")
         },
