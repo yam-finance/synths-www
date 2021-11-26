@@ -109,7 +109,6 @@ export default {
           this.isHelpDropDownOpen = false;
         },
         closePopup(e) {
-            e.stopPropagation()
             this.isHelpDropDownOpen = true
             this.isLangDropDownOpen = true
             this.isWalletDropDownOpen = false
