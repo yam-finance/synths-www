@@ -56,7 +56,7 @@ function formatAddress(address) {
 
 <script>
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
-import { mixin as VueClickAway } from "vue3-click-away";
+import { mixin as VueClickAway,directive  } from "vue3-click-away";
 
 const featuredSynth = "dpi-2x"
 let tabs = [
@@ -84,7 +84,9 @@ export default {
         "s-button": SynthsRoundedButton,
     },
     mixins: [VueClickAway],
-
+    directives: {
+      ClickAway: directive
+    },
   data() {
         return {
             tabs,
