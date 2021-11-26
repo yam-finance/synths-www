@@ -58,11 +58,10 @@ function formatAddress(address) {
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
 import { mixin as VueClickAway,directive as onClickaway  } from "vue3-click-away";
 import { ref } from "vue";
-import { onClickOutside } from '@vueuse/core'
 
 const featuredSynth = "dpi-2x"
-const isHelpDropDownOpen = ref(false)
-const isLangDropDownOpen = ref(false)
+// const isHelpDropDownOpen = ref(false)
+// const isLangDropDownOpen = ref(false)
 let tabs = [
     {
         id: 1,
@@ -87,13 +86,6 @@ export default {
     components: {
         "s-button": SynthsRoundedButton,
     },
-    setup() {
-      const target = ref(null)
-
-      onClickOutside(target, (event) => console.log(event))
-
-      return { target }
-    },
     mixins: [VueClickAway],
     directives: {
       ClickAway: onClickaway
@@ -102,16 +94,24 @@ export default {
           return {
               tabs,
               activeTab,
+              isHelpDropDownOpen: true,
+              isLangDropDownOpen: true
           }
       },
     methods: {
         selectTab(item) {
             this.activeTab = item.id
         },
+        language(){
+          this.isLangDropDownOpen = false;
+        },
+        help(){
+          this.isHelpDropDownOpen = false;
+        },
         closePopup(e) {
             e.stopPropagation()
-            this.isHelpDropDownOpen = false
-            this.isLangDropDownOpen = false
+            this.isHelpDropDownOpen = true
+            this.isLangDropDownOpen = true
             this.isWalletDropDownOpen = false
             // this.isModalVisible = false;
         },
@@ -197,14 +197,14 @@ export default {
             <div class="flex absolute right-1">
                 <span
                     class="flex px-2 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer"
-                    @click="isLangDropDownOpen = !isLangDropDownOpen"
+                    @click="language"
                 >
                     English
                     <img src="@/assets/images/dropdown.svg" class="mx-2 ml-1 my-auto h-4" />
                 </span>
                 <span
                     class="flex px-4 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer"
-                    @click="isHelpDropDownOpen = !isHelpDropDownOpen"
+                    @click="help"
                 >
                     Help
                     <img src="@/assets/images/dropdown.svg" class="mx-2 ml-1 my-auto h-4" />
@@ -245,7 +245,7 @@ export default {
 
             <ul
                 class="overflow-hidden my-auto p-2 text-sm text-left fixed top-9 right-72 bg-light rounded-xl shadow-lg"
-                v-if="isLangDropDownOpen"
+                v-if="!isLangDropDownOpen"
                 v-click-away="closePopup"
             >
                 <li class="min-w-max cursor-pointer p-1">
@@ -255,7 +255,7 @@ export default {
 
             <ul
                 class="overflow-hidden my-auto p-2 text-sm text-left fixed top-9 right-44 bg-light rounded-xl shadow-lg"
-                v-if="isHelpDropDownOpen"
+                v-if="!isHelpDropDownOpen"
                 v-click-away="closePopup"
             >
                 <li class="min-w-max cursor-pointer p-1">
