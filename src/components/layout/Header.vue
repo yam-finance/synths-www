@@ -12,8 +12,6 @@ const { login, web3, logout } = useWeb3()
 const isModalVisible = ref(false)
 
 const isWalletDropDownOpen = ref(false)
-// const isHelpDropDownOpen = ref(false)
-// const isLangDropDownOpen = ref(false)
 const isDropDownOpen = ref(false)
 const { toggleNotificationOpen } = globalStore()
 const { addNewNotifications } = globalStore()
@@ -60,8 +58,6 @@ import { mixin as VueClickAway,directive as onClickaway  } from "vue3-click-away
 import { ref } from "vue";
 
 const featuredSynth = "dpi-2x"
-// const isHelpDropDownOpen = ref(false)
-// const isLangDropDownOpen = ref(false)
 let tabs = [
     {
         id: 1,
