@@ -58,6 +58,7 @@ function formatAddress(address) {
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
 import { mixin as VueClickAway,directive as onClickaway  } from "vue3-click-away";
 import { ref } from "vue";
+import { onClickOutside } from '@vueuse/core'
 
 const featuredSynth = "dpi-2x"
 const isHelpDropDownOpen = ref(false)
@@ -86,25 +87,23 @@ export default {
     components: {
         "s-button": SynthsRoundedButton,
     },
+    setup() {
+      const target = ref(null)
+
+      onClickOutside(target, (event) => console.log(event))
+
+      return { target }
+    },
     mixins: [VueClickAway],
     directives: {
       ClickAway: onClickaway
     },
-    setup() {
-      const closePopup = (event) => {
-        event.stopPropagation()
-        this.isHelpDropDownOpen = false
-        this.isLangDropDownOpen = false
-      }
-
-      return { closePopup }
-    },
-  data() {
-        return {
-            tabs,
-            activeTab,
-        }
-    },
+    data() {
+          return {
+              tabs,
+              activeTab,
+          }
+      },
     methods: {
         selectTab(item) {
             this.activeTab = item.id

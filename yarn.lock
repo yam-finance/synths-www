@@ -2498,6 +2498,21 @@
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.2.21.tgz#4cd80c0e62cf65a7adab2449e86b6f0cb33a130b"
   integrity sha512-5EQmIPK6gw4UVYUbM959B0uPsJ58+xoMESCZs3N89XyvJ9e+fX4pqEPrOGV8OroIk3SbEvJcC+eYc8BH9JQrHA==
 
+"@vueuse/core@^7.1.1":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-7.1.1.tgz#fa25fa8a11346911dbd478f49017e636368f1fa4"
+  integrity sha512-c1t2uKGARqibJxYBGWsrCF/McDsTXayONBDgDWBpbEjiRX4M1MOHYsWI3Lici4MK6C6XPX2XhUs2vJbKjYPTRw==
+  dependencies:
+    "@vueuse/shared" "7.1.1"
+    vue-demi "*"
+
+"@vueuse/shared@7.1.1":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@vueuse/shared/-/shared-7.1.1.tgz#3b24420e1390a96353cf7596e3148d4a5899538b"
+  integrity sha512-+FimthLGxGfYUpkBZKhnB8RtwFKSsoXmcWiE/0nCHvYsms6acmWLwQsaVwWZ7Z621a/8v4neo0cmL0z3oO+5fQ==
+  dependencies:
+    vue-demi "*"
+
 "@walletconnect/browser-utils@^1.6.6":
   version "1.6.6"
   resolved "https://registry.yarnpkg.com/@walletconnect/browser-utils/-/browser-utils-1.6.6.tgz#a985b48c99c65a986a051d66a4910010a10a0c56"
@@ -13642,6 +13657,11 @@ vscode-vue-languageservice@^0.27.0:
     vscode-languageserver-textdocument "^1.0.1"
     vscode-pug-languageservice "^0.27.24"
     vscode-typescript-languageservice "^0.27.25"
+
+vue-demi@*:
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.12.1.tgz#f7e18efbecffd11ab069d1472d7a06e319b4174c"
+  integrity sha512-QL3ny+wX8c6Xm1/EZylbgzdoDolye+VpCXRhI2hug9dJTP3OUJ3lmiKN3CsVV3mOJKwFi0nsstbgob0vG7aoIw==
 
 vue-eslint-parser@^7.0.0, vue-eslint-parser@^7.10.0:
   version "7.11.0"
