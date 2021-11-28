@@ -78,7 +78,7 @@
             </div>
         </div>
 
-        <table class="text-white border-b bg-main w-full font-normal hidden md:table">
+        <table cellpadding="5" class="text-white border-b bg-main w-full font-normal hidden md:table">
             <thead class="lg:text-xs xl:text-sm txt-main text-left">
                 <th class="py-2 px-4">Synths</th>
                 <th>Balance</th>
@@ -104,16 +104,16 @@
                         <div v-if="synth.status">
                             <span class="text-white">Live</span>
                         </div>
-                        <div class="flex items-center" v-else>
+                        <div v-else class="flex items-center">
                             <span class="txt-main mr-0.5">Expired</span>
                             <s-button
-                                buttonStyles="wallet-btn ml-1 w-auto text-xs text-white px-2 py-0.5 my-auto font-bold block xl:inline"
+                                button-styles="wallet-btn ml-1 w-auto text-xs text-white px-2 py-0.5 my-auto font-bold block xl:inline"
                             >
                                 <template #buttonTitle> Settle </template>
                             </s-button>
                         </div>
                     </td>
-                    <td class="p-0 m-0">
+                    <td class="pr-2 m-0">
                         <img src="@/assets/images/arrow-right.svg" class="cursor-pointer" />
                     </td>
                 </tr>
@@ -162,7 +162,7 @@
 
                             <s-button
                                 color="linear-gradient(180deg, #F77FA0 0%, #DA4CAB 100%)"
-                                buttonStyles="w-auto text-xs text-white px-2 pb-0.5 m-auto ml-0 font-bold"
+                                button-styles="w-auto text-xs text-white px-2 pb-0.5 m-auto ml-0 font-bold"
                             >
                                 <template #buttonTitle> Settle </template>
                             </s-button>
@@ -235,7 +235,7 @@ let synths = [
 
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
 export default {
-    name: "portfolio",
+    name: "Portfolio",
     components: {
         "s-button": SynthsRoundedButton,
     },
@@ -245,16 +245,16 @@ export default {
             filter_string: "",
         }
     },
-    methods: {
-        filter(event) {
-            this.filter_string = event.target.value
-        },
-    },
     computed: {
         synths() {
             if (this.filter_string !== "") {
                 return this.synths.filter((item) => item.name.toLowerCase().includes(this.filter_string.toLowerCase()))
             } else return this.synths
+        },
+    },
+    methods: {
+        filter(event) {
+            this.filter_string = event.target.value
         },
     },
 }

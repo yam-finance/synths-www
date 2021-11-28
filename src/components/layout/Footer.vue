@@ -37,7 +37,7 @@
             leave-class="transform opacity-100 scale-100"
             leave-to-class="transform opacity-0 scale-95"
         >
-            <div class="transition ease-in-out" v-if="isMenuOpen">
+            <div v-if="isMenuOpen" class="transition ease-in-out">
                 <ul
                     class="
                         overflow-hidden
@@ -58,9 +58,9 @@
                 >
                     <span class="px-4 txt-main">Menu</span>
                     <li
-                        class="min-w-max cursor-pointer border-t bg-main px-4 py-3"
                         v-for="(tab, key) in tabs"
                         :key="key"
+                        class="min-w-max cursor-pointer border-t bg-main px-4 py-3"
                         @click="isMenuOpen = !isMenuOpen"
                     >
                         <router-link :to="'/' + tab.to">
@@ -106,8 +106,8 @@
 
         <div class="flex absolute w-full right-0 p-2 text-right h-12 lg:border-l bg-main visible md:invisible">
             <div class="flex cursor-pointer">
-                <img src="@/assets/images/x.svg" v-if="isMenuOpen" @click="isMenuOpen = !isMenuOpen" />
-                <img src="@/assets/images/menu.svg" v-else @click="isMenuOpen = !isMenuOpen" />
+                <burger-button :is-open="isMenuOpen" @click="isMenuOpen = !isMenuOpen" />
+
                 <div class="absolute right-5">
                     <img
                         src="@/assets/images/bell.png"
@@ -115,46 +115,20 @@
                         @click="toggleNotificationOpen"
                     />
                     <button
-                        @click="isModalVisible = true"
                         class="hover:shadow-lg rounded-full px-4 py-1.5 my-auto text-sm wallet-btn inline"
+                        @click="isModalVisible = true"
                     >
                         Connect Wallet
                     </button>
                 </div>
             </div>
         </div>
-        <ConnectWallet v-show="isModalVisible" @close="isModalVisible = false" @connect="handleConnect">
-        </ConnectWallet>
+        <teleport to="body">
+            <ConnectWallet v-show="isModalVisible" @close="isModalVisible = false" @connect="handleConnect">
+            </ConnectWallet>
+        </teleport>
     </nav>
 </template>
-<script setup>
-import { useWeb3 } from "@/composables/useWeb3"
-import ConnectWallet from "@/components/ConnectWallet.vue"
-import { ref } from "vue"
-
-import { globalStore } from "@/composables"
-
-const { login, web3, logout } = useWeb3()
-const isModalVisible = ref(false)
-
-const { toggleNotificationOpen } = globalStore()
-const { state } = globalStore()
-let blockNumber = state.blockNumber
-const isWalletDropDownOpen = ref(false)
-const isHelpDropDownOpen = ref(false)
-
-async function handleConnect(connector) {
-    isModalVisible.value = false
-    await login(connector)
-}
-async function handleLogout() {
-    await logout()
-    // emit('close');
-}
-function formatAddress(address) {
-    return address.slice(0, 6) + "..." + address.slice(-6)
-}
-</script>
 
 <script>
 let tabs = [
@@ -174,19 +148,54 @@ let tabs = [
         to: "portfolio",
     },
 ]
+import SynthBurgerButton from "@/components/elements/SynthBurgerButton"
+
 export default {
     name: "Footer",
+    components: {
+        "burger-button": SynthBurgerButton,
+    },
     data() {
         return {
             isMenuOpen: false,
             tabs,
         }
     },
-    methods: {
-        goToBlockLink() {
-            window.open(`https://etherscan.io/block/${this.blockNumber}`, "_blank")
-        },
-    },
+}
+</script>
+
+<script setup>
+import { useWeb3 } from "@/composables/useWeb3"
+import ConnectWallet from "@/components/ConnectWallet.vue"
+import { globalStore } from "@/composables/global"
+
+import { ref } from "vue"
+
+const { login, web3, logout } = useWeb3()
+const isModalVisible = ref(false)
+
+const { toggleNotificationOpen } = globalStore()
+const { state } = globalStore()
+
+const blockNumber = state.blockNumber
+
+const isWalletDropDownOpen = ref(false)
+const isHelpDropDownOpen = ref(false)
+
+async function handleConnect(connector) {
+    isModalVisible.value = false
+    await login(connector)
+}
+async function handleLogout() {
+    await logout()
+    // emit('close');
+}
+function formatAddress(address) {
+    return address.slice(0, 6) + "..." + address.slice(-6)
+}
+
+function goToBlockLink() {
+    window.open(`https://etherscan.io/block/${blockNumber.value}`, "_blank")
 }
 </script>
 

@@ -6,21 +6,25 @@
     @font-face {
         font-family: "Open Sauce Sans", sans-serif;
         font-weight: 300;
+        font-style: normal;
         src: url(../public/fonts/OpenSauceSans-Light.ttf) format("ttf");
     }
     @font-face {
         font-family: "Open Sauce Sans", sans-serif;
         font-weight: 400;
+        font-style: normal;
         src: url(../public/fonts/OpenSauceSans-Regular.ttf) format("ttf");
     }
     @font-face {
         font-family: "Open Sauce Sans", sans-serif;
         font-weight: 600;
+        font-style: normal;
         src: url(../public/fonts/OpenSauceSans-SemiBold.ttf) format("ttf");
     }
     @font-face {
         font-family: "Open Sauce Sans", sans-serif;
         font-weight: 700;
+        font-style: normal;
         src: url(../public/fonts/OpenSauceSans-Bold.ttf) format("ttf");
     }
 }
@@ -36,6 +40,7 @@ body,
 #__nuxt,
 #__layout {
     height: 100%;
+    font-family: "Open Sauce Sans", sans-serif;
 }
 p,
 span,
