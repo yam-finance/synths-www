@@ -257,6 +257,7 @@ import synthsLogo from "@/assets/images/logo.png"
 import { inject } from "vue"
 import { useI18n } from "vue-i18n"
 import { mixin as VueClickAway, directive as onClickaway } from "vue3-click-away"
+import { defineComponent } from "vue"
 
 /* -- Start of SDK Test -- */
 import { useSynthsSDK } from "../composables/useSynthsSDK"
@@ -287,7 +288,7 @@ let options = [
 let selected_option = 0
 let isUseWallet = 0
 
-export default {
+export default defineComponent({
     name: "Markets",
     components: {
         SynthsSingleChart,
@@ -297,7 +298,7 @@ export default {
         SynthsNew,
     },
     directives: {
-      ClickAway: onClickaway,
+        ClickAway: onClickaway,
     },
     mixins: [VueClickAway],
     setup() {
@@ -314,7 +315,7 @@ export default {
             inheritLocale: true,
         })
 
-        const userDetails: any = inject("userDetails")
+        const userDetails = inject("userDetails")
 
         return {
             t,
@@ -340,11 +341,13 @@ export default {
         }
     },
     methods: {
-        closeDown(e: any) {
-            this.isDropDown = false
+        closeDown(e) {
+            if (e) {
+                this.isDropDown = false
+            }
         },
     },
-}
+})
 </script>
 <style scoped lang="scss">
 @media (min-width: 1280px) {
