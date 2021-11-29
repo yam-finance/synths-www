@@ -12,6 +12,8 @@ const { login, web3, logout } = useWeb3()
 const isModalVisible = ref(false)
 
 const isWalletDropDownOpen = ref(false)
+const isHelpDropDownOpen = ref(true)
+const isLangDropDownOpen = ref(true)
 const isDropDownOpen = ref(false)
 const { toggleNotificationOpen } = globalStore()
 const { addNewNotifications } = globalStore()
@@ -90,22 +92,16 @@ export default {
           return {
               tabs,
               activeTab,
-              isHelpDropDownOpen: true,
-              isLangDropDownOpen: true
           }
       },
     methods: {
         selectTab(item) {
             this.activeTab = item.id
         },
-        language(){
-          this.isLangDropDownOpen = false;
-          this.isHelpDropDownOpen = true;
-        },
-        help(){
-          this.isHelpDropDownOpen = false;
-          this.isLangDropDownOpen = true;
-
+        walletDropdown(){
+            this.isWalletDropDownOpen = !this.isWalletDropDownOpen;
+            this.isHelpDropDownOpen = false;
+            this.isLangDropDownOpen = false
         },
         closePopup(e) {
             this.isHelpDropDownOpen = true
@@ -195,14 +191,14 @@ export default {
             <div class="flex absolute right-1">
                 <span
                     class="flex px-2 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer"
-                    @click="language"
+                    @click="(isLangDropDownOpen =!isLangDropDownOpen);(isHelpDropDownOpen=true)"
                 >
                     English
                     <img src="@/assets/images/dropdown.svg" class="mx-2 ml-1 my-auto h-4" />
                 </span>
                 <span
                     class="flex px-4 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer"
-                    @click="help"
+                    @click="(isHelpDropDownOpen=!isHelpDropDownOpen);(isLangDropDownOpen = true)"
                 >
                     Help
                     <img src="@/assets/images/dropdown.svg" class="mx-2 ml-1 my-auto h-4" />
@@ -227,11 +223,7 @@ export default {
                         <span
                             v-if="$auth.isAuthenticated.value"
                             class="flex px-4 py-1.5 text-sm cursor-pointer"
-                            @click="
-                                ;(isWalletDropDownOpen = !isWalletDropDownOpen),
-                                    (isHelpDropDownOpen = false),
-                                    (isLangDropDownOpen = false)
-                            "
+                            @click="walletDropdown"
                         >
                             <img src="@/assets/icons/metamask.svg" class="mx-2 my-auto h-4" />
                             {{ formatAddress(web3.account) }}

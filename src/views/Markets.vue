@@ -69,7 +69,7 @@
                         <div class="p-2 pl-0">
                             <s-button
                                 class="mt-2.5 py-2 px-8 long rounded-3xl"
-                                :button-styles="'!text-sm'"
+                                :buttonStyles="'!text-sm'"
                                 :color="'linear-gradient(180deg, #C8FF2D 0%, #008C0E 100%)'"
                             >
                                 <template #buttonTitle> Go Long </template>
@@ -78,7 +78,7 @@
                         <div class="p-2 pr-0">
                             <s-button
                                 class="mt-2.5 py-2 px-8 short rounded-3xl"
-                                :button-styles="'!text-sm'"
+                                :buttonStyles="'!text-sm'"
                                 :color="'linear-gradient(180deg, #FF6ACC 0%, #DC1919 100%)'"
                             >
                                 <template #buttonTitle> Go Short </template>
@@ -117,8 +117,8 @@
                     <div
                         v-for="(option, key) in options"
                         :key="key"
-                        class="border-t bg-main"
                         @click="selected_option = option.id"
+                        class="border-t bg-main"
                     >
                         <div
                             class="w-full h-12 py-3 px-6 cursor-pointer"
@@ -126,13 +126,13 @@
                         >
                             <span class="font-semibold">{{ option.title }}</span>
                             <img
-                                v-if="option.id == selected_option"
                                 src="@/assets/images/arrow-right-pink.png"
+                                v-if="option.id == selected_option"
                                 class="inline float-right w-6 h-6 cursor-pointer"
                             />
                             <img
-                                v-else
                                 src="@/assets/images/arrow-right.svg"
+                                v-else
                                 class="inline float-right w-6 h-6 cursor-pointer"
                             />
                         </div>
@@ -162,28 +162,29 @@
                         <div>
                             <label class="text-sm block pb-2">Long Tokens</label>
                             <input
-                                id="long_token"
                                 class="rounded-lg bg-main px-2 py-1 outline-none w-full"
                                 placeholder="0"
                                 name="long_token"
+                                id="long_token"
                             />
                         </div>
                         <div>
                             <label class="text-sm block pb-2">Short Tokens</label>
                             <input
-                                id="short_token"
                                 class="rounded-lg bg-main px-2 py-1 outline-none w-full"
                                 placeholder="0"
                                 name="short_token"
+                                id="short_token"
                             />
                         </div>
                     </div>
 
                     <div class="mt-2">
                         <div class="checkbox inline-flex items-center mt-4 cursor-pointer">
-                            <input id="chk_wallet" type="checkbox" class="form-checkbox h-5 w-5 opacity-0" />
+                            <input type="checkbox" class="form-checkbox h-5 w-5 opacity-0" id="chk_wallet" />
                             <label
                                 for="chk_wallet"
+                                @click="isUseWallet = 1 - isUseWallet"
                                 class="
                                     ml-2
                                     txt-main
@@ -200,7 +201,6 @@
                                     after:absolute after:w-6 after:h-6 after:-left-8 after:bg-checkbox
                                 "
                                 :class="{ 'after:content-none': isUseWallet === 0 }"
-                                @click="isUseWallet = 1 - isUseWallet"
                             >
                                 Use wallet balances
                             </label>
@@ -229,13 +229,13 @@
     <div class="min-w-[400px] hidden lg:block">
         <div v-for="(option, key) in options" :key="key" :class="option.id == selected_option ? 'h-full' : ''">
             <SynthsInsideBar
-                v-if="option.id == selected_option"
                 :settle="option.slug == 'Settle' ? false : true"
                 :title="option.title"
                 :sub-title="option.description"
                 :button-name="option.slug"
                 :loading="loading"
-                :expiry-price="expiryPrice"
+                :expiryPrice="expiryPrice"
+                v-if="option.id == selected_option"
             />
         </div>
     </div>
@@ -280,7 +280,6 @@ let options = [
 
 let selected_option = 0
 let isUseWallet = 0
-
 export default {
     name: "Markets",
     components: {
@@ -330,8 +329,7 @@ export default {
             options,
             selected_option,
             isUseWallet,
-            isDropDown: true,
-
+            isDropDown: false,
         }
     },
     methods: {
