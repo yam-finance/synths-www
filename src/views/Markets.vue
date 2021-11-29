@@ -68,8 +68,8 @@
                     </RouterLink>
                 </div>
 
-                <div class="grid grid-cols-2">
-                    <div class="grid grid-cols-2">
+                <div class="grid grid-cols-3">
+                    <div class="grid grid-cols-1">
                         <div class="p-2 pl-0">
                             <s-button
                                 class="mt-2.5 py-2 px-4 long rounded-3xl"
@@ -79,6 +79,8 @@
                                 <template #buttonTitle> Go Long </template>
                             </s-button>
                         </div>
+                    </div>
+                    <div class="grid grid-cols-1">
                         <div class="p-2 pr-0">
                             <s-button
                                 class="mt-2.5 py-2 px-4 short rounded-3xl"
