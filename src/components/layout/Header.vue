@@ -2,7 +2,7 @@
 import { copyText } from "vue3-clipboard"
 import { useWeb3 } from "@/composables/useWeb3"
 import ConnectWallet from "@/components/ConnectWallet.vue"
-import { globalStore } from "@/composables"
+import { globalStore } from "@/composables/global"
 import { ref } from "vue"
 
 import useClipboard from "@/composables/useClipboard"
@@ -11,11 +11,14 @@ const { state } = globalStore()
 const { login, web3, logout } = useWeb3()
 const isModalVisible = ref(false)
 
+const isWalletDropDownOpen = ref(false)
+const isHelpDropDownOpen = ref(true)
+const isLangDropDownOpen = ref(true)
 const isDropDownOpen = ref(false)
 const { toggleNotificationOpen } = globalStore()
 const { addNewNotifications } = globalStore()
 
-let blockNumber = state.blockNumber
+const blockNumber = state.blockNumber
 async function handleConnect(connector) {
     isModalVisible.value = false
     await login(connector)
@@ -49,12 +52,14 @@ async function doCopy(address) {
 function formatAddress(address) {
     return address.slice(0, 6) + "..." + address.slice(-6)
 }
+function goToBlockLink() {
+  window.open(`https://etherscan.io/block/${blockNumber.value}`, "_blank")
+}
 </script>
 
 <script>
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
 import { mixin as VueClickAway,directive as onClickaway  } from "vue3-click-away";
-import { ref } from "vue";
 
 const featuredSynth = "dpi-2x"
 let tabs = [
@@ -85,32 +90,27 @@ export default {
     directives: {
       ClickAway: onClickaway
     },
+
     data() {
-          return {
-              tabs,
-              activeTab,
-              isHelpDropDownOpen: true,
-              isLangDropDownOpen: true,
-              isWalletDropDownOpen: false
-          }
-      },
+        return {
+            tabs,
+            activeTab,
+        }
+    },
     methods: {
         selectTab(item) {
             this.activeTab = item.id
         },
         walletDropdown(){
-            this.isWalletDropDownOpen = !this.isWalletDropDownOpen;
-            this.isHelpDropDownOpen = false;
-            this.isLangDropDownOpen = false
+          this.isWalletDropDownOpen = !this.isWalletDropDownOpen;
+          this.isHelpDropDownOpen = false;
+          this.isLangDropDownOpen = false
         },
         closePopup(e) {
             this.isHelpDropDownOpen = true
             this.isLangDropDownOpen = true
             this.isWalletDropDownOpen = false
             // this.isModalVisible = false;
-        },
-        goToBlockLink() {
-            window.open(`https://etherscan.io/block/${this.blockNumber}`, "_blank")
         },
     },
 }
@@ -175,7 +175,7 @@ export default {
             class="
                 flex
                 absolute
-                md:w-64
+                md:w-80
                 lg:w-96
                 right-0
                 p-2
@@ -191,17 +191,17 @@ export default {
             <div class="flex absolute right-1">
                 <span
                     class="flex px-2 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer"
-                    @click="(isLangDropDownOpen =!isLangDropDownOpen);(isHelpDropDownOpen=true)"
+                    @click="(isLangDropDownOpen = !isLangDropDownOpen);(isHelpDropDownOpen=true)"
                 >
                     English
-                    <img src="@/assets/images/dropdown.svg" class="mx-2 ml-1 my-auto h-4" />
+                    <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': !isLangDropDownOpen }" class="mx-2 ml-1 my-auto h-4" />
                 </span>
                 <span
                     class="flex px-4 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer"
-                    @click="(isHelpDropDownOpen=!isHelpDropDownOpen);(isLangDropDownOpen = true)"
+                    @click="(isHelpDropDownOpen = !isHelpDropDownOpen);(isLangDropDownOpen=true)"
                 >
                     Help
-                    <img src="@/assets/images/dropdown.svg" class="mx-2 ml-1 my-auto h-4" />
+                    <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': !isHelpDropDownOpen }" class="mx-2 ml-1 my-auto h-4" />
                 </span>
                 <span class="flex pr-4 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer">
                     <img
@@ -227,7 +227,7 @@ export default {
                         >
                             <img src="@/assets/icons/metamask.svg" class="mx-2 my-auto h-4" />
                             {{ formatAddress(web3.account) }}
-                            <img src="@/assets/images/dropdown.svg" class="mx-2 my-auto h-4" />
+                            <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': isWalletDropDownOpen }" class="mx-2 my-auto h-4" />
                         </span>
                     </template>
                 </div>
@@ -397,8 +397,10 @@ export default {
                 <span class="text-xs my-auto font-normal px-1">{{ blockNumber }}</span>
             </div>
         </div>
+      <teleport to="body">
         <ConnectWallet v-show="isModalVisible" @close="isModalVisible = false" @connect="handleConnect">
         </ConnectWallet>
+      </teleport>
     </nav>
 </template>
 
