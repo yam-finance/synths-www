@@ -11,9 +11,9 @@ const { state } = globalStore()
 const { login, web3, logout } = useWeb3()
 const isModalVisible = ref(false)
 
-const isWalletDropDownOpen = ref(false)
-const isHelpDropDownOpen = ref(false)
-const isLangDropDownOpen = ref(false)
+// const isWalletDropDownOpen = ref(false)
+// const isHelpDropDownOpen = ref(true)
+// const isLangDropDownOpen = ref(true)
 const isDropDownOpen = ref(false)
 const { toggleNotificationOpen } = globalStore()
 const { addNewNotifications } = globalStore()
@@ -59,6 +59,7 @@ function goToBlockLink() {
 
 <script>
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
+import { mixin as VueClickAway,directive as onClickaway  } from "vue3-click-away";
 
 const featuredSynth = "dpi-2x"
 let tabs = [
@@ -85,22 +86,31 @@ export default {
     components: {
         "s-button": SynthsRoundedButton,
     },
+    mixins: [VueClickAway],
+    directives: {
+      ClickAway: onClickaway
+    },
 
     data() {
         return {
             tabs,
             activeTab,
+            isHelpDropDownOpen: true,
+            isLangDropDownOpen: true,
+            isWalletDropDownOpen: true
         }
     },
     methods: {
         selectTab(item) {
             this.activeTab = item.id
         },
+        walletDropdown(){
+          this.isWalletDropDownOpen = true;
+        },
         closePopup(e) {
-            e.stopPropagation()
-            this.isHelpDropDownOpen = false
-            this.isLangDropDownOpen = false
-            this.isWalletDropDownOpen = false
+            this.isHelpDropDownOpen = true
+            this.isLangDropDownOpen = true
+            this.isWalletDropDownOpen = true
             // this.isModalVisible = false;
         },
     },
@@ -182,17 +192,17 @@ export default {
             <div class="flex absolute right-1">
                 <span
                     class="flex px-2 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer"
-                    @click="isLangDropDownOpen = !isLangDropDownOpen"
+                    @click="(isLangDropDownOpen = !isLangDropDownOpen);(isHelpDropDownOpen=true);(isWalletDropDownOpen=true)"
                 >
                     English
-                    <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': isLangDropDownOpen }" class="mx-2 ml-1 my-auto h-4" />
+                    <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': !isLangDropDownOpen }" class="mx-2 ml-1 my-auto h-4" />
                 </span>
                 <span
                     class="flex px-4 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer"
-                    @click="isHelpDropDownOpen = !isHelpDropDownOpen"
+                    @click="(isHelpDropDownOpen = !isHelpDropDownOpen);(isLangDropDownOpen=true);(isWalletDropDownOpen=true)"
                 >
                     Help
-                    <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': isHelpDropDownOpen }" class="mx-2 ml-1 my-auto h-4" />
+                    <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': !isHelpDropDownOpen }" class="mx-2 ml-1 my-auto h-4" />
                 </span>
                 <span class="flex pr-4 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer">
                     <img
@@ -214,15 +224,11 @@ export default {
                         <span
                             v-if="$auth.isAuthenticated.value"
                             class="flex px-4 py-1.5 text-sm cursor-pointer"
-                            @click="
-                                ;(isWalletDropDownOpen = !isWalletDropDownOpen),
-                                    (isHelpDropDownOpen = false),
-                                    (isLangDropDownOpen = false)
-                            "
+                            @click="(isWalletDropDownOpen =!isWalletDropDownOpen);(isLangDropDownOpen=true);(isHelpDropDownOpen=true)"
                         >
                             <img src="@/assets/icons/metamask.svg" class="mx-2 my-auto h-4" />
                             {{ formatAddress(web3.account) }}
-                            <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': isWalletDropDownOpen }" class="mx-2 my-auto h-4" />
+                            <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': !isWalletDropDownOpen }" class="mx-2 my-auto h-4" />
                         </span>
                     </template>
                 </div>
@@ -230,7 +236,7 @@ export default {
 
             <ul
                 class="overflow-hidden my-auto p-2 text-sm text-left fixed top-9 right-72 bg-light rounded-xl shadow-lg"
-                v-if="isLangDropDownOpen"
+                v-if="!isLangDropDownOpen"
                 v-click-away="closePopup"
             >
                 <li class="min-w-max cursor-pointer p-1">
@@ -240,7 +246,7 @@ export default {
 
             <ul
                 class="overflow-hidden my-auto p-2 text-sm text-left fixed top-9 right-44 bg-light rounded-xl shadow-lg"
-                v-if="isHelpDropDownOpen"
+                v-if="!isHelpDropDownOpen"
                 v-click-away="closePopup"
             >
                 <li class="min-w-max cursor-pointer p-1">
@@ -266,7 +272,7 @@ export default {
                     bg-light
                     rounded-xl
                 "
-                v-if="isWalletDropDownOpen"
+                v-if="!isWalletDropDownOpen"
                 v-click-away="closePopup"
             >
                 <!-- <li class="min-w-max cursor-pointer p-1">
