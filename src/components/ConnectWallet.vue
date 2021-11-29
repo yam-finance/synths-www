@@ -251,17 +251,16 @@ export default {
 <!-- TODO convert to tailwind -->
 <style>
 .modal-backdrop {
+    z-index: 1001;
     background-color: rgba(0, 0, 0, 0.3);
 }
 
 .wallet_gif {
-    right: -15%;
-    top: -25%;
+    @apply right-[-15%] top-[-25%];
 }
 
 .wallet_name {
-    left: 33.23px;
-    top: 8.5px;
+    @apply left-[33.23px] top-[8.5px];
     font-family: inherit;
 }
 .wallet_box {
@@ -276,6 +275,7 @@ export default {
     transform: translate(-50%, -50%);
     background-color: rgba(37, 37, 98, 1);
     box-shadow: 0px 32px 64px -8px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
 }
 
 .connect_wallet_header {

@@ -1,11 +1,7 @@
 <template>
     <transition name="slide">
-        <div
-            v-if="notifications && isNotificationOpen"
-            class="notification-wrapper bg-main"
-            @click="toggleNotificationOpen"
-        >
-            <div class="notification bg-main box-content" @click.stop="">
+        <div v-if="isNotificationOpen" class="notification-wrapper bg-main" @click="toggleNotificationOpen">
+            <div class="notification bg-main box-content border-l" @click.stop="">
                 <img
                     class="notification-close basic-hover"
                     src="@/assets/images/x.svg"
@@ -13,7 +9,7 @@
                     @click="toggleNotificationOpen"
                 />
                 <h2>Notification</h2>
-                <div class="notification-content">
+                <div v-if="notifications.length" class="notification-content">
                     <notification
                         v-for="(item, index) in notifications"
                         :key="item.title"
@@ -25,6 +21,9 @@
                         :index="index"
                         @close="deleteNotification(index)"
                     />
+                </div>
+                <div v-else class="notification-content text-center mt-20">
+                    <p class="text-purpleLight">Nothing here</p>
                 </div>
             </div>
         </div>
@@ -42,7 +41,7 @@ export default {
 }
 </script>
 <script setup>
-import { globalStore } from "@/composables"
+import { globalStore } from "@/composables/global"
 
 const { state } = globalStore()
 const { toggleNotificationOpen } = globalStore()
@@ -57,7 +56,7 @@ h2 {
     @apply font-semibold mb-2;
 }
 .notification {
-    @apply fixed top-0 right-0 h-full w-full md:w-[240px] px-4;
+    @apply fixed top-0 right-0 h-full w-full md:w-[240px] px-4 box-border;
     &-wrapper {
         @apply fixed top-0 right-0 h-full w-full;
         z-index: 1000;

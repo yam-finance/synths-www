@@ -56,7 +56,7 @@ export default {
 }
 </script>
 <script setup>
-import { globalStore } from "@/composables"
+import { globalStore } from "@/composables/global"
 import { onMounted } from "vue"
 
 let { state } = globalStore()

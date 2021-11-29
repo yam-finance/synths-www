@@ -13,9 +13,10 @@ const globalState = reactive({
     newNotifications: [] as object[],
 })
 
-export default () => {
+export function globalStore() {
     //Block NUmber
     const setBlockNumber = (payload: number) => {
+        console.log("setBlockNumber", payload)
         globalState.blockNumber = payload
     }
 
@@ -25,7 +26,6 @@ export default () => {
         })
         setInterval(() => {
             web3.getBlockNumber().then((res: number) => {
-                console.log(res)
                 setBlockNumber(res)
             })
         }, 40000)
