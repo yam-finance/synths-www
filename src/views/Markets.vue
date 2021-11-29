@@ -72,7 +72,7 @@
                     <div class="grid grid-cols-2">
                         <div class="p-2 pl-0">
                             <s-button
-                                class="mt-2.5 py-2 px-8 long rounded-3xl"
+                                class="mt-2.5 py-2 px-4 xl:px-8 long rounded-3xl"
                                 :button-styles="'!text-sm'"
                                 :color="'linear-gradient(180deg, #C8FF2D 0%, #008C0E 100%)'"
                             >
@@ -81,7 +81,7 @@
                         </div>
                         <div class="p-2 pr-0">
                             <s-button
-                                class="mt-2.5 py-2 px-8 short rounded-3xl"
+                                class="mt-2.5 py-2 px-4 xl:px-8 short rounded-3xl"
                                 :button-styles="'!text-sm'"
                                 :color="'linear-gradient(180deg, #FF6ACC 0%, #DC1919 100%)'"
                             >
