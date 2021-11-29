@@ -100,9 +100,12 @@ export default {
         },
         language(){
           this.isLangDropDownOpen = false;
+          this.isHelpDropDownOpen = true;
         },
         help(){
           this.isHelpDropDownOpen = false;
+          this.isLangDropDownOpen = true;
+
         },
         closePopup(e) {
             this.isHelpDropDownOpen = true
