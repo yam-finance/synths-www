@@ -97,7 +97,7 @@ export default {
             activeTab,
             isHelpDropDownOpen: true,
             isLangDropDownOpen: true,
-            isWalletDropDownOpen: false
+            isWalletDropDownOpen: true
         }
     },
     methods: {
@@ -105,14 +105,12 @@ export default {
             this.activeTab = item.id
         },
         walletDropdown(){
-          this.isWalletDropDownOpen = !this.isWalletDropDownOpen;
-          this.isHelpDropDownOpen = false;
-          this.isLangDropDownOpen = false
+          this.isWalletDropDownOpen = true;
         },
         closePopup(e) {
             this.isHelpDropDownOpen = true
             this.isLangDropDownOpen = true
-            this.isWalletDropDownOpen = false
+            this.isWalletDropDownOpen = true
             // this.isModalVisible = false;
         },
     },
@@ -194,14 +192,14 @@ export default {
             <div class="flex absolute right-1">
                 <span
                     class="flex px-2 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer"
-                    @click="(isLangDropDownOpen = !isLangDropDownOpen);(isHelpDropDownOpen=true)"
+                    @click="(isLangDropDownOpen = !isLangDropDownOpen);(isHelpDropDownOpen=true);(isWalletDropDownOpen=true)"
                 >
                     English
                     <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': !isLangDropDownOpen }" class="mx-2 ml-1 my-auto h-4" />
                 </span>
                 <span
                     class="flex px-4 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer"
-                    @click="(isHelpDropDownOpen = !isHelpDropDownOpen);(isLangDropDownOpen=true)"
+                    @click="(isHelpDropDownOpen = !isHelpDropDownOpen);(isLangDropDownOpen=true);(isWalletDropDownOpen=true)"
                 >
                     Help
                     <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': !isHelpDropDownOpen }" class="mx-2 ml-1 my-auto h-4" />
@@ -226,11 +224,11 @@ export default {
                         <span
                             v-if="$auth.isAuthenticated.value"
                             class="flex px-4 py-1.5 text-sm cursor-pointer"
-                            @click="walletDropdown"
+                            @click="(isWalletDropDownOpen =!isWalletDropDownOpen);(isLangDropDownOpen=true);(isHelpDropDownOpen=true)"
                         >
                             <img src="@/assets/icons/metamask.svg" class="mx-2 my-auto h-4" />
                             {{ formatAddress(web3.account) }}
-                            <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': isWalletDropDownOpen }" class="mx-2 my-auto h-4" />
+                            <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': !isWalletDropDownOpen }" class="mx-2 my-auto h-4" />
                         </span>
                     </template>
                 </div>
@@ -274,7 +272,7 @@ export default {
                     bg-light
                     rounded-xl
                 "
-                v-if="isWalletDropDownOpen"
+                v-if="!isWalletDropDownOpen"
                 v-click-away="closePopup"
             >
                 <!-- <li class="min-w-max cursor-pointer p-1">
