@@ -11,9 +11,6 @@ const { state } = globalStore()
 const { login, web3, logout } = useWeb3()
 const isModalVisible = ref(false)
 
-const isWalletDropDownOpen = ref(false)
-const isHelpDropDownOpen = ref(true)
-const isLangDropDownOpen = ref(true)
 const isDropDownOpen = ref(false)
 const { toggleNotificationOpen } = globalStore()
 const { addNewNotifications } = globalStore()
@@ -92,6 +89,9 @@ export default {
           return {
               tabs,
               activeTab,
+              isHelpDropDownOpen: true,
+              isLangDropDownOpen: true,
+              isWalletDropDownOpen: false
           }
       },
     methods: {
