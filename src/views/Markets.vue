@@ -254,6 +254,7 @@ import SynthsNew from "@/components/SynthsNew.vue"
 import synthsLogo from "@/assets/images/logo.png"
 import { inject } from "vue"
 import { useI18n } from "vue-i18n"
+import { mixin as VueClickAway, directive as onClickaway } from "vue3-click-away"
 
 /* -- Start of SDK Test -- */
 import { useSynthsSDK } from "../composables/useSynthsSDK"
@@ -283,7 +284,6 @@ let options = [
 
 let selected_option = 0
 let isUseWallet = 0
-let isDropDown = false
 
 export default {
     name: "Markets",
@@ -294,6 +294,10 @@ export default {
         SynthsInsideBar,
         SynthsNew,
     },
+    directives: {
+      ClickAway: onClickaway,
+    },
+    mixins: [VueClickAway],
     setup() {
         /* -- Start of SDK Test -- */
         /// @notice Synth SDK Init test
@@ -330,13 +334,12 @@ export default {
             options,
             selected_option,
             isUseWallet,
-            isDropDown,
+            isDropDown: false,
         }
     },
     methods: {
         closeDown(e: any) {
-            e.stopPropagation()
-            isDropDown = false
+            this.isDropDown = false
         },
     },
 }
