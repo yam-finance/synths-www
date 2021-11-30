@@ -137,7 +137,7 @@
                 </tr>
             </tbody>
         </table>
-        <div v-if="!loading && !lspPortfolio.length" class="cursor-pointer bg-main text-center flex justify-center w-full mt-3">
+        <div v-if="(!loading && !lspPortfolio) || (!loading && !lspPortfolio.length)" class="cursor-pointer bg-main text-center flex justify-center w-full mt-3">
             No synths to show
         </div>
     </div>

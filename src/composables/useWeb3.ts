@@ -26,6 +26,8 @@ function initSDK() {
     }
 }
 
+initSDK()
+
 export function useWeb3() {
     async function login(connector = "injected") {
         auth = getInstance()
