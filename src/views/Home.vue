@@ -198,9 +198,15 @@
                     <button class="rounded-2xl px-4 py-3 my-auto text-base font-bold wallet-btn">Explore Synths</button>
                 </router-link>
 
+                <!-- i18n Test Start -->
+                <!-- <p>`t` resource key completion: {{ t("menu.login") }}</p> -->
+                <!-- <p>`d` resource key completion: {{ d(new Date(), "short") }}</p> -->
+                <!-- <p>`n` resource key completion: {{ n(1000, "currency") }}</p> -->
+                <!-- i18n Test Start -->
+
                 <div class="grid gap-x-4 grid-cols-2 md:grid-cols-3 m-4 my-16">
                     <div class="font-semibold">
-                        <p v-if="!loading" class="text-4xl md:text-5xl lg:text-6xl">{{ Number(totalMarketData.totalTVL).toFixed(0) }} $</p>
+                        <p v-if="!loading" class="text-4xl md:text-5xl lg:text-6xl">{{ n(totalMarketData.totalTVL, "currency") }}</p>
                         <p v-else class="animate-pulse text-4xl md:text-5xl lg:text-6xl">...</p>
                         <p class="text-sm txt-main mt-2">TOTAL VALUE LOCKED</p>
                     </div>
@@ -211,12 +217,12 @@
                     </div>
                     -->
                     <div class="font-semibold">
-                        <p v-if="!loading" class="text-4xl md:text-5xl lg:text-6xl">{{ Number(totalMarketData.totalLiquidity).toFixed(0) }} $</p>
+                        <p v-if="!loading" class="text-4xl md:text-5xl lg:text-6xl">{{ n(totalMarketData.totalLiquidity, "currency") }} $</p>
                         <p v-else class="animate-pulse text-4xl md:text-5xl lg:text-6xl">...</p>
                         <p class="text-sm txt-main mt-2">TOTAL SYNTH LIQUIDITY</p>
                     </div>
                     <div class="font-semibold">
-                        <p v-if="!loading" class="text-4xl md:text-5xl lg:text-6xl">{{ Number(totalMarketData.total24hVolume).toFixed(0) }} $</p>
+                        <p v-if="!loading" class="text-4xl md:text-5xl lg:text-6xl">{{ n(totalMarketData.total24hVolume, "currency") }} $</p>
                         <p v-else class="animate-pulse text-4xl md:text-5xl lg:text-6xl">...</p>
                         <p class="text-sm txt-main mt-2">VOLUME LAST 24H</p>
                     </div>
@@ -320,6 +326,7 @@
 <script>
 import { computed } from "vue"
 import { useSynthsSDK } from "../composables/useSynthsSDK"
+import { useI18n } from "vue-i18n"
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
 
 /*
@@ -365,7 +372,16 @@ export default {
     setup() {
         const { loading, totalMarketData, recentSynthData } = useSynthsSDK()
 
+        /// @dev Use global scope
+        const { t, d, n } = useI18n({
+            useScope: "global",
+            inheritLocale: true,
+        })
+
         return {
+           t,
+           d,
+           n,
            loading: computed(() => loading.value),
            totalMarketData: computed(() => { if (!loading.value) return totalMarketData.value }),
            recentSynthData: computed(() => { if (!loading.value) return recentSynthData.value }),
