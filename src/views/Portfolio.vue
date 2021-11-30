@@ -90,10 +90,10 @@
                 <th></th>
             </thead>
             <tbody class="border-t bg-main lg:text-xs xl:text-sm 2xl:text-base">
-                <tr v-for="(synth, key) in synths" :key="key" class="border-b bg-main cursor-pointer basic-hover">
+                <tr v-for="(synth, key) in lspPortfolio" :key="key" class="border-b bg-main cursor-pointer basic-hover">
                     <td class="px-4 py-2 font-semibold flex">
                         <img src="@/assets/images/zombie.png" class="w-6 h-6" />
-                        &nbsp;{{ synth.name }}
+                        &nbsp;{{ lspPortfolio[key] }}
                     </td>
                     <td>{{ synth.balance }}</td>
                     <td>{{ synth.minted_qty }}</td>
@@ -180,6 +180,10 @@
 </template>
 
 <script>
+import { computed } from "vue"
+import { useSynthsSDK } from "../composables/useSynthsSDK"
+import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
+
 let synths = [
     {
         id: 1,
@@ -233,11 +237,18 @@ let synths = [
     },
 ]
 
-import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
 export default {
     name: "Portfolio",
     components: {
         "s-button": SynthsRoundedButton,
+    },
+    setup() {
+        const { loading, lspPortfolio } = useSynthsSDK()
+
+        return {
+           loading: computed(() => loading.value),
+           lspPortfolio: computed(() => { if (!loading.value) return lspPortfolio.value }),
+        }
     },
     data() {
         return {

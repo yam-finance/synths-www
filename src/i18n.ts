@@ -4,6 +4,7 @@ import { createI18n } from "vue-i18n"
  * @notice Import locale messages resource from json for global scope
  */
 import en from "@/locales/en.json"
+import zh from "@/locales/zh.json"
 
 /// @notice Type-define 'en' as the master schema for the resource
 type MessageSchema = typeof en
@@ -20,6 +21,7 @@ export const i18n = createI18n<{ message: MessageSchema }, false>({
     fallbackLocale: "en",
     messages: {
         "en": en,
+        "zh": zh,
     },
     datetimeFormats: {
         "en": {

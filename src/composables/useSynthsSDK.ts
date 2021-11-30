@@ -19,12 +19,13 @@ export function useSynthsSDK() {
     async function init(provider: JsonRpcProvider, networkId: number) {
         loading.value = true
 
-        synthsSDK.value = await Synths.create({ ethersProvider: provider })
+        synthsSDK.value = await Synths.create({ ethersProvider: provider, userAssetsConfig: defaultTestAssetsConfig })
         totalMarketData.value = await getTotalMarketData([networkId], defaultTestAssetsConfig)
         recentSynthData.value = await getRecentSynthData(networkId, defaultTestAssetsConfig)
 
         if ((await provider.listAccounts()).length != 0) {
             lspPortfolio.value = await synthsSDK.value.getLSPPortfolio()
+            console.log(lspPortfolio.value)
         }
 
         loading.value = false
