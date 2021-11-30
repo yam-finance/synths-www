@@ -11,10 +11,6 @@ const { state } = globalStore()
 const { login, web3, logout } = useWeb3()
 const isModalVisible = ref(false)
 
-// const isWalletDropDownOpen = ref(false)
-// const isHelpDropDownOpen = ref(true)
-// const isLangDropDownOpen = ref(true)
-const isDropDownOpen = ref(false)
 const { toggleNotificationOpen } = globalStore()
 const { addNewNotifications } = globalStore()
 
@@ -95,22 +91,19 @@ export default {
         return {
             tabs,
             activeTab,
-            isHelpDropDownOpen: true,
-            isLangDropDownOpen: true,
-            isWalletDropDownOpen: true
+            isHelpDropDownOpen: false,
+            isLangDropDownOpen: false,
+            isWalletDropDownOpen: false
         }
     },
     methods: {
         selectTab(item) {
             this.activeTab = item.id
         },
-        walletDropdown(){
-          this.isWalletDropDownOpen = true;
-        },
         closePopup(e) {
-            this.isHelpDropDownOpen = true
-            this.isLangDropDownOpen = true
-            this.isWalletDropDownOpen = true
+            this.isHelpDropDownOpen = false
+            this.isLangDropDownOpen = false
+            this.isWalletDropDownOpen = false
             // this.isModalVisible = false;
         },
     },
@@ -122,7 +115,6 @@ export default {
         class="
             h-12
             sticky
-            overflow-hidden
             top-0
             left-0
             z-20
@@ -143,7 +135,6 @@ export default {
         </router-link>
         <ul
             class="
-                flex
                 space-x-8
                 overflow-hidden
                 sticky
@@ -158,6 +149,8 @@ export default {
                 font-semibold
                 bg-dark
                 txt-main
+                hidden
+                lg:flex
             "
         >
             <li
@@ -174,9 +167,8 @@ export default {
         </ul>
         <div
             class="
-                flex
                 absolute
-                md:w-80
+                w-10
                 lg:w-96
                 right-0
                 p-2
@@ -184,71 +176,38 @@ export default {
                 text-right
                 h-12
                 lg:border-l
-                bg-main
-                invisible
-                md:visible
+                bd-main
+                flex
             "
         >
             <div class="flex absolute right-1">
                 <span
-                    class="flex px-2 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer"
-                    @click="(isLangDropDownOpen = !isLangDropDownOpen);(isHelpDropDownOpen=true);(isWalletDropDownOpen=true)"
+                    class="hidden lg:flex px-2 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer"
+                    @click="(isLangDropDownOpen = !isLangDropDownOpen);(isHelpDropDownOpen=false);(isWalletDropDownOpen=false)"
                 >
                     English
-                    <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': !isLangDropDownOpen }" class="mx-2 ml-1 my-auto h-4" />
-                </span>
-                <span
-                    class="flex px-4 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer"
-                    @click="(isHelpDropDownOpen = !isHelpDropDownOpen);(isLangDropDownOpen=true);(isWalletDropDownOpen=true)"
-                >
-                    Help
-                    <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': !isHelpDropDownOpen }" class="mx-2 ml-1 my-auto h-4" />
-                </span>
-                <span class="flex pr-4 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer">
-                    <img
-                        src="@/assets/images/bell.png"
-                        @click="toggleNotificationOpen"
-                        class="cursor-pointer my-auto h-4 basic-hover"
-                    />
-                </span>
-
-                <s-button
-                    v-if="!$auth.isAuthenticated.value"
-                    @click="isModalVisible = true"
-                    buttonStyles="wallet-btn px-4 py-2 my-auto text-sm font-normal"
-                >
-                    <template #buttonTitle> Connect Wallet </template>
-                </s-button>
-                <div>
-                    <template v-if="$auth.isAuthenticated.value">
-                        <span
-                            v-if="$auth.isAuthenticated.value"
-                            class="flex px-4 py-1.5 text-sm cursor-pointer"
-                            @click="(isWalletDropDownOpen =!isWalletDropDownOpen);(isLangDropDownOpen=true);(isHelpDropDownOpen=true)"
-                        >
-                            <img src="@/assets/icons/metamask.svg" class="mx-2 my-auto h-4" />
-                            {{ formatAddress(web3.account) }}
-                            <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': !isWalletDropDownOpen }" class="mx-2 my-auto h-4" />
-                        </span>
-                    </template>
-                </div>
-            </div>
-
-            <ul
-                class="overflow-hidden my-auto p-2 text-sm text-left fixed top-9 right-72 bg-light rounded-xl shadow-lg"
-                v-if="!isLangDropDownOpen"
-                v-click-away="closePopup"
-            >
+                    <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': isLangDropDownOpen }" class="mx-2 ml-1 my-auto h-4" />
+                    <ul
+                      class="my-auto p-2 text-sm text-left absolute top-9 left-0 bg-light rounded-xl shadow-lg z-[10000]"
+                      v-if="isLangDropDownOpen"
+                      v-click-away="closePopup"
+                  >
                 <li class="min-w-max cursor-pointer p-1">
                     <span>Spanish</span>
                 </li>
             </ul>
-
-            <ul
-                class="overflow-hidden my-auto p-2 text-sm text-left fixed top-9 right-44 bg-light rounded-xl shadow-lg"
-                v-if="!isHelpDropDownOpen"
-                v-click-away="closePopup"
-            >
+                </span>
+                <span
+                    class="hidden lg:flex px-4 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer"
+                    @click="(isHelpDropDownOpen = !isHelpDropDownOpen);(isLangDropDownOpen=false);(isWalletDropDownOpen=false)"
+                >
+                    Help
+                    <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': isHelpDropDownOpen }" class="mx-2 ml-1 my-auto h-4" />
+                   <ul
+                       class="overflow-hidden my-auto p-2 text-sm text-left absolute top-9 left-[40px] bg-light rounded-xl shadow-lg"
+                       v-if="isHelpDropDownOpen"
+                       v-click-away="closePopup"
+                   >
                 <li class="min-w-max cursor-pointer p-1">
                     <span>Documentation</span>
                 </li>
@@ -256,6 +215,36 @@ export default {
                     <span>Tutorials</span>
                 </li>
             </ul>
+                </span>
+                <span class="flex pr-4 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer">
+                    <img
+                        src="@/assets/images/bell.png"
+                        @click="toggleNotificationOpen"
+                        class="cursor-pointer my-auto h-4 w-4 basic-hover"
+                    />
+                </span>
+
+                <s-button
+                    v-if="!$auth.isAuthenticated.value"
+                    @click="isModalVisible = true"
+                    buttonStyles="wallet-btn px-4 py-2 my-auto text-sm font-normal hidden lg:block"
+                >
+                    <template #buttonTitle> Connect Wallet </template>
+                </s-button>
+                <div>
+                    <template v-if="$auth.isAuthenticated.value">
+                        <span
+                            v-if="$auth.isAuthenticated.value"
+                            class="px-4 py-1.5 text-sm cursor-pointer hidden lg:flex"
+                            @click="(isWalletDropDownOpen = !isWalletDropDownOpen);(isLangDropDownOpen=false);(isHelpDropDownOpen=false)"
+                        >
+                            <img src="@/assets/icons/metamask.svg" class="mx-2 my-auto h-4" />
+                            {{ formatAddress(web3.account) }}
+                            <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': isWalletDropDownOpen }" class="mx-2 my-auto h-4" />
+                        </span>
+                    </template>
+                </div>
+            </div>
 
             <!-- wallet info dropdown -->
             <ul
@@ -272,7 +261,7 @@ export default {
                     bg-light
                     rounded-xl
                 "
-                v-if="!isWalletDropDownOpen"
+                v-if="isWalletDropDownOpen"
                 v-click-away="closePopup"
             >
                 <!-- <li class="min-w-max cursor-pointer p-1">
@@ -391,12 +380,6 @@ export default {
                     <span class="wallet_actions"><img src="@/assets/icons/disconnect.svg" />&nbsp; Disconnect</span>
                 </li>
             </ul>
-        </div>
-        <div class="flex overflow-hidden absolute right-0 h-12 visible md:invisible">
-            <div class="flex px-4 py-4 cursor-pointer" @click="goToBlockLink">
-                <img src="@/assets/images/green-dot.svg" class="h-full py-0.5" />
-                <span class="text-xs my-auto font-normal px-1">{{ blockNumber }}</span>
-            </div>
         </div>
       <teleport to="body">
         <ConnectWallet v-show="isModalVisible" @close="isModalVisible = false" @connect="handleConnect">
