@@ -149,12 +149,6 @@
                             </li>
                         </ul>
                     </span>
-                    <div class="flex overflow-hidden absolute right-0 h-12">
-                        <div class="flex px-4 py-4 cursor-pointer" @click="goToBlockLink">
-                            <img src="@/assets/images/green-dot.svg" class="h-full py-0.5" />
-                            <span class="text-xs my-auto font-normal px-1">{{ blockNumber }}</span>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="blur h-full w-full top-0 fixed"></div>
@@ -165,14 +159,20 @@
             <div class="flex cursor-pointer">
                 <burger-button :is-open="isMenuOpen" @click="isMenuOpen = !isMenuOpen" />
             </div>
+            <div class="flex overflow-hidden ml-auto">
+                <div class="flex justify-center items-center px-3 cursor-pointer" @click="goToBlockLink">
+                    <img src="@/assets/images/green-dot.svg" class="h-3 py-0.5" />
+                    <span class="text-xs my-auto font-normal px-1">{{ blockNumber }}</span>
+                </div>
+            </div>
             <s-button
                 v-if="!$auth.isAuthenticated.value"
-                button-styles="wallet-btn px-4 py-2 my-auto text-sm font-normal ml-auto"
+                button-styles="wallet-btn px-4 py-2 my-auto text-sm font-normal"
                 @click="isModalVisible = true"
             >
                 <template #buttonTitle> Connect Wallet </template>
             </s-button>
-            <div v-if="$auth.isAuthenticated.value" class="ml-auto">
+            <div>
                 <template v-if="$auth.isAuthenticated.value">
                     <span
                         v-if="$auth.isAuthenticated.value"
