@@ -206,8 +206,8 @@
 
                 <div class="grid gap-x-4 grid-cols-2 md:grid-cols-3 m-4 my-16">
                     <div class="font-semibold">
-                        <p v-if="!loading" class="text-4xl md:text-5xl lg:text-6xl">{{ n(totalMarketData.totalTVL, "currency") }}</p>
-                        <p v-else class="animate-pulse text-4xl md:text-5xl lg:text-6xl">...</p>
+                        <p v-if="!loading" class="text-4xl md:text-4xl lg:text-4xl">{{ n(totalMarketData.totalTVL, "currency") }}</p>
+                        <p v-else class="animate-pulse text-4xl md:text-4xl lg:text-4xl">...</p>
                         <p class="text-sm txt-main mt-2">TOTAL VALUE LOCKED</p>
                     </div>
                     <!--
@@ -217,13 +217,13 @@
                     </div>
                     -->
                     <div class="font-semibold">
-                        <p v-if="!loading" class="text-4xl md:text-5xl lg:text-6xl">{{ n(totalMarketData.totalLiquidity, "currency") }} $</p>
-                        <p v-else class="animate-pulse text-4xl md:text-5xl lg:text-6xl">...</p>
+                        <p v-if="!loading" class="text-4xl md:text-4xl lg:text-4xl">{{ n(totalMarketData.totalLiquidity, "currency") }} $</p>
+                        <p v-else class="animate-pulse text-4xl md:text-4xl lg:text-4xl">...</p>
                         <p class="text-sm txt-main mt-2">TOTAL SYNTH LIQUIDITY</p>
                     </div>
                     <div class="font-semibold">
-                        <p v-if="!loading" class="text-4xl md:text-5xl lg:text-6xl">{{ n(totalMarketData.total24hVolume, "currency") }} $</p>
-                        <p v-else class="animate-pulse text-4xl md:text-5xl lg:text-6xl">...</p>
+                        <p v-if="!loading" class="text-4xl md:text-4xl lg:text-4xl">{{ n(totalMarketData.total24hVolume, "currency") }} $</p>
+                        <p v-else class="animate-pulse text-4xl md:text-4xl lg:text-4xl">...</p>
                         <p class="text-sm txt-main mt-2">VOLUME LAST 24H</p>
                     </div>
                 </div>
