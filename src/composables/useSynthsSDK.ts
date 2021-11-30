@@ -5,10 +5,12 @@ import { JsonRpcProvider } from "@ethersproject/providers"
 
 const loading = ref(true)
 const data = ref({})
-const synthsSDK = ref()
 const totalMarketData = ref()
 const recentSynthData = ref()
 const lspPortfolio = ref()
+const totalSynthsMinted = ref(0)
+const totalPortfolioValue = ref(0)
+let synthsSDK: Synths;
 
 export function useSynthsSDK() {
 
@@ -19,13 +21,20 @@ export function useSynthsSDK() {
     async function init(provider: JsonRpcProvider, networkId: number) {
         loading.value = true
 
-        synthsSDK.value = await Synths.create({ ethersProvider: provider, userAssetsConfig: defaultTestAssetsConfig })
-        totalMarketData.value = await getTotalMarketData([networkId], defaultTestAssetsConfig)
-        recentSynthData.value = await getRecentSynthData(networkId, defaultTestAssetsConfig)
+        synthsSDK = await Synths.create({ ethersProvider: provider, userAssetsConfig: defaultTestAssetsConfig })
+        totalMarketData.value = await getTotalMarketData([networkId], synthsSDK.config)
+        recentSynthData.value = await getRecentSynthData(networkId, synthsSDK.config)
 
         if ((await provider.listAccounts()).length != 0) {
-            lspPortfolio.value = await synthsSDK.value.getLSPPortfolio()
-            console.log(lspPortfolio.value)
+            const portfolio = await synthsSDK.getLSPPortfolio()
+            lspPortfolio.value = portfolio 
+
+            for (const synth of portfolio) {
+                if (synth.balance.toNumber() > 0) {
+                    totalSynthsMinted.value += synth.balance.toNumber()
+                    totalPortfolioValue.value += Number(synth.price) * synth.balance.toNumber()
+                }
+            }
         }
 
         loading.value = false
@@ -37,7 +46,7 @@ export function useSynthsSDK() {
      * TODO Remove function.
      */
     async function connectTo(param: string) {
-        const asset = await synthsSDK.value.connectAsset(param)
+        const asset = synthsSDK.connectAsset(param)
         const empState = await asset.getEmpState()
 
         // Store all relevant data about a synth
@@ -49,10 +58,11 @@ export function useSynthsSDK() {
     return {
         loading: computed(() => loading.value),
         data: computed(() => data.value),
-        synthsSDK: computed(() => synthsSDK.value),
         totalMarketData: computed(() => totalMarketData.value),
         recentSynthData: computed(() => recentSynthData.value),
         lspPortfolio: computed(() => lspPortfolio.value),
+        totalSynthsMinted: computed(() => totalSynthsMinted.value),
+        totalPortfolioValue: computed(() => totalPortfolioValue.value),
         connectTo,
         init,
     }

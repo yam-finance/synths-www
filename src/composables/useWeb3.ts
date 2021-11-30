@@ -1,4 +1,4 @@
-import { computed, ref, watchEffect } from "vue"
+import { computed, ref } from "vue"
 import { JsonRpcProvider, Web3Provider } from "@ethersproject/providers"
 import { getInstance } from "@snapshot-labs/lock/plugins/vue3"
 import networks from "@snapshot-labs/snapshot.js/src/networks.json"
@@ -18,13 +18,13 @@ const state = ref({
 
 let auth: any
 
-watchEffect(() => {
+function initSDK() {
     if (auth && auth.web3) {
         init(auth.web3, state.value.network.chainId)
     } else {
         init(defaultProvider, state.value.network.chainId)
     }
-})
+}
 
 export function useWeb3() {
     async function login(connector = "injected") {
@@ -37,6 +37,7 @@ export function useWeb3() {
             await loadProvider()
         }
         state.value.authLoading = false
+        initSDK()
     }
 
     async function logout() {
@@ -97,6 +98,7 @@ export function useWeb3() {
             }
         }
         state.value.network = networks[chainId]
+        initSDK()
     }
 
     return {
