@@ -1,28 +1,29 @@
 import { computed, ref, watchEffect } from "vue"
-import { Web3Provider } from "@ethersproject/providers"
+import { JsonRpcProvider, Web3Provider } from "@ethersproject/providers"
 import { getInstance } from "@snapshot-labs/lock/plugins/vue3"
 import networks from "@snapshot-labs/snapshot.js/src/networks.json"
 import { formatUnits } from "@ethersproject/units"
 import { useSynthsSDK } from "./useSynthsSDK"
 
-let auth: any
-const defaultNetwork: any = import.meta.env.VITE_DEFAULT_NETWORK || Object.keys(networks)[0]
 const { init } = useSynthsSDK()
-
+const defaultProvider = new JsonRpcProvider(import.meta.env.VITE_INFURA_URL as string)
+const defaultNetwork: any = import.meta.env.VITE_DEFAULT_NETWORK || Object.keys(networks)[0]
 const state = ref({
     account: "",
     network: networks[defaultNetwork],
     authLoading: false,
     etherscanlink: "",
     walletConnectType: null,
-    ethersProvider: Web3Provider,
 })
 
-// TODO Initialize with default provider if wallet is not connected
+let auth: any
+
 watchEffect(() => {
-    console.log("State changed!")
-    console.log("provider = ", state.value.ethersProvider)
-    init(state.value.ethersProvider)
+    if (auth && auth.web3) {
+        init(auth.web3, state.value.network.chainId)
+    } else {
+        init(defaultProvider, state.value.network.chainId)
+    }
 })
 
 export function useWeb3() {
@@ -63,7 +64,6 @@ export function useWeb3() {
             }
             console.log("on changes")
             console.log("Provider", auth.provider.value)
-            state.value.ethersProvider = auth.web3
             let network, accounts
             try {
                 ;[network, accounts] = await Promise.all([auth.web3.getNetwork(), auth.web3.listAccounts()])

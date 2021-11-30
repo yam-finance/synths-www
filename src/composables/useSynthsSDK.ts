@@ -1,7 +1,7 @@
 import { ref, computed } from "vue"
 import Synths, { getRecentSynthData, getTotalMarketData } from "synths-sdk"
-import { defaultAssetsConfig } from "synths-sdk/dist/src/lib/config/index"
-import { Web3Provider } from "@ethersproject/providers"
+import { defaultAssetsConfig, defaultTestAssetsConfig } from "synths-sdk/dist/src/lib/config/index"
+import { JsonRpcProvider } from "@ethersproject/providers"
 
 const loading = ref(true)
 const data = ref({})
@@ -11,18 +11,21 @@ const recentSynthData = ref()
 const lspPortfolio = ref()
 
 export function useSynthsSDK() {
+
     /**
      * @notice Initialize the synths-sdk and load market data.
      * @param provider The web3 provider instance.
      */
-    async function init(provider: Web3Provider) {
+    async function init(provider: JsonRpcProvider, networkId: number) {
         loading.value = true
 
-        const networkId: number = (await provider.getNetwork()).chainId
         synthsSDK.value = await Synths.create({ ethersProvider: provider })
-        totalMarketData.value = await getTotalMarketData([networkId], defaultAssetsConfig)
-        recentSynthData.value = await getRecentSynthData(networkId, defaultAssetsConfig)
-        lspPortfolio.value = await synthsSDK.value.getLSPPortfolio(provider.getSigner())
+        totalMarketData.value = await getTotalMarketData([networkId], defaultTestAssetsConfig)
+        recentSynthData.value = await getRecentSynthData(networkId, defaultTestAssetsConfig)
+
+        if ((await provider.listAccounts()).length != 0) {
+            lspPortfolio.value = await synthsSDK.value.getLSPPortfolio()
+        }
 
         loading.value = false
     }

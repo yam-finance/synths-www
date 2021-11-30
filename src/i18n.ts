@@ -3,10 +3,10 @@ import { createI18n } from "vue-i18n"
 /**
  * @notice Import locale messages resource from json for global scope
  */
-import enUS from "@/locales/en.json"
+import en from "@/locales/en.json"
 
-/// @notice Type-define 'en-US' as the master schema for the resource
-type MessageSchema = typeof enUS
+/// @notice Type-define 'en' as the master schema for the resource
+type MessageSchema = typeof en
 
 /**
  * @notice Setup vue-i18n with i18n resources with global type definition.
@@ -16,13 +16,13 @@ type MessageSchema = typeof enUS
 // @ts-ignore
 export const i18n = createI18n<{ message: MessageSchema }, false>({
     legacy: false,
-    locale: "en-US",
-    fallbackLocale: "en-US",
+    locale: "en",
+    fallbackLocale: "en",
     messages: {
-        "en-US": enUS,
+        "en": en,
     },
     datetimeFormats: {
-        "en-US": {
+        "en": {
             short: {
                 hour: "numeric",
                 minute: "numeric",
@@ -33,7 +33,7 @@ export const i18n = createI18n<{ message: MessageSchema }, false>({
         },
     },
     numberFormats: {
-        "en-US": {
+        "en": {
             currency: {
                 style: "currency",
                 currencyDisplay: "symbol",
