@@ -2,7 +2,7 @@
     <tr v-if="loading && target == 'desktop'" class="border-b bg-main cursor-pointer basic-hover">
         <td class="px-4 py-2 font-semibold flex">
             <div class="rounded-full animate-pulse bg-white w-6 h-6" />
-            <div class="animate-pulse bg-white pl-2 w-full">.</div>
+            <div class="animate-pulse bg-white ml-2 w-full">.</div>
         </td>
         <td><div class="animate-pulse bg-white">.</div></td>
         <!-- <td><div class="animate-pulse bg-white">.</div></td> -->
@@ -21,7 +21,7 @@
     <tr v-if="loading && target == 'mobile'" class="border-b bg-main basic-hover">
         <td class="px-4 py-2 font-semibold flex">
             <div class="rounded-full animate-pulse bg-white w-6 h-6" />
-            <div class="animate-pulse bg-white pl-2 w-full">.</div>
+            <div class="animate-pulse bg-white ml-2 w-full">.</div>
         </td>
         <td><div class="animate-pulse bg-white">.</div></td>
         <td><div class="animate-pulse bg-white">.</div></td>
