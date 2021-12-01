@@ -216,7 +216,7 @@
 
 <script>
 import { computed, ref } from "vue"
-import { useSynthsSDK } from "../composables/useSynthsSDK"
+import { useSynthsSDK } from "@/composables/useSynthsSDK"
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
 
 const filter_string = ref("");
