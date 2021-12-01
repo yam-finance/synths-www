@@ -117,24 +117,7 @@
                         <img src="@/assets/images/arrow-right.svg" class="cursor-pointer" />
                     </td>
                 </tr>
-                <tr v-if="loading" class="border-b bg-main cursor-pointer basic-hover">
-                    <td class="px-4 py-2 font-semibold flex">
-                        <div class="rounded-full animate-pulse bg-white w-6 h-6" />
-                        <div class="animate-pulse bg-white pl-2 w-full">.</div>
-                    </td>
-                    <td><div class="animate-pulse bg-white">.</div></td>
-                    <!-- <td><div class="animate-pulse bg-white">.</div></td> -->
-                    <td><div class="animate-pulse bg-white">.</div></td>
-                    <td><div class="animate-pulse bg-white">.</div></td>
-                    <td>
-                        <div class="animate-pulse bg-white">
-                            <span class="text-white">.</span>
-                        </div>
-                    </td>
-                    <td class="pr-2 m-0">
-                        <div class="rounded-full animate-pulse bg-white w-6 h-6" />
-                    </td>
-                </tr>
+                <table-loader target="desktop" loading="loading" />
             </tbody>
         </table>
         <div v-if="(!loading && !lspPortfolio) || (!loading && !lspPortfolio.length)" class="cursor-pointer bg-main text-center flex justify-center w-full mt-3">
@@ -193,22 +176,7 @@
                         </router-link>
                     </td>
                 </tr>
-                <tr v-if="loading" class="border-b bg-main basic-hover">
-                    <td class="px-4 py-2 font-semibold flex">
-                        <div class="rounded-full animate-pulse bg-white w-6 h-6" />
-                        <div class="animate-pulse bg-white pl-2 w-full">.</div>
-                    </td>
-                    <td><div class="animate-pulse bg-white">.</div></td>
-                    <td><div class="animate-pulse bg-white">.</div></td>
-                    <td>
-                        <div class="animate-pulse bg-white">
-                            <span class="text-white">.</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="rounded-full animate-pulse bg-white w-6 h-6" />
-                    </td>
-                </tr>            
+                <table-loader target="mobile" loading="loading" />
             </tbody>
         </table>
     </div>
@@ -218,6 +186,7 @@
 import { computed, ref } from "vue"
 import { useSynthsSDK } from "@/composables/useSynthsSDK"
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
+import TableLoader from "@/components/TableLoader.vue"
 
 const filter_string = ref("");
 
@@ -225,6 +194,7 @@ export default {
     name: "Portfolio",
     components: {
         "s-button": SynthsRoundedButton,
+        "table-loader": TableLoader,
     },
     setup() {
         const { loading, lspPortfolio, totalSynthsMinted, totalPortfolioValue } = useSynthsSDK()
