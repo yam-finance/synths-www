@@ -117,7 +117,7 @@
                         <img src="@/assets/images/arrow-right.svg" class="cursor-pointer" />
                     </td>
                 </tr>
-                <table-loader target="desktop" loading="loading" />
+                <table-loader target="desktop" :loading="loading" />
             </tbody>
         </table>
         <div v-if="(!loading && !lspPortfolio) || (!loading && !lspPortfolio.length)" class="cursor-pointer bg-main text-center flex justify-center w-full mt-3">
@@ -176,7 +176,7 @@
                         </router-link>
                     </td>
                 </tr>
-                <table-loader target="mobile" loading="loading" />
+                <table-loader target="mobile" :loading="loading" />
             </tbody>
         </table>
     </div>
