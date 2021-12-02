@@ -251,18 +251,17 @@ export default {
               v-if="isWalletDropDownOpen"
               v-click-away="closePopup"
               class="
-                                overflow-hidden
-                                my-auto
-                                w-full
-                                shadow-lg
-                                p-2
-                                text-sm text-left
-                                absolute
-                                bottom-0
-                                right-0
-                                bg-light
-                                rounded-t-xl
-                                z-[10000]
+                    overflow-hidden
+                    my-auto
+                    w-48
+                    shadow-lg
+                    p-2
+                    text-sm text-left
+                    fixed
+                    top-9
+                    right-2
+                    bg-light
+                    rounded-xl
                             "
           >
             <li class="min-w-max cursor-pointer p-1">
