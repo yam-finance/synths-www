@@ -270,21 +270,21 @@ export default {
             <li class="min-w-max cursor-pointer p-1">
               <label class="container">
                 Mainnet
-                <input type="radio" :checked="web3.network.key == 1" class="form-radio" />
+                <input name="networks" type="radio" :checked="web3.network.key == 1" class="form-radio" />
                 <span class="checkmark"></span>
               </label>
             </li>
             <li class="min-w-max cursor-pointer p-1">
               <label class="container">
                 Polygon
-                <input type="radio" :checked="web3.network.key == 137" class="form-radio" />
+                <input name="networks" type="radio" :checked="web3.network.key == 137" class="form-radio" />
                 <span class="checkmark"></span>
               </label>
             </li>
             <li class="min-w-max cursor-pointer p-1">
               <label class="container">
                 Rinkeby
-                <input type="radio" :checked="web3.network.key == 4" class="form-radio" />
+                <input name="networks" type="radio" :checked="web3.network.key == 4" class="form-radio" />
                 <span class="checkmark"></span>
               </label>
             </li>
