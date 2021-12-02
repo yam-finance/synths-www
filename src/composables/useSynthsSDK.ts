@@ -20,7 +20,7 @@ export function useSynthsSDK() {
     async function init(provider: JsonRpcProvider, networkId: number) {
         loading.value = true
 
-        const POLYSCAN_API_KEY = import.meta.env.VITE_POLYSCAN_API_KEY
+        const POLYSCAN_API_KEY = import.meta.env.VITE_POLYSCAN_API_KEY as string
 
         synthsSDK = await Synths.create({ ethersProvider: provider, userAssetsConfig: defaultTestAssetsConfig })
         totalMarketData.value = await getTotalMarketData([networkId], synthsSDK.config, POLYSCAN_API_KEY)
