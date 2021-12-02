@@ -189,7 +189,7 @@
                         <div v-if="isWalletDropDownOpen" class="blur h-full w-full top-0 right-0 fixed"></div>
 
                         <ul
-                            v-if="isWalletDropDownOpen"
+                            v-show="isWalletDropDownOpen"
                             v-click-away="closePopup"
                             class="
                                 overflow-hidden
