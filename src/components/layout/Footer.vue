@@ -156,7 +156,7 @@
         </transition>
 
         <div class="flex absolute w-full right-0 p-2 text-right h-12 lg:border-l bg-main lg:hidden">
-            <div class="flex cursor-pointer">
+            <div class="flex cursor-pointer ml-3">
                 <burger-button :is-open="isMenuOpen" @click="isMenuOpen = !isMenuOpen" />
             </div>
             <div class="flex overflow-hidden ml-auto">
@@ -176,7 +176,7 @@
                 <template v-if="$auth.isAuthenticated.value">
                     <span
                         v-if="$auth.isAuthenticated.value"
-                        class="flex px-4 py-1.5 text-sm cursor-pointer relative"
+                        class="flex px-4 py-1.5 text-sm cursor-pointer"
                         @click="connectButtonHandler"
                     >
                         <img src="@/assets/icons/metamask.svg" class="mx-2 my-auto h-4" />
@@ -186,21 +186,23 @@
                             :class="{ 'rotate-180': isWalletDropDownOpen }"
                             class="mx-2 my-auto h-4"
                         />
+                        <div v-if="isWalletDropDownOpen" class="blur h-full w-full top-0 right-0 fixed"></div>
+
                         <ul
                             v-if="isWalletDropDownOpen"
                             v-click-away="closePopup"
                             class="
                                 overflow-hidden
                                 my-auto
-                                w-48
+                                w-full
                                 shadow-lg
                                 p-2
                                 text-sm text-left
                                 absolute
-                                bottom-9
-                                right-2
+                                bottom-0
+                                right-0
                                 bg-light
-                                rounded-xl
+                                rounded-t-xl
                                 z-[10000]
                             "
                         >
@@ -306,9 +308,9 @@ export default {
             this.activeTab = item.id
         },
         closePopup(e) {
-            this.isHelpDropDownOpen = false
-            this.isLangDropDownOpen = false
-            this.isWalletDropDownOpen = false
+            // this.isHelpDropDownOpen = false
+            // this.isLangDropDownOpen = false
+            // this.isWalletDropDownOpen = false
             // this.isModalVisible = false;
         },
         connectButtonHandler() {
@@ -482,5 +484,6 @@ function goToBlockLink() {
 .blur {
     background: rgba(17, 17, 47, 0.1);
     backdrop-filter: blur(5px);
+    @apply z-[9999];
 }
 </style>
