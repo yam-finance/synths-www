@@ -9,6 +9,9 @@
         "lint": "prettier --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
         "format": "prettier -w -u ."
     },
+    "engines": {
+        "node": "16.13.0"
+    },
     "dependencies": {
         "@ethersproject/providers": "^5.4.5",
         "@ethersproject/units": "^5.4.0",
