@@ -336,6 +336,7 @@ export default {
 import { useWeb3 } from "@/composables/useWeb3"
 import ConnectWallet from "@/components/ConnectWallet.vue"
 import { globalStore } from "@/composables/global"
+import useClipboard from "@/composables/useClipboard"
 
 import { ref } from "vue"
 
@@ -343,6 +344,8 @@ const { login, web3, logout } = useWeb3()
 const isModalVisible = ref(false)
 
 const { toggleNotificationOpen } = globalStore()
+const { addNewNotifications } = globalStore()
+
 const { state } = globalStore()
 
 const blockNumber = state.blockNumber
@@ -361,6 +364,35 @@ function formatAddress(address) {
 
 function goToBlockLink() {
     window.open(`https://etherscan.io/block/${blockNumber.value}`, "_blank")
+}
+
+const { toClipboard } = useClipboard()
+async function doCopy(address) {
+    try {
+        await toClipboard(address)
+
+        addNewNotifications(
+            {
+                style: 1,
+                link: null,
+                title: "Success!",
+                content: "Copied",
+            },
+            false
+        )
+    } catch (e) {
+        // TODO: Can't catch error
+        addNewNotifications(
+            {
+                style: 0,
+                link: null,
+                title: "Error!",
+                content: "Please try again or reload page",
+            },
+            false
+        )
+        console.error(e)
+    }
 }
 </script>
 
@@ -484,6 +516,5 @@ function goToBlockLink() {
 .blur {
     background: rgba(17, 17, 47, 0.1);
     backdrop-filter: blur(5px);
-    @apply z-[9999];
 }
 </style>
