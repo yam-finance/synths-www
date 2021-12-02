@@ -210,50 +210,50 @@
                                 <span class="text-sm text-purpleLight">Network</span>
                             </li>
                             <li class="min-w-max cursor-pointer p-1">
-                                <label class="container"
-                                    >Mainnet
+                                <label class="container">
+                                    Mainnet
                                     <input type="radio" :checked="web3.network.key == 1" class="form-radio" />
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li class="min-w-max cursor-pointer p-1">
-                                <label class="container"
-                                    >Polygon
+                                <label class="container">
+                                    Polygon
                                     <input type="radio" :checked="web3.network.key == 137" class="form-radio" />
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li class="min-w-max cursor-pointer p-1">
-                                <label class="container"
-                                    >Rinkeby
+                                <label class="container">
+                                    Rinkeby
                                     <input type="radio" :checked="web3.network.key == 4" class="form-radio" />
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li class="divider_dropdown_wallet"></li>
                             <li class="min-w-max cursor-pointer p-1">
-                                <span class="wallet_actions"
-                                    ><img src="@/assets/icons/play-circle.png" /> &nbsp; Run Simulation</span
-                                >
+                                <span class="wallet_actions">
+                                    <img src="@/assets/icons/play-circle.png" /> &nbsp; Run Simulation
+                                </span>
                             </li>
                             <li class="min-w-max cursor-pointer p-1">
-                                <span class="wallet_actions" @click="doCopy(web3.account)"
-                                    ><img src="@/assets/icons/copy.svg" /> &nbsp; Copy Address</span
-                                >
+                                <span class="wallet_actions" @click="doCopy(web3.account)">
+                                    <img src="@/assets/icons/copy.svg" /> &nbsp; Copy Address
+                                </span>
                             </li>
                             <li class="min-w-max cursor-pointer p-1">
-                                <span class="wallet_actions"
-                                    ><img src="@/assets/icons/externalLink.svg" />&nbsp;
-                                    <a class="ml-1" :href="web3.etherscanlink" target="_blank">Etherscan</a></span
-                                >
+                                <span class="wallet_actions">
+                                    <img src="@/assets/icons/externalLink.svg" />&nbsp;
+                                    <a class="ml-1" :href="web3.etherscanlink" target="_blank">Etherscan</a>
+                                </span>
                             </li>
                             <li
                                 class="min-w-max cursor-pointer p-1"
                                 @click="handleLogout(), (isWalletDropDownOpen = false)"
                             >
-                                <span class="wallet_actions"
-                                    ><img src="@/assets/icons/disconnect.svg" />&nbsp; Disconnect</span
-                                >
+                                <span class="wallet_actions">
+                                    <img src="@/assets/icons/disconnect.svg" />&nbsp; Disconnect
+                                </span>
                             </li>
                         </ul>
                     </span>
@@ -261,8 +261,7 @@
             </div>
         </div>
         <teleport to="body">
-            <ConnectWallet v-show="isModalVisible" @close="isModalVisible = false" @connect="handleConnect">
-            </ConnectWallet>
+            <ConnectWallet v-show="isModalVisible" @close="isModalVisible = false" @connect="handleConnect" />
         </teleport>
     </nav>
 </template>

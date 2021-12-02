@@ -248,73 +248,73 @@ export default {
 
             <!-- wallet info dropdown -->
             <ul
-                class="
-                    overflow-hidden
-                    my-auto
-                    w-48
-                    shadow-lg
-                    p-2
-                    text-sm text-left
-                    fixed
-                    top-9
-                    right-2
-                    bg-light
-                    rounded-xl
-                "
-                v-if="isWalletDropDownOpen"
-                v-click-away="closePopup"
+              v-if="isWalletDropDownOpen"
+              v-click-away="closePopup"
+              class="
+                                overflow-hidden
+                                my-auto
+                                w-full
+                                shadow-lg
+                                p-2
+                                text-sm text-left
+                                absolute
+                                bottom-0
+                                right-0
+                                bg-light
+                                rounded-t-xl
+                                z-[10000]
+                            "
+          >
+            <li class="min-w-max cursor-pointer p-1">
+              <span class="text-sm text-purpleLight">Network</span>
+            </li>
+            <li class="min-w-max cursor-pointer p-1">
+              <label class="container">
+                Mainnet
+                <input type="radio" :checked="web3.network.key == 1" class="form-radio" />
+                <span class="checkmark"></span>
+              </label>
+            </li>
+            <li class="min-w-max cursor-pointer p-1">
+              <label class="container">
+                Polygon
+                <input type="radio" :checked="web3.network.key == 137" class="form-radio" />
+                <span class="checkmark"></span>
+              </label>
+            </li>
+            <li class="min-w-max cursor-pointer p-1">
+              <label class="container">
+                Rinkeby
+                <input type="radio" :checked="web3.network.key == 4" class="form-radio" />
+                <span class="checkmark"></span>
+              </label>
+            </li>
+            <li class="divider_dropdown_wallet"></li>
+            <li class="min-w-max cursor-pointer p-1">
+                                <span class="wallet_actions">
+                                    <img src="@/assets/icons/play-circle.png" /> &nbsp; Run Simulation
+                                </span>
+            </li>
+            <li class="min-w-max cursor-pointer p-1">
+                                <span class="wallet_actions" @click="doCopy(web3.account)">
+                                    <img src="@/assets/icons/copy.svg" /> &nbsp; Copy Address
+                                </span>
+            </li>
+            <li class="min-w-max cursor-pointer p-1">
+                                <span class="wallet_actions">
+                                    <img src="@/assets/icons/externalLink.svg" />&nbsp;
+                                    <a class="ml-1" :href="web3.etherscanlink" target="_blank">Etherscan</a>
+                                </span>
+            </li>
+            <li
+                class="min-w-max cursor-pointer p-1"
+                @click="handleLogout(), (isWalletDropDownOpen = false)"
             >
-                <!-- <li class="min-w-max cursor-pointer p-1">
-                    <span class="wallet_actions"
-                        ><img src="@/assets/icons/play-circle.png" /> &nbsp; Run Simulation</span
-                    >
-                </li>
-                <li class="divider_dropdown_wallet"></li> -->
-                <li class="min-w-max cursor-pointer p-1">
-                    <span class="text-sm text-purpleLight">Network</span>
-                </li>
-                <li class="min-w-max cursor-pointer p-1">
-                    <label class="container"
-                        >Mainnet
-                        <input type="radio" :checked="web3.network.key == 1" class="form-radio" />
-                        <span class="checkmark"></span>
-                    </label>
-                </li>
-                <li class="min-w-max cursor-pointer p-1">
-                    <label class="container"
-                        >Polygon
-                        <input type="radio" :checked="web3.network.key == 137" class="form-radio" />
-                        <span class="checkmark"></span>
-                    </label>
-                </li>
-                <li class="min-w-max cursor-pointer p-1">
-                    <label class="container"
-                        >Rinkeby
-                        <input type="radio" :checked="web3.network.key == 4" class="form-radio" />
-                        <span class="checkmark"></span>
-                    </label>
-                </li>
-                <li class="divider_dropdown_wallet"></li>
-                <li class="min-w-max cursor-pointer p-1">
-                    <span class="wallet_actions"
-                        ><img src="@/assets/icons/play-circle.png" /> &nbsp; Run Simulation</span
-                    >
-                </li>
-                <li class="min-w-max cursor-pointer p-1">
-                    <span class="wallet_actions" @click="doCopy(web3.account)"
-                        ><img src="@/assets/icons/copy.svg" /> &nbsp; Copy Address</span
-                    >
-                </li>
-                <li class="min-w-max cursor-pointer p-1">
-                    <span class="wallet_actions"
-                        ><img src="@/assets/icons/externalLink.svg" />&nbsp;
-                        <a class="ml-1" :href="web3.etherscanlink" target="_blank">Etherscan</a></span
-                    >
-                </li>
-                <li @click="handleLogout(), (isWalletDropDownOpen = false)" class="min-w-max cursor-pointer p-1">
-                    <span class="wallet_actions"><img src="@/assets/icons/disconnect.svg" />&nbsp; Disconnect</span>
-                </li>
-            </ul>
+                                <span class="wallet_actions">
+                                    <img src="@/assets/icons/disconnect.svg" />&nbsp; Disconnect
+                                </span>
+            </li>
+          </ul>
 
             <!-- wallet info dropdown 2 -->
             <ul
