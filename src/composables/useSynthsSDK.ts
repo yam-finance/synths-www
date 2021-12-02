@@ -1,7 +1,8 @@
 import { ref, computed } from "vue"
 import Synths, { getRecentSynthData, getTotalMarketData } from "synths-sdk"
-import { defaultAssetsConfig, defaultTestAssetsConfig } from "synths-sdk/dist/src/lib/config/index"
 import { JsonRpcProvider } from "@ethersproject/providers"
+// TOOD Remove after testphase.
+import { defaultAssetsConfig, defaultTestAssetsConfig } from "synths-sdk/dist/src/lib/config/index"
 
 const loading = ref(true)
 const data = ref({})

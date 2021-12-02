@@ -134,7 +134,7 @@
                         </div>
                         <div class="grid grid-cols-2">
                             <div class="flex items-end">
-                                <span class="px-1 font-bold">{{ synth.price.toFixed(4) }}</span>
+                                <span class="px-1 font-bold">{{ synth.price.toFixed(6) }}</span>
                                 <span class="px-1 font-bold">{{ synth.collateralSymbol }}</span>
                                 <img v-if="synth.priceChanged24h >= 0" src="@/assets/images/arrow-up-right.svg" class="h-4 mb-0.5" />
                                 <img v-else src="@/assets/images/arrow-down-right.svg" class="h-4 mb-0.5" />

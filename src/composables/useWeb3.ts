@@ -18,15 +18,13 @@ const state = ref({
 
 let auth: any
 
-function initSDK() {
+async function initSDK() {
     if (auth && auth.web3) {
-        init(auth.web3, state.value.network.chainId)
+        init(auth.web3, (await auth.web3.getNetwork()).chainId)
     } else {
-        init(defaultProvider, state.value.network.chainId)
+        init(defaultProvider, (await defaultProvider.getNetwork()).chainId)
     }
 }
-
-initSDK()
 
 export function useWeb3() {
     async function login(connector = "injected") {
@@ -39,7 +37,7 @@ export function useWeb3() {
             await loadProvider()
         }
         state.value.authLoading = false
-        initSDK()
+        await initSDK()
     }
 
     async function logout() {
@@ -55,7 +53,7 @@ export function useWeb3() {
 
             if (auth.provider.value.on) {
                 auth.provider.value.on("chainChanged", async (chainId) => {
-                    handleChainChanged(parseInt(formatUnits(chainId, 0)))
+                    await handleChainChanged(parseInt(formatUnits(chainId, 0)))
                 })
                 auth.provider.value.on("accountsChanged", async (accounts) => {
                     if (accounts.length !== 0) {
@@ -75,7 +73,7 @@ export function useWeb3() {
             }
             console.log("Network", network)
             console.log("Accounts", accounts)
-            handleChainChanged(network.chainId)
+            await handleChainChanged(network.chainId)
             const acc = accounts.length > 0 ? accounts[0] : null
 
             state.value.account = acc
@@ -89,7 +87,7 @@ export function useWeb3() {
         }
     }
 
-    function handleChainChanged(chainId) {
+    async function handleChainChanged(chainId) {
         if (!networks[chainId]) {
             networks[chainId] = {
                 ...networks[defaultNetwork],
@@ -100,7 +98,7 @@ export function useWeb3() {
             }
         }
         state.value.network = networks[chainId]
-        initSDK()
+        await initSDK()
     }
 
     return {
