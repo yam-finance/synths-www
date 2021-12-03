@@ -18,7 +18,7 @@ const state = ref({
 
 let auth: any
 
-async function initSDK() {
+export async function initSDK() {
     if (auth && auth.web3) {
         init(auth.web3, (await auth.web3.getNetwork()).chainId)
     } else {
