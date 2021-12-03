@@ -96,7 +96,7 @@
                         <img src="@/assets/images/zombie.png" class="w-6 h-6" />
                         &nbsp;{{ synth.symbol }}
                     </td>
-                    <td>{{ ethers.utils.formatEther(synth.balance) }}</td>
+                    <td>{{ formatEther(synth.balance) }}</td>
                     <!-- <td>{{ synth.lp_qty }}</td> -->
                     <td>{{ $i18n.global.n(synth.price, "currency") }}</td>
                     <td>{{ synth.collateralSymbol }}</td>
@@ -153,7 +153,7 @@
                         <img src="@/assets/images/zombie.png" class="w-6 h-6" />
                         &nbsp;{{ synth.symbol }}
                     </td>
-                    <td>{{ ethers.utils.formatEther(synth.balance) }}</td>
+                    <td>{{ formatEther(synth.balance) }}</td>
                     <td>{{ $i18n.global.n(synth.price, "currency") }}</td>
                     <td>
                         <div v-if="!synth.status">
@@ -202,6 +202,7 @@ export default {
 
 
         return {
+           formatEther: ethers.utils.formatEther,
            loading: computed(() => loading.value),
            lspPortfolio: computed(() => { 
                if (!loading.value) {
