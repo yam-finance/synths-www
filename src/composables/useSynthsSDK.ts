@@ -31,6 +31,8 @@ export function useSynthsSDK() {
         if ((await provider.listAccounts()).length != 0) {
             const portfolio = await synthsSDK.getLSPPortfolio()
             lspPortfolio.value = portfolio
+            totalSynthsMinted.value = 0
+            totalPortfolioValue.value = 0
 
             for (const synth of portfolio) {
                 const formattedBalance = Number(ethers.utils.formatEther(synth.balance))
