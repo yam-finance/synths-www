@@ -1,4 +1,5 @@
 import { ref, computed } from "vue"
+import { ethers } from "ethers"
 import Synths, { getRecentSynthData, getTotalMarketData } from "synths-sdk"
 import { JsonRpcProvider } from "@ethersproject/providers"
 // TOOD Remove after testphase.
@@ -32,9 +33,10 @@ export function useSynthsSDK() {
             lspPortfolio.value = portfolio
 
             for (const synth of portfolio) {
-                if (synth.balance.toNumber() > 0) {
-                    totalSynthsMinted.value += synth.balance.toNumber()
-                    totalPortfolioValue.value += Number(synth.price) * synth.balance.toNumber()
+                const formattedBalance = Number(ethers.utils.formatEther(synth.balance))
+                if (formattedBalance > 0) {
+                    totalSynthsMinted.value += formattedBalance
+                    totalPortfolioValue.value += Number(synth.price) * formattedBalance
                 }
             }
         }
