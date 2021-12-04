@@ -112,7 +112,6 @@ export default {
             // this.isModalVisible = false;
         },
         getLanguageById(id) {
-            console.log(id._value)
             switch (id._value) {
                 case "en":
                     return "English";
