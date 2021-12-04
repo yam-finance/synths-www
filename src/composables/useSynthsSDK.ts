@@ -5,6 +5,7 @@ import { JsonRpcProvider } from "@ethersproject/providers"
 // TOOD Remove after testphase.
 import { defaultAssetsConfig, defaultTestAssetsConfig } from "synths-sdk/dist/src/lib/config/index"
 
+let synthsSDK: Synths
 const loading = ref(true)
 const data = ref({})
 const totalMarketData = ref()
@@ -12,7 +13,6 @@ const recentSynthData = ref()
 const lspPortfolio = ref()
 const totalSynthsMinted = ref(0)
 const totalPortfolioValue = ref(0)
-let synthsSDK: Synths
 
 export function useSynthsSDK() {
     /**
