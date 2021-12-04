@@ -112,7 +112,7 @@ export default {
             // this.isModalVisible = false;
         },
         getLanguageById(id) {
-            switch (id._value) {
+            switch (id) {
                 case "en":
                     return "English";
                 case "zh":
@@ -200,7 +200,7 @@ export default {
                     class="hidden lg:flex px-2 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer"
                     @click="(isLangDropDownOpen = !isLangDropDownOpen);(isHelpDropDownOpen=false);(isWalletDropDownOpen=false)"
                 >
-                    {{ getLanguageById($i18n.global.locale) }}
+                    {{ getLanguageById($i18n.global.locale._value) }}
                     <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': isLangDropDownOpen }" class="mx-2 ml-1 my-auto h-4" />
                     <ul
                       class="my-auto p-2 text-sm text-left absolute top-9 left-0 bg-light rounded-xl shadow-lg z-[10000]"
