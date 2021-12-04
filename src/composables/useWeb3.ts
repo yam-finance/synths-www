@@ -1,29 +1,30 @@
-import { computed, ref, watchEffect } from "vue"
-import { Web3Provider } from "@ethersproject/providers"
+import { computed, ref } from "vue"
+import { JsonRpcProvider, Web3Provider } from "@ethersproject/providers"
 import { getInstance } from "@snapshot-labs/lock/plugins/vue3"
 import networks from "@snapshot-labs/snapshot.js/src/networks.json"
 import { formatUnits } from "@ethersproject/units"
 import { useSynthsSDK } from "./useSynthsSDK"
 
-let auth: any
-const defaultNetwork: any = import.meta.env.VITE_DEFAULT_NETWORK || Object.keys(networks)[0]
 const { init } = useSynthsSDK()
-
+const defaultProvider = new JsonRpcProvider(import.meta.env.VITE_INFURA_URL as string)
+const defaultNetwork: any = import.meta.env.VITE_DEFAULT_NETWORK || Object.keys(networks)[0]
 const state = ref({
     account: "",
     network: networks[defaultNetwork],
     authLoading: false,
     etherscanlink: "",
     walletConnectType: null,
-    ethersProvider: Web3Provider,
 })
 
-// TODO Initialize with default provider if wallet is not connected
-watchEffect(() => {
-    console.log("State changed!")
-    console.log("provider = ", state.value.ethersProvider)
-    init(state.value.ethersProvider)
-})
+let auth: any
+
+export async function initSDK() {
+    if (auth && auth.web3) {
+        init(auth.web3, (await auth.web3.getNetwork()).chainId)
+    } else {
+        init(defaultProvider, (await defaultProvider.getNetwork()).chainId)
+    }
+}
 
 export function useWeb3() {
     async function login(connector = "injected") {
@@ -36,6 +37,7 @@ export function useWeb3() {
             await loadProvider()
         }
         state.value.authLoading = false
+        await initSDK()
     }
 
     async function logout() {
@@ -51,7 +53,7 @@ export function useWeb3() {
 
             if (auth.provider.value.on) {
                 auth.provider.value.on("chainChanged", async (chainId) => {
-                    handleChainChanged(parseInt(formatUnits(chainId, 0)))
+                    await handleChainChanged(parseInt(formatUnits(chainId, 0)))
                 })
                 auth.provider.value.on("accountsChanged", async (accounts) => {
                     if (accounts.length !== 0) {
@@ -63,7 +65,6 @@ export function useWeb3() {
             }
             console.log("on changes")
             console.log("Provider", auth.provider.value)
-            state.value.ethersProvider = auth.web3
             let network, accounts
             try {
                 ;[network, accounts] = await Promise.all([auth.web3.getNetwork(), auth.web3.listAccounts()])
@@ -72,7 +73,7 @@ export function useWeb3() {
             }
             console.log("Network", network)
             console.log("Accounts", accounts)
-            handleChainChanged(network.chainId)
+            await handleChainChanged(network.chainId)
             const acc = accounts.length > 0 ? accounts[0] : null
 
             state.value.account = acc
@@ -86,7 +87,7 @@ export function useWeb3() {
         }
     }
 
-    function handleChainChanged(chainId) {
+    async function handleChainChanged(chainId) {
         if (!networks[chainId]) {
             networks[chainId] = {
                 ...networks[defaultNetwork],
@@ -97,6 +98,7 @@ export function useWeb3() {
             }
         }
         state.value.network = networks[chainId]
+        await initSDK()
     }
 
     return {

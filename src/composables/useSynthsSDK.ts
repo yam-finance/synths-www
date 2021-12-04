@@ -1,28 +1,47 @@
 import { ref, computed } from "vue"
+import { ethers } from "ethers"
 import Synths, { getRecentSynthData, getTotalMarketData } from "synths-sdk"
-import { defaultAssetsConfig } from "synths-sdk/dist/src/lib/config/index"
-import { Web3Provider } from "@ethersproject/providers"
+import { JsonRpcProvider } from "@ethersproject/providers"
+// TOOD Remove after testphase.
+import { defaultAssetsConfig, defaultTestAssetsConfig } from "synths-sdk/dist/src/lib/config/index"
 
+let synthsSDK: Synths
 const loading = ref(true)
 const data = ref({})
-const synthsSDK = ref()
 const totalMarketData = ref()
 const recentSynthData = ref()
 const lspPortfolio = ref()
+const totalSynthsMinted = ref(0)
+const totalPortfolioValue = ref(0)
 
 export function useSynthsSDK() {
     /**
      * @notice Initialize the synths-sdk and load market data.
      * @param provider The web3 provider instance.
      */
-    async function init(provider: Web3Provider) {
+    async function init(provider: JsonRpcProvider, networkId: number) {
         loading.value = true
 
-        const networkId: number = (await provider.getNetwork()).chainId
-        synthsSDK.value = await Synths.create({ ethersProvider: provider })
-        totalMarketData.value = await getTotalMarketData([networkId], defaultAssetsConfig)
-        recentSynthData.value = await getRecentSynthData(networkId, defaultAssetsConfig)
-        lspPortfolio.value = await synthsSDK.value.getLSPPortfolio(provider.getSigner())
+        const POLYSCAN_API_KEY = import.meta.env.VITE_POLYSCAN_API_KEY as string
+
+        synthsSDK = await Synths.create({ ethersProvider: provider, userAssetsConfig: defaultTestAssetsConfig })
+        totalMarketData.value = await getTotalMarketData([networkId], synthsSDK.config, POLYSCAN_API_KEY)
+        recentSynthData.value = await getRecentSynthData(networkId, synthsSDK.config, POLYSCAN_API_KEY)
+
+        if ((await provider.listAccounts()).length != 0) {
+            const portfolio = await synthsSDK.getLSPPortfolio()
+            lspPortfolio.value = portfolio
+            totalSynthsMinted.value = 0
+            totalPortfolioValue.value = 0
+
+            for (const synth of portfolio) {
+                const formattedBalance = Number(ethers.utils.formatEther(synth.balance))
+                if (formattedBalance > 0) {
+                    totalSynthsMinted.value += formattedBalance
+                    totalPortfolioValue.value += Number(synth.price) * formattedBalance
+                }
+            }
+        }
 
         loading.value = false
     }
@@ -33,7 +52,7 @@ export function useSynthsSDK() {
      * TODO Remove function.
      */
     async function connectTo(param: string) {
-        const asset = await synthsSDK.value.connectAsset(param)
+        const asset = synthsSDK.connectAsset(param)
         const empState = await asset.getEmpState()
 
         // Store all relevant data about a synth
@@ -45,10 +64,11 @@ export function useSynthsSDK() {
     return {
         loading: computed(() => loading.value),
         data: computed(() => data.value),
-        synthsSDK: computed(() => synthsSDK.value),
         totalMarketData: computed(() => totalMarketData.value),
         recentSynthData: computed(() => recentSynthData.value),
         lspPortfolio: computed(() => lspPortfolio.value),
+        totalSynthsMinted: computed(() => totalSynthsMinted.value),
+        totalPortfolioValue: computed(() => totalPortfolioValue.value),
         connectTo,
         init,
     }

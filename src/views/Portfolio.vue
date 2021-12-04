@@ -18,11 +18,13 @@
             "
         >
             <div class="card min-h-[78px] rounded-lg bg-light px-6 py-4">
-                <div class="text-xl font-bold">$42,000</div>
+                <div v-if="!loading" class="text-xl font-bold">{{ $i18n.global.n(totalPortfolioValue, "currency") }}</div>
+                <div v-else class="animate-pulse text-xl font-bold">...</div>
                 <div class="text-sm pt-1 font-normal txt-main">Total Portfolio Value</div>
             </div>
             <div class="card min-h-[78px] rounded-lg bg-light px-6 py-4">
-                <div class="text-xl font-bold">5</div>
+                <div v-if="!loading" class="text-xl font-bold">{{ totalSynthsMinted  }}</div>
+                <div v-else class="animated-pulse text-xl font-bold">...</div>
                 <div class="text-sm pt-1 font-normal txt-main">Synths Minted</div>
             </div>
             <div class="card min-h-[78px] rounded-lg bg-light px-6 py-4">
@@ -81,27 +83,25 @@
         <table cellpadding="5" class="text-white border-b bg-main w-full font-normal hidden md:table">
             <thead class="lg:text-xs xl:text-sm txt-main text-left">
                 <th class="py-2 px-4">Synths</th>
-                <th>Balance</th>
                 <th>Amount Minted</th>
-                <th>LP Amount</th>
-                <th>Price</th>
+                <!-- <th>LP Amount</th> -->
+                <th>Price</th> 
                 <th>Collateral</th>
                 <th>Status</th>
                 <th></th>
             </thead>
             <tbody class="border-t bg-main lg:text-xs xl:text-sm 2xl:text-base">
-                <tr v-for="(synth, key) in synths" :key="key" class="border-b bg-main cursor-pointer basic-hover">
+                <tr v-for="(synth, key) in lspPortfolio" :key="key" class="border-b bg-main cursor-pointer basic-hover">
                     <td class="px-4 py-2 font-semibold flex">
                         <img src="@/assets/images/zombie.png" class="w-6 h-6" />
-                        &nbsp;{{ synth.name }}
+                        &nbsp;{{ synth.symbol }}
                     </td>
-                    <td>{{ synth.balance }}</td>
-                    <td>{{ synth.minted_qty }}</td>
-                    <td>{{ synth.lp_qty }}</td>
-                    <td>${{ synth.price }}</td>
-                    <td>{{ synth.collateral }}</td>
-                    <td class="p-0 m-0">
-                        <div v-if="synth.status">
+                    <td>{{ formatEther(synth.balance) }}</td>
+                    <!-- <td>{{ synth.lp_qty }}</td> -->
+                    <td>{{ $i18n.global.n(synth.price, "currency") }}</td>
+                    <td>{{ synth.collateralSymbol }}</td>
+                    <td>
+                        <div v-if="!synth.status">
                             <span class="text-white">Live</span>
                         </div>
                         <div v-else class="flex items-center">
@@ -117,9 +117,10 @@
                         <img src="@/assets/images/arrow-right.svg" class="cursor-pointer" />
                     </td>
                 </tr>
+                <table-loader target="desktop" :loading="loading" />
             </tbody>
         </table>
-        <div v-if="!synths.length" class="cursor-pointer bg-main text-center flex justify-center w-full mt-3">
+        <div v-if="(!loading && !lspPortfolio) || (!loading && !lspPortfolio.length)" class="cursor-pointer bg-main text-center flex justify-center w-full mt-3">
             No synths to show
         </div>
     </div>
@@ -133,7 +134,8 @@
             <span class="text-sm txt-main">Portfolio</span>
         </div>
         <div class="card p-3 border-b bg-main">
-            <div class="text-lg font-bold">$42,000</div>
+            <div v-if="!loading" class="text-lg font-bold">{{ $i18n.global.n(totalPortfolioValue, "currency") }}</div>
+            <div v-else class="animated-pulse text-lg font-bold">...</div>
             <div class="text-xs txt-main">Total Portfolio Value</div>
         </div>
         <div class="w-full h-12 py-3 px-4 border-b bg-main text-white text-lg">Your Synths</div>
@@ -146,15 +148,15 @@
                 <th></th>
             </thead>
             <tbody class="border-t bg-main text-base">
-                <tr v-for="(synth, key) in synths" :key="key" class="border-b bg-main basic-hover">
+                <tr v-for="(synth, key) in lspPortfolio" :key="key" class="border-b bg-main basic-hover">
                     <td class="px-4 py-2 font-semibold flex">
                         <img src="@/assets/images/zombie.png" class="w-6 h-6" />
-                        &nbsp;{{ synth.name }}
+                        &nbsp;{{ synth.symbol }}
                     </td>
-                    <td>{{ synth.balance }}</td>
-                    <td>${{ synth.price }}</td>
+                    <td>{{ formatEther(synth.balance) }}</td>
+                    <td>{{ $i18n.global.n(synth.price, "currency") }}</td>
                     <td>
-                        <div v-if="synth.status">
+                        <div v-if="!synth.status">
                             <span class="text-white">Live</span>
                         </div>
                         <div v-else>
@@ -169,92 +171,53 @@
                         </div>
                     </td>
                     <td>
-                        <router-link :to="{ name: 'Synths', params: { synth: synth.id } }">
+                        <router-link :to="{ name: 'Synths', params: { synth: synth.symbol } }">
                             <img src="@/assets/images/arrow-right.svg" class="cursor-pointer" />
                         </router-link>
                     </td>
                 </tr>
+                <table-loader target="mobile" :loading="loading" />
             </tbody>
         </table>
     </div>
 </template>
 
 <script>
-let synths = [
-    {
-        id: 1,
-        name: "ETH/DAI IL Long",
-        balance: 120,
-        minted_qty: 120,
-        lp_qty: 120,
-        price: 120,
-        collateral: "ETH",
-        status: 1,
-    },
-    {
-        id: 2,
-        name: "ETH/DAI IL Long",
-        balance: 120,
-        minted_qty: 120,
-        lp_qty: 120,
-        price: 120,
-        collateral: "ETH",
-        status: 1,
-    },
-    {
-        id: 3,
-        name: "ETH/DAI IL Long",
-        balance: 120,
-        minted_qty: 120,
-        lp_qty: 120,
-        price: 120,
-        collateral: "ETH",
-        status: 0,
-    },
-    {
-        id: 4,
-        name: "ETH/DAI IL Long",
-        balance: 120,
-        minted_qty: 120,
-        lp_qty: 120,
-        price: 120,
-        collateral: "ETH",
-        status: 1,
-    },
-    {
-        id: 5,
-        name: "ETH/DAI IL Long",
-        balance: 120,
-        minted_qty: 120,
-        lp_qty: 120,
-        price: 120,
-        collateral: "ETH",
-        status: 1,
-    },
-]
-
+import { computed, ref } from "vue"
+import { ethers } from "ethers"
+import { useSynthsSDK } from "@/composables/useSynthsSDK"
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
+import TableLoader from "@/components/TableLoader.vue"
+
+const filter_string = ref("");
+
 export default {
     name: "Portfolio",
     components: {
         "s-button": SynthsRoundedButton,
+        "table-loader": TableLoader,
     },
-    data() {
+    setup() {
+        const { loading, lspPortfolio, totalSynthsMinted, totalPortfolioValue } = useSynthsSDK()
+
+
         return {
-            synths,
-            filter_string: "",
+           formatEther: ethers.utils.formatEther,
+           loading: computed(() => loading.value),
+           lspPortfolio: computed(() => { 
+               if (!loading.value) {
+                    if (filter_string.value !== "") {
+                        return lspPortfolio.value.filter((item) => item.symbol.toLowerCase().includes(filter_string.value.toLowerCase()))
+                    } else return lspPortfolio.value
+               }
+            }),
+           totalPortfolioValue: computed(() => { if (!loading.value) return totalPortfolioValue.value }),
+           totalSynthsMinted: computed(() => { if (!loading.value) return totalSynthsMinted.value }),
         }
-    },
-    computed: {
-        synths() {
-            if (this.filter_string !== "") {
-                return this.synths.filter((item) => item.name.toLowerCase().includes(this.filter_string.toLowerCase()))
-            } else return this.synths
-        },
     },
     methods: {
         filter(event) {
-            this.filter_string = event.target.value
+            filter_string.value = event.target.value
         },
     },
 }

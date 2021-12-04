@@ -134,7 +134,7 @@
                         </div>
                         <div class="grid grid-cols-2">
                             <div class="flex items-end">
-                                <span class="px-1 font-bold">{{ synth.price.toFixed(4) }}</span>
+                                <span class="px-1 font-bold">{{ synth.price.toFixed(6) }}</span>
                                 <span class="px-1 font-bold">{{ synth.collateralSymbol }}</span>
                                 <img v-if="synth.priceChanged24h >= 0" src="@/assets/images/arrow-up-right.svg" class="h-4 mb-0.5" />
                                 <img v-else src="@/assets/images/arrow-down-right.svg" class="h-4 mb-0.5" />
@@ -197,11 +197,15 @@
                 <router-link to="/explore">
                     <button class="rounded-2xl px-4 py-3 my-auto text-base font-bold wallet-btn">Explore Synths</button>
                 </router-link>
-
+                <!-- i18n Test Start -->
+                <!-- <p>`t` resource key completion: {{ $i18n.global.t("menu.login") }}</p> -->
+                <!-- <p>`d` resource key completion: {{ $i18n.global.d(new Date(), "short") }}</p> -->
+                <!-- <p>`n` resource key completion: {{ $i18n.global.n(1000, "currency") }}</p> -->
+                <!-- i18n Test Start -->
                 <div class="grid gap-x-4 grid-cols-2 md:grid-cols-3 m-4 my-16">
                     <div class="font-semibold">
-                        <p v-if="!loading" class="text-4xl md:text-5xl lg:text-6xl">{{ Number(totalMarketData.totalTVL).toFixed(0) }} $</p>
-                        <p v-else class="animate-pulse text-4xl md:text-5xl lg:text-6xl">...</p>
+                        <p v-if="!loading" class="text-4xl md:text-4xl lg:text-4xl">{{ $i18n.global.n(totalMarketData.totalTVL, "currency") }}</p>
+                        <p v-else class="animate-pulse text-4xl md:text-4xl lg:text-4xl">...</p>
                         <p class="text-sm txt-main mt-2">TOTAL VALUE LOCKED</p>
                     </div>
                     <!--
@@ -211,13 +215,13 @@
                     </div>
                     -->
                     <div class="font-semibold">
-                        <p v-if="!loading" class="text-4xl md:text-5xl lg:text-6xl">{{ Number(totalMarketData.totalLiquidity).toFixed(0) }} $</p>
-                        <p v-else class="animate-pulse text-4xl md:text-5xl lg:text-6xl">...</p>
+                        <p v-if="!loading" class="text-4xl md:text-4xl lg:text-4xl">{{ $i18n.global.n(totalMarketData.totalLiquidity, "currency") }}</p>
+                        <p v-else class="animate-pulse text-4xl md:text-4xl lg:text-4xl">...</p>
                         <p class="text-sm txt-main mt-2">TOTAL SYNTH LIQUIDITY</p>
                     </div>
                     <div class="font-semibold">
-                        <p v-if="!loading" class="text-4xl md:text-5xl lg:text-6xl">{{ Number(totalMarketData.total24hVolume).toFixed(0) }} $</p>
-                        <p v-else class="animate-pulse text-4xl md:text-5xl lg:text-6xl">...</p>
+                        <p v-if="!loading" class="text-4xl md:text-4xl lg:text-4xl">{{ $i18n.global.n(totalMarketData.total24hVolume, "currency") }}</p>
+                        <p v-else class="animate-pulse text-4xl md:text-4xl lg:text-4xl">...</p>
                         <p class="text-sm txt-main mt-2">VOLUME LAST 24H</p>
                     </div>
                 </div>

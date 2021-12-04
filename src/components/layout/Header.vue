@@ -97,6 +97,11 @@ export default {
         }
     },
     methods: {
+        switchLocale(locale) {
+            if (this.$i18n.global.locale._value != locale) {
+                this.$i18n.global.locale._value = locale;
+            }
+        },
         selectTab(item) {
             this.activeTab = item.id
         },
@@ -106,6 +111,16 @@ export default {
             this.isWalletDropDownOpen = false
             // this.isModalVisible = false;
         },
+        getLanguageById(id) {
+            switch (id) {
+                case "en":
+                    return "English";
+                case "zh":
+                    return "Chinese";
+                default:
+                    return "English";
+            }
+        }
     },
 }
 </script>
@@ -185,15 +200,15 @@ export default {
                     class="hidden lg:flex px-2 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer"
                     @click="(isLangDropDownOpen = !isLangDropDownOpen);(isHelpDropDownOpen=false);(isWalletDropDownOpen=false)"
                 >
-                    English
+                    {{ getLanguageById($i18n.global.locale._value) }}
                     <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': isLangDropDownOpen }" class="mx-2 ml-1 my-auto h-4" />
                     <ul
                       class="my-auto p-2 text-sm text-left absolute top-9 left-0 bg-light rounded-xl shadow-lg z-[10000]"
                       v-if="isLangDropDownOpen"
                       v-click-away="closePopup"
                   >
-                <li class="min-w-max cursor-pointer p-1">
-                    <span>Spanish</span>
+                <li v-for="locale in $i18n.global.availableLocales" :key="locale" @click="switchLocale(locale)" class="min-w-max cursor-pointer p-1">
+                    <span>{{ getLanguageById(locale) }}</span>
                 </li>
             </ul>
                 </span>
