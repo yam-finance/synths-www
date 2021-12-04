@@ -206,11 +206,11 @@ export default {
                       class="my-auto p-2 text-sm text-left absolute top-9 left-0 bg-light rounded-xl shadow-lg z-[10000]"
                       v-if="isLangDropDownOpen"
                       v-click-away="closePopup"
-                    >
-                      <li class="min-w-max cursor-pointer p-1">
-                          <span>Spanish</span>
-                      </li>
-                    </ul>
+                  >
+                <li v-for="locale in $i18n.global.availableLocales" :key="locale" @click="switchLocale(locale)" class="min-w-max cursor-pointer p-1">
+                    <span>{{ locale }}</span>
+                </li>
+            </ul>
                 </span>
                 <span
                     class="hidden lg:flex px-4 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer"
@@ -261,28 +261,6 @@ export default {
                 </div>
             </div>
 
-            <ul
-                class="overflow-hidden my-auto p-2 text-sm text-left fixed top-9 right-72 bg-light rounded-xl shadow-lg"
-                v-if="!isLangDropDownOpen"
-                v-click-away="closePopup"
-            >
-                <li v-for="locale in $i18n.global.availableLocales" :key="locale" @click="switchLocale(locale)" class="min-w-max cursor-pointer p-1">
-                    <span>{{ locale }}</span>
-                </li>
-            </ul>
-
-            <ul
-                class="overflow-hidden my-auto p-2 text-sm text-left fixed top-9 right-44 bg-light rounded-xl shadow-lg"
-                v-if="!isHelpDropDownOpen"
-                v-click-away="closePopup"
-            >
-                <li class="min-w-max cursor-pointer p-1">
-                    <span>Documentation</span>
-                </li>
-                <li class="min-w-max cursor-pointer p-1">
-                    <span>Tutorials</span>
-                </li>
-            </ul>
             <!-- wallet info dropdown -->
             <ul
               v-if="isWalletDropDownOpen"
