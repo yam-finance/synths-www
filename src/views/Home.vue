@@ -197,13 +197,11 @@
                 <router-link to="/explore">
                     <button class="rounded-2xl px-4 py-3 my-auto text-base font-bold wallet-btn">Explore Synths</button>
                 </router-link>
-
                 <!-- i18n Test Start -->
                 <!-- <p>`t` resource key completion: {{ $i18n.global.t("menu.login") }}</p> -->
                 <!-- <p>`d` resource key completion: {{ $i18n.global.d(new Date(), "short") }}</p> -->
                 <!-- <p>`n` resource key completion: {{ $i18n.global.n(1000, "currency") }}</p> -->
                 <!-- i18n Test Start -->
-
                 <div class="grid gap-x-4 grid-cols-2 md:grid-cols-3 m-4 my-16">
                     <div class="font-semibold">
                         <p v-if="!loading" class="text-4xl md:text-4xl lg:text-4xl">{{ $i18n.global.n(totalMarketData.totalTVL, "currency") }}</p>
