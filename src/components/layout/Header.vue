@@ -112,13 +112,14 @@ export default {
             // this.isModalVisible = false;
         },
         getLanguageById(id) {
+            console.log(id._value)
             switch (id._value) {
                 case "en":
                     return "English";
                 case "zh":
                     return "Chinese";
                 default:
-                    return id;
+                    return "English";
             }
         }
     },
