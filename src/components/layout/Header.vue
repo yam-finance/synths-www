@@ -208,7 +208,7 @@ export default {
                       v-click-away="closePopup"
                   >
                 <li v-for="locale in $i18n.global.availableLocales" :key="locale" @click="switchLocale(locale)" class="min-w-max cursor-pointer p-1">
-                    <span>{{ locale }}</span>
+                    <span>{{ getLanguageById(locale) }}</span>
                 </li>
             </ul>
                 </span>
