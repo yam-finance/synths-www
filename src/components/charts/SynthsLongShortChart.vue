@@ -17,7 +17,7 @@
             <div>
                 <s-button
                     class="mt-2.5 py-2 px-8 long rounded-3xl"
-                    :buttonStyles="'!text-sm'"
+                    :button-styles="'!text-sm'"
                     :color="'linear-gradient(180deg, #C8FF2D 0%, #008C0E 100%)'"
                 >
                     <template #buttonTitle> Go Long </template>
@@ -30,10 +30,10 @@
                     <p class="flex items-end font-semibold leading-5">
                         <span class="text-2xl">42%</span>
                         <svg
+                            id="arrow-up-right"
                             class="w-4 h-4 stroke-current text-[#2DFF42]"
                             viewBox="0 0 24 24"
                             fill="none"
-                            id="arrow-up-right"
                             xmlns="http://www.w3.org/2000/svg"
                         >
                             <path
@@ -59,10 +59,10 @@
                     <p class="flex items-end font-semibold leading-5">
                         <span class="text-2xl">42%</span>
                         <svg
+                            id="arrow-up-right"
                             class="w-4 h-4 stroke-current text-[#2DFF42]"
                             viewBox="0 0 24 24"
                             fill="none"
-                            id="arrow-up-right"
                             xmlns="http://www.w3.org/2000/svg"
                         >
                             <path
@@ -88,10 +88,10 @@
                     <p class="flex items-end font-semibold leading-5">
                         <span class="text-2xl">42%</span>
                         <svg
+                            id="arrow-up-right"
                             class="w-4 h-4 stroke-current text-[#2DFF42]"
                             viewBox="0 0 24 24"
                             fill="none"
-                            id="arrow-up-right"
                             xmlns="http://www.w3.org/2000/svg"
                         >
                             <path

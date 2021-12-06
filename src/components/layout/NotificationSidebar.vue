@@ -1,14 +1,34 @@
 <template>
     <transition name="slide">
-        <div v-if="isNotificationOpen" class="notification-wrapper bg-main" @click="toggleNotificationOpen">
-            <div class="notification bg-main box-content border-l" @click.stop="">
+        <div
+            v-if="isNotificationOpen"
+            class="notification-wrapper bg-main fixed top-0 right-0 h-full w-full z-[1000]"
+            @click="toggleNotificationOpen"
+        >
+            <div
+                class="
+                    notification
+                    bg-main
+                    box-content
+                    border-l
+                    fixed
+                    top-0
+                    right-0
+                    h-full
+                    w-full
+                    md:w-[240px]
+                    px-4
+                    box-border
+                "
+                @click.stop=""
+            >
                 <img
-                    class="notification-close basic-hover"
+                    class="notification-close basic-hover ml-auto mt-5 cursor-pointer"
                     src="@/assets/images/x.svg"
                     alt="Close Icon"
                     @click="toggleNotificationOpen"
                 />
-                <h2>Notification</h2>
+                <h2 class="font-semibold mb-2">Notification</h2>
                 <div v-if="notifications.length" class="notification-content">
                     <notification
                         v-for="(item, index) in notifications"
@@ -52,20 +72,10 @@ let isNotificationOpen = state.isNotificationOpen
 </script>
 
 <style scoped lang="scss">
-h2 {
-    @apply font-semibold mb-2;
-}
 .notification {
-    @apply fixed top-0 right-0 h-full w-full md:w-[240px] px-4 box-border;
     &-wrapper {
-        @apply fixed top-0 right-0 h-full w-full;
-        z-index: 1000;
         backdrop-filter: blur(5px);
         background: rgba(#11112f, 0.1);
-    }
-
-    &-close {
-        @apply ml-auto mt-5 cursor-pointer;
     }
 }
 
@@ -80,7 +90,7 @@ h2 {
 .slide-enter-from,
 .slide-leave-to {
     .notification {
-        right: -300px;
+        @apply right-[-300px];
     }
 }
 </style>

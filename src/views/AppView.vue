@@ -1,5 +1,5 @@
 <template>
-    <div class="home bg-main" :class="{ '!overflow-hidden': isOverflowHidden }">
+    <div class="home bg-main relative h-full overflow-auto" :class="{ '!overflow-hidden': isOverflowHidden }">
         <Header />
         <main>
             <div class="w-full content">
@@ -16,7 +16,7 @@
         </main>
         <Footer />
         <notification-layout />
-        <div class="fade-notification">
+        <div class="fade-notification fixed top-[70px] right-[20px] w-[300px] z-[999]">
             <notification
                 v-for="(item, index) in notifications"
                 :key="item.title"
@@ -76,9 +76,6 @@ onMounted(() => {
 })
 </script>
 <style lang="scss">
-.home {
-    @apply relative h-full overflow-auto;
-}
 .content {
     display: -webkit-inline-box;
 
@@ -89,10 +86,5 @@ onMounted(() => {
     &-mobile {
         height: calc(100vh - 64px);
     }
-}
-
-.fade-notification {
-    @apply fixed top-[70px] right-[20px] w-[300px];
-    z-index: 999;
 }
 </style>

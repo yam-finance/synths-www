@@ -4,10 +4,10 @@
             <p class="flex items-end font-semibold leading-5">
                 <span>42%</span>
                 <svg
+                    id="arrow-up-right"
                     class="w-4 h-4 stroke-current text-[#2DFF42]"
                     viewBox="0 0 24 24"
                     fill="none"
-                    id="arrow-up-right"
                     xmlns="http://www.w3.org/2000/svg"
                 >
                     <path
@@ -46,6 +46,8 @@
             "
         >
             <div
+                v-for="item in filterButtons"
+                :key="item"
                 class="
                     ssc__buttons-item
                     cursor-pointer
@@ -57,13 +59,11 @@
                     py-0.5
                     px-2
                 "
-                v-for="item in filterButtons"
-                :key="item"
             >
                 {{ item }}
             </div>
         </div>
-        <line-chart class="ssc__charts h-full overflow-auto relative" :labels="labels" :chartData="chartData" />
+        <line-chart class="ssc__charts h-full overflow-auto relative" :labels="labels" :chart-data="chartData" />
     </div>
 </template>
 
@@ -107,7 +107,7 @@ export default {
         grid-template-areas:
             ". ."
             "chart chart";
-        box-shadow: 0px 16px 16px -4px rgba(0, 0, 0, 0.15), 0px 4px 4px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 16px 16px -4px rgba(0, 0, 0, 0.15), 0px 4px 4px rgba(0, 0, 0, 0.1);
     }
 
     &__charts {

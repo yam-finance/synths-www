@@ -17,7 +17,7 @@
             Max
         </button>
         <div class="sci__input">
-            <input class="w-full text-purpleLight outline-none" type="text" v-model="inputValue" />
+            <input v-model="inputValue" class="w-full text-purpleLight outline-none" type="text" />
         </div>
     </div>
 </template>
@@ -48,7 +48,7 @@ export default {
 <style scoped lang="scss">
 .sci {
     &-wrapper {
-        box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.1);
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
         grid-template-columns: repeat(2, 50%);
         grid-template-rows: repeat(2, 1fr);
         grid-template-areas:

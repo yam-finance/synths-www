@@ -62,7 +62,7 @@
                                 <span class="px-1 text-sm my-auto text-purpleLight font-normal">$120</span>
                                 <img src="@/assets/images/arrow-up-right.svg" class="h-full py-0.5" />
                                 <span class="px-1 text-sm my-auto text-purpleDark font-normal">15%</span>
-                                <img src="@/assets/images/arrow-right.svg" v-if="activeTab === menu.id" />
+                                <img v-if="activeTab === menu.id" src="@/assets/images/arrow-right.svg" />
                             </div>
                         </div>
                     </router-link>
@@ -206,5 +206,3 @@ export default {
     },
 }
 </script>
-
-<style scoped></style>

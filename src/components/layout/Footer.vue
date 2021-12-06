@@ -3,7 +3,7 @@
         <div class="hidden md:block">
             <div class="flex overflow-hidden absolute w-64 h-12 border-r bg-main">
                 <div class="flex items-center px-4 cursor-pointer" @click="goToBlockLink">
-                    <img src="@/assets/images/green-dot.svg" class="" />
+                    <img src="@/assets/images/green-dot.svg" class="" alt="green-dot" />
                     <div class="text-xs font-normal translate-y-px px-2">{{ blockNumber }}</div>
                     <img src="@/assets/images/external-link.svg" class="" />
                 </div>
@@ -410,121 +410,68 @@ async function doCopy(address) {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .image_icon {
-    height: 16px;
-    width: 16px;
+    @apply w-[16px] h-[16px];
 }
 .wallet_actions {
-    display: inline-flex;
     /* font-family: Open Sauce Sans; */
     font-style: normal;
     font-weight: normal;
-    font-size: 14px;
-    line-height: 14px;
-    color: #ffffff;
-    cursor: pointer;
-    flex: none;
-    order: 1;
 
-    flex-grow: 0;
-    margin: 2px 0px;
+    @apply my-[2px] mx-0 flex-grow-0 order-1 flex-none cursor-pointer text-white leading-[14px] text-[14px] inline-flex;
+
+    img {
+        @apply mt-[-2px] w-[20px] mr-[4px];
+    }
 }
 
-.wallet_actions img {
-    margin-top: -2px;
-    width: 20px;
-    margin-right: 4px;
-}
 .container {
-    display: block;
-    position: relative;
-    padding-left: 32px;
-    -webkit-user-select: none;
-    height: 25px;
-    width: 25px;
-    font-size: 14px;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+    @apply select-none text-[14px] w-[25px] h-[25px] pl-[32px] relative block;
 }
 
 .t_network {
     font-family: Open Sauce Sans;
     font-style: normal;
-    font-weight: 600;
-    font-size: 12px;
-    line-height: 12px;
-    color: #7171b2;
-
-    /* Inside Auto Layout */
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    margin: 8px 0px;
+    @apply my-[8px] mx-0 flex-grow-0 order-normal flex-none text-[#7171b2] leading-[12px] text-[12px] font-semibold;
 }
 
 .container input {
-    position: absolute;
-    opacity: 0;
-    height: 0;
-    width: 0;
+    @apply absolute opacity-0 h-[0] w-[0];
 }
 
 /* Create a custom checkbox */
 .checkmark {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 25px;
-    width: 25px;
-    cursor: pointer;
-    background: #14143a;
-    border: 1px solid #7171b2;
-    border-radius: 8px;
     transform: scale(0.8) translateY(-4px);
+    @apply absolute top-0 left-0 rounded-[8px] border-[#7171b2] border bg-[#14143a] cursor-pointer w-[25px] h-[25px];
 }
 
 /* When the checkbox is checked, add a blue background */
 .container input:checked ~ .checkmark {
-    background: #515fff;
+    @apply bg-[#515fff];
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
 .checkmark:after {
     content: "";
-    position: absolute;
-    display: none;
+    @apply absolute hidden;
 }
 
 /* Show the checkmark when checked */
 .container input:checked ~ .checkmark:after {
-    display: block;
+    @apply block;
 }
 
 /* Style the checkmark/indicator */
 .container .checkmark:after {
-    left: 9px;
-    top: 5px;
-    width: 5px;
-    height: 10px;
-    border: solid #fff;
-    border-width: 0 3px 3px 0;
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
+    @apply left-[9px] top-[5px] w-[5px] h-[10px]  border-white border-t-0 border-r-[3px] border-b-[3px] border-l-0;
 }
 
 .divider_dropdown_wallet {
-    border-bottom: 1px solid #303060;
-
-    /* Inside Auto Layout */
-
-    flex: none;
-    order: 4;
-    align-self: stretch;
-    flex-grow: 0;
-    margin: 8px 0px;
+    @apply my-[8px] mx-0 flex-grow-0 order-4 flex-none self-stretch	border-[#303060];
 }
 
 .blur {

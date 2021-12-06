@@ -246,7 +246,6 @@ import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
 import SynthsSingleChart from "@/components/charts/SynthsSingleChart.vue"
 import SynthsLongShortChart from "@/components/charts/SynthsLongShortChart.vue"
 import SynthsInsideBar from "@/components/SynthsInsideBar.vue"
-import SynthsNew from "@/components/SynthsNew.vue"
 import synthsLogo from "@/assets/images/logo.png"
 import { inject } from "vue"
 import { mixin as VueClickAway, directive as onClickaway } from "vue3-click-away"
@@ -279,6 +278,7 @@ let options = [
 
 let selected_option = 0
 let isUseWallet = 0
+let isDropDown = false
 
 export default {
     name: "Markets",
@@ -287,10 +287,9 @@ export default {
         SynthsLongShortChart,
         "s-button": SynthsRoundedButton,
         SynthsInsideBar,
-        SynthsNew,
     },
     directives: {
-      ClickAway: onClickaway,
+        ClickAway: onClickaway,
     },
     mixins: [VueClickAway],
     setup() {
@@ -310,6 +309,7 @@ export default {
             loading: loading,
             expiryPrice: computed(() => {
                 if (!loading.value) return data.value["upunks-0921"]["empState"].expiryPrice
+                return null
             }),
             /* -- End of SDK Test -- */
         }
@@ -320,7 +320,7 @@ export default {
             options,
             selected_option,
             isUseWallet,
-            isDropDown: false,
+            isDropDown,
         }
     },
     methods: {

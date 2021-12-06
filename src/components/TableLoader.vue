@@ -34,8 +34,6 @@
             <div class="rounded-full animate-pulse bg-white w-6 h-6" />
         </td>
     </tr>
-
-
 </template>
 
 <script>
