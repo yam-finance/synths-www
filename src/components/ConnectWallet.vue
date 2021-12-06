@@ -1,10 +1,10 @@
 <template>
     <div
-        class="modal-backdrop backdrop-blur-lg flex items-center justify-center fixed inset-0"
+        class="modal-backdrop backdrop-blur-lg flex items-center justify-center fixed inset-0 z-[1001]"
         @click.prevent="$emit('close')"
     >
         <div class="modal rounded-lg flex flex-col items-start shadow-2xl p-4 absolute" @click.stop="">
-            <img class="wallet_gif absolute w-40" src="@/assets/images/wallet.gif" />
+            <img class="wallet_gif absolute w-40 right-[-15%] top-[-25%]" src="@/assets/images/wallet.gif" />
 
             <div class="title justify-between font-semibold text-base leading-5 relative text-white not-italic pt-0">
                 <div
@@ -221,7 +221,25 @@
                     </div>
                 </div>
             </div>
-            <div class="learn_more_box flex-none order-none text-xs leading-4 mt-2 left-0 not-italic w-auto">
+            <div
+                class="
+                    learn_more_box
+                    flex-none
+                    order-none
+                    text-xs
+                    leading-4
+                    mt-2
+                    left-0
+                    not-italic
+                    w-auto
+                    text-[rgba(203,
+                    203,
+                    255,
+                    1)]
+                    font-normal
+                    bottom-[20px]
+                "
+            >
                 <router-link to="#">
                     Not sure how connect wallet works?
                     <span class="inline-flex text-white">
@@ -248,15 +266,9 @@ export default {
 }
 </script>
 
-<!-- TODO convert to tailwind -->
 <style>
 .modal-backdrop {
-    z-index: 1001;
     background-color: rgba(0, 0, 0, 0.3);
-}
-
-.wallet_gif {
-    @apply right-[-15%] top-[-25%];
 }
 
 .wallet_name {
@@ -269,13 +281,10 @@ export default {
 }
 
 .modal {
-    width: 340px;
-    left: 50vw;
-    top: 50vh;
     transform: translate(-50%, -50%);
     background-color: rgba(37, 37, 98, 1);
     box-shadow: 0px 32px 64px -8px rgba(0, 0, 0, 0.1);
-    z-index: 1001;
+    @apply z-[1001] w-[340px] left-[50vw] top-[50vh];
 }
 
 .connect_wallet_header {
@@ -283,27 +292,19 @@ export default {
 }
 
 .learn_more_box {
-    bottom: 20px;
     font-family: inherit;
-    font-weight: normal;
-    color: rgba(203, 203, 255, 1);
 }
 
 .connect_wallet_info {
-    left: 16px;
-    top: 44px;
     font-family: inherit;
-    font-weight: normal;
-    line-height: 160%;
     color: rgba(203, 203, 255, 1);
+    @apply left-[16px] top-[44px] font-normal leading-[160%];
 }
 
 .connect_wallet_container {
-    width: 310px;
-    left: 16px;
-    top: 96px;
     background-color: rgba(29, 29, 82, 1);
     box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.1);
+    @apply w-[310px] left-[16px] top-[96px];
 }
 .title {
     font-family: inherit;

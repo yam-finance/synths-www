@@ -1,5 +1,5 @@
 <template>
-    <div ref="chartContainer" class="chart-container">
+    <div ref="chartContainer" class="chart-container relative w-full h-full">
         <canvas ref="chart"></canvas>
     </div>
 </template>
@@ -74,7 +74,7 @@ export default {
     mounted() {
         const canvas = this.$refs.chart
         const container = this.$refs.chartContainer
-        const ctx = canvas.getContext("2d")
+        // const ctx = canvas.getContext("2d")
         const data = {
             labels: [],
             datasets: [],
@@ -90,46 +90,39 @@ export default {
         canvas.height = container.clientHeight
         canvas.width = container.clientWidth
 
-        let myChart = new Chart(ctx, {
-            type: "line",
-            data: data,
-            options: {
-                plugins: {
-                    legend: {
-                        display: false,
-                    },
-                    tooltip: {
-                        enabled: false,
-                    },
-                },
-                scales: {
-                    y: {
-                        display: false, // Hide Y axis labels
-                    },
-                    x: {
-                        display: false, // Hide X axis labels
-                    },
-                },
-                elements: {
-                    point: {
-                        radius: 0,
-                    },
-                    line: {
-                        borderJoinStyle: "round",
-                    },
-                },
-                layout: {
-                    padding: 5,
-                },
-            },
-        })
+        // let myChart = new Chart(ctx, {
+        //     type: "line",
+        //     data: data,
+        //     options: {
+        //         plugins: {
+        //             legend: {
+        //                 display: false,
+        //             },
+        //             tooltip: {
+        //                 enabled: false,
+        //             },
+        //         },
+        //         scales: {
+        //             y: {
+        //                 display: false, // Hide Y axis labels
+        //             },
+        //             x: {
+        //                 display: false, // Hide X axis labels
+        //             },
+        //         },
+        //         elements: {
+        //             point: {
+        //                 radius: 0,
+        //             },
+        //             line: {
+        //                 borderJoinStyle: "round",
+        //             },
+        //         },
+        //         layout: {
+        //             padding: 5,
+        //         },
+        //     },
+        // })
     },
 }
 </script>
-<style lang="scss">
-.chart-container {
-    position: relative;
-    height: 100%;
-    width: 100%;
-}
-</style>

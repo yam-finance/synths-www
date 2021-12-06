@@ -42,7 +42,7 @@
                         <span class="flex px-4 py-1.5 cursor-pointer text-[#CBCBFF] hover:brightness-125"> Learn </span>
                     </router-link>
                     <router-link to="/explore" class="my-auto">
-                        <s-button buttonStyles="wallet-btn px-4 py-3 my-auto text-sm font-semibold mr-4">
+                        <s-button button-styles="wallet-btn px-4 py-3 my-auto text-sm font-semibold mr-4">
                             <template #buttonTitle> Explore Synths </template>
                         </s-button>
                     </router-link>
@@ -136,7 +136,11 @@
                             <div class="flex items-end">
                                 <span class="px-1 font-bold">{{ synth.price.toFixed(6) }}</span>
                                 <span class="px-1 font-bold">{{ synth.collateralSymbol }}</span>
-                                <img v-if="synth.priceChanged24h >= 0" src="@/assets/images/arrow-up-right.svg" class="h-4 mb-0.5" />
+                                <img
+                                    v-if="synth.priceChanged24h >= 0"
+                                    src="@/assets/images/arrow-up-right.svg"
+                                    class="h-4 mb-0.5"
+                                />
                                 <img v-else src="@/assets/images/arrow-down-right.svg" class="h-4 mb-0.5" />
                                 <span class="px-1 text-sm text-[#9A9AC8]">{{ synth.priceChanged24h }}%</span>
                             </div>
@@ -169,7 +173,9 @@
                             <div>
                                 <div
                                     class="
-                                        rounded animate-pulse bg-white 
+                                        rounded
+                                        animate-pulse
+                                        bg-white
                                         my-auto
                                         px-2
                                         py-0.5
@@ -180,7 +186,7 @@
                                         float-right
                                     "
                                 >
-                                   .
+                                    .
                                 </div>
                             </div>
                         </div>
@@ -204,7 +210,9 @@
                 <!-- i18n Test Start -->
                 <div class="grid gap-x-4 grid-cols-2 md:grid-cols-3 m-4 my-16">
                     <div class="font-semibold">
-                        <p v-if="!loading" class="text-4xl md:text-4xl lg:text-4xl">{{ $i18n.global.n(totalMarketData.totalTVL, "currency") }}</p>
+                        <p v-if="!loading" class="text-4xl md:text-4xl lg:text-4xl">
+                            {{ $i18n.global.n(totalMarketData.totalTVL, "currency") }}
+                        </p>
                         <p v-else class="animate-pulse text-4xl md:text-4xl lg:text-4xl">...</p>
                         <p class="text-sm txt-main mt-2">TOTAL VALUE LOCKED</p>
                     </div>
@@ -215,12 +223,16 @@
                     </div>
                     -->
                     <div class="font-semibold">
-                        <p v-if="!loading" class="text-4xl md:text-4xl lg:text-4xl">{{ $i18n.global.n(totalMarketData.totalLiquidity, "currency") }}</p>
+                        <p v-if="!loading" class="text-4xl md:text-4xl lg:text-4xl">
+                            {{ $i18n.global.n(totalMarketData.totalLiquidity, "currency") }}
+                        </p>
                         <p v-else class="animate-pulse text-4xl md:text-4xl lg:text-4xl">...</p>
                         <p class="text-sm txt-main mt-2">TOTAL SYNTH LIQUIDITY</p>
                     </div>
                     <div class="font-semibold">
-                        <p v-if="!loading" class="text-4xl md:text-4xl lg:text-4xl">{{ $i18n.global.n(totalMarketData.total24hVolume, "currency") }}</p>
+                        <p v-if="!loading" class="text-4xl md:text-4xl lg:text-4xl">
+                            {{ $i18n.global.n(totalMarketData.total24hVolume, "currency") }}
+                        </p>
                         <p v-else class="animate-pulse text-4xl md:text-4xl lg:text-4xl">...</p>
                         <p class="text-sm txt-main mt-2">VOLUME LAST 24H</p>
                     </div>
@@ -370,9 +382,15 @@ export default {
         const { loading, totalMarketData, recentSynthData } = useSynthsSDK()
 
         return {
-           loading: computed(() => loading.value),
-           totalMarketData: computed(() => { if (!loading.value) return totalMarketData.value }),
-           recentSynthData: computed(() => { if (!loading.value) return recentSynthData.value }),
+            loading: computed(() => loading.value),
+            totalMarketData: computed(() => {
+                if (!loading.value) return totalMarketData.value
+                return null
+            }),
+            recentSynthData: computed(() => {
+                if (!loading.value) return recentSynthData.value
+                return null
+            }),
         }
     },
     data() {

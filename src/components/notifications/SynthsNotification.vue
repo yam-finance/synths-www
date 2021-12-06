@@ -1,18 +1,18 @@
 <template>
     <transition name="fade">
-        <div class="sn">
+        <div class="sn bg-blueDark rounded-lg grid gap-2 items-center">
             <div class="sn-title">{{ title }}</div>
             <div class="sn-icon">
                 <img :src="getIcon(iconStyle)" alt="Notification Status" />
             </div>
-            <div v-show="link" class="sn-link">
+            <div v-show="link" class="sn-link w-4 h-4">
                 <a :href="link" target="_blank">
-                    <img src="@/assets/images/external-link.svg" alt="External Link" />
+                    <img src="@/assets/images/external-link.svg" alt="External Link" class="w-full h-full" />
                 </a>
             </div>
-            <div class="sn-close">
+            <div class="sn-close w-4 h-4">
                 <img
-                    class="cursor-pointer basic-hover"
+                    class="cursor-pointer basic-hover w-full h-full"
                     src="@/assets/images/x.svg"
                     alt="Close Icon"
                     @click="closeNotification"
@@ -57,7 +57,6 @@ export default {
 
 <style scoped lang="scss">
 .sn {
-    @apply bg-blueDark rounded-lg grid gap-2 items-center;
     box-shadow: 0 16px 16px -4px rgba(0, 0, 0, 0.15), 0px 4px 4px rgba(0, 0, 0, 0.1);
     grid-template-columns: auto 1fr auto auto;
     grid-template-rows: repeat(2, auto);
@@ -72,20 +71,10 @@ export default {
         grid-area: icon;
     }
     &-link {
-        @apply w-4 h-4;
         grid-area: link;
-
-        img {
-            @apply w-full h-full;
-        }
     }
     &-close {
-        @apply w-4 h-4;
         grid-area: close;
-
-        img {
-            @apply w-full h-full;
-        }
     }
 
     &-text {
@@ -97,7 +86,8 @@ export default {
 .fade-leave-active {
     transition: opacity 2s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
-    opacity: 0;
+.fade-enter,
+.fade-leave-to {
+    @apply opacity-0;
 }
 </style>

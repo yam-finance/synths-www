@@ -18,12 +18,14 @@
             "
         >
             <div class="card min-h-[78px] rounded-lg bg-light px-6 py-4">
-                <div v-if="!loading" class="text-xl font-bold">{{ $i18n.global.n(totalPortfolioValue, "currency") }}</div>
+                <div v-if="!loading" class="text-xl font-bold">
+                    {{ $i18n.global.n(totalPortfolioValue, "currency") }}
+                </div>
                 <div v-else class="animate-pulse text-xl font-bold">...</div>
                 <div class="text-sm pt-1 font-normal txt-main">Total Portfolio Value</div>
             </div>
             <div class="card min-h-[78px] rounded-lg bg-light px-6 py-4">
-                <div v-if="!loading" class="text-xl font-bold">{{ totalSynthsMinted  }}</div>
+                <div v-if="!loading" class="text-xl font-bold">{{ totalSynthsMinted }}</div>
                 <div v-else class="animated-pulse text-xl font-bold">...</div>
                 <div class="text-sm pt-1 font-normal txt-main">Synths Minted</div>
             </div>
@@ -85,7 +87,7 @@
                 <th class="py-2 px-4">Synths</th>
                 <th>Amount Minted</th>
                 <!-- <th>LP Amount</th> -->
-                <th>Price</th> 
+                <th>Price</th>
                 <th>Collateral</th>
                 <th>Status</th>
                 <th></th>
@@ -120,7 +122,10 @@
                 <table-loader target="desktop" :loading="loading" />
             </tbody>
         </table>
-        <div v-if="(!loading && !lspPortfolio) || (!loading && !lspPortfolio.length)" class="cursor-pointer bg-main text-center flex justify-center w-full mt-3">
+        <div
+            v-if="(!loading && !lspPortfolio) || (!loading && !lspPortfolio.length)"
+            class="cursor-pointer bg-main text-center flex justify-center w-full mt-3"
+        >
             No synths to show
         </div>
     </div>
@@ -189,7 +194,7 @@ import { useSynthsSDK } from "@/composables/useSynthsSDK"
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
 import TableLoader from "@/components/TableLoader.vue"
 
-const filter_string = ref("");
+const filter_string = ref("")
 
 export default {
     name: "Portfolio",
@@ -200,19 +205,27 @@ export default {
     setup() {
         const { loading, lspPortfolio, totalSynthsMinted, totalPortfolioValue } = useSynthsSDK()
 
-
         return {
-           formatEther: ethers.utils.formatEther,
-           loading: computed(() => loading.value),
-           lspPortfolio: computed(() => { 
-               if (!loading.value) {
+            formatEther: ethers.utils.formatEther,
+            loading: computed(() => loading.value),
+            lspPortfolio: computed(() => {
+                if (!loading.value) {
                     if (filter_string.value !== "") {
-                        return lspPortfolio.value.filter((item) => item.symbol.toLowerCase().includes(filter_string.value.toLowerCase()))
+                        return lspPortfolio.value.filter((item) =>
+                            item.symbol.toLowerCase().includes(filter_string.value.toLowerCase())
+                        )
                     } else return lspPortfolio.value
-               }
+                }
+                return null
             }),
-           totalPortfolioValue: computed(() => { if (!loading.value) return totalPortfolioValue.value }),
-           totalSynthsMinted: computed(() => { if (!loading.value) return totalSynthsMinted.value }),
+            totalPortfolioValue: computed(() => {
+                if (!loading.value) return totalPortfolioValue.value
+                return null
+            }),
+            totalSynthsMinted: computed(() => {
+                if (!loading.value) return totalSynthsMinted.value
+                return null
+            }),
         }
     },
     methods: {
@@ -222,5 +235,3 @@ export default {
     },
 }
 </script>
-
-<style scoped></style>

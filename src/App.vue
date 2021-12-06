@@ -7,24 +7,6 @@
     </template>
 </template>
 
-<style lang="scss">
-#app {
-    @apply relative h-full overflow-auto;
-}
-#nav {
-    padding: 30px;
-
-    a {
-        font-weight: bold;
-        color: #2c3e50;
-
-        &.router-link-exact-active {
-            color: #42b983;
-        }
-    }
-}
-</style>
-
 <script lang="ts">
 import { defineComponent, provide, reactive, ref, onUnmounted, onMounted } from "vue"
 import { globalStore } from "@/composables/global"
@@ -90,9 +72,9 @@ export default defineComponent({
     },
     methods: {
         loadingHandler() {
-            var obj = this
+            let obj = this
             document.onreadystatechange = function () {
-                var state = document.readyState
+                let state = document.readyState
                 if (state == "interactive") {
                     obj.loadingStatus = true
                 } else if (state == "complete") {
@@ -103,3 +85,9 @@ export default defineComponent({
     },
 })
 </script>
+
+<style lang="scss">
+#app {
+    @apply relative h-full overflow-auto;
+}
+</style>

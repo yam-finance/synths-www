@@ -27,6 +27,17 @@ module.exports = {
         backgroundImage: {
             checkbox: "url('/src/assets/images/tik.png')",
         },
+        order: {
+            first: "-9999",
+            last: "9999",
+            normal: "0",
+            1: "1",
+            2: "2",
+            3: "3",
+            4: "4",
+            5: "5",
+            6: "6",
+        },
     },
     purge: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
     variants: {

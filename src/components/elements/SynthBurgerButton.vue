@@ -1,5 +1,5 @@
 <template>
-    <div class="nav-icon" :class="{ open: isOpen }" @click="clickHandler">
+    <div class="nav-icon w-[24px] h-[25px] relative cursor-pointer" :class="{ open: isOpen }" @click="clickHandler">
         <span></span>
         <span></span>
         <span></span>
@@ -23,9 +23,6 @@ export default {
 
 <style scoped>
 .nav-icon {
-    width: 24px;
-    height: 25px;
-    position: relative;
     -webkit-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
     -o-transform: rotate(0deg);
@@ -34,18 +31,9 @@ export default {
     -moz-transition: 0.5s ease-in-out;
     -o-transition: 0.5s ease-in-out;
     transition: 0.5s ease-in-out;
-    cursor: pointer;
 }
 
 .nav-icon span {
-    display: block;
-    position: absolute;
-    height: 2px;
-    width: 100%;
-    background: #7171b2;
-    border-radius: 20px;
-    opacity: 1;
-    left: 0;
     -webkit-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
     -o-transform: rotate(0deg);
@@ -54,10 +42,11 @@ export default {
     -moz-transition: 0.25s ease-in-out;
     -o-transition: 0.25s ease-in-out;
     transition: 0.25s ease-in-out;
+    @apply block absolute h-[2px] w-full bg-[#7171b2] rounded-[20px] opacity-100 left-0;
 }
 
 .nav-icon span:nth-child(1) {
-    top: 0;
+    @apply top-0;
     -webkit-transform-origin: left center;
     -moz-transform-origin: left center;
     -o-transform-origin: left center;
@@ -65,7 +54,7 @@ export default {
 }
 
 .nav-icon span:nth-child(2) {
-    top: 40%;
+    @apply top-[40%];
     -webkit-transform-origin: left center;
     -moz-transform-origin: left center;
     -o-transform-origin: left center;
@@ -73,7 +62,7 @@ export default {
 }
 
 .nav-icon span:nth-child(3) {
-    top: 80%;
+    @apply top-[80%];
     -webkit-transform-origin: left center;
     -moz-transform-origin: left center;
     -o-transform-origin: left center;
@@ -85,13 +74,11 @@ export default {
     -moz-transform: rotate(45deg);
     -o-transform: rotate(45deg);
     transform: rotate(45deg);
-    top: 9%;
-    left: 11%;
+    @apply top-[9%] left-[11%];
 }
 
 .nav-icon.open span:nth-child(2) {
-    width: 0%;
-    opacity: 0;
+    @apply w-[0%] opacity-0;
 }
 
 .nav-icon.open span:nth-child(3) {
@@ -99,7 +86,6 @@ export default {
     -moz-transform: rotate(-45deg);
     -o-transform: rotate(-45deg);
     transform: rotate(-45deg);
-    top: 80%;
-    left: 8%;
+    @apply top-[80%] left-[8%];
 }
 </style>

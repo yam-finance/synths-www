@@ -239,22 +239,13 @@ let rawSynths = [
     },
 ]
 
-import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
 export default {
     name: "Explore",
-    components: {
-        "s-button": SynthsRoundedButton,
-    },
     data() {
         return {
             rawSynths,
             filter_string: "",
         }
-    },
-    methods: {
-        filter(event) {
-            this.filter_string = event.target.value
-        },
     },
     computed: {
         synths() {
@@ -265,7 +256,10 @@ export default {
             } else return this.rawSynths
         },
     },
+    methods: {
+        filter(event) {
+            this.filter_string = event.target.value
+        },
+    },
 }
 </script>
-
-<style scoped></style>
