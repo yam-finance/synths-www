@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        <div class="w-full h-12 border-b bg-main text-white text-lg flex text-center justify-between">
+        <div class="w-full h-12 px-2 border-b bg-main text-white text-lg flex text-center justify-between">
             <span class="py-3 px-4"> All Synths </span>
 
             <div class="h-full w-[230px] py-2 px-3 flex">
