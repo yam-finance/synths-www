@@ -75,19 +75,38 @@
             <tbody class="border-t bg-main lg:text-xs xl:text-sm 2xl:text-base">
                 <tr v-for="(synth, key) in synths" :key="key" class="cursor-pointer border-b bg-main basic-hover">
                     <td class="px-4 py-2 flex">
-                        <img src="@/assets/images/zombie.png" class="w-6 h-6" />
-                        <router-link class="font-semibold" :to="{ name: 'Synths', params: { synth: synth.id } }">
+                        <router-link class="font-semibold flex" :to="{ name: 'Synths', params: { synth: synth.id } }">
+                            <img src="@/assets/images/zombie.png" class="w-6 h-6" />
+
                             &nbsp;{{ synth.name }}
                         </router-link>
                     </td>
-                    <td>{{ synth.price }}</td>
                     <td>
-                        <img src="@/assets/images/arrow-up-right.svg" class="h-4 inline -translate-y-0.5" />
-                        {{ synth.day_change }}
+                        <router-link class="font-semibold" :to="{ name: 'Synths', params: { synth: synth.id } }">
+                            {{ synth.price }}
+                        </router-link>
                     </td>
-                    <td>{{ synth.day_volume }}</td>
-                    <td>{{ synth.liquidity }}</td>
-                    <td>${{ synth.apr }}</td>
+                    <td>
+                        <router-link class="font-semibold" :to="{ name: 'Synths', params: { synth: synth.id } }">
+                            <img src="@/assets/images/arrow-up-right.svg" class="h-4 inline -translate-y-0.5" />
+                            {{ synth.day_change }}
+                        </router-link>
+                    </td>
+                    <td>
+                        <router-link class="font-semibold" :to="{ name: 'Synths', params: { synth: synth.id } }"
+                            >{{ synth.day_volume }}
+                        </router-link>
+                    </td>
+                    <td>
+                        <router-link class="font-semibold" :to="{ name: 'Synths', params: { synth: synth.id } }"
+                            >{{ synth.liquidity }}
+                        </router-link>
+                    </td>
+                    <td>
+                        <router-link class="font-semibold" :to="{ name: 'Synths', params: { synth: synth.id } }"
+                            >${{ synth.apr }}
+                        </router-link>
+                    </td>
                     <td class="p-0 m-0">
                         <router-link :to="{ name: 'Synths', params: { synth: synth.id } }">
                             <img src="@/assets/images/arrow-right.svg" class="cursor-pointer" />
