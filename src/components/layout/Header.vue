@@ -138,7 +138,7 @@ export default {
             flex
             lg:flex-row
             border-b
-            bd-main
+            bg-main
         "
     >
         <router-link to="/">
