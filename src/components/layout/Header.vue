@@ -138,11 +138,11 @@ export default {
             flex
             lg:flex-row
             border-b
-            bg-main
+            bd-main
         "
     >
         <router-link to="/">
-            <div class="w-64 h-12 flex items-center p-4 md:border-r bg-main">
+            <div class="w-64 h-12 flex items-center p-4 md:border-r bd-main">
                 <img src="@/assets/images/yamIcon.png" class="h-8 w-8" />
                 <h3 class="logo font-bold text-emerald-500 ml-2 flex-grow">Yam Synths</h3>
                 <span class="bg-[#3468FF] my-auto px-2 overflow-hidden ml-3 rounded-full text-sm font-bold">V 3.0</span>
