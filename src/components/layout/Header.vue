@@ -3,12 +3,16 @@ import { copyText } from "vue3-clipboard"
 import { useWeb3 } from "@/composables/useWeb3"
 import ConnectWallet from "@/components/ConnectWallet.vue"
 import { globalStore } from "@/composables/global"
+import Simulator from "@/components/Simulator.vue"
+
 import { ref } from "vue"
 
 import useClipboard from "@/composables/useClipboard"
 const { state } = globalStore()
 
 const { login, web3, logout } = useWeb3()
+const isSimulatorVisible = ref(false)
+
 const isModalVisible = ref(false)
 
 const { toggleNotificationOpen } = globalStore()
@@ -304,7 +308,7 @@ export default {
               </label>
             </li>
             <li class="divider_dropdown_wallet"></li>
-            <li class="min-w-max cursor-pointer p-1">
+            <li class="min-w-max cursor-pointer p-1" @click="isSimulatorVisible=!isSimulatorVisible">
                                 <span class="wallet_actions">
                                     <img src="@/assets/icons/play-circle.png" /> &nbsp; Run Simulation
                                 </span>
@@ -399,6 +403,11 @@ export default {
         <ConnectWallet v-show="isModalVisible" @close="isModalVisible = false" @connect="handleConnect">
         </ConnectWallet>
       </teleport>
+      <Simulator
+        v-show="isSimulatorVisible"
+        @close="isSimulatorVisible = false"
+      >
+      </Simulator>
     </nav>
 </template>
 
