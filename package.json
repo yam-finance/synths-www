@@ -3,6 +3,7 @@
     "version": "0.0.0",
     "scripts": {
         "dev": "vite",
+        "postinstall": "patch-package",
         "tailwind": "tailwind-config-viewer -o -p 3001",
         "build": "vite build",
         "serve": "vite preview",
@@ -24,6 +25,7 @@
         "ethers": "^5.5.0",
         "fortmatic": "^2.2.1",
         "lodash": "^4.17.21",
+        "patch-package": "^6.4.7",
         "path": "^0.12.7",
         "postcss": "^8.3.7",
         "prerender-spa-plugin": "^3.4.0",
