@@ -190,7 +190,6 @@ export default {
                 mr-4
                 text-right
                 h-12
-                lg:border-l
                 bd-main
                 flex
             "
