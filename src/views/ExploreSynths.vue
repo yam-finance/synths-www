@@ -126,9 +126,19 @@
         <div class="w-full py-2 px-3 border-b bg-main">
             <span class="text-sm txt-main">Explore Synths</span>
         </div>
-        <div class="card p-3 border-b bg-main">
-            <div class="text-lg font-bold">$12.9M</div>
-            <div class="text-xs txt-main">Total Value Locked</div>
+        <div class="grid grid-cols-3 gap-4 border-b bg-main">
+            <div class="card p-3">
+                <div class="text-xl font-bold">$12.9M</div>
+                <div class="text-xs txt-main">Total Value Locked</div>
+            </div>
+            <div class="card p-3">
+                <div class="text-xl font-bold">$3.7M</div>
+                <div class="text-xs txt-main">Trading Volume</div>
+            </div>
+            <div class="card p-3">
+                <div class="text-xl font-bold">5</div>
+                <div class="text-xs txt-main">Total Synths</div>
+            </div>
         </div>
         <div class="w-full h-12 border-b bg-main text-white text-lg flex text-center justify-between">
             <span class="py-3 px-4"> All Synths </span>
