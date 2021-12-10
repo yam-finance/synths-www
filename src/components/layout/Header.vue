@@ -66,7 +66,7 @@ let tabs = [
     },
     {
         id: 2,
-        title: "New!",
+        title: "Synths",
         to: "synths/" + featuredSynth,
     },
     {

@@ -145,10 +145,10 @@
             <SynthsSingleChart class="h-[220px]" />
         </div>
         <div class="px-6 py-4 border-b md:border-0 bg-main hidden xl:block">
-            <SynthsLongShortChart class="p-0" />
+            <SynthsLongShortChart class="p-0" :textTitle="textTitle" :BtnColor="BtnColor"/>
         </div>
         <div class="px-6 py-4 border-b md:border-0 bg-main hidden xl:block">
-            <SynthsLongShortChart class="p-0"> </SynthsLongShortChart>
+            <SynthsLongShortChart class="p-0" :textTitle="textTitles" :BtnColor="BtnShortColor"> </SynthsLongShortChart>
         </div>
         <div class="border-t bg-main">
             <div class="grid grid-cols-1 xl:grid-cols-2">
@@ -321,6 +321,10 @@ export default {
             selected_option,
             isUseWallet,
             isDropDown,
+            textTitle:"Go Long",
+            textTitles:"Go Short",
+            BtnColor:'linear-gradient(180deg, #C8FF2D 0%, #008C0E 100%)',
+            BtnShortColor:'linear-gradient(180deg, #FF6ACC 0%, #DC1919 100%)',
         }
     },
     methods: {
