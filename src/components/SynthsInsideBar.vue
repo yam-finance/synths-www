@@ -1,6 +1,9 @@
 <template>
-    <div class="ssb-wrapper bg-[#4447BD] flex flex-col justify-start items-center py-16 px-8 max-w-[400px] h-full">
-        <h2 class="text-[32px] mb-5 font-semibold">{{ title }}</h2>
+    <div v-if="!show" class="ssb-wrapper bg-[#4447BD] flex flex-col justify-start items-center py-16 px-8 max-w-[400px] h-full relative">
+        <div class="flex">
+          <h2 class="text-[32px] mb-5 font-semibold">{{ title }}</h2>
+          <img src="@/assets/images/x.svg" alt="close" class="absolute top-3 right-5 cursor-pointer" @click="this.show =!this.show">
+        </div>
 
         <h3 class="text-[#CBCBFF] text-sm mb-8 text-center">{{ subTitle }}</h3>
 
@@ -116,6 +119,7 @@ export default {
             },
         ],
         input: "0",
+        show: false
     }),
     methods: {
         buttonClick() {
