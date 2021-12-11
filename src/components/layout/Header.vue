@@ -109,7 +109,6 @@ export default {
             this.isHelpDropDownOpen = false
             this.isLangDropDownOpen = false
             this.isWalletDropDownOpen = false
-            // this.isModalVisible = false;
         },
         getLanguageById(id) {
             switch (id) {
@@ -120,6 +119,12 @@ export default {
                 default:
                     return "English";
             }
+        },
+        OpenLanguage(){
+          this.isLangDropDownOpen = !this.isLangDropDownOpen
+          this.isHelpDropDownOpen=false
+          this.isWalletDropDownOpen=false
+
         }
     },
 }
@@ -197,7 +202,7 @@ export default {
             <div class="flex absolute right-1">
                 <span
                     class="hidden lg:flex px-2 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer"
-                    @click="(isLangDropDownOpen = !isLangDropDownOpen);(isHelpDropDownOpen=false);(isWalletDropDownOpen=false)"
+                    @click="OpenLanguage"
                 >
                     {{ getLanguageById($i18n.global.locale._value) }}
                     <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': isLangDropDownOpen }" class="mx-2 ml-1 my-auto h-4" />
