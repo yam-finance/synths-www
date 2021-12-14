@@ -136,12 +136,14 @@
                             <div class="flex items-end">
                                 <span class="px-1 font-bold">{{ synth.price.toFixed(6) }}</span>
                                 <span class="px-1 font-bold">{{ synth.collateralSymbol }}</span>
-                                <img
+                                <svg
                                     v-if="synth.priceChanged24h >= 0"
-                                    src="@/assets/images/arrow-up-right.svg"
+                                    v-svg
                                     class="h-4 mb-0.5"
+                                    symbol="/images/arrow-up-right.svg"
+                                    size="24"
                                 />
-                                <img v-else src="@/assets/images/arrow-down-right.svg" class="h-4 mb-0.5" />
+                                <svg v-else v-svg class="h-4 mb-0.5" symbol="/images/arrow-down-right.svg" size="24" />
                                 <span class="px-1 text-sm text-[#9A9AC8]">{{ synth.priceChanged24h }}%</span>
                             </div>
                             <router-link :to="'/synths/' + synth.tokenSymbol">

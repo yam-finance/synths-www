@@ -11,7 +11,15 @@ import "@/index.scss"
 import VueClickAway from "vue3-click-away"
 import { i18n } from "@/i18n"
 import VueClipboard from "vue3-clipboard"
-const app = createApp(App).use(i18n).use(router).use(VueClickAway).use(LockPlugin, options).use(VueClipboard)
+import { svgSpriteDirectivePlugin } from "vue-svg-sprite"
+
+const app = createApp(App)
+    .use(i18n)
+    .use(router)
+    .use(VueClickAway)
+    .use(LockPlugin, options)
+    .use(VueClipboard)
+    .use(svgSpriteDirectivePlugin, { url: "" })
 
 app.mount("#app")
 app.config.performance = true

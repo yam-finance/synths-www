@@ -3,7 +3,7 @@
         <div class="hidden md:block">
             <div class="flex overflow-hidden absolute w-64 h-12 border-r bg-main">
                 <div class="flex items-center px-4 cursor-pointer" @click="goToBlockLink">
-                    <img src="@/assets/images/green-dot.svg" class="" alt="green-dot" />
+                    <green-dot />
                     <div class="text-xs font-normal translate-y-px px-2">{{ blockNumber }}</div>
                     <img src="@/assets/images/external-link.svg" class="" />
                 </div>
@@ -161,7 +161,7 @@
             </div>
             <div class="flex overflow-hidden ml-auto">
                 <div class="flex justify-center items-center px-3 cursor-pointer" @click="goToBlockLink">
-                    <img src="@/assets/images/green-dot.svg" class="h-3 py-0.5" />
+                    <green-dot class="h-3 py-0.5" />
                     <span class="text-xs my-auto font-normal px-1">{{ blockNumber }}</span>
                 </div>
             </div>
@@ -301,12 +301,14 @@ let tabs = [
 ]
 import SynthBurgerButton from "@/components/elements/SynthBurgerButton"
 import SynthsRoundedButton from "../buttons/SynthsRoundedButton"
+import greenDot from "@/assets/images/green-dot.svg"
 
 export default {
     name: "Footer",
     components: {
         "burger-button": SynthBurgerButton,
         "s-button": SynthsRoundedButton,
+        greenDot,
     },
     data() {
         return {
