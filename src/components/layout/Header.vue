@@ -61,7 +61,6 @@ function goToBlockLink() {
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
 import { mixin as VueClickAway,directive as onClickaway  } from "vue3-click-away";
 
-const featuredSynth = "dpi-2x"
 let tabs = [
     {
         id: 1,
@@ -70,8 +69,8 @@ let tabs = [
     },
     {
         id: 2,
-        title: "New!",
-        to: "synths/" + featuredSynth,
+        title: "Markets",
+        to: "markets",
     },
     {
         id: 3,

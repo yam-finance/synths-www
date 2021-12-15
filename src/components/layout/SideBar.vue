@@ -50,7 +50,7 @@
             </div>
             <ul class="w-full py-4">
                 <li v-for="(menu, key) in menus" :key="key" @click="selectMenu(menu)">
-                    <router-link :to="'/synths/' + menu.to">
+                    <router-link :to="'/markets/' + menu.to">
                         <div
                             v-if="menu.title.toLowerCase().includes(filter_string.toLowerCase())"
                             class="px-4 py-2 my-auto flex border-b hover:bg-[#1a1842] bg-main !cursor-pointer"
@@ -93,92 +93,7 @@ let menus = [
         id: 4,
         title: "YAM/ETH IL",
         to: "yam-eth-il",
-    },
-    {
-        id: 5,
-        title: "New...",
-        to: "new",
-    },
-    {
-        id: 6,
-        title: "New...",
-        to: "new",
-    },
-    {
-        id: 7,
-        title: "New...",
-        to: "new",
-    },
-    {
-        id: 8,
-        title: "New...",
-        to: "new",
-    },
-    {
-        id: 9,
-        title: "New...",
-        to: "new",
-    },
-    {
-        id: 10,
-        title: "New...",
-        to: "new",
-    },
-    {
-        id: 11,
-        title: "New...",
-        to: "new",
-    },
-    {
-        id: 12,
-        title: "New...",
-        to: "new",
-    },
-    {
-        id: 13,
-        title: "New...",
-        to: "new",
-    },
-    {
-        id: 14,
-        title: "New...",
-        to: "new",
-    },
-    {
-        id: 15,
-        title: "New...",
-        to: "new",
-    },
-    {
-        id: 16,
-        title: "New...",
-        to: "new",
-    },
-    {
-        id: 17,
-        title: "New...",
-        to: "new",
-    },
-    {
-        id: 18,
-        title: "New...",
-        to: "new",
-    },
-    {
-        id: 19,
-        title: "New...",
-        to: "new",
-    },
-    {
-        id: 20,
-        title: "New...",
-        to: "new",
-    },
-    {
-        id: 21,
-        title: "New...",
-        to: "new",
-    },
+    }
 ]
 let filter_string = ""
 let activeTab = 1

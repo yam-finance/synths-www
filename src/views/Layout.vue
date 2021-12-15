@@ -32,32 +32,14 @@
     </div>
 </template>
 
-<script>
+<script setup>
+import { globalStore } from "@/composables/global"
+import { computed, onMounted } from "vue";
 import SideBar from "@/components/layout/SideBar.vue"
 import Header from "@/components/layout/Header.vue"
 import Footer from "@/components/layout/Footer.vue"
 import NotificationLayout from "@/components/layout/NotificationSidebar.vue"
-import SynthsNotification from "@/components/notifications/SynthsNotification.vue"
-
-export default {
-    name: "Home",
-    components: {
-        SideBar,
-        Header,
-        Footer,
-        NotificationLayout,
-        notification: SynthsNotification,
-    },
-    computed: {
-        isOverflowHidden() {
-            return this.isNotificationOpen
-        },
-    },
-}
-</script>
-<script setup>
-import { globalStore } from "@/composables/global"
-import { onMounted } from "vue"
+import Notification from "@/components/notifications/SynthsNotification.vue"
 
 let { state } = globalStore()
 let { deleteNewNotification } = globalStore()
@@ -66,6 +48,9 @@ let { addNewNotifications } = globalStore()
 let notifications = state.newNotifications
 let isNotificationOpen = state.isNotificationOpen
 
+const isOverflowHidden = computed(()=> {
+    return isNotificationOpen
+})
 onMounted(() => {
     addNewNotifications({
         style: 0,

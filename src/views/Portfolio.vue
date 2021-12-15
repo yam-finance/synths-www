@@ -176,7 +176,7 @@
                         </div>
                     </td>
                     <td>
-                        <router-link :to="{ name: 'Synths', params: { synth: synth.symbol } }">
+                        <router-link :to="{ name: 'Markets', params: { synth: synth.symbol } }">
                             <img src="@/assets/images/arrow-right.svg" class="cursor-pointer" />
                         </router-link>
                     </td>

@@ -3,7 +3,7 @@ import { ethers } from "ethers"
 import Synths, { getRecentSynthData, getTotalMarketData } from "synths-sdk"
 import { JsonRpcProvider } from "@ethersproject/providers"
 // TOOD Remove after testphase.
-import { defaultAssetsConfig, defaultTestAssetsConfig } from "synths-sdk/dist/src/lib/config/index"
+import { defaultAssetsConfig, defaultTestAssetsConfig } from "synths-sdk/dist/src/lib/config"
 
 let synthsSDK: Synths
 const loading = ref(true)
@@ -18,6 +18,7 @@ export function useSynthsSDK() {
     /**
      * @notice Initialize the synths-sdk and load market data.
      * @param provider The web3 provider instance.
+     * @param networkId The chainid to initialize.
      */
     async function init(provider: JsonRpcProvider, networkId: number) {
         loading.value = true
@@ -45,6 +46,7 @@ export function useSynthsSDK() {
 
         loading.value = false
     }
+    const getSDK = () => synthsSDK
 
     /**
      * @notice Connect the sdk to a synth.
@@ -71,5 +73,6 @@ export function useSynthsSDK() {
         totalPortfolioValue: computed(() => totalPortfolioValue.value),
         connectTo,
         init,
+        getSDK,
     }
 }
