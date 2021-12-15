@@ -144,7 +144,7 @@
                                 <img v-else src="@/assets/images/arrow-down-right.svg" class="h-4 mb-0.5" />
                                 <span class="px-1 text-sm text-[#9A9AC8]">{{ synth.priceChanged24h }}%</span>
                             </div>
-                            <router-link :to="'/synths/' + synth.tokenSymbol">
+                            <router-link :to="'/markets/' + synth.tokenSymbol">
                                 <div>
                                     <img src="@/assets/images/arrow-right-light.png" class="float-right h-6" />
                                 </div>
