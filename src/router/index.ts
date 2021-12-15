@@ -8,19 +8,19 @@ const routes = [
     },
     {
         path: "/",
-        name: "AppView",
-        component: () => import("@/views/AppView.vue"),
+        name: "Layout",
+        component: () => import("@/views/Layout.vue"),
         meta: { hasSideBar: 1 },
         children: [
             {
                 path: "/explore",
                 name: "Explore",
-                component: () => import("@/views/ExploreSynths.vue"),
+                component: () => import("@/views/Explore.vue"),
                 meta: { hasSideBar: 0 },
             },
             {
-                path: "/synths/:synth",
-                name: "Synths",
+                path: "/markets/:synth?",
+                name: "Markets",
                 component: () => import("@/views/Markets.vue"),
                 meta: { hasSideBar: 1 },
             },

@@ -103,7 +103,6 @@ export default {
         "s-button": SynthsRoundedButton,
         "s-crypto-input": SynthsCryptoInput,
     },
-    inject: ["screen"],
     data: () => ({
         tokens: [
             {

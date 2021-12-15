@@ -1,137 +1,91 @@
-<script setup>
-import { copyText } from "vue3-clipboard"
-import { useWeb3 } from "@/composables/useWeb3"
-import ConnectWallet from "@/components/ConnectWallet.vue"
-import { globalStore } from "@/composables/global"
-import Simulator from "@/components/Simulator.vue"
+<script setup lang="ts">
+//External
+import {ref, computed} from "vue"
+import {useI18n} from "vue-i18n"
+import {useRouter} from "vue-router";
 
-import { ref } from "vue"
-
+//composables
+import {globalStore} from "@/composables/global"
+import {useWeb3} from "@/composables/useWeb3"
 import useClipboard from "@/composables/useClipboard"
-const { state } = globalStore()
+//components
+import Simulator from "@/components/Simulator.vue"
+import ConnectWallet from "@/components/ConnectWallet.vue"
+import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
 
-const { login, web3, logout } = useWeb3()
+// extract composables.
+const {state, toggleNotificationOpen, addNewNotifications} = globalStore()
+const {login, web3, logout} = useWeb3()
+const {toClipboard} = useClipboard()
+const {getRoutes} = useRouter()
+
+const layoutRoute = getRoutes().filter(record => "Layout" === record.name)[0]
+const il8n = useI18n()
+const locales = il8n.availableLocales
+const currentLocale = il8n.locale
+
+
+// Constants
+const languageByLocale = {
+  "en": "English",
+  "zh": "Chinese"
+}
+
+// Initial values
+const currentLanguage = computed(()=> (languageByLocale[currentLocale.value] ?? "English"))
+const userRoutes = ref(layoutRoute.children)
+const isHelpDropDownOpen = ref(false)
+const isLangDropDownOpen = ref(false)
+const isWalletDropDownOpen = ref(false)
 const isSimulatorVisible = ref(false)
-
 const isModalVisible = ref(false)
 
-const { toggleNotificationOpen } = globalStore()
-const { addNewNotifications } = globalStore()
-
+//alias
 const blockNumber = state.blockNumber
-async function handleConnect(connector) {
-    isModalVisible.value = false
-    await login(connector)
-}
-async function handleLogout() {
-    await logout()
-    // emit('close');
-}
-const { toClipboard } = useClipboard()
-async function doCopy(address) {
-    try {
-        await toClipboard(address)
 
-      addNewNotifications({
-        style: 1,
-        link: null,
-        title: "Success!",
-        content: 'Copied',
-      }, false)
-    } catch (e) {
-      // TODO: Can't catch error
-      addNewNotifications({
-        style: 0,
-        link: null,
-        title: "Error!",
-        content: 'Please try again or reload page',
-      }, false)
-        console.error(e)
-    }
+// Clipboard Event handlers
+const handleCopy = (address:string) => {
+  const onSuccess = () => {
+    addNewNotifications({
+      style: 1,
+      link: null,
+      title: "Success!",
+      content: 'Copied',
+    }, false)
+  }
+  const onError = (reason:Error) => {
+    addNewNotifications({
+      style: 0,
+      link: null,
+      title: "Error!",
+      content: 'Please try again or reload page',
+    }, false)
+    console.error(reason)
+  }
+  toClipboard(address).then(onSuccess).catch(onError)
 }
-function formatAddress(address) {
-    return address.slice(0, 6) + "..." + address.slice(-6)
+const handleCloseMenus = () => {
+  isHelpDropDownOpen.value = false
+  isLangDropDownOpen.value = false
+  isWalletDropDownOpen.value = false
 }
-function goToBlockLink() {
-  window.open(`https://etherscan.io/block/${blockNumber.value}`, "_blank")
+// Modal Event handlers
+const handleConnect = async (connector:string) => {
+  isModalVisible.value = false
+  await login(connector)
 }
+const handleCloseMenusAndModal = async () => {
+  isModalVisible.value = false
+  handleCloseMenus()
+  await logout()
+}
+
+// Utility
+const shortenAddress = (str) => str.slice(0, 6) + "..." + str.slice(-6)
 </script>
-
-<script>
-import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
-import { mixin as VueClickAway,directive as onClickaway  } from "vue3-click-away";
-
-const featuredSynth = "dpi-2x"
-let tabs = [
-    {
-        id: 1,
-        title: "Explore",
-        to: "explore",
-    },
-    {
-        id: 2,
-        title: "New!",
-        to: "synths/" + featuredSynth,
-    },
-    {
-        id: 3,
-        title: "Portfolio",
-        to: "portfolio",
-    },
-]
-
-let activeTab = 0
-export default {
-    name: "Header",
-    components: {
-        "s-button": SynthsRoundedButton,
-    },
-    mixins: [VueClickAway],
-    directives: {
-      ClickAway: onClickaway
-    },
-
-    data() {
-        return {
-            tabs,
-            activeTab,
-            isHelpDropDownOpen: false,
-            isLangDropDownOpen: false,
-            isWalletDropDownOpen: false
-        }
-    },
-    methods: {
-        switchLocale(locale) {
-            if (this.$i18n.global.locale._value != locale) {
-                this.$i18n.global.locale._value = locale;
-            }
-        },
-        selectTab(item) {
-            this.activeTab = item.id
-        },
-        closePopup(e) {
-            this.isHelpDropDownOpen = false
-            this.isLangDropDownOpen = false
-            this.isWalletDropDownOpen = false
-            // this.isModalVisible = false;
-        },
-        getLanguageById(id) {
-            switch (id) {
-                case "en":
-                    return "English";
-                case "zh":
-                    return "Chinese";
-                default:
-                    return "English";
-            }
-        }
-    },
-}
-</script>
-
 <template>
-    <nav
-        class="
+  <nav
+      class="
             h-12
             sticky
             top-0
@@ -144,16 +98,16 @@ export default {
             border-b
             bg-main
         "
-    >
-        <router-link to="/">
-            <div class="w-64 h-12 flex items-center p-4 md:border-r bg-main">
-                <img src="@/assets/images/yamIcon.png" class="h-8 w-8" />
-                <h3 class="logo font-bold text-emerald-500 ml-2 flex-grow">Yam Synths</h3>
-                <span class="bg-[#3468FF] my-auto px-2 overflow-hidden ml-3 rounded-full text-sm font-bold">V 3.0</span>
-            </div>
-        </router-link>
-        <ul
-            class="
+  >
+    <router-link to="/">
+      <div class="w-64 h-12 flex items-center p-4 md:border-r bg-main">
+        <img src="@/assets/images/yamIcon.png" class="h-8 w-8"/>
+        <h3 class="logo font-bold text-emerald-500 ml-2 flex-grow">Yam Synths</h3>
+        <span class="bg-[#3468FF] my-auto px-2 overflow-hidden ml-3 rounded-full text-sm font-bold">V 3.0</span>
+      </div>
+    </router-link>
+    <ul
+        class="
                 space-x-8
                 overflow-hidden
                 sticky
@@ -171,21 +125,21 @@ export default {
                 hidden
                 lg:flex
             "
-        >
-            <li
-                class="cursor-pointer px-2"
-                v-for="(tab, key) in tabs"
-                :key="key"
-                :class="tab.title == $route.name ? 'bg-white rounded-md' : ''"
-            >
-                <router-link :to="'/' + tab.to">
-                    <span v-if="tab.title == $route.name" class="text-black">{{ tab.title }}</span>
-                    <span v-else class="text-purpleLight hover:text-white">{{ tab.title }}</span>
-                </router-link>
-            </li>
-        </ul>
-        <div
-            class="
+    >
+      <li
+          class="cursor-pointer px-2"
+          v-for="route in userRoutes"
+          :key="route.name"
+          :class="route.name === $route.name ? 'bg-white rounded-md' : ''"
+      >
+        <router-link :to="'/' + route.name">
+          <span v-if="route.name === $route.name" class="text-black">{{ route.name }}</span>
+          <span v-else class="text-purpleLight hover:text-white">{{ route.name }}</span>
+        </router-link>
+      </li>
+    </ul>
+    <div
+        class="
                 absolute
                 w-10
                 lg:w-96
@@ -198,34 +152,37 @@ export default {
                 bd-main
                 flex
             "
-        >
-            <div class="flex absolute right-1">
+    >
+      <div class="flex absolute right-1">
                 <span
                     class="hidden lg:flex px-2 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer"
                     @click="(isLangDropDownOpen = !isLangDropDownOpen);(isHelpDropDownOpen=false);(isWalletDropDownOpen=false)"
                 >
-                    {{ getLanguageById($i18n.global.locale._value) }}
-                    <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': isLangDropDownOpen }" class="mx-2 ml-1 my-auto h-4" />
+                    {{ currentLanguage }}
+                    <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': isLangDropDownOpen }"
+                         class="mx-2 ml-1 my-auto h-4"/>
                     <ul
-                      class="my-auto p-2 text-sm text-left absolute top-9 left-0 bg-light rounded-xl shadow-lg z-[10000]"
-                      v-if="isLangDropDownOpen"
-                      v-click-away="closePopup"
-                  >
-                <li v-for="locale in $i18n.global.availableLocales" :key="locale" @click="switchLocale(locale)" class="min-w-max cursor-pointer p-1">
-                    <span>{{ getLanguageById(locale) }}</span>
+                        class="my-auto p-2 text-sm text-left absolute top-9 left-0 bg-light rounded-xl shadow-lg z-[10000]"
+                        v-if="isLangDropDownOpen"
+                        v-click-away="handleCloseMenus"
+                    >
+                <li v-for="(locale, index) in locales" :key="index" @click="currentLocale = locale"
+                    class="min-w-max cursor-pointer p-1">
+                    <span>{{ languageByLocale[locale] }}</span>
                 </li>
             </ul>
                 </span>
-                <span
-                    class="hidden lg:flex px-4 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer"
-                    @click="(isHelpDropDownOpen = !isHelpDropDownOpen);(isLangDropDownOpen=false);(isWalletDropDownOpen=false)"
-                >
+        <span
+            class="hidden lg:flex px-4 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer"
+            @click="(isHelpDropDownOpen = !isHelpDropDownOpen);(isLangDropDownOpen=false);(isWalletDropDownOpen=false)"
+        >
                     Help
-                    <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': isHelpDropDownOpen }" class="mx-2 ml-1 my-auto h-4" />
+                    <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': isHelpDropDownOpen }"
+                         class="mx-2 ml-1 my-auto h-4"/>
                    <ul
                        class="overflow-hidden my-auto p-2 text-sm text-left absolute top-9 left-[40px] bg-light rounded-xl shadow-lg"
                        v-if="isHelpDropDownOpen"
-                       v-click-away="closePopup"
+                       v-click-away="handleCloseMenus"
                    >
                 <li class="min-w-max cursor-pointer p-1">
                     <span>Documentation</span>
@@ -235,7 +192,7 @@ export default {
                 </li>
             </ul>
                 </span>
-                <span class="flex pr-4 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer">
+        <span class="flex pr-4 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer">
                     <img
                         src="@/assets/images/bell.png"
                         @click="toggleNotificationOpen"
@@ -243,33 +200,34 @@ export default {
                     />
                 </span>
 
-                <s-button
-                    v-if="!$auth.isAuthenticated.value"
-                    @click="isModalVisible = true"
-                    buttonStyles="wallet-btn px-4 py-2 my-auto text-sm font-normal hidden lg:block"
-                >
-                    <template #buttonTitle> Connect Wallet </template>
-                </s-button>
-                <div>
-                    <template v-if="$auth.isAuthenticated.value">
+        <synths-rounded-button
+            v-if="!$auth.isAuthenticated.value"
+            @click="isModalVisible = true"
+            buttonStyles="wallet-btn px-4 py-2 my-auto text-sm font-normal hidden lg:block"
+        >
+          <template #buttonTitle> Connect Wallet</template>
+        </synths-rounded-button>
+        <div>
+          <template v-if="$auth.isAuthenticated.value">
                         <span
                             v-if="$auth.isAuthenticated.value"
                             class="px-4 py-1.5 text-sm cursor-pointer hidden lg:flex"
                             @click="(isWalletDropDownOpen = !isWalletDropDownOpen);(isLangDropDownOpen=false);(isHelpDropDownOpen=false)"
                         >
-                            <img src="@/assets/icons/metamask.svg" class="mx-2 my-auto h-4" />
-                            {{ formatAddress(web3.account) }}
-                            <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': isWalletDropDownOpen }" class="mx-2 my-auto h-4" />
+                            <img src="@/assets/icons/metamask.svg" class="mx-2 my-auto h-4"/>
+                            {{ shortenAddress(web3.account) }}
+                            <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': isWalletDropDownOpen }"
+                                 class="mx-2 my-auto h-4"/>
                         </span>
-                    </template>
-                </div>
-            </div>
+          </template>
+        </div>
+      </div>
 
-            <!-- wallet info dropdown -->
-            <ul
-              v-if="isWalletDropDownOpen"
-              v-click-away="closePopup"
-              class="
+      <!-- wallet info dropdown -->
+      <ul
+          v-if="isWalletDropDownOpen"
+          v-click-away="handleCloseMenus"
+          class="
                     overflow-hidden
                     my-auto
                     w-48
@@ -282,61 +240,61 @@ export default {
                     bg-light
                     rounded-xl
                             "
-          >
-            <li class="min-w-max cursor-pointer p-1">
-              <span class="text-sm text-purpleLight">Network</span>
-            </li>
-            <li class="min-w-max cursor-pointer p-1">
-              <label class="container">
-                Mainnet
-                <input name="networks" type="radio" :checked="web3.network.key == 1" class="form-radio" />
-                <span class="checkmark"></span>
-              </label>
-            </li>
-            <li class="min-w-max cursor-pointer p-1">
-              <label class="container">
-                Polygon
-                <input name="networks" type="radio" :checked="web3.network.key == 137" class="form-radio" />
-                <span class="checkmark"></span>
-              </label>
-            </li>
-            <li class="min-w-max cursor-pointer p-1">
-              <label class="container">
-                Rinkeby
-                <input name="networks" type="radio" :checked="web3.network.key == 4" class="form-radio" />
-                <span class="checkmark"></span>
-              </label>
-            </li>
-            <li class="divider_dropdown_wallet"></li>
-            <li class="min-w-max cursor-pointer p-1" @click="isSimulatorVisible=!isSimulatorVisible">
+      >
+        <li class="min-w-max cursor-pointer p-1">
+          <span class="text-sm text-purpleLight">Network</span>
+        </li>
+        <li class="min-w-max cursor-pointer p-1">
+          <label class="container">
+            Mainnet
+            <input name="networks" type="radio" :checked="web3.network.key == 1" class="form-radio"/>
+            <span class="checkmark"></span>
+          </label>
+        </li>
+        <li class="min-w-max cursor-pointer p-1">
+          <label class="container">
+            Polygon
+            <input name="networks" type="radio" :checked="web3.network.key == 137" class="form-radio"/>
+            <span class="checkmark"></span>
+          </label>
+        </li>
+        <li class="min-w-max cursor-pointer p-1">
+          <label class="container">
+            Rinkeby
+            <input name="networks" type="radio" :checked="web3.network.key == 4" class="form-radio"/>
+            <span class="checkmark"></span>
+          </label>
+        </li>
+        <li class="divider_dropdown_wallet"></li>
+        <li class="min-w-max cursor-pointer p-1" @click="isSimulatorVisible=!isSimulatorVisible">
                                 <span class="wallet_actions">
-                                    <img src="@/assets/icons/play-circle.png" /> &nbsp; Run Simulation
+                                    <img src="@/assets/icons/play-circle.png"/> &nbsp; Run Simulation
                                 </span>
-            </li>
-            <li class="min-w-max cursor-pointer p-1">
-                                <span class="wallet_actions" @click="doCopy(web3.account)">
-                                    <img src="@/assets/icons/copy.svg" /> &nbsp; Copy Address
+        </li>
+        <li class="min-w-max cursor-pointer p-1">
+                                <span class="wallet_actions" @click="handleCopy(web3.account)">
+                                    <img src="@/assets/icons/copy.svg"/> &nbsp; Copy Address
                                 </span>
-            </li>
-            <li class="min-w-max cursor-pointer p-1">
+        </li>
+        <li class="min-w-max cursor-pointer p-1">
                                 <span class="wallet_actions">
-                                    <img src="@/assets/icons/externalLink.svg" />&nbsp;
+                                    <img src="@/assets/icons/externalLink.svg"/>&nbsp;
                                     <a class="ml-1" :href="web3.etherscanlink" target="_blank">Etherscan</a>
                                 </span>
-            </li>
-            <li
-                class="min-w-max cursor-pointer p-1"
-                @click="handleLogout(), (isWalletDropDownOpen = false)"
-            >
+        </li>
+        <li
+            class="min-w-max cursor-pointer p-1"
+            @click="handleCloseMenusAndModal"
+        >
                                 <span class="wallet_actions">
-                                    <img src="@/assets/icons/disconnect.svg" />&nbsp; Disconnect
+                                    <img src="@/assets/icons/disconnect.svg"/>&nbsp; Disconnect
                                 </span>
-            </li>
-          </ul>
+        </li>
+      </ul>
 
-            <!-- wallet info dropdown 2 -->
-            <ul
-                class="
+      <!-- wallet info dropdown 2 -->
+      <ul
+          class="
                     overflow-hidden
                     my-auto
                     w-48
@@ -349,66 +307,65 @@ export default {
                     bg-light
                     rounded-xl
                 "
-                v-if="0"
-                v-click-away="closePopup"
-            >
-                <li class="min-w-max cursor-pointer p-1">
+          v-if="0"
+          v-click-away="handleCloseMenus"
+      >
+        <li class="min-w-max cursor-pointer p-1">
                     <span class="wallet_actions"
-                        ><img src="@/assets/icons/stop-circle.png" /> &nbsp; Stop Simulation</span
+                    ><img src="@/assets/icons/stop-circle.png"/> &nbsp; Stop Simulation</span
                     >
-                </li>
-                <li class="divider_dropdown_wallet"></li>
-                <li class="min-w-max cursor-pointer p-1">
-                    <span class="text-sm text-purpleLight">Network</span>
-                </li>
-                <li class="min-w-max cursor-pointer p-1">
-                    <label class="container"
-                        >Mainnet
-                        <input type="radio" :checked="web3.network.key == 1" class="form-radio" disabled />
-                        <span class="checkmark"></span>
-                    </label>
-                </li>
-                <li class="min-w-max cursor-pointer p-1">
-                    <label class="container"
-                        >Polygon
-                        <input type="radio" :checked="web3.network.key == 137" class="form-radio" disabled />
-                        <span class="checkmark"></span>
-                    </label>
-                </li>
-                <li class="min-w-max cursor-pointer p-1">
-                    <label class="container"
-                        >Rinkeby
-                        <input type="radio" :checked="web3.network.key == 4" class="form-radio" disabled />
-                        <span class="checkmark"></span>
-                    </label>
-                </li>
-                <li class="divider_dropdown_wallet"></li>
-                <li class="min-w-max cursor-pointer p-1">
-                    <span class="wallet_actions" @click="doCopy(web3.account)"
-                        ><img src="@/assets/icons/copy.svg" /> &nbsp; Copy Address</span
+        </li>
+        <li class="divider_dropdown_wallet"></li>
+        <li class="min-w-max cursor-pointer p-1">
+          <span class="text-sm text-purpleLight">Network</span>
+        </li>
+        <li class="min-w-max cursor-pointer p-1">
+          <label class="container"
+          >Mainnet
+            <input type="radio" :checked="web3.network.key == 1" class="form-radio" disabled/>
+            <span class="checkmark"></span>
+          </label>
+        </li>
+        <li class="min-w-max cursor-pointer p-1">
+          <label class="container"
+          >Polygon
+            <input type="radio" :checked="web3.network.key == 137" class="form-radio" disabled/>
+            <span class="checkmark"></span>
+          </label>
+        </li>
+        <li class="min-w-max cursor-pointer p-1">
+          <label class="container"
+          >Rinkeby
+            <input type="radio" :checked="web3.network.key == 4" class="form-radio" disabled/>
+            <span class="checkmark"></span>
+          </label>
+        </li>
+        <li class="divider_dropdown_wallet"></li>
+        <li class="min-w-max cursor-pointer p-1">
+                    <span class="wallet_actions" @click="handleCopy(web3.account)"
+                    ><img src="@/assets/icons/copy.svg"/> &nbsp; Copy Address</span
                     >
-                </li>
-                <li class="min-w-max cursor-pointer p-1">
+        </li>
+        <li class="min-w-max cursor-pointer p-1">
                     <span class="wallet_actions"
-                        ><img src="@/assets/icons/externalLink.svg" />&nbsp;
+                    ><img src="@/assets/icons/externalLink.svg"/>&nbsp;
                         <a class="ml-1" :href="web3.etherscanlink" target="_blank">Etherscan</a></span
                     >
-                </li>
-                <li @click="handleLogout(), (isWalletDropDownOpen = false)" class="min-w-max cursor-pointer p-1">
-                    <span class="wallet_actions"><img src="@/assets/icons/disconnect.svg" />&nbsp; Disconnect</span>
-                </li>
-            </ul>
-        </div>
-      <teleport to="body">
-        <ConnectWallet v-show="isModalVisible" @close="isModalVisible = false" @connect="handleConnect">
-        </ConnectWallet>
-      </teleport>
-      <Simulator
+        </li>
+        <li @click="handleCloseMenusAndModal" class="min-w-max cursor-pointer p-1">
+          <span class="wallet_actions"><img src="@/assets/icons/disconnect.svg"/>&nbsp; Disconnect</span>
+        </li>
+      </ul>
+    </div>
+    <teleport to="body">
+      <ConnectWallet v-show="isModalVisible" @close="handleCloseMenusAndModal" @connect="handleConnect"/>
+    </teleport>
+    <Simulator
         v-show="isSimulatorVisible"
         @close="isSimulatorVisible = false"
-      >
-      </Simulator>
-    </nav>
+    >
+    </Simulator>
+  </nav>
 </template>
 
 <style scoped lang="scss">
@@ -473,6 +430,6 @@ export default {
 }
 
 .divider_dropdown_wallet {
-  @apply my-[8px] mx-0 flex-grow-0 order-4 flex-none self-stretch	border-[#303060];
+  @apply my-[8px] mx-0 flex-grow-0 order-4 flex-none self-stretch  border-[#303060];
 }
 </style>

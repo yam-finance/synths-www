@@ -76,27 +76,27 @@
                 <tr v-for="(synth, key) in synths" :key="key" class="cursor-pointer border-b bg-main basic-hover">
                     <td class="px-4 py-2 flex">
                         <img src="@/assets/images/zombie.png" class="w-6 h-6" />
-                        <router-link class="font-semibold" :to="{ name: 'Synths', params: { synth: synth.id } }">
-                            &nbsp;{{ synth.name }}
+                        <router-link class="font-semibold" :to="{ name: 'Markets', params: { synth: synth.tokenId } }">
+                            &nbsp;{{ synth.tokenSymbol }}
                         </router-link>
                     </td>
                     <td>{{ synth.price }}</td>
                     <td>
                         <img src="@/assets/images/arrow-up-right.svg" class="h-4 inline -translate-y-0.5" />
-                        {{ synth.day_change }}
+                        {{ synth.priceChanged24h }}
                     </td>
-                    <td>{{ synth.day_volume }}</td>
+                    <td>{{ synth.volume24h }}</td>
                     <td>{{ synth.liquidity }}</td>
-                    <td>${{ synth.apr }}</td>
+                    <td>{{ synth.apr }}%</td>
                     <td class="p-0 m-0">
-                        <router-link :to="{ name: 'Synths', params: { synth: synth.id } }">
+                        <router-link :to="{ name: 'Markets', params: { synth: synth.tokenId } }">
                             <img src="@/assets/images/arrow-right.svg" class="cursor-pointer" />
                         </router-link>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <div v-if="!synths.length" class="cursor-pointer bg-main text-center flex justify-center w-full mt-3">
+        <div v-if="synths && !synths.length" class="cursor-pointer bg-main text-center flex justify-center w-full mt-3">
             No synths to show
         </div>
     </div>
@@ -151,16 +151,16 @@
                 <tr v-for="(synth, key) in synths" :key="key" class="cursor-pointer border-b bg-main basic-hover">
                     <td class="px-4 py-2 font-semibold flex">
                         <img src="@/assets/images/zombie.png" class="w-6 h-6" />
-                        <router-link :to="{ name: 'Synths', params: { synth: synth.id } }">
-                            &nbsp;{{ synth.name }}
+                        <router-link :to="{ name: 'Markets', params: { synth: synth.tokenId } }">
+                            &nbsp;{{ synth.tokenSymbol }}
                         </router-link>
                     </td>
                     <td>{{ synth.price }}</td>
                     <td>
                         <img src="@/assets/images/arrow-up-right.svg" class="h-4 inline -translate-y-0.5" />
-                        {{ synth.day_change }}
+                        {{ synth.priceChanged24h }}
                     </td>
-                    <router-link :to="{ name: 'Synths', params: { synth: synth.id } }">
+                    <router-link :to="{ name: 'Markets', params: { synth: synth.tokenId } }">
                         <img src="@/assets/images/arrow-right.svg" class="cursor-pointer" />
                     </router-link>
                 </tr>
@@ -169,97 +169,37 @@
     </div>
 </template>
 
-<script>
-let rawSynths = [
-    {
-        id: 1,
-        name: "ETH/DAI IL Long",
-        price: 120,
-        day_change: "15%",
-        day_volume: "$12M",
-        liquidity: "$240k",
-        apr: "120%",
-        collateral: "ETH",
-        status: 1,
-    },
-    {
-        id: 2,
-        name: "ETH/DAI IL Long",
-        price: 120,
-        day_change: "15%",
-        day_volume: "$12M",
-        liquidity: "$240k",
-        apr: "120%",
-        collateral: "ETH",
-        status: 1,
-    },
-    {
-        id: 3,
-        name: "ETH/BTC",
-        price: 120,
-        day_change: "15%",
-        day_volume: "$12M",
-        liquidity: "$240k",
-        apr: "120%",
-        collateral: "ETH",
-        status: 1,
-    },
-    {
-        id: 4,
-        name: "ETH/DAI IL Long",
-        price: 120,
-        day_change: "15%",
-        day_volume: "$12M",
-        liquidity: "$240k",
-        apr: "120%",
-        collateral: "ETH",
-        status: 1,
-    },
-    {
-        id: 5,
-        name: "ETH/DAI IL Long",
-        price: 120,
-        day_change: "15%",
-        day_volume: "$12M",
-        liquidity: "$240k",
-        apr: "120%",
-        collateral: "ETH",
-        status: 1,
-    },
-    {
-        id: 6,
-        name: "ETH/DAI IL Long",
-        price: 120,
-        day_change: "15%",
-        day_volume: "$12M",
-        liquidity: "$240k",
-        apr: "120%",
-        collateral: "ETH",
-        status: 1,
-    },
-]
+<script setup>
+import { ref, computed } from "vue"
+import { useSynthsSDK } from "../composables/useSynthsSDK"
 
-export default {
-    name: "Explore",
-    data() {
-        return {
-            rawSynths,
-            filter_string: "",
+const { loading, getSDK, recentSynthData } = useSynthsSDK()
+
+const lsp_assets = computed(() => {
+  if(!loading.value) {
+    const assetsConfig = getSDK().assets
+    if(assetsConfig) {
+      const lsps = []
+      for (const assetCategory in assetsConfig) {
+        const assets = assetsConfig[assetCategory]
+        lsps.push(assets)
         }
-    },
-    computed: {
-        synths() {
-            if (this.filter_string !== "") {
-                return this.rawSynths.filter((item) =>
-                    item.name.toLowerCase().includes(this.filter_string.toLowerCase())
-                )
-            } else return this.rawSynths
-        },
-    },
-    methods: {
-        filter(event) {
-            this.filter_string = event.target.value
-        },
-    },
-}
+      }
+      return lsps
+    }
+
+})
+
+
+
+const filter_string = ref("")
+const synths = computed(() => {
+    if (!loading.value) {
+        return recentSynthData.value.filter((synth) =>
+            synth.tokenSymbol.toLowerCase().includes(filter_string.value.toLowerCase())
+        )
+    }
+})
+
+const filter = (event) => (filter_string.value = event.target.value)
 </script>

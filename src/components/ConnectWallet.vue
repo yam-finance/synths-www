@@ -250,22 +250,6 @@
         </div>
     </div>
 </template>
-
-<script>
-export default {
-    name: "ConnectWallet",
-
-    methods: {
-        close() {
-            this.$emit("close")
-        },
-        saveWalletType() {
-            this.$emit("saveWalletType")
-        },
-    },
-}
-</script>
-
 <style>
 .modal-backdrop {
     background-color: rgba(0, 0, 0, 0.3);

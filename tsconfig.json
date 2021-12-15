@@ -18,7 +18,8 @@
         },
         "types": ["vite/client"],
         "noImplicitAny": false,
-        "skipLibCheck": true
+        "skipLibCheck": true,
+        "noEmit": true
     },
-    "include": ["src/**/*.ts", "src/**/*.vue", "tests/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx"]
+    "include": ["src/**/*.ts", "src/**/*.vue", "tests/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/env.d.ts"]
 }

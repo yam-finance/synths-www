@@ -247,11 +247,11 @@ import SynthsSingleChart from "@/components/charts/SynthsSingleChart.vue"
 import SynthsLongShortChart from "@/components/charts/SynthsLongShortChart.vue"
 import SynthsInsideBar from "@/components/SynthsInsideBar.vue"
 import synthsLogo from "@/assets/images/logo.png"
-import { inject } from "vue"
+import { defineComponent } from "vue"
 import { mixin as VueClickAway, directive as onClickaway } from "vue3-click-away"
 
 /* -- Start of SDK Test -- */
-import { useSynthsSDK } from "../composables/useSynthsSDK"
+import { useSynthsSDK } from "@/composables/useSynthsSDK"
 import { computed } from "vue"
 /* -- End of SDK Test -- */
 
@@ -280,7 +280,7 @@ let selected_option = 0
 let isUseWallet = 0
 let isDropDown = false
 
-export default {
+export default defineComponent({
     name: "Markets",
     components: {
         SynthsSingleChart,
@@ -300,11 +300,7 @@ export default {
         const { data, loading } = useSynthsSDK()
         /* -- End of SDK Init Test -- */
 
-        const userDetails: any = inject("userDetails")
-
         return {
-            userDetails,
-
             /* -- Start of SDK Test -- */
             loading: loading,
             expiryPrice: computed(() => {
@@ -328,7 +324,7 @@ export default {
             this.isDropDown = false
         },
     },
-}
+})
 </script>
 <style scoped lang="scss">
 @media (min-width: 1280px) {

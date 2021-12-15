@@ -1,6 +1,6 @@
 import { defineConfig } from "vite"
 import vue from "@vitejs/plugin-vue"
-import path from "path"
+import * as path from "path"
 import visualizer from "rollup-plugin-visualizer"
 import ViteComponents from "unplugin-vue-components/vite"
 import PrerenderSpaPlugin from "prerender-spa-plugin"
@@ -44,10 +44,5 @@ export default defineConfig({
     },
     define: {
         "process.env": process.env,
-    },
-    optimizeDeps: {
-        include: ["color"],
-        // @ts-ignore
-        allowNodeBuiltins: ["stream"],
     },
 })
