@@ -136,7 +136,7 @@
                             <div class="flex items-end">
                                 <span class="px-1 font-bold">{{ synth.price.toFixed(6) }}</span>
                                 <span class="px-1 font-bold">{{ synth.collateralSymbol }}</span>
-                                <arrow-up-right v-if="synth.priceChanged24h >= 0" class="h-4 mb-0.5" />
+                                <arrow-up-right v-if="synth.priceChanged24h >= 0" class="h-[7px] w-[7px] mb-0.5" />
                                 <arrow-down-right v-else class="h-4 mb-0.5" />
                                 <span class="px-1 text-sm text-[#9A9AC8]">{{ synth.priceChanged24h }}%</span>
                             </div>

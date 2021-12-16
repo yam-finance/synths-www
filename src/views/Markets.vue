@@ -50,15 +50,15 @@
                 <div class="flex flex-wrap space-x-4 mt-4">
                     <RouterLink to="/#" class="cursor-pointer">
                         <p class="text-sm inline mr-1 md:mr-2">Learn More</p>
-                        <externalLink class="inline cursor-pointer" />
+                        <externalLink class="inline cursor-pointer w-[12px] h-[12px]" />
                     </RouterLink>
                     <RouterLink to="/#" class="cursor-pointer">
                         <p class="text-sm inline mr-1 md:mr-2">Tutorial</p>
-                        <externalLink class="inline cursor-pointer" />
+                        <externalLink class="inline cursor-pointer w-[12px] h-[12px]" />
                     </RouterLink>
                     <RouterLink to="/#" class="cursor-pointer">
                         <p class="text-sm inline mr-0.5 md:mr-2">Connect Address</p>
-                        <externalLink class="inline cursor-pointer" />
+                        <externalLink class="inline cursor-pointer w-[12px] h-[12px]" />
                     </RouterLink>
                 </div>
 

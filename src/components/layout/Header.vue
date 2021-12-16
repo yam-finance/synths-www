@@ -179,17 +179,17 @@
             <li class="divider_dropdown_wallet"></li>
             <li class="min-w-max cursor-pointer p-1" @click="isSimulatorVisible=!isSimulatorVisible">
               <span class="wallet_actions">
-                <img src="@/assets/icons/play-circle.png" /> &nbsp; Run Simulation
+                <img src="@/assets/icons/play-circle.png" class="w-[16px] h-[16px]" /> &nbsp; Run Simulation
               </span>
             </li>
             <li class="min-w-max cursor-pointer p-1">
               <span class="wallet_actions" @click="doCopy(web3.account)">
-                <copy />&nbsp; Copy Address
+                <copy class="w-[16px] h-[16px]" />&nbsp; Copy Address
               </span>
             </li>
             <li class="min-w-max cursor-pointer p-1">
               <span class="wallet_actions">
-                <external-link class="w-[12px] h-[12px]" />&nbsp;
+                <external-link class="w-[16px] h-[16px]" />&nbsp;
                 <a class="ml-1" :href="web3.etherscanlink" target="_blank">Etherscan</a>
               </span>
             </li>
@@ -198,7 +198,7 @@
                 @click="handleLogout(), (isWalletDropDownOpen = false)"
             >
               <span class="wallet_actions">
-                <disconnect />&nbsp; Disconnect
+                <disconnect class="w-[16px] h-[16px]" />&nbsp; Disconnect
               </span>
             </li>
           </ul>
@@ -254,17 +254,17 @@
                 <li class="divider_dropdown_wallet"></li>
                 <li class="min-w-max cursor-pointer p-1">
                     <span class="wallet_actions" @click="doCopy(web3.account)">
-                      <copy />&nbsp; Copy Address
+                      <copy class="w-[16px] h-[16px]" />&nbsp; Copy Address
                     </span>
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
                     <span class="wallet_actions">
-                      <external-link class="w-[12px] h-[12px]" />&nbsp;
+                      <external-link class="w-[16px] h-[16px]" />&nbsp;
                       <a class="ml-1" :href="web3.etherscanlink" target="_blank">Etherscan</a>
                     </span>
                 </li>
                 <li @click="handleLogout(), (isWalletDropDownOpen = false)" class="min-w-max cursor-pointer p-1">
-                    <span class="wallet_actions"><disconnect />&nbsp; Disconnect</span>
+                    <span class="wallet_actions"><disconnect class="w-[16px] h-[16px]" />&nbsp; Disconnect</span>
                 </li>
             </ul>
         </div>
@@ -331,7 +331,7 @@ async function doCopy(address) {
   }
 }
 function formatAddress(address) {
-  return address.slice(0, 6) + "..." + address.slice(-6)
+  return address.slice(0, 3) + "..." + address.slice(-3)
 }
 function goToBlockLink() {
   window.open(`https://etherscan.io/block/${blockNumber.value}`, "_blank")

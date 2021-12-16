@@ -60,7 +60,7 @@
                             <span class="px-2 text-sm my-auto text-white">{{ menu.title }}</span>
                             <div class="flex my-0.5 absolute" :class="activeTab === menu.id ? 'left-32' : 'left-40'">
                                 <span class="px-1 text-sm my-auto text-purpleLight font-normal">$120</span>
-                                <arrow-up-right class="h-full py-0.5" />
+                                <arrow-up-right class="h-[7px] w-[7px] py-0.5" />
                                 <span class="px-1 text-sm my-auto text-purpleDark font-normal">15%</span>
                                 <arrow-right v-if="activeTab === menu.id" />
                             </div>
