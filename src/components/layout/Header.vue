@@ -179,7 +179,7 @@
             <li class="divider_dropdown_wallet"></li>
             <li class="min-w-max cursor-pointer p-1" @click="isSimulatorVisible=!isSimulatorVisible">
               <span class="wallet_actions">
-                <img src="@/assets/icons/play-circle.png" class="w-[16px] h-[16px]" /> &nbsp; Run Simulation
+                <img src="@/assets/icons/play-circle.png" class="w-[12px] h-[20px]" /> &nbsp; Run Simulation
               </span>
             </li>
             <li class="min-w-max cursor-pointer p-1">

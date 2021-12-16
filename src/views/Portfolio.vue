@@ -116,7 +116,7 @@
                         </div>
                     </td>
                     <td class="pr-2 m-0">
-                        <arrow-right class="cursor-pointer" />
+                        <arrow-right class="cursor-pointer w-[20px] h-[20px]" />
                     </td>
                 </tr>
                 <table-loader target="desktop" :loading="loading" />
@@ -177,7 +177,7 @@
                     </td>
                     <td>
                         <router-link :to="{ name: 'Synths', params: { synth: synth.symbol } }">
-                            <arrow-right class="cursor-pointer" />
+                            <arrow-right class="cursor-pointer w-[20px] h-[20px]" />
                         </router-link>
                     </td>
                 </tr>

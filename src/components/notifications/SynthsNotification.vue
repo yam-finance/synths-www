@@ -11,7 +11,7 @@
                 </a>
             </div>
             <div class="sn-close w-4 h-4">
-                <x-svg class="cursor-pointer basic-hover w-full h-full" @click="closeNotification" />
+                <x-svg class="cursor-pointer basic-hover w-[24px] h-[24px]" @click="closeNotification" />
             </div>
             <div class="sn-text" v-html="content"></div>
         </div>

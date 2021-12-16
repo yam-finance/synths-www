@@ -82,7 +82,7 @@
                     </td>
                     <td>{{ synth.price }}</td>
                     <td>
-                        <arrow-up-right class="h-[7px] w-[7px] inline -translate-y-0.5" />
+                        <arrow-up-right class="h-[20px] w-[20px] inline -translate-y-0.5" />
                         {{ synth.day_change }}
                     </td>
                     <td>{{ synth.day_volume }}</td>
@@ -157,7 +157,7 @@
                     </td>
                     <td>{{ synth.price }}</td>
                     <td>
-                        <arrow-up-right class="h-[7px] w-[7px] inline -translate-y-0.5" />
+                        <arrow-up-right class="h-[20px] w-[20px] inline -translate-y-0.5" />
                         {{ synth.day_change }}
                     </td>
                     <router-link :to="{ name: 'Synths', params: { synth: synth.id } }">

@@ -23,7 +23,7 @@
                 @click.stop=""
             >
                 <x-svg
-                    class="notification-close basic-hover ml-auto mt-5 cursor-pointer"
+                    class="notification-close basic-hover ml-auto mt-5 cursor-pointer w-[24px] h-[24px]"
                     @click="toggleNotificationOpen"
                 />
                 <h2 class="font-semibold mb-2">Notification</h2>
