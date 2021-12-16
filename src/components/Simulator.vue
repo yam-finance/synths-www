@@ -41,7 +41,7 @@
 
 <script>
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
-import externalLink from "@/assets/icons/external-link.svg"
+import externalLink from "@/assets/icons/externalLink.svg"
 
 export default {
     name: "Simulator",

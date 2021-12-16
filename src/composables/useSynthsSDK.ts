@@ -2,7 +2,7 @@ import { ref, computed } from "vue"
 import { ethers } from "ethers"
 import Synths, { getRecentSynthData, getTotalMarketData } from "synths-sdk"
 import { JsonRpcProvider } from "@ethersproject/providers"
-// TOOD Remove after testphase.
+// TODO Remove after testphase.
 import { defaultAssetsConfig, defaultTestAssetsConfig } from "synths-sdk/dist/src/lib/config/index"
 
 let synthsSDK: Synths

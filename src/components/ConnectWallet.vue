@@ -251,7 +251,7 @@
 
 <script>
 import metamask from "@/assets/icons/metamask.svg"
-import externalLink from "@/assets/icons/external-link.svg"
+import externalLink from "@/assets/icons/externalLink.svg"
 
 export default {
     name: "ConnectWallet",
