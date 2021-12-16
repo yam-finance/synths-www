@@ -25,7 +25,7 @@
                 <span class="text-sm">All Synths</span>
             </div>
             <div class="w-full h-12 py-3 px-3 flex">
-                <search class="flex absolute my-2.5 mx-3" />
+                <search class="flex absolute my-2.5 mx-3 w-[20px] h-[20px]" />
                 <input
                     class="
                         flex flex-wrap

@@ -115,7 +115,7 @@
             <span class="py-3 px-4"> All Synths </span>
 
             <div class="h-full w-[230px] py-2 px-3 flex">
-                <search class="flex absolute my-1.5 mx-3 h-6" />
+                <search class="flex absolute my-1.5 mx-3 w-[20px] h-[20px]" />
                 <input
                     class="
                         flex flex-wrap

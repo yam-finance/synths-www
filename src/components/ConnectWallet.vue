@@ -66,7 +66,7 @@
                     "
                     @click="$emit('connect', 'injected')"
                 >
-                    <metamask />
+                    <metamask class="h-4 w-4" />
                     <div
                         class="
                             cursor-pointer
@@ -242,7 +242,9 @@
             >
                 <router-link to="#">
                     Not sure how connect wallet works?
-                    <span class="inline-flex text-white"> Learn More &nbsp;<external-link /> </span>
+                    <span class="inline-flex text-white">
+                        Learn More &nbsp;<external-link class="w-[12px] h-[12px]" />
+                    </span>
                 </router-link>
             </div>
         </div>

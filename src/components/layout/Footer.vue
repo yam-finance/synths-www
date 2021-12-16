@@ -3,15 +3,15 @@
         <div class="hidden md:block">
             <div class="flex overflow-hidden absolute w-64 h-12 border-r bg-main">
                 <div class="flex items-center px-4 cursor-pointer" @click="goToBlockLink">
-                    <green-dot />
+                    <green-dot class="h-3 w-[10px]" />
                     <div class="text-xs font-normal translate-y-px px-2">{{ blockNumber }}</div>
-                    <external-link />
+                    <external-link class="w-[12px] h-[12px]" />
                 </div>
             </div>
             <div class="flex absolute w-96 mr-4 right-0 p-2 text-right h-12 lg:border-l bg-main">
                 <div class="flex absolute right-2">
-                    <twitter class="mx-2 my-auto cursor-pointer" />
-                    <discord class="mx-2 my-auto cursor-pointer" />
+                    <twitter class="w-[24px] h-[24px] mx-2 my-auto cursor-pointer" />
+                    <discord class="w-[24px] h-[24px] mx-2 my-auto cursor-pointer" />
                 </div>
             </div>
         </div>
@@ -82,15 +82,18 @@
 
                 <div class="w-full flex fixed bottom-96 mb-2 lg:hidden px-2 py-3 bg-main z-30">
                     <div class="flex">
-                        <twitter class="mx-2 my-auto cursor-pointer" />
-                        <discord class="mx-2 my-auto cursor-pointer" />
+                        <twitter class="w-[24px] h-[24px] mx-2 my-auto cursor-pointer" />
+                        <discord class="w-[24px] h-[24px] mx-2 my-auto cursor-pointer" />
                     </div>
                     <span
                         class="flex px-2 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer relative"
                         @click="handleLanguageMenu"
                     >
                         English
-                        <dropdown :class="{ 'rotate-180': isLangDropDownOpen }" class="mx-2 ml-1 my-auto h-4" />
+                        <dropdown
+                            :class="{ 'rotate-180': isLangDropDownOpen }"
+                            class="mx-2 ml-1 my-auto h-4 w-[24px]"
+                        />
                         <ul
                             v-if="isLangDropDownOpen"
                             v-click-away="closePopup"
@@ -117,7 +120,10 @@
                         @click="handleSupportMenu"
                     >
                         Help
-                        <dropdown :class="{ 'rotate-180': isHelpDropDownOpen }" class="mx-2 ml-1 my-auto h-4" />
+                        <dropdown
+                            :class="{ 'rotate-180': isHelpDropDownOpen }"
+                            class="mx-2 ml-1 my-auto h-4 w-[24px]"
+                        />
                         <ul
                             v-if="isHelpDropDownOpen"
                             v-click-away="closePopup"
@@ -153,7 +159,7 @@
             </div>
             <div class="flex overflow-hidden ml-auto">
                 <div class="flex justify-center items-center px-3 cursor-pointer" @click="goToBlockLink">
-                    <green-dot class="h-3 py-0.5" />
+                    <green-dot class="h-3 w-[10px] py-0.5" />
                     <span class="text-xs my-auto font-normal px-1">{{ blockNumber }}</span>
                 </div>
             </div>
@@ -171,9 +177,9 @@
                         class="flex px-4 py-1.5 text-sm cursor-pointer"
                         @click="connectButtonHandler"
                     >
-                        <metamask class="mx-2 my-auto h-4" />
+                        <metamask class="mx-2 my-auto h-4 w-4" />
                         {{ formatAddress(web3.account) }}
-                        <dropdown :class="{ 'rotate-180': isWalletDropDownOpen }" class="mx-2 my-auto h-4" />
+                        <dropdown :class="{ 'rotate-180': isWalletDropDownOpen }" class="mx-2 my-auto h-4 w-[24px]" />
                         <div v-if="isWalletDropDownOpen" class="blur h-full w-full top-0 right-0 fixed"></div>
 
                         <ul
@@ -246,7 +252,7 @@
                             </li>
                             <li class="min-w-max cursor-pointer p-1">
                                 <span class="wallet_actions">
-                                    <external-link />&nbsp;
+                                    <external-link class="w-[12px] h-[12px]" />&nbsp;
                                     <a class="ml-1" :href="web3.etherscanlink" target="_blank">Etherscan</a>
                                 </span>
                             </li>

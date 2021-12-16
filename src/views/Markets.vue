@@ -130,7 +130,7 @@
                                 src="@/assets/images/arrow-right-pink.png"
                                 class="inline float-right w-6 h-6 cursor-pointer"
                             />
-                            <arrow-right class="inline float-right w-6 h-6 cursor-pointer" />
+                            <arrow-right v-else class="inline float-right w-6 h-6 cursor-pointer" />
                         </div>
                     </div>
                 </div>

@@ -74,7 +74,7 @@
                     @click="(isLangDropDownOpen = !isLangDropDownOpen);(isHelpDropDownOpen=false);(isWalletDropDownOpen=false)"
                 >
                     {{ getLanguageById($i18n.global.locale._value) }}
-                    <dropdown :class="{ 'rotate-180': isLangDropDownOpen }" class="mx-2 ml-1 my-auto h-4" />
+                    <dropdown :class="{ 'rotate-180': isLangDropDownOpen }" class="mx-2 ml-1 my-auto h-4 w-[24px]" />
                     <ul
                       class="my-auto p-2 text-sm text-left absolute top-9 left-0 bg-light rounded-xl shadow-lg z-[10000]"
                       v-if="isLangDropDownOpen"
@@ -90,7 +90,7 @@
                     @click="(isHelpDropDownOpen = !isHelpDropDownOpen);(isLangDropDownOpen=false);(isWalletDropDownOpen=false)"
                 >
                     Help
-                    <dropdown :class="{ 'rotate-180': isHelpDropDownOpen }" class="mx-2 ml-1 my-auto h-4" />
+                    <dropdown :class="{ 'rotate-180': isHelpDropDownOpen }" class="mx-2 ml-1 my-auto h-4 w-[24px]" />
                    <ul
                        class="overflow-hidden my-auto p-2 text-sm text-left absolute top-9 left-[40px] bg-light rounded-xl shadow-lg"
                        v-if="isHelpDropDownOpen"
@@ -126,9 +126,9 @@
                             class="px-4 py-1.5 text-sm cursor-pointer hidden lg:flex"
                             @click="(isWalletDropDownOpen = !isWalletDropDownOpen);(isLangDropDownOpen=false);(isHelpDropDownOpen=false)"
                         >
-                            <metamask class="mx-2 my-auto h-4" />
+                            <metamask class="mx-2 my-auto h-4 w-4" />
                             {{ formatAddress(web3.account) }}
-                            <dropdown :class="{ 'rotate-180': isWalletDropDownOpen }" class="mx-2 my-auto h-4" />
+                            <dropdown :class="{ 'rotate-180': isWalletDropDownOpen }" class="mx-2 my-auto h-4 w-[24px]" />
                         </span>
                     </template>
                 </div>
@@ -189,7 +189,7 @@
             </li>
             <li class="min-w-max cursor-pointer p-1">
               <span class="wallet_actions">
-                <external-link />&nbsp;
+                <external-link class="w-[12px] h-[12px]" />&nbsp;
                 <a class="ml-1" :href="web3.etherscanlink" target="_blank">Etherscan</a>
               </span>
             </li>
@@ -259,7 +259,7 @@
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
                     <span class="wallet_actions">
-                      <external-link />&nbsp;
+                      <external-link class="w-[12px] h-[12px]" />&nbsp;
                       <a class="ml-1" :href="web3.etherscanlink" target="_blank">Etherscan</a>
                     </span>
                 </li>

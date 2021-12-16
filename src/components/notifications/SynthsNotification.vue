@@ -7,7 +7,7 @@
             </div>
             <div v-show="link" class="sn-link w-4 h-4">
                 <a :href="link" target="_blank">
-                    <external-link class="w-full h-full" />
+                    <external-link class="w-[12px] h-[12px]" />
                 </a>
             </div>
             <div class="sn-close w-4 h-4">
