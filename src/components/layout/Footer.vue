@@ -384,7 +384,7 @@ async function handleLogout() {
     // emit('close');
 }
 function formatAddress(address) {
-    return address.slice(0, 6) + "..." + address.slice(-6)
+    return address.slice(0, 1) + "..." + address.slice(-3)
 }
 
 function goToBlockLink() {

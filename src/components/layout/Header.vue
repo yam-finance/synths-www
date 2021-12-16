@@ -331,7 +331,7 @@ async function doCopy(address) {
   }
 }
 function formatAddress(address) {
-  return address.slice(0, 3) + "..." + address.slice(-3)
+  return address.slice(0, 1) + "..." + address.slice(-3)
 }
 function goToBlockLink() {
   window.open(`https://etherscan.io/block/${blockNumber.value}`, "_blank")
