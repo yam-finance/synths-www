@@ -3,15 +3,15 @@
         <div class="sn bg-blueDark rounded-lg grid gap-2 items-center">
             <div class="sn-title">{{ title }}</div>
             <div class="sn-icon">
-                <img :src="getIcon(iconStyle)" alt="Notification Status" />
+                <component :is="getIcon(iconStyle)" class="w-[20px] h-[20px]" />
             </div>
             <div v-show="link" class="sn-link w-4 h-4">
                 <a :href="link" target="_blank">
-                    <external-link class="w-[12px] h-[12px]" />
+                    <external-link class="w-[16px] h-[16px]" />
                 </a>
             </div>
             <div class="sn-close w-4 h-4">
-                <x-svg class="cursor-pointer basic-hover w-[24px] h-[24px]" @click="closeNotification" />
+                <x-svg class="cursor-pointer basic-hover w-[18px] h-[18px]" @click="closeNotification" />
             </div>
             <div class="sn-text" v-html="content"></div>
         </div>
@@ -21,12 +21,16 @@
 <script>
 import xSvg from "@/assets/images/x.svg"
 import externalLink from "@/assets/images/external-link.svg"
+import infoCircle from "@/assets/icons/info-circle.svg"
+import successCircle from "@/assets/icons/success-circle.svg"
 
 export default {
     name: "NotificationItem",
     components: {
         xSvg,
         externalLink,
+        infoCircle,
+        successCircle,
     },
     props: {
         index: Number,
