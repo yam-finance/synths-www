@@ -22,10 +22,8 @@
                 "
                 @click.stop=""
             >
-                <img
+                <x-svg
                     class="notification-close basic-hover ml-auto mt-5 cursor-pointer"
-                    src="@/assets/images/x.svg"
-                    alt="Close Icon"
                     @click="toggleNotificationOpen"
                 />
                 <h2 class="font-semibold mb-2">Notification</h2>
@@ -52,11 +50,13 @@
 
 <script>
 import SynthsNotification from "@/components/notifications/SynthsNotification.vue"
+import xSvg from "@/assets/images/x.svg"
 
 export default {
     name: "NotificationLayout",
     components: {
         notification: SynthsNotification,
+        xSvg,
     },
 }
 </script>

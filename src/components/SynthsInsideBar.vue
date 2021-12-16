@@ -23,17 +23,17 @@
         <div class="ssb__order flex flex-col items-center" :class="{ 'flex-col-reverse': arrowReverse }">
             <div class="ssb__tokens grid grid-cols-2 gap-5">
                 <div
-                    class="ssb__tokens-item bg-[#5356CD] py-4 px-[35px] rounded-lg text-center shadow--black"
                     v-for="item in tokens"
                     :key="item.title"
+                    class="ssb__tokens-item bg-[#5356CD] py-4 px-[35px] rounded-lg text-center shadow--black"
                 >
                     <p class="font-bold text-xs pb-2.5"><span class="text-base">0</span> {{ item.title }}</p>
                     <p class="text-[10px]">{{ item.subTitle }} 0 ETH</p>
                 </div>
             </div>
 
-            <img v-if="!arrowReverse" src="../assets/sidebarArrow.svg" class="my-2 max-w-[50%]" alt="" />
-            <img v-else src="../assets/sidebarArrowReverse.svg" class="my-2 max-w-[50%]" alt="" />
+            <sidebar-arrow v-if="!arrowReverse" class="my-2 max-w-[50%]" />
+            <sidebar-arrow-reverse v-else class="my-2 max-w-[50%]" />
 
             <div
                 v-if="settle"
@@ -66,9 +66,18 @@
 <script>
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
 import SynthsCryptoInput from "@/components/inputs/SynthsCryptoInput.vue"
+import sidebarArrow from "@/assets/sidebarArrow.svg"
+import sidebarArrowReverse from "@/assets/sidebarArrowReverse.svg"
 
 export default {
     name: "SynthsInsideBar",
+    components: {
+        "s-button": SynthsRoundedButton,
+        "s-crypto-input": SynthsCryptoInput,
+        sidebarArrow,
+        sidebarArrowReverse,
+    },
+    inject: ["screen"],
     props: {
         title: {
             type: String,
@@ -99,11 +108,7 @@ export default {
             default: "",
         },
     },
-    components: {
-        "s-button": SynthsRoundedButton,
-        "s-crypto-input": SynthsCryptoInput,
-    },
-    inject: ["screen"],
+
     data: () => ({
         tokens: [
             {

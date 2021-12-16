@@ -5,13 +5,13 @@
                 <div class="flex items-center px-4 cursor-pointer" @click="goToBlockLink">
                     <green-dot />
                     <div class="text-xs font-normal translate-y-px px-2">{{ blockNumber }}</div>
-                    <img src="@/assets/images/external-link.svg" class="" />
+                    <external-link />
                 </div>
             </div>
             <div class="flex absolute w-96 mr-4 right-0 p-2 text-right h-12 lg:border-l bg-main">
                 <div class="flex absolute right-2">
-                    <img src="@/assets/images/socials/twitter.svg" class="mx-2 my-auto cursor-pointer" />
-                    <img src="@/assets/images/socials/discord.svg" class="mx-2 my-auto cursor-pointer" />
+                    <twitter class="mx-2 my-auto cursor-pointer" />
+                    <discord class="mx-2 my-auto cursor-pointer" />
                 </div>
             </div>
         </div>
@@ -82,19 +82,15 @@
 
                 <div class="w-full flex fixed bottom-96 mb-2 lg:hidden px-2 py-3 bg-main z-30">
                     <div class="flex">
-                        <img src="@/assets/images/socials/twitter.svg" class="mx-2 my-auto cursor-pointer" />
-                        <img src="@/assets/images/socials/discord.svg" class="mx-2 my-auto cursor-pointer" />
+                        <twitter class="mx-2 my-auto cursor-pointer" />
+                        <discord class="mx-2 my-auto cursor-pointer" />
                     </div>
                     <span
                         class="flex px-2 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer relative"
                         @click="handleLanguageMenu"
                     >
                         English
-                        <img
-                            src="@/assets/images/dropdown.svg"
-                            :class="{ 'rotate-180': isLangDropDownOpen }"
-                            class="mx-2 ml-1 my-auto h-4"
-                        />
+                        <dropdown :class="{ 'rotate-180': isLangDropDownOpen }" class="mx-2 ml-1 my-auto h-4" />
                         <ul
                             v-if="isLangDropDownOpen"
                             v-click-away="closePopup"
@@ -121,11 +117,7 @@
                         @click="handleSupportMenu"
                     >
                         Help
-                        <img
-                            src="@/assets/images/dropdown.svg"
-                            :class="{ 'rotate-180': isHelpDropDownOpen }"
-                            class="mx-2 ml-1 my-auto h-4"
-                        />
+                        <dropdown :class="{ 'rotate-180': isHelpDropDownOpen }" class="mx-2 ml-1 my-auto h-4" />
                         <ul
                             v-if="isHelpDropDownOpen"
                             v-click-away="closePopup"
@@ -179,13 +171,9 @@
                         class="flex px-4 py-1.5 text-sm cursor-pointer"
                         @click="connectButtonHandler"
                     >
-                        <img src="@/assets/icons/metamask.svg" class="mx-2 my-auto h-4" />
+                        <metamask class="mx-2 my-auto h-4" />
                         {{ formatAddress(web3.account) }}
-                        <img
-                            src="@/assets/images/dropdown.svg"
-                            :class="{ 'rotate-180': isWalletDropDownOpen }"
-                            class="mx-2 my-auto h-4"
-                        />
+                        <dropdown :class="{ 'rotate-180': isWalletDropDownOpen }" class="mx-2 my-auto h-4" />
                         <div v-if="isWalletDropDownOpen" class="blur h-full w-full top-0 right-0 fixed"></div>
 
                         <ul
@@ -253,12 +241,12 @@
                             </li>
                             <li class="min-w-max cursor-pointer p-1">
                                 <span class="wallet_actions" @click="doCopy(web3.account)">
-                                    <img src="@/assets/icons/copy.svg" /> &nbsp; Copy Address
+                                    <copy />&nbsp; Copy Address
                                 </span>
                             </li>
                             <li class="min-w-max cursor-pointer p-1">
                                 <span class="wallet_actions">
-                                    <img src="@/assets/icons/externalLink.svg" />&nbsp;
+                                    <external-link />&nbsp;
                                     <a class="ml-1" :href="web3.etherscanlink" target="_blank">Etherscan</a>
                                 </span>
                             </li>
@@ -266,9 +254,7 @@
                                 class="min-w-max cursor-pointer p-1"
                                 @click="handleLogout(), (isWalletDropDownOpen = false)"
                             >
-                                <span class="wallet_actions">
-                                    <img src="@/assets/icons/disconnect.svg" />&nbsp; Disconnect
-                                </span>
+                                <span class="wallet_actions"> <disconnect />&nbsp; Disconnect </span>
                             </li>
                         </ul>
                     </span>
@@ -301,14 +287,28 @@ let tabs = [
 ]
 import SynthBurgerButton from "@/components/elements/SynthBurgerButton"
 import SynthsRoundedButton from "../buttons/SynthsRoundedButton"
+import twitter from "@/assets/images/socials/twitter.svg"
+import discord from "@/assets/images/socials/discord.svg"
 import greenDot from "@/assets/images/green-dot.svg"
+import externalLink from "@/assets/images/external-link.svg"
+import dropdown from "@/assets/images/dropdown.svg"
+import metamask from "@/assets/icons/metamask.svg"
+import copy from "@/assets/icons/copy.svg"
+import disconnect from "@/assets/icons/disconnect.svg"
 
 export default {
     name: "Footer",
     components: {
         "burger-button": SynthBurgerButton,
         "s-button": SynthsRoundedButton,
+        twitter,
+        discord,
         greenDot,
+        externalLink,
+        dropdown,
+        metamask,
+        copy,
+        disconnect,
     },
     data() {
         return {

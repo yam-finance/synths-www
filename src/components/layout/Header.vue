@@ -1,134 +1,3 @@
-<script setup>
-import { copyText } from "vue3-clipboard"
-import { useWeb3 } from "@/composables/useWeb3"
-import ConnectWallet from "@/components/ConnectWallet.vue"
-import { globalStore } from "@/composables/global"
-import Simulator from "@/components/Simulator.vue"
-
-import { ref } from "vue"
-
-import useClipboard from "@/composables/useClipboard"
-const { state } = globalStore()
-
-const { login, web3, logout } = useWeb3()
-const isSimulatorVisible = ref(false)
-
-const isModalVisible = ref(false)
-
-const { toggleNotificationOpen } = globalStore()
-const { addNewNotifications } = globalStore()
-
-const blockNumber = state.blockNumber
-async function handleConnect(connector) {
-    isModalVisible.value = false
-    await login(connector)
-}
-async function handleLogout() {
-    await logout()
-    // emit('close');
-}
-const { toClipboard } = useClipboard()
-async function doCopy(address) {
-    try {
-        await toClipboard(address)
-
-      addNewNotifications({
-        style: 1,
-        link: null,
-        title: "Success!",
-        content: 'Copied',
-      }, false)
-    } catch (e) {
-      // TODO: Can't catch error
-      addNewNotifications({
-        style: 0,
-        link: null,
-        title: "Error!",
-        content: 'Please try again or reload page',
-      }, false)
-        console.error(e)
-    }
-}
-function formatAddress(address) {
-    return address.slice(0, 6) + "..." + address.slice(-6)
-}
-function goToBlockLink() {
-  window.open(`https://etherscan.io/block/${blockNumber.value}`, "_blank")
-}
-</script>
-
-<script>
-import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
-import { mixin as VueClickAway,directive as onClickaway  } from "vue3-click-away";
-
-const featuredSynth = "dpi-2x"
-let tabs = [
-    {
-        id: 1,
-        title: "Explore",
-        to: "explore",
-    },
-    {
-        id: 2,
-        title: "New!",
-        to: "synths/" + featuredSynth,
-    },
-    {
-        id: 3,
-        title: "Portfolio",
-        to: "portfolio",
-    },
-]
-
-let activeTab = 0
-export default {
-    name: "Header",
-    components: {
-        "s-button": SynthsRoundedButton,
-    },
-    mixins: [VueClickAway],
-    directives: {
-      ClickAway: onClickaway
-    },
-
-    data() {
-        return {
-            tabs,
-            activeTab,
-            isHelpDropDownOpen: false,
-            isLangDropDownOpen: false,
-            isWalletDropDownOpen: false
-        }
-    },
-    methods: {
-        switchLocale(locale) {
-            if (this.$i18n.global.locale._value != locale) {
-                this.$i18n.global.locale._value = locale;
-            }
-        },
-        selectTab(item) {
-            this.activeTab = item.id
-        },
-        closePopup(e) {
-            this.isHelpDropDownOpen = false
-            this.isLangDropDownOpen = false
-            this.isWalletDropDownOpen = false
-            // this.isModalVisible = false;
-        },
-        getLanguageById(id) {
-            switch (id) {
-                case "en":
-                    return "English";
-                case "zh":
-                    return "Chinese";
-                default:
-                    return "English";
-            }
-        }
-    },
-}
-</script>
-
 <template>
     <nav
         class="
@@ -205,7 +74,7 @@ export default {
                     @click="(isLangDropDownOpen = !isLangDropDownOpen);(isHelpDropDownOpen=false);(isWalletDropDownOpen=false)"
                 >
                     {{ getLanguageById($i18n.global.locale._value) }}
-                    <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': isLangDropDownOpen }" class="mx-2 ml-1 my-auto h-4" />
+                    <dropdown :class="{ 'rotate-180': isLangDropDownOpen }" class="mx-2 ml-1 my-auto h-4" />
                     <ul
                       class="my-auto p-2 text-sm text-left absolute top-9 left-0 bg-light rounded-xl shadow-lg z-[10000]"
                       v-if="isLangDropDownOpen"
@@ -221,7 +90,7 @@ export default {
                     @click="(isHelpDropDownOpen = !isHelpDropDownOpen);(isLangDropDownOpen=false);(isWalletDropDownOpen=false)"
                 >
                     Help
-                    <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': isHelpDropDownOpen }" class="mx-2 ml-1 my-auto h-4" />
+                    <dropdown :class="{ 'rotate-180': isHelpDropDownOpen }" class="mx-2 ml-1 my-auto h-4" />
                    <ul
                        class="overflow-hidden my-auto p-2 text-sm text-left absolute top-9 left-[40px] bg-light rounded-xl shadow-lg"
                        v-if="isHelpDropDownOpen"
@@ -257,9 +126,9 @@ export default {
                             class="px-4 py-1.5 text-sm cursor-pointer hidden lg:flex"
                             @click="(isWalletDropDownOpen = !isWalletDropDownOpen);(isLangDropDownOpen=false);(isHelpDropDownOpen=false)"
                         >
-                            <img src="@/assets/icons/metamask.svg" class="mx-2 my-auto h-4" />
+                            <metamask class="mx-2 my-auto h-4" />
                             {{ formatAddress(web3.account) }}
-                            <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': isWalletDropDownOpen }" class="mx-2 my-auto h-4" />
+                            <dropdown :class="{ 'rotate-180': isWalletDropDownOpen }" class="mx-2 my-auto h-4" />
                         </span>
                     </template>
                 </div>
@@ -309,28 +178,28 @@ export default {
             </li>
             <li class="divider_dropdown_wallet"></li>
             <li class="min-w-max cursor-pointer p-1" @click="isSimulatorVisible=!isSimulatorVisible">
-                                <span class="wallet_actions">
-                                    <img src="@/assets/icons/play-circle.png" /> &nbsp; Run Simulation
-                                </span>
+              <span class="wallet_actions">
+                <img src="@/assets/icons/play-circle.png" /> &nbsp; Run Simulation
+              </span>
             </li>
             <li class="min-w-max cursor-pointer p-1">
-                                <span class="wallet_actions" @click="doCopy(web3.account)">
-                                    <img src="@/assets/icons/copy.svg" /> &nbsp; Copy Address
-                                </span>
+              <span class="wallet_actions" @click="doCopy(web3.account)">
+                <copy />&nbsp; Copy Address
+              </span>
             </li>
             <li class="min-w-max cursor-pointer p-1">
-                                <span class="wallet_actions">
-                                    <img src="@/assets/icons/externalLink.svg" />&nbsp;
-                                    <a class="ml-1" :href="web3.etherscanlink" target="_blank">Etherscan</a>
-                                </span>
+              <span class="wallet_actions">
+                <external-link />&nbsp;
+                <a class="ml-1" :href="web3.etherscanlink" target="_blank">Etherscan</a>
+              </span>
             </li>
             <li
                 class="min-w-max cursor-pointer p-1"
                 @click="handleLogout(), (isWalletDropDownOpen = false)"
             >
-                                <span class="wallet_actions">
-                                    <img src="@/assets/icons/disconnect.svg" />&nbsp; Disconnect
-                                </span>
+              <span class="wallet_actions">
+                <disconnect />&nbsp; Disconnect
+              </span>
             </li>
           </ul>
 
@@ -384,18 +253,18 @@ export default {
                 </li>
                 <li class="divider_dropdown_wallet"></li>
                 <li class="min-w-max cursor-pointer p-1">
-                    <span class="wallet_actions" @click="doCopy(web3.account)"
-                        ><img src="@/assets/icons/copy.svg" /> &nbsp; Copy Address</span
-                    >
+                    <span class="wallet_actions" @click="doCopy(web3.account)">
+                      <copy />&nbsp; Copy Address
+                    </span>
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
-                    <span class="wallet_actions"
-                        ><img src="@/assets/icons/externalLink.svg" />&nbsp;
-                        <a class="ml-1" :href="web3.etherscanlink" target="_blank">Etherscan</a></span
-                    >
+                    <span class="wallet_actions">
+                      <external-link />&nbsp;
+                      <a class="ml-1" :href="web3.etherscanlink" target="_blank">Etherscan</a>
+                    </span>
                 </li>
                 <li @click="handleLogout(), (isWalletDropDownOpen = false)" class="min-w-max cursor-pointer p-1">
-                    <span class="wallet_actions"><img src="@/assets/icons/disconnect.svg" />&nbsp; Disconnect</span>
+                    <span class="wallet_actions"><disconnect />&nbsp; Disconnect</span>
                 </li>
             </ul>
         </div>
@@ -410,6 +279,147 @@ export default {
       </Simulator>
     </nav>
 </template>
+<script setup>
+import { copyText } from "vue3-clipboard"
+import { useWeb3 } from "@/composables/useWeb3"
+import ConnectWallet from "@/components/ConnectWallet.vue"
+import { globalStore } from "@/composables/global"
+import Simulator from "@/components/Simulator.vue"
+
+import { ref } from "vue"
+
+import useClipboard from "@/composables/useClipboard"
+const { state } = globalStore()
+
+const { login, web3, logout } = useWeb3()
+const isSimulatorVisible = ref(false)
+
+const isModalVisible = ref(false)
+
+const { toggleNotificationOpen } = globalStore()
+const { addNewNotifications } = globalStore()
+
+const blockNumber = state.blockNumber
+async function handleConnect(connector) {
+  isModalVisible.value = false
+  await login(connector)
+}
+async function handleLogout() {
+  await logout()
+  // emit('close');
+}
+const { toClipboard } = useClipboard()
+async function doCopy(address) {
+  try {
+    await toClipboard(address)
+
+    addNewNotifications({
+      style: 1,
+      link: null,
+      title: "Success!",
+      content: 'Copied',
+    }, false)
+  } catch (e) {
+    // TODO: Can't catch error
+    addNewNotifications({
+      style: 0,
+      link: null,
+      title: "Error!",
+      content: 'Please try again or reload page',
+    }, false)
+    console.error(e)
+  }
+}
+function formatAddress(address) {
+  return address.slice(0, 6) + "..." + address.slice(-6)
+}
+function goToBlockLink() {
+  window.open(`https://etherscan.io/block/${blockNumber.value}`, "_blank")
+}
+</script>
+
+<script>
+import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
+import { mixin as VueClickAway,directive as onClickaway  } from "vue3-click-away";
+import copy from "@/assets/icons/copy.svg"
+import externalLink from "@/assets/icons/externalLink.svg"
+import disconnect from "@/assets/icons/disconnect.svg"
+import dropdown from "@/assets/images/dropdown.svg"
+import metamask from "@/assets/icons/metamask.svg"
+
+const featuredSynth = "dpi-2x"
+let tabs = [
+  {
+    id: 1,
+    title: "Explore",
+    to: "explore",
+  },
+  {
+    id: 2,
+    title: "New!",
+    to: "synths/" + featuredSynth,
+  },
+  {
+    id: 3,
+    title: "Portfolio",
+    to: "portfolio",
+  },
+]
+
+let activeTab = 0
+export default {
+  name: "Header",
+  components: {
+    "s-button": SynthsRoundedButton,
+    dropdown,
+    metamask,
+    disconnect,
+    externalLink,
+    copy
+
+  },
+  mixins: [VueClickAway],
+  directives: {
+    ClickAway: onClickaway
+  },
+
+  data() {
+    return {
+      tabs,
+      activeTab,
+      isHelpDropDownOpen: false,
+      isLangDropDownOpen: false,
+      isWalletDropDownOpen: false
+    }
+  },
+  methods: {
+    switchLocale(locale) {
+      if (this.$i18n.global.locale._value != locale) {
+        this.$i18n.global.locale._value = locale;
+      }
+    },
+    selectTab(item) {
+      this.activeTab = item.id
+    },
+    closePopup(e) {
+      this.isHelpDropDownOpen = false
+      this.isLangDropDownOpen = false
+      this.isWalletDropDownOpen = false
+      // this.isModalVisible = false;
+    },
+    getLanguageById(id) {
+      switch (id) {
+        case "en":
+          return "English";
+        case "zh":
+          return "Chinese";
+        default:
+          return "English";
+      }
+    }
+  },
+}
+</script>
 
 <style scoped lang="scss">
 .image_icon {

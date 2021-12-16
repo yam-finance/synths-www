@@ -25,7 +25,7 @@
                 <span class="text-sm">All Synths</span>
             </div>
             <div class="w-full h-12 py-3 px-3 flex">
-                <img src="@/assets/images/search.svg" class="flex absolute my-2.5 mx-3" />
+                <search class="flex absolute my-2.5 mx-3" />
                 <input
                     class="
                         flex flex-wrap
@@ -60,9 +60,9 @@
                             <span class="px-2 text-sm my-auto text-white">{{ menu.title }}</span>
                             <div class="flex my-0.5 absolute" :class="activeTab === menu.id ? 'left-32' : 'left-40'">
                                 <span class="px-1 text-sm my-auto text-purpleLight font-normal">$120</span>
-                                <img src="@/assets/images/arrow-up-right.svg" class="h-full py-0.5" />
+                                <arrow-up-right class="h-full py-0.5" />
                                 <span class="px-1 text-sm my-auto text-purpleDark font-normal">15%</span>
-                                <img v-if="activeTab === menu.id" src="@/assets/images/arrow-right.svg" />
+                                <arrow-right v-if="activeTab === menu.id" />
                             </div>
                         </div>
                     </router-link>
@@ -73,6 +73,10 @@
 </template>
 
 <script>
+import search from "@/assets/images/search.svg"
+import arrowUpRight from "@/assets/images/arrow-up-right.svg"
+import arrowRight from "@/assets/images/arrow-right.svg"
+
 let menus = [
     {
         id: 1,
@@ -184,6 +188,11 @@ let filter_string = ""
 let activeTab = 1
 export default {
     name: "SideBar",
+    components: {
+        search,
+        arrowUpRight,
+        arrowRight,
+    },
     data() {
         return {
             menus,

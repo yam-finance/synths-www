@@ -56,7 +56,7 @@
         <div class="w-full h-12 px-2 border-b bg-main text-white text-lg flex justify-between">
             <span class="py-2 px-2">Your Synths</span>
             <div class="h-full w-[230px] py-2 px-3 flex">
-                <img src="@/assets/images/search.svg" class="flex absolute my-1.5 mx-3" />
+                <search class="flex absolute my-1.5 mx-3" />
                 <input
                     class="
                         flex flex-wrap
@@ -116,7 +116,7 @@
                         </div>
                     </td>
                     <td class="pr-2 m-0">
-                        <img src="@/assets/images/arrow-right.svg" class="cursor-pointer" />
+                        <arrow-right class="cursor-pointer" />
                     </td>
                 </tr>
                 <table-loader target="desktop" :loading="loading" />
@@ -177,7 +177,7 @@
                     </td>
                     <td>
                         <router-link :to="{ name: 'Synths', params: { synth: synth.symbol } }">
-                            <img src="@/assets/images/arrow-right.svg" class="cursor-pointer" />
+                            <arrow-right class="cursor-pointer" />
                         </router-link>
                     </td>
                 </tr>
@@ -193,6 +193,8 @@ import { ethers } from "ethers"
 import { useSynthsSDK } from "@/composables/useSynthsSDK"
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
 import TableLoader from "@/components/TableLoader.vue"
+import arrowRight from "@/assets/images/arrow-right.svg"
+import search from "@/assets/images/search.svg"
 
 const filter_string = ref("")
 
@@ -201,6 +203,8 @@ export default {
     components: {
         "s-button": SynthsRoundedButton,
         "table-loader": TableLoader,
+        arrowRight,
+        search,
     },
     setup() {
         const { loading, lspPortfolio, totalSynthsMinted, totalPortfolioValue } = useSynthsSDK()

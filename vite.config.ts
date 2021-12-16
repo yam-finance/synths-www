@@ -36,7 +36,7 @@ export default defineConfig({
                 return context
             },
         }),
-        svgSpritePlugin({ symbolId: (name) => "icon-" + name, component: { type: "vue" } }),
+        svgSpritePlugin({ symbolId: (name) => "icon-" + name, component: { type: "vue", defaultExport: true } }),
     ],
     resolve: {
         alias: {

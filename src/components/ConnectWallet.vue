@@ -66,7 +66,7 @@
                     "
                     @click="$emit('connect', 'injected')"
                 >
-                    <img src="@/assets/icons/metamask.svg" />
+                    <metamask />
                     <div
                         class="
                             cursor-pointer
@@ -242,9 +242,7 @@
             >
                 <router-link to="#">
                     Not sure how connect wallet works?
-                    <span class="inline-flex text-white">
-                        Learn More &nbsp;<img src="@/assets/icons/externalLink.svg" />
-                    </span>
+                    <span class="inline-flex text-white"> Learn More &nbsp;<external-link /> </span>
                 </router-link>
             </div>
         </div>
@@ -252,9 +250,15 @@
 </template>
 
 <script>
+import metamask from "@/assets/icons/metamask.svg"
+import externalLink from "@/assets/icons/external-link.svg"
+
 export default {
     name: "ConnectWallet",
-
+    components: {
+        externalLink,
+        metamask,
+    },
     methods: {
         close() {
             this.$emit("close")

@@ -136,14 +136,8 @@
                             <div class="flex items-end">
                                 <span class="px-1 font-bold">{{ synth.price.toFixed(6) }}</span>
                                 <span class="px-1 font-bold">{{ synth.collateralSymbol }}</span>
-                                <svg
-                                    v-if="synth.priceChanged24h >= 0"
-                                    v-svg
-                                    class="h-4 mb-0.5"
-                                    symbol="/images/arrow-up-right.svg"
-                                    size="24"
-                                />
-                                <svg v-else v-svg class="h-4 mb-0.5" symbol="/images/arrow-down-right.svg" size="24" />
+                                <arrow-up-right v-if="synth.priceChanged24h >= 0" class="h-4 mb-0.5" />
+                                <arrow-down-right v-else class="h-4 mb-0.5" />
                                 <span class="px-1 text-sm text-[#9A9AC8]">{{ synth.priceChanged24h }}%</span>
                             </div>
                             <router-link :to="'/synths/' + synth.tokenSymbol">
@@ -315,16 +309,10 @@
                 <div>
                     <div class="inline-flex mt-8">
                         <router-link to="/#">
-                            <img
-                                src="@/assets/images/socials/twitter.svg"
-                                class="mx-2 my-auto cursor-pointer hover:brightness-125"
-                            />
+                            <twitter class="w-[24px] h-[24px] mx-2 my-auto cursor-pointer hover:brightness-125" />
                         </router-link>
                         <router-link to="/#">
-                            <img
-                                src="@/assets/images/socials/discord.svg"
-                                class="mx-2 my-auto cursor-pointer hover:brightness-125"
-                            />
+                            <discord class="w-[26px] h-[20px] mx-2 my-auto cursor-pointer hover:brightness-125" />
                         </router-link>
                     </div>
                 </div>
@@ -339,6 +327,10 @@
 import { computed } from "vue"
 import { useSynthsSDK } from "../composables/useSynthsSDK"
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
+import twitter from "@/assets/images/socials/twitter.svg"
+import discord from "@/assets/images/socials/discord.svg"
+import arrowUpRight from "@/assets/images/arrow-up-right.svg"
+import arrowDownRight from "@/assets/images/arrow-down-right.svg"
 
 /*
 let menus = [
@@ -379,6 +371,10 @@ export default {
     name: "HomePage",
     components: {
         "s-button": SynthsRoundedButton,
+        twitter,
+        discord,
+        arrowUpRight,
+        arrowDownRight,
     },
     setup() {
         const { loading, totalMarketData, recentSynthData } = useSynthsSDK()

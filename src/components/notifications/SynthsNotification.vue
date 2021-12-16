@@ -7,16 +7,11 @@
             </div>
             <div v-show="link" class="sn-link w-4 h-4">
                 <a :href="link" target="_blank">
-                    <img src="@/assets/images/external-link.svg" alt="External Link" class="w-full h-full" />
+                    <external-link class="w-full h-full" />
                 </a>
             </div>
             <div class="sn-close w-4 h-4">
-                <img
-                    class="cursor-pointer basic-hover w-full h-full"
-                    src="@/assets/images/x.svg"
-                    alt="Close Icon"
-                    @click="closeNotification"
-                />
+                <x-svg class="cursor-pointer basic-hover w-full h-full" @click="closeNotification" />
             </div>
             <div class="sn-text" v-html="content"></div>
         </div>
@@ -24,11 +19,15 @@
 </template>
 
 <script>
-import infoCircle from "@/assets/icons/info-circle.svg"
-import successCircle from "@/assets/icons/success-circle.svg"
+import xSvg from "@/assets/images/x.svg"
+import externalLink from "@/assets/images/external-link.svg"
 
 export default {
     name: "NotificationItem",
+    components: {
+        xSvg,
+        externalLink,
+    },
     props: {
         index: Number,
         title: String,
