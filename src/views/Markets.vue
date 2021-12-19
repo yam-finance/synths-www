@@ -226,7 +226,7 @@
         </div>
     </div>
 
-    <div class="min-w-[400px] hidden lg:block">
+    <div class="min-w-[400px] lg:block">
         <div v-for="(option, key) in options" :key="key" :class="option.id == selected_option ? 'h-full' : ''">
             <SynthsInsideBar
                 v-if="option.id == selected_option"
