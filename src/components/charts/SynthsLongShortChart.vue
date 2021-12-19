@@ -18,9 +18,9 @@
                 <s-button
                     class="mt-2.5 py-2 px-8 long rounded-3xl"
                     :button-styles="'!text-sm'"
-                    :color="'linear-gradient(180deg, #C8FF2D 0%, #008C0E 100%)'"
+                    :color="BtnColor"
                 >
-                    <template #buttonTitle> Go Long </template>
+                    <template #buttonTitle>{{ textTitle}} </template>
                 </s-button>
             </div>
         </div>
@@ -138,6 +138,8 @@ export default {
         LineChart,
         "s-button": SynthsRoundedButton,
     },
+    props:['textTitle','BtnColor'],
+
 }
 </script>
 

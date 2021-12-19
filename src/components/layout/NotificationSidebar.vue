@@ -22,13 +22,15 @@
                 "
                 @click.stop=""
             >
-                <img
-                    class="notification-close basic-hover ml-auto mt-5 cursor-pointer"
-                    src="@/assets/images/x.svg"
-                    alt="Close Icon"
-                    @click="toggleNotificationOpen"
-                />
-                <h2 class="font-semibold mb-2">Notification</h2>
+                <div class="flex items-center">
+                    <h2 class="font-semibold mb-2 mt-5">Notification</h2>
+                    <img
+                        class="notification-close basic-hover ml-auto mt-2 cursor-pointer"
+                        src="@/assets/images/x.svg"
+                        alt="Close Icon"
+                        @click="toggleNotificationOpen"
+                    />
+                </div>
                 <div v-if="notifications.length" class="notification-content">
                     <notification
                         v-for="(item, index) in notifications"
