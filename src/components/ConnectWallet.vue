@@ -252,7 +252,7 @@
 </template>
 
 <script>
-import metamask from "@/assets/icons/metamask.svg"
+import metamaskSvg from "@/assets/icons/metamask.svg"
 import externalLink from "@/assets/icons/externalLink.svg"
 
 export default {
