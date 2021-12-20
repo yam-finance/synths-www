@@ -144,10 +144,10 @@
         <div class="px-6 py-4 border-b md:border-0 bg-main">
             <SynthsSingleChart class="h-[220px]" />
         </div>
-        <div class="px-6 py-4 border-b md:border-0 bg-main hidden xl:block">
+        <div class="px-6 py-4 border-b md:border-0 bg-main xl:block">
             <SynthsLongShortChart class="p-0" :textTitle="textTitle" :BtnColor="BtnColor"/>
         </div>
-        <div class="px-6 py-4 border-b md:border-0 bg-main hidden xl:block">
+        <div class="px-6 py-4 border-b md:border-0 bg-main xl:block">
             <SynthsLongShortChart class="p-0" :textTitle="textTitles" :BtnColor="BtnShortColor"> </SynthsLongShortChart>
         </div>
         <div class="border-t bg-main">
