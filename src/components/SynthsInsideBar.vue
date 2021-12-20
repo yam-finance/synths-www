@@ -1,5 +1,5 @@
 <template>
-    <div v-if="!show" class="ssb-wrapper bg-[#4447BD] flex flex-col justify-start items-center py-16 px-8 max-w-[400px] h-full relative">
+    <div v-if="!show" class="ssb-wrapper bg-[#4447BD] flex flex-col justify-start items-center py-16 px-8  h-full relative">
         <div class="flex">
           <h2 class="text-[32px] mb-5 font-semibold">{{ title }}</h2>
           <img src="@/assets/images/x.svg" alt="close" class="absolute top-3 right-5 cursor-pointer" @click="closeBox">

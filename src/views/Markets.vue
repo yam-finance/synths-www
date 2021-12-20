@@ -226,7 +226,7 @@
         </div>
     </div>
 
-    <div class="min-w-[400px] lg:block">
+    <div class="min-w-[400px] hidden lg:block">
         <div v-for="(option, key) in options" :key="key" :class="option.id == selected_option ? 'h-full' : ''">
             <SynthsInsideBar
                 v-if="option.id == selected_option"
@@ -239,6 +239,20 @@
                 @sidebar-closed="sidebarClosed"
             />
         </div>
+    </div>
+    <div class="w-full block md:hidden absolute top-14">
+      <div v-for="(option, key) in options" :key="key" :class="option.id == selected_option ? 'h-full' : ''">
+        <SynthsInsideBar
+          v-if="option.id == selected_option"
+          :settle="option.slug == 'Settle' ? false : true"
+          :title="option.title"
+          :sub-title="option.description"
+          :button-name="option.slug"
+          :loading="loading"
+          :expiry-price="expiryPrice"
+          @sidebar-closed="sidebarClosed"
+        />
+      </div>
     </div>
 </template>
 
