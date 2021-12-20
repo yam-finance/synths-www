@@ -141,10 +141,11 @@
             <SynthsSingleChart class="h-[220px]" />
         </div>
         <div class="px-6 py-4 border-b md:border-0 bg-main xl:block">
-            <SynthsLongShortChart class="p-0" :textTitle="textTitle" :BtnColor="BtnColor"/>
+            <SynthsLongShortChart class="p-0" :text-title="textTitle" :btn-color="BtnColor" />
         </div>
         <div class="px-6 py-4 border-b md:border-0 bg-main xl:block">
-            <SynthsLongShortChart class="p-0" :textTitle="textTitles" :BtnColor="BtnShortColor"> </SynthsLongShortChart>
+            <SynthsLongShortChart class="p-0" :text-title="textTitles" :btn-color="BtnShortColor">
+            </SynthsLongShortChart>
         </div>
         <div class="border-t bg-main">
             <div class="grid grid-cols-1 xl:grid-cols-2">
@@ -236,19 +237,19 @@
             />
         </div>
     </div>
-    <div class="w-full block md:hidden absolute top-14">
-      <div v-for="(option, key) in options" :key="key" :class="option.id == selected_option ? 'h-full' : ''">
-        <SynthsInsideBar
-          v-if="option.id == selected_option"
-          :settle="option.slug == 'Settle' ? false : true"
-          :title="option.title"
-          :sub-title="option.description"
-          :button-name="option.slug"
-          :loading="loading"
-          :expiry-price="expiryPrice"
-          @sidebar-closed="sidebarClosed"
-        />
-      </div>
+    <div class="min-w-[400px] block lg:hidden absolute top-14 right-2 left-2">
+        <div v-for="(option, key) in options" :key="key" :class="option.id == selected_option ? 'h-full' : ''">
+            <SynthsInsideBar
+                v-if="option.id == selected_option"
+                :settle="option.slug == 'Settle' ? false : true"
+                :title="option.title"
+                :sub-title="option.description"
+                :button-name="option.slug"
+                :loading="loading"
+                :expiry-price="expiryPrice"
+                @sidebar-closed="sidebarClosed"
+            />
+        </div>
     </div>
 </template>
 
@@ -339,19 +340,19 @@ export default {
             isUseWallet,
             isDropDown,
             highlight,
-            textTitle:"Go Long",
-            textTitles:"Go Short",
-            BtnColor:'linear-gradient(180deg, #C8FF2D 0%, #008C0E 100%)',
-            BtnShortColor:'linear-gradient(180deg, #FF6ACC 0%, #DC1919 100%)',
+            textTitle: "Go Long",
+            textTitles: "Go Short",
+            BtnColor: "linear-gradient(180deg, #C8FF2D 0%, #008C0E 100%)",
+            BtnShortColor: "linear-gradient(180deg, #FF6ACC 0%, #DC1919 100%)",
         }
     },
     methods: {
         closeDown(e: any) {
             this.isDropDown = false
         },
-      sidebarClosed (sidebarStatus) {
-          this.selected_option = sidebarStatus
-      }
+        sidebarClosed(sidebarStatus) {
+            this.selected_option = sidebarStatus
+        },
     },
 }
 </script>

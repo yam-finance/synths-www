@@ -13897,11 +13897,6 @@ vue-router@4:
   dependencies:
     "@vue/devtools-api" "^6.0.0-beta.18"
 
-vue-svg-sprite@^2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/vue-svg-sprite/-/vue-svg-sprite-2.2.1.tgz#cd7e63e78af911912f177d122ce798f5cabaa3e6"
-  integrity sha512-bPco2UxLkojw8iBtLtbgW/Mrvmspev0xUQdxQ6PbQvOJsgwsi6dg+Lagbd8Y6neMPlxrYu6kfb2LIUUeXb87Lw==
-
 vue-tsc@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/vue-tsc/-/vue-tsc-0.3.0.tgz#3b3872bf4f1d2e4409b57adbd826032e253db406"

@@ -1,8 +1,16 @@
 <template>
-    <div v-if="!show" class="ssb-wrapper bg-[#4447BD] flex flex-col justify-start items-center py-16 px-8  h-full relative">
+    <div
+        v-if="!show"
+        class="ssb-wrapper bg-[#4447BD] flex flex-col justify-start items-center py-16 px-8 h-full relative"
+    >
         <div class="flex">
-          <h2 class="text-[32px] mb-5 font-semibold">{{ title }}</h2>
-          <img src="@/assets/images/x.svg" alt="close" class="absolute top-3 right-5 cursor-pointer" @click="closeBox">
+            <h2 class="text-[31px] mb-5 font-semibold">{{ title }}</h2>
+            <img
+                src="../assets/images/x.svg"
+                alt="close"
+                class="absolute top-3 right-5 cursor-pointer"
+                @click="closeBox"
+            />
         </div>
 
         <h3 class="text-[#CBCBFF] text-sm mb-8 text-center">{{ subTitle }}</h3>
@@ -106,7 +114,6 @@ export default {
             type: String,
             default: "",
         },
-
     },
 
     data: () => ({
@@ -122,15 +129,16 @@ export default {
         ],
         input: "0",
         highlight: true,
-        show: false, }),
+        show: false,
+    }),
     methods: {
         buttonClick() {
-            console.log(this.input);
+            console.log(this.input)
         },
-        closeBox (){
-          this.show =!this.show;
-          this.$emit('sidebar-closed', 0);
-        }
+        closeBox() {
+            this.show = !this.show
+            this.$emit("sidebar-closed", 0)
+        },
     },
 }
 </script>
