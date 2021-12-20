@@ -103,7 +103,11 @@ body {
     }
 
     .basic-hover {
-        @apply hover:brightness-110 active:brightness-75;
+        @apply hover:brightness-125 active:brightness-75;
+    }
+
+    .border-hover{
+      border-color: #131334;
     }
     #nprogress {
         .spinner {
