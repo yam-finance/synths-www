@@ -25,7 +25,7 @@
                 <span class="text-sm">All Synths</span>
             </div>
             <div class="w-full h-12 py-3 px-3 flex">
-                <search-svg class="flex absolute my-2.5 mx-3 w-[20px] h-[20px]" />
+                <img src="../../assets/images/search.svg" class="flex absolute my-2.5 mx-3" />
                 <input
                     class="
                         flex flex-wrap
@@ -56,13 +56,13 @@
                             class="px-4 py-2 my-auto flex border-b hover:bg-[#1a1842] bg-main !cursor-pointer"
                             :class="activeTab === menu.id ? 'bg-light' : ''"
                         >
-                            <img class="w-6" src="@/assets/images/zombie.png" />
+                            <img class="w-6" src="../../assets/images/zombie.png" />
                             <span class="px-2 text-sm my-auto text-white">{{ menu.title }}</span>
                             <div class="flex my-0.5 absolute" :class="activeTab === menu.id ? 'left-32' : 'left-40'">
                                 <span class="px-1 text-sm my-auto text-purpleLight font-normal">$120</span>
-                                <arrow-up-right-svg class="h-[20px] w-[20px] py-0.5" />
-                                <span class="pr-2 text-sm my-auto text-purpleDark font-normal">15%</span>
-                                <arrow-right-svg v-if="activeTab === menu.id" class="w-[20px] h-[20px]" />
+                                <img src="../../assets/images/arrow-up-right.svg" class="h-full py-0.5" />
+                                <span class="px-1 text-sm my-auto text-purpleDark font-normal">15%</span>
+                                <img v-if="activeTab === menu.id" src="../../assets/images/arrow-right.svg" />
                             </div>
                         </div>
                     </router-link>
@@ -205,9 +205,4 @@ export default {
         },
     },
 }
-</script>
-<script setup>
-import searchSvg from "@/assets/images/search.svg"
-import arrowUpRightSvg from "@/assets/images/arrow-up-right.svg"
-import arrowRightSvg from "@/assets/images/arrow-right.svg"
 </script>
