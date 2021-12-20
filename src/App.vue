@@ -32,7 +32,7 @@ export default defineComponent({
 
         loadBlockNumber()
 
-        //Setup window resize watcher
+        //Setup window resize watcher`
         const screenWidth = ref<number | null>(null)
 
         const resizeHandler = () => {
@@ -53,7 +53,7 @@ export default defineComponent({
         onMounted(async () => {
             init()
         })
-        return { state, screenWidth }
+        return { screenWidth }
     },
     data() {
         return {

@@ -74,7 +74,7 @@
                     @click="(isLangDropDownOpen = !isLangDropDownOpen);(isHelpDropDownOpen=false);(isWalletDropDownOpen=false)"
                 >
                     {{ getLanguageById($i18n.global.locale._value) }}
-                    <dropdown :class="{ 'rotate-180': isLangDropDownOpen }" class="mx-2 ml-1 my-auto h-4 w-[24px]" />
+                    <dropdown-svg :class="{ 'rotate-180': isLangDropDownOpen }" class="mx-2 ml-1 my-auto h-4 w-[24px]" />
                     <ul
                       class="my-auto p-2 text-sm text-left absolute top-9 left-0 bg-light rounded-xl shadow-lg z-[10000]"
                       v-if="isLangDropDownOpen"
@@ -90,7 +90,7 @@
                     @click="(isHelpDropDownOpen = !isHelpDropDownOpen);(isLangDropDownOpen=false);(isWalletDropDownOpen=false)"
                 >
                     Help
-                    <dropdown :class="{ 'rotate-180': isHelpDropDownOpen }" class="mx-2 ml-1 my-auto h-4 w-[24px]" />
+                    <dropdown-svg :class="{ 'rotate-180': isHelpDropDownOpen }" class="mx-2 ml-1 my-auto h-4 w-[24px]" />
                    <ul
                        class="overflow-hidden my-auto p-2 text-sm text-left absolute top-9 left-[40px] bg-light rounded-xl shadow-lg"
                        v-if="isHelpDropDownOpen"
@@ -126,9 +126,9 @@
                             class="px-4 py-1.5 text-sm cursor-pointer hidden lg:flex"
                             @click="(isWalletDropDownOpen = !isWalletDropDownOpen);(isLangDropDownOpen=false);(isHelpDropDownOpen=false)"
                         >
-                            <metamask class="mx-2 my-auto h-4 w-4" />
+                            <metamask-svg class="mx-2 my-auto h-4 w-4" />
                             {{ formatAddress(web3.account) }}
-                            <dropdown :class="{ 'rotate-180': isWalletDropDownOpen }" class="mx-2 my-auto h-4 w-[24px]" />
+                            <dropdown-svg :class="{ 'rotate-180': isWalletDropDownOpen }" class="mx-2 my-auto h-4 w-[24px]" />
                         </span>
                     </template>
                 </div>
@@ -184,12 +184,12 @@
             </li>
             <li class="min-w-max cursor-pointer p-1">
               <span class="wallet_actions" @click="doCopy(web3.account)">
-                <copy class="w-[16px] h-[16px]" />&nbsp; Copy Address
+                <copy-svg class="w-[16px] h-[16px]" />&nbsp; Copy Address
               </span>
             </li>
             <li class="min-w-max cursor-pointer p-1">
               <span class="wallet_actions">
-                <external-link class="w-[16px] h-[16px]" />&nbsp;
+                <external-link-svg class="w-[16px] h-[16px]" />&nbsp;
                 <a class="ml-1" :href="web3.etherscanlink" target="_blank">Etherscan</a>
               </span>
             </li>
@@ -198,7 +198,7 @@
                 @click="handleLogout(), (isWalletDropDownOpen = false)"
             >
               <span class="wallet_actions">
-                <disconnect class="w-[16px] h-[16px]" />&nbsp; Disconnect
+                <disconnect-svg class="w-[16px] h-[16px]" />&nbsp; Disconnect
               </span>
             </li>
           </ul>
@@ -254,17 +254,17 @@
                 <li class="divider_dropdown_wallet"></li>
                 <li class="min-w-max cursor-pointer p-1">
                     <span class="wallet_actions" @click="doCopy(web3.account)">
-                      <copy class="w-[16px] h-[16px]" />&nbsp; Copy Address
+                      <copy-svg class="w-[16px] h-[16px]" />&nbsp; Copy Address
                     </span>
                 </li>
                 <li class="min-w-max cursor-pointer p-1">
                     <span class="wallet_actions">
-                      <external-link class="w-[16px] h-[16px]" />&nbsp;
+                      <external-link-svg class="w-[16px] h-[16px]" />&nbsp;
                       <a class="ml-1" :href="web3.etherscanlink" target="_blank">Etherscan</a>
                     </span>
                 </li>
                 <li @click="handleLogout(), (isWalletDropDownOpen = false)" class="min-w-max cursor-pointer p-1">
-                    <span class="wallet_actions"><disconnect class="w-[16px] h-[16px]" />&nbsp; Disconnect</span>
+                    <span class="wallet_actions"><disconnect-svg class="w-[16px] h-[16px]" />&nbsp; Disconnect</span>
                 </li>
             </ul>
         </div>
@@ -280,6 +280,12 @@
     </nav>
 </template>
 <script setup>
+import copySvg from "@/assets/icons/copy.svg"
+import externalLinkSvg from "@/assets/icons/externalLink.svg"
+import disconnectSvg from "@/assets/icons/disconnect.svg"
+import dropdownSvg from "@/assets/images/dropdown.svg"
+import metamaskSvg from "@/assets/icons/metamask.svg"
+
 import { copyText } from "vue3-clipboard"
 import { useWeb3 } from "@/composables/useWeb3"
 import ConnectWallet from "@/components/ConnectWallet.vue"
@@ -341,11 +347,6 @@ function goToBlockLink() {
 <script>
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
 import { mixin as VueClickAway,directive as onClickaway  } from "vue3-click-away";
-import copy from "@/assets/icons/copy.svg"
-import externalLink from "@/assets/icons/externalLink.svg"
-import disconnect from "@/assets/icons/disconnect.svg"
-import dropdown from "@/assets/images/dropdown.svg"
-import metamask from "@/assets/icons/metamask.svg"
 
 const featuredSynth = "dpi-2x"
 let tabs = [
@@ -371,12 +372,6 @@ export default {
   name: "Header",
   components: {
     "s-button": SynthsRoundedButton,
-    dropdown,
-    metamask,
-    disconnect,
-    externalLink,
-    copy
-
   },
   mixins: [VueClickAway],
   directives: {

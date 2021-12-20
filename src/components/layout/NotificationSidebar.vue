@@ -50,17 +50,17 @@
 
 <script>
 import SynthsNotification from "@/components/notifications/SynthsNotification.vue"
-import xSvg from "@/assets/images/x.svg"
 
 export default {
     name: "NotificationLayout",
     components: {
         notification: SynthsNotification,
-        xSvg,
     },
 }
 </script>
 <script setup>
+import xSvg from "@/assets/images/x.svg"
+
 import { globalStore } from "@/composables/global"
 
 const { state } = globalStore()

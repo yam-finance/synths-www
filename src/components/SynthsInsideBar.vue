@@ -32,8 +32,8 @@
                 </div>
             </div>
 
-            <sidebar-arrow v-if="!arrowReverse" class="my-2 max-w-[50%]" />
-            <sidebar-arrow-reverse v-else class="my-2 max-w-[50%]" />
+            <sidebar-arrow-svg v-if="!arrowReverse" class="my-2 max-w-[50%]" />
+            <sidebar-arrow-reverse-svg v-else class="my-2 max-w-[50%]" />
 
             <div
                 v-if="settle"
@@ -66,16 +66,12 @@
 <script>
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
 import SynthsCryptoInput from "@/components/inputs/SynthsCryptoInput.vue"
-import sidebarArrow from "@/assets/sidebarArrow.svg"
-import sidebarArrowReverse from "@/assets/sidebarArrowReverse.svg"
 
 export default {
     name: "SynthsInsideBar",
     components: {
         "s-button": SynthsRoundedButton,
         "s-crypto-input": SynthsCryptoInput,
-        sidebarArrow,
-        sidebarArrowReverse,
     },
     inject: ["screen"],
     props: {
@@ -128,6 +124,10 @@ export default {
         },
     },
 }
+</script>
+<script setup>
+import sidebarArrowSvg from "@/assets/sidebarArrow.svg"
+import sidebarArrowReverseSvg from "@/assets/sidebarArrowReverse.svg"
 </script>
 
 <style scoped lang="scss">

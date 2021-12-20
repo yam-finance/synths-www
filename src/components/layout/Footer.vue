@@ -3,15 +3,15 @@
         <div class="hidden md:block">
             <div class="flex overflow-hidden absolute w-64 h-12 border-r bg-main">
                 <div class="flex items-center px-4 cursor-pointer" @click="goToBlockLink">
-                    <green-dot class="h-3 w-[10px]" />
+                    <green-dot-svg class="h-3 w-[10px]" />
                     <div class="text-xs font-normal translate-y-px px-2">{{ blockNumber }}</div>
-                    <external-link class="w-[12px] h-[12px]" />
+                    <external-link-svg class="w-[12px] h-[12px]" />
                 </div>
             </div>
             <div class="flex absolute w-96 mr-4 right-0 p-2 text-right h-12 lg:border-l bg-main">
                 <div class="flex absolute right-2">
-                    <twitter class="w-[24px] h-[24px] mx-2 my-auto cursor-pointer" />
-                    <discord class="w-[24px] h-[24px] mx-2 my-auto cursor-pointer" />
+                    <twitter-svg class="w-[24px] h-[24px] mx-2 my-auto cursor-pointer" />
+                    <discord-svg class="w-[24px] h-[24px] mx-2 my-auto cursor-pointer" />
                 </div>
             </div>
         </div>
@@ -82,15 +82,15 @@
 
                 <div class="w-full flex fixed bottom-96 mb-2 lg:hidden px-2 py-3 bg-main z-30">
                     <div class="flex">
-                        <twitter class="w-[24px] h-[24px] mx-2 my-auto cursor-pointer" />
-                        <discord class="w-[24px] h-[24px] mx-2 my-auto cursor-pointer" />
+                        <twitter-svg class="w-[24px] h-[24px] mx-2 my-auto cursor-pointer" />
+                        <discord-svg class="w-[24px] h-[24px] mx-2 my-auto cursor-pointer" />
                     </div>
                     <span
                         class="flex px-2 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer relative"
                         @click="handleLanguageMenu"
                     >
                         English
-                        <dropdown
+                        <dropdown-svg
                             :class="{ 'rotate-180': isLangDropDownOpen }"
                             class="mx-2 ml-1 my-auto h-4 w-[24px]"
                         />
@@ -120,7 +120,7 @@
                         @click="handleSupportMenu"
                     >
                         Help
-                        <dropdown
+                        <dropdown-svg
                             :class="{ 'rotate-180': isHelpDropDownOpen }"
                             class="mx-2 ml-1 my-auto h-4 w-[24px]"
                         />
@@ -159,7 +159,7 @@
             </div>
             <div class="flex overflow-hidden ml-auto">
                 <div class="flex justify-center items-center px-3 cursor-pointer" @click="goToBlockLink">
-                    <green-dot class="h-3 w-[10px] py-0.5" />
+                    <green-dot-svg class="h-3 w-[10px] py-0.5" />
                     <span class="text-xs my-auto font-normal px-1">{{ blockNumber }}</span>
                 </div>
             </div>
@@ -177,9 +177,12 @@
                         class="flex px-4 py-1.5 text-sm cursor-pointer"
                         @click="connectButtonHandler"
                     >
-                        <metamask class="mx-2 my-auto h-4 w-4" />
+                        <metamask-svg class="mx-2 my-auto h-4 w-4" />
                         {{ formatAddress(web3.account) }}
-                        <dropdown :class="{ 'rotate-180': isWalletDropDownOpen }" class="mx-2 my-auto h-4 w-[24px]" />
+                        <dropdown-svg
+                            :class="{ 'rotate-180': isWalletDropDownOpen }"
+                            class="mx-2 my-auto h-4 w-[24px]"
+                        />
                         <div v-if="isWalletDropDownOpen" class="blur h-full w-full top-0 right-0 fixed"></div>
 
                         <ul
@@ -248,12 +251,12 @@
                             </li>
                             <li class="min-w-max cursor-pointer p-1">
                                 <span class="wallet_actions" @click="doCopy(web3.account)">
-                                    <copy class="w-[16px] h-[16px]" />&nbsp; Copy Address
+                                    <copy-svg class="w-[16px] h-[16px]" />&nbsp; Copy Address
                                 </span>
                             </li>
                             <li class="min-w-max cursor-pointer p-1">
                                 <span class="wallet_actions">
-                                    <external-link class="w-[16px] h-[16px]" />&nbsp;
+                                    <external-link-svg class="w-[16px] h-[16px]" />&nbsp;
                                     <a class="ml-1" :href="web3.etherscanlink" target="_blank">Etherscan</a>
                                 </span>
                             </li>
@@ -262,7 +265,7 @@
                                 @click="handleLogout(), (isWalletDropDownOpen = false)"
                             >
                                 <span class="wallet_actions">
-                                    <disconnect class="w-[16px] h-[16px]" />&nbsp; Disconnect
+                                    <disconnect-svg class="w-[16px] h-[16px]" />&nbsp; Disconnect
                                 </span>
                             </li>
                         </ul>
@@ -296,28 +299,12 @@ let tabs = [
 ]
 import SynthBurgerButton from "@/components/elements/SynthBurgerButton"
 import SynthsRoundedButton from "../buttons/SynthsRoundedButton"
-import twitter from "@/assets/images/socials/twitter.svg"
-import discord from "@/assets/images/socials/discord.svg"
-import greenDot from "@/assets/images/green-dot.svg"
-import externalLink from "@/assets/images/external-link.svg"
-import dropdown from "@/assets/images/dropdown.svg"
-import metamask from "@/assets/icons/metamask.svg"
-import copy from "@/assets/icons/copy.svg"
-import disconnect from "@/assets/icons/disconnect.svg"
 
 export default {
     name: "Footer",
     components: {
         "burger-button": SynthBurgerButton,
         "s-button": SynthsRoundedButton,
-        twitter,
-        discord,
-        greenDot,
-        externalLink,
-        dropdown,
-        metamask,
-        copy,
-        disconnect,
     },
     data() {
         return {
@@ -358,6 +345,15 @@ export default {
 </script>
 
 <script setup>
+import twitterSvg from "@/assets/images/socials/twitter.svg"
+import discordSvg from "@/assets/images/socials/discord.svg"
+import greenDotSvg from "@/assets/images/green-dot.svg"
+import externalLinkSvg from "@/assets/images/external-link.svg"
+import dropdownSvg from "@/assets/images/dropdown.svg"
+import metamaskSvg from "@/assets/icons/metamask.svg"
+import copySvg from "@/assets/icons/copy.svg"
+import disconnectSvg from "@/assets/icons/disconnect.svg"
+
 import { useWeb3 } from "@/composables/useWeb3"
 import ConnectWallet from "@/components/ConnectWallet.vue"
 import { globalStore } from "@/composables/global"

@@ -7,7 +7,7 @@
             </div>
             <div v-show="link" class="sn-link w-4 h-4">
                 <a :href="link" target="_blank">
-                    <external-link class="w-[16px] h-[16px]" />
+                    <external-link-svg class="w-[16px] h-[16px]" />
                 </a>
             </div>
             <div class="sn-close w-4 h-4">
@@ -19,19 +19,11 @@
 </template>
 
 <script>
-import xSvg from "@/assets/images/x.svg"
-import externalLink from "@/assets/images/external-link.svg"
-import infoCircle from "@/assets/icons/info-circle.svg"
-import successCircle from "@/assets/icons/success-circle.svg"
+import infoCircleSvg from "@/assets/icons/info-circle.svg"
+import successCircleSvg from "@/assets/icons/success-circle.svg"
 
 export default {
     name: "NotificationItem",
-    components: {
-        xSvg,
-        externalLink,
-        infoCircle,
-        successCircle,
-    },
     props: {
         index: Number,
         title: String,
@@ -47,15 +39,19 @@ export default {
     },
     methods: {
         getIcon(style) {
-            if (style === 0) return infoCircle
+            if (style === 0) return infoCircleSvg
 
-            if (style === 1) return successCircle
+            if (style === 1) return successCircleSvg
         },
         closeNotification() {
             this.$emit("close")
         },
     },
 }
+</script>
+<script setup>
+import xSvg from "@/assets/images/x.svg"
+import externalLinkSvg from "@/assets/images/external-link.svg"
 </script>
 
 <style scoped lang="scss">

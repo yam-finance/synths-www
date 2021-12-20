@@ -35,7 +35,7 @@
             <span class="py-3 px-4"> All Synths </span>
 
             <div class="h-full w-[230px] py-2 px-3 flex">
-                <search class="flex absolute my-1.5 mx-3 w-[20px] h-[20px]" />
+                <search-svg class="flex absolute my-1.5 mx-3 w-[20px] h-[20px]" />
                 <input
                     class="
                         flex flex-wrap
@@ -82,7 +82,7 @@
                     </td>
                     <td>{{ synth.price }}</td>
                     <td>
-                        <arrow-up-right class="h-[20px] w-[20px] inline -translate-y-0.5" />
+                        <arrow-up-right-svg class="h-[20px] w-[20px] inline -translate-y-0.5" />
                         {{ synth.day_change }}
                     </td>
                     <td>{{ synth.day_volume }}</td>
@@ -90,7 +90,7 @@
                     <td>${{ synth.apr }}</td>
                     <td class="p-0 m-0">
                         <router-link :to="{ name: 'Synths', params: { synth: synth.id } }">
-                            <arrow-right class="cursor-pointer w-[20px] h-[20px]" />
+                            <arrow-right-svg class="cursor-pointer w-[20px] h-[20px]" />
                         </router-link>
                     </td>
                 </tr>
@@ -115,7 +115,7 @@
             <span class="py-3 px-4"> All Synths </span>
 
             <div class="h-full w-[230px] py-2 px-3 flex">
-                <search class="flex absolute my-1.5 mx-3 w-[20px] h-[20px]" />
+                <search-svg class="flex absolute my-1.5 mx-3 w-[20px] h-[20px]" />
                 <input
                     class="
                         flex flex-wrap
@@ -157,11 +157,11 @@
                     </td>
                     <td>{{ synth.price }}</td>
                     <td>
-                        <arrow-up-right class="h-[20px] w-[20px] inline -translate-y-0.5" />
+                        <arrow-up-right-svg class="h-[20px] w-[20px] inline -translate-y-0.5" />
                         {{ synth.day_change }}
                     </td>
                     <router-link :to="{ name: 'Synths', params: { synth: synth.id } }">
-                        <arrow-right class="cursor-pointer w-[24px] h-[24px]" />
+                        <arrow-right-svg class="cursor-pointer w-[24px] h-[24px]" />
                     </router-link>
                 </tr>
             </tbody>
@@ -238,17 +238,9 @@ let rawSynths = [
         status: 1,
     },
 ]
-import search from "@/assets/images/search.svg"
-import arrowUpRight from "@/assets/images/arrow-up-right.svg"
-import arrowRight from "@/assets/images/arrow-right.svg"
 
 export default {
     name: "Explore",
-    components: {
-        search,
-        arrowUpRight,
-        arrowRight,
-    },
     data() {
         return {
             rawSynths,
@@ -270,4 +262,9 @@ export default {
         },
     },
 }
+</script>
+<script setup>
+import searchSvg from "@/assets/images/search.svg"
+import arrowUpRightSvg from "@/assets/images/arrow-up-right.svg"
+import arrowRightSvg from "@/assets/images/arrow-right.svg"
 </script>

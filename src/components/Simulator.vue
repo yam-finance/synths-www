@@ -32,7 +32,7 @@
             >
                 <router-link to="#">
                     Learn More about simulations
-                    <span class="inline-flex text-white"> &nbsp;<external-link class="w-[12px] h-[12px]" /> </span>
+                    <span class="inline-flex text-white"> &nbsp;<external-link-svg class="w-[12px] h-[12px]" /> </span>
                 </router-link>
             </div>
         </div>
@@ -41,21 +41,21 @@
 
 <script>
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
-import externalLink from "@/assets/icons/externalLink.svg"
 
 export default {
     name: "Simulator",
     components: {
         "s-button": SynthsRoundedButton,
-        externalLink,
     },
     methods: {
         close() {
-            console.log("sadfasdf")
             this.$emit("close")
         },
     },
 }
+</script>
+<script setup>
+import externalLinkSvg from "@/assets/icons/externalLink.svg"
 </script>
 
 <style scoped></style>

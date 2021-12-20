@@ -50,15 +50,15 @@
                 <div class="flex flex-wrap space-x-4 mt-4">
                     <RouterLink to="/#" class="cursor-pointer">
                         <p class="text-sm inline mr-1 md:mr-2">Learn More</p>
-                        <externalLink class="inline cursor-pointer w-[12px] h-[12px]" />
+                        <external-link-svg class="inline cursor-pointer w-[12px] h-[12px]" />
                     </RouterLink>
                     <RouterLink to="/#" class="cursor-pointer">
                         <p class="text-sm inline mr-1 md:mr-2">Tutorial</p>
-                        <externalLink class="inline cursor-pointer w-[12px] h-[12px]" />
+                        <external-link-svg class="inline cursor-pointer w-[12px] h-[12px]" />
                     </RouterLink>
                     <RouterLink to="/#" class="cursor-pointer">
                         <p class="text-sm inline mr-0.5 md:mr-2">Connect Address</p>
-                        <externalLink class="inline cursor-pointer w-[12px] h-[12px]" />
+                        <external-link-svg class="inline cursor-pointer w-[12px] h-[12px]" />
                     </RouterLink>
                 </div>
 
@@ -130,7 +130,7 @@
                                 src="@/assets/images/arrow-right-pink.png"
                                 class="inline float-right w-6 h-6 cursor-pointer"
                             />
-                            <arrow-right v-else class="inline float-right w-6 h-6 cursor-pointer" />
+                            <arrow-right-svg v-else class="inline float-right w-6 h-6 cursor-pointer" />
                         </div>
                     </div>
                 </div>
@@ -243,8 +243,8 @@ import SynthsSingleChart from "@/components/charts/SynthsSingleChart.vue"
 import SynthsLongShortChart from "@/components/charts/SynthsLongShortChart.vue"
 import SynthsInsideBar from "@/components/SynthsInsideBar.vue"
 import synthsLogo from "@/assets/images/logo.png"
-import externalLink from "@/assets/images/external-link.svg"
-import arrowRight from "@/assets/images/arrow-right.svg"
+import externalLinkSvg from "@/assets/images/external-link.svg"
+import arrowRightSvg from "@/assets/images/arrow-right.svg"
 
 import { inject } from "vue"
 import { mixin as VueClickAway, directive as onClickaway } from "vue3-click-away"
@@ -286,8 +286,8 @@ export default {
         SynthsLongShortChart,
         "s-button": SynthsRoundedButton,
         SynthsInsideBar,
-        externalLink,
-        arrowRight,
+        externalLinkSvg,
+        arrowRightSvg,
     },
     directives: {
         ClickAway: onClickaway,
