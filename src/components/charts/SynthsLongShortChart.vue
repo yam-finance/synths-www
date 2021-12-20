@@ -120,7 +120,7 @@
             <p class="slsc__charts__upper-bound border-b border-[#3E3E6B] text-[10px] pb-1 mt-4 mb-4 mb-auto">
                 <span class="text-purpleLight">Upper bound</span> $300
             </p>
-            <line-chart class="h-full overflow-auto my-3 relative" />
+            <line-chart class="h-full overflow-auto my-3 relative" :labels="labels" :chart-data="chartData"/>
             <p class="slsc__charts__upper-bound border-t border-[#3E3E6B] text-[10px] pt-1 mt-4">
                 <span class="text-purpleLight">Lower bound</span> $300
             </p>
@@ -139,6 +139,29 @@ export default {
         "s-button": SynthsRoundedButton,
     },
     props:['textTitle','BtnColor'],
+  data: () => ({
+    filterButtons: ["1H", "1D", "1W", "1M", "1Y"],
+    labels: [12, 25, 1, 5, 20, 3],
+    chartData: [
+      {
+        backgroundColor: "#FFFFFF",
+        borderWidth: 3,
+        tension: 0.4,
+        fill: false,
+        borderColor: "#FFFFFF",
+        data: [12, 25, 1, 5, 20, 3],
+      },
+      {
+        backgroundColor: "green",
+        borderWidth: 3,
+        tension: 0.4,
+        fill: false,
+        borderColor: "green",
+        data: [12, 25, 1, 5, 5, 3],
+      },
+    ],
+  }),
+
 
 }
 </script>
