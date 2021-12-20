@@ -1,4 +1,10 @@
 <script setup>
+import copySvg from "@/assets/icons/copy.svg"
+import externalLinkSvg from "@/assets/icons/externalLink.svg"
+import disconnectSvg from "@/assets/icons/disconnect.svg"
+import dropdownSvg from "@/assets/images/dropdown.svg"
+import metamaskSvg from "@/assets/icons/metamask.svg"
+
 import { copyText } from "vue3-clipboard"
 import { useWeb3 } from "@/composables/useWeb3"
 import ConnectWallet from "@/components/ConnectWallet.vue"
@@ -418,143 +424,6 @@ export default {
       </Simulator>
     </nav>
 </template>
-
-<script setup>
-import copySvg from "@/assets/icons/copy.svg"
-import externalLinkSvg from "@/assets/icons/externalLink.svg"
-import disconnectSvg from "@/assets/icons/disconnect.svg"
-import dropdownSvg from "@/assets/images/dropdown.svg"
-import metamaskSvg from "@/assets/icons/metamask.svg"
-
-import { copyText } from "vue3-clipboard"
-import { useWeb3 } from "@/composables/useWeb3"
-import ConnectWallet from "@/components/ConnectWallet.vue"
-import { globalStore } from "@/composables/global"
-import Simulator from "@/components/Simulator.vue"
-
-import { ref } from "vue"
-
-import useClipboard from "@/composables/useClipboard"
-const { state } = globalStore()
-
-const { login, web3, logout } = useWeb3()
-const isSimulatorVisible = ref(false)
-
-const isModalVisible = ref(false)
-
-const { toggleNotificationOpen } = globalStore()
-const { addNewNotifications } = globalStore()
-
-const blockNumber = state.blockNumber
-async function handleConnect(connector) {
-  isModalVisible.value = false
-  await login(connector)
-}
-async function handleLogout() {
-  await logout()
-  // emit('close');
-}
-const { toClipboard } = useClipboard()
-async function doCopy(address) {
-  try {
-    await toClipboard(address)
-
-    addNewNotifications({
-      style: 1,
-      link: null,
-      title: "Success!",
-      content: 'Copied',
-    }, false)
-  } catch (e) {
-    // TODO: Can't catch error
-    addNewNotifications({
-      style: 0,
-      link: null,
-      title: "Error!",
-      content: 'Please try again or reload page',
-    }, false)
-    console.error(e)
-  }
-}
-function formatAddress(address) {
-  return address.slice(0, 1) + "..." + address.slice(-3)
-}
-function goToBlockLink() {
-  window.open(`https://etherscan.io/block/${blockNumber.value}`, "_blank")
-}
-</script>
-
-<script>
-import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
-import { mixin as VueClickAway,directive as onClickaway  } from "vue3-click-away";
-
-const featuredSynth = "dpi-2x"
-let tabs = [
-  {
-    id: 1,
-    title: "Explore",
-    to: "explore",
-  },
-  {
-    id: 2,
-    title: "New!",
-    to: "synths/" + featuredSynth,
-  },
-  {
-    id: 3,
-    title: "Portfolio",
-    to: "portfolio",
-  },
-]
-
-let activeTab = 0
-export default {
-  name: "Header",
-  components: {
-    "s-button": SynthsRoundedButton,
-  },
-  mixins: [VueClickAway],
-  directives: {
-    ClickAway: onClickaway
-  },
-
-  data() {
-    return {
-      tabs,
-      activeTab,
-      isHelpDropDownOpen: false,
-      isLangDropDownOpen: false,
-      isWalletDropDownOpen: false
-    }
-  },
-  methods: {
-    switchLocale(locale) {
-      if (this.$i18n.global.locale._value != locale) {
-        this.$i18n.global.locale._value = locale;
-      }
-    },
-    selectTab(item) {
-      this.activeTab = item.id
-    },
-    closePopup(e) {
-      this.isHelpDropDownOpen = false
-      this.isLangDropDownOpen = false
-      this.isWalletDropDownOpen = false
-      // this.isModalVisible = false;
-    },
-    getLanguageById(id) {
-      switch (id) {
-        case "en":
-          return "English";
-        case "zh":
-          return "Chinese";
-        default:
-          return "English";
-      }
-    }
-  },
-}
-</script>
 
 <style scoped lang="scss">
 .image_icon {
