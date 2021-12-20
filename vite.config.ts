@@ -4,6 +4,7 @@ import path from "path"
 import visualizer from "rollup-plugin-visualizer"
 import ViteComponents from "unplugin-vue-components/vite"
 import PrerenderSpaPlugin from "prerender-spa-plugin"
+import svgSpritePlugin from "vite-plugin-svg-sprite-component"
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [
@@ -26,7 +27,7 @@ export default defineConfig({
             routes: ["*"],
             // Options
             postProcess(context) {
-                let titles = {
+                const titles = {
                     "/": "Home",
                     "/explore": "Explore",
                     "/portfolio": "Portfolio",
@@ -35,12 +36,13 @@ export default defineConfig({
                 return context
             },
         }),
+        svgSpritePlugin({ symbolId: (name) => "icon-" + name, component: { type: "vue", defaultExport: true } }),
     ],
     resolve: {
         alias: {
             "@": path.resolve(__dirname, "./src"),
         },
-        extensions: [".js", ".vue", ".json", ".ts", ".png"],
+        extensions: [".js", ".vue", ".json", ".ts", ".png", ".svg"],
     },
     define: {
         "process.env": process.env,

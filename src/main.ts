@@ -11,6 +11,7 @@ import "@/index.scss"
 import VueClickAway from "vue3-click-away"
 import { i18n } from "@/i18n"
 import VueClipboard from "vue3-clipboard"
+
 const app = createApp(App).use(i18n).use(router).use(VueClickAway).use(LockPlugin, options).use(VueClipboard)
 
 app.mount("#app")

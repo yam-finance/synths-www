@@ -24,12 +24,9 @@
             >
                 <div class="flex items-center">
                     <h2 class="font-semibold mb-2 mt-5">Notification</h2>
-                    <img
-                        class="notification-close basic-hover ml-auto mt-2 cursor-pointer"
-                        src="@/assets/images/x.svg"
-                        alt="Close Icon"
-                        @click="toggleNotificationOpen"
-                    />
+                     <x-svg
+                       class="notification-close basic-hover ml-auto mt-5 cursor-pointer w-[24px] h-[24px]"
+                       @click="toggleNotificationOpen"/>
                 </div>
                 <div v-if="notifications.length" class="notification-content">
                     <notification
@@ -63,6 +60,8 @@ export default {
 }
 </script>
 <script setup>
+import xSvg from "@/assets/images/x.svg"
+
 import { globalStore } from "@/composables/global"
 
 const { state } = globalStore()

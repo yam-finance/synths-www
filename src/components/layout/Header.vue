@@ -1,4 +1,10 @@
 <script setup>
+import copySvg from "@/assets/icons/copy.svg"
+import externalLinkSvg from "@/assets/icons/externalLink.svg"
+import disconnectSvg from "@/assets/icons/disconnect.svg"
+import dropdownSvg from "@/assets/images/dropdown.svg"
+import metamaskSvg from "@/assets/icons/metamask.svg"
+
 import { copyText } from "vue3-clipboard"
 import { useWeb3 } from "@/composables/useWeb3"
 import ConnectWallet from "@/components/ConnectWallet.vue"
@@ -209,7 +215,7 @@ export default {
                     @click="OpenLanguage"
                 >
                     {{ getLanguageById($i18n.global.locale._value) }}
-                    <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': isLangDropDownOpen }" class="mx-2 ml-1 my-auto h-4" />
+                    <dropdown-svg :class="{ 'rotate-180': isLangDropDownOpen }" class="mx-2 ml-1 my-auto h-4 w-[24px]" />
                     <ul
                       class="my-auto p-2 text-sm text-left absolute top-9 left-0 bg-light rounded-xl shadow-lg z-[10000]"
                       v-if="isLangDropDownOpen"
@@ -225,7 +231,7 @@ export default {
                     @click="(isHelpDropDownOpen = !isHelpDropDownOpen);(isLangDropDownOpen=false);(isWalletDropDownOpen=false)"
                 >
                     Help
-                    <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': isHelpDropDownOpen }" class="mx-2 ml-1 my-auto h-4" />
+                    <dropdown-svg :class="{ 'rotate-180': isHelpDropDownOpen }" class="mx-2 ml-1 my-auto h-4 w-[24px]" />
                    <ul
                        class="overflow-hidden my-auto p-2 text-sm text-left absolute top-9 left-[40px] bg-light rounded-xl shadow-lg"
                        v-if="isHelpDropDownOpen"
@@ -261,9 +267,9 @@ export default {
                             class="px-4 py-1.5 text-sm cursor-pointer hidden lg:flex"
                             @click="(isWalletDropDownOpen = !isWalletDropDownOpen);(isLangDropDownOpen=false);(isHelpDropDownOpen=false)"
                         >
-                            <img src="@/assets/icons/metamask.svg" class="mx-2 my-auto h-4" />
+                            <metamask-svg class="mx-2 my-auto h-4 w-4" />
                             {{ formatAddress(web3.account) }}
-                            <img src="@/assets/images/dropdown.svg" :class="{ 'rotate-180': isWalletDropDownOpen }" class="mx-2 my-auto h-4" />
+                            <dropdown-svg :class="{ 'rotate-180': isWalletDropDownOpen }" class="mx-2 my-auto h-4 w-[24px]" />
                         </span>
                     </template>
                 </div>
@@ -313,33 +319,32 @@ export default {
             </li>
             <li class="divider_dropdown_wallet"></li>
             <li class="min-w-max cursor-pointer p-1" @click="isSimulatorVisible=!isSimulatorVisible">
-                                <span class="wallet_actions">
-                                    <img src="@/assets/icons/play-circle.png" /> &nbsp; Run Simulation
-                                </span>
+              <span class="wallet_actions">
+                <img src="@/assets/icons/play-circle.png" class="w-[12px] h-[20px]" /> &nbsp; Run Simulation
+              </span>
             </li>
             <li class="min-w-max cursor-pointer p-1">
-                  <span class="wallet_actions"
-                  ><img src="@/assets/icons/stop-circle.png" /> &nbsp; Stop Simulation</span
-                  >
+                  <span class="wallet_actions">
+                  <img src="@/assets/icons/stop-circle.png" /> &nbsp; Stop Simulation</span>
             </li>
             <li class="min-w-max cursor-pointer p-1">
-                                <span class="wallet_actions" @click="doCopy(web3.account)">
-                                    <img src="@/assets/icons/copy.svg" /> &nbsp; Copy Address
-                                </span>
+                <span class="wallet_actions" @click="doCopy(web3.account)">
+                <copy-svg class="w-[16px] h-[16px]" />&nbsp; Copy Address
+              </span>
             </li>
             <li class="min-w-max cursor-pointer p-1">
-                                <span class="wallet_actions">
-                                    <img src="@/assets/icons/externalLink.svg" />&nbsp;
-                                    <a class="ml-1" :href="web3.etherscanlink" target="_blank">Etherscan</a>
-                                </span>
+              <span class="wallet_actions">
+                <external-link-svg class="w-[16px] h-[16px]" />&nbsp;
+                <a class="ml-1" :href="web3.etherscanlink" target="_blank">Etherscan</a>
+              </span>
             </li>
             <li
                 class="min-w-max cursor-pointer p-1"
                 @click="handleLogout(), (isWalletDropDownOpen = false)"
             >
-                                <span class="wallet_actions">
-                                    <img src="@/assets/icons/disconnect.svg" />&nbsp; Disconnect
-                                </span>
+              <span class="wallet_actions">
+                <disconnect-svg class="w-[16px] h-[16px]" />&nbsp; Disconnect
+              </span>
             </li>
           </ul>
 

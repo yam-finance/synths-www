@@ -2,7 +2,7 @@ import { ref, computed } from "vue"
 import { ethers } from "ethers"
 import Synths, { getRecentSynthData, getTotalMarketData } from "synths-sdk"
 import { JsonRpcProvider } from "@ethersproject/providers"
-// TOOD Remove after testphase.
+// TODO Remove after testphase.
 import { defaultAssetsConfig, defaultTestAssetsConfig } from "synths-sdk/dist/src/lib/config/index"
 
 let synthsSDK: Synths
@@ -18,17 +18,19 @@ export function useSynthsSDK() {
     /**
      * @notice Initialize the synths-sdk and load market data.
      * @param provider The web3 provider instance.
+     * @param networkId
      */
     async function init(provider: JsonRpcProvider, networkId: number) {
         loading.value = true
 
         const POLYSCAN_API_KEY = import.meta.env.VITE_POLYSCAN_API_KEY as string
+        const listAccounts = await provider.listAccounts()
 
         synthsSDK = await Synths.create({ ethersProvider: provider, userAssetsConfig: defaultTestAssetsConfig })
         totalMarketData.value = await getTotalMarketData([networkId], synthsSDK.config, POLYSCAN_API_KEY)
         recentSynthData.value = await getRecentSynthData(networkId, synthsSDK.config, POLYSCAN_API_KEY)
 
-        if ((await provider.listAccounts()).length != 0) {
+        if (listAccounts.length != 0) {
             const portfolio = await synthsSDK.getLSPPortfolio()
             lspPortfolio.value = portfolio
             totalSynthsMinted.value = 0

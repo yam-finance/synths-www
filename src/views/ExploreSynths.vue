@@ -35,7 +35,7 @@
             <span class="py-3 px-4"> All Synths </span>
 
             <div class="h-full w-[230px] py-2 px-3 flex">
-                <img src="@/assets/images/search.svg" class="flex absolute my-1.5 mx-3" />
+                <search-svg class="flex absolute my-1.5 mx-3 w-[20px] h-[20px]" />
                 <input
                     class="
                         flex flex-wrap
@@ -88,7 +88,7 @@
                     </td>
                     <td>
                         <router-link class="font-semibold" :to="{ name: 'Synths', params: { synth: synth.id } }">
-                            <img src="@/assets/images/arrow-up-right.svg" class="h-4 inline -translate-y-0.5" />
+                            <arrow-up-right-svg class="h-[20px] w-[20px] inline -translate-y-0.5" />
                             {{ synth.day_change }}
                         </router-link>
                     </td>
@@ -109,7 +109,7 @@
                     </td>
                     <td class="p-0 m-0">
                         <router-link :to="{ name: 'Synths', params: { synth: synth.id } }">
-                            <img src="@/assets/images/arrow-right.svg" class="cursor-pointer" />
+                            <arrow-right-svg class="cursor-pointer w-[20px] h-[20px]" />
                         </router-link>
                     </td>
                 </tr>
@@ -144,7 +144,7 @@
             <span class="py-3 px-4"> All Synths </span>
 
             <div class="h-full w-[230px] py-2 px-3 flex">
-                <img src="@/assets/images/search.svg" class="flex absolute my-1.5 mx-3" />
+                <search-svg class="flex absolute my-1.5 mx-3 w-[20px] h-[20px]" />
                 <input
                     class="
                         flex flex-wrap
@@ -186,11 +186,11 @@
                     </td>
                     <td>{{ synth.price }}</td>
                     <td>
-                        <img src="@/assets/images/arrow-up-right.svg" class="h-4 inline -translate-y-0.5" />
+                        <arrow-up-right-svg class="h-[20px] w-[20px] inline -translate-y-0.5" />
                         {{ synth.day_change }}
                     </td>
                     <router-link :to="{ name: 'Synths', params: { synth: synth.id } }">
-                        <img src="@/assets/images/arrow-right.svg" class="cursor-pointer" />
+                        <arrow-right-svg class="cursor-pointer w-[24px] h-[24px]" />
                     </router-link>
                 </tr>
             </tbody>
@@ -291,4 +291,9 @@ export default {
         },
     },
 }
+</script>
+<script setup>
+import searchSvg from "@/assets/images/search.svg"
+import arrowUpRightSvg from "@/assets/images/arrow-up-right.svg"
+import arrowRightSvg from "@/assets/images/arrow-right.svg"
 </script>
