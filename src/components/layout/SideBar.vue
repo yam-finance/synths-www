@@ -75,6 +75,14 @@
     </aside>
 </template>
 
+<script setup>
+import arrowUpRightSvg from "@/assets/images/arrow-up-right.svg"
+import arrowRightSvg from "@/assets/images/arrow-right.svg"
+import searchSvg from "@/assets/images/search.svg"
+import { globalStore } from "@/composables/global"
+
+const { isMd } = globalStore()
+</script>
 <script>
 let menus = [
     {
@@ -184,14 +192,13 @@ let menus = [
     },
 ]
 let filter_string = ""
-let activeTab = 1
 export default {
     name: "SideBar",
     data() {
         return {
             menus,
             filter_string,
-            activeTab,
+            activeTab: 1,
         }
     },
     computed: {
@@ -208,12 +215,4 @@ export default {
         },
     },
 }
-</script>
-<script setup>
-import arrowUpRightSvg from "@/assets/images/arrow-up-right.svg"
-import arrowRightSvg from "@/assets/images/arrow-right.svg"
-import searchSvg from "@/assets/images/search.svg"
-import { globalStore } from "@/composables/global"
-
-const { isMd } = globalStore()
 </script>
