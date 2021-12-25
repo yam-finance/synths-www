@@ -14,7 +14,7 @@ import Simulator from "@/components/Simulator.vue"
 import { ref } from "vue"
 
 import useClipboard from "@/composables/useClipboard"
-const { state } = globalStore()
+const { state, isLg } = globalStore()
 
 const { login, web3, logout } = useWeb3()
 const isSimulatorVisible = ref(false)
@@ -211,7 +211,8 @@ export default {
         >
             <div class="flex absolute right-1">
                 <span
-                    class="hidden lg:flex px-2 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer"
+                    v-if="isLg"
+                    class="flex px-2 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer"
                     @click="OpenLanguage"
                 >
                     {{ getLanguageById($i18n.global.locale._value) }}
@@ -227,7 +228,8 @@ export default {
             </ul>
                 </span>
                 <span
-                    class="hidden lg:flex px-4 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer"
+                    v-if="isLg"
+                    class="flex px-4 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer"
                     @click="(isHelpDropDownOpen = !isHelpDropDownOpen);(isLangDropDownOpen=false);(isWalletDropDownOpen=false)"
                 >
                     Help
@@ -263,8 +265,8 @@ export default {
                 <div>
                     <template v-if="$auth.isAuthenticated.value">
                         <span
-                            v-if="$auth.isAuthenticated.value"
-                            class="px-4 py-1.5 text-sm cursor-pointer hidden lg:flex"
+                            v-if="$auth.isAuthenticated.value && isLg"
+                            class="px-4 py-1.5 text-sm cursor-pointer flex"
                             @click="(isWalletDropDownOpen = !isWalletDropDownOpen);(isLangDropDownOpen=false);(isHelpDropDownOpen=false)"
                         >
                             <metamask-svg class="mx-2 my-auto h-4 w-4" />

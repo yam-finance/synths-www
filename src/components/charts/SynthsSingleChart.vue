@@ -37,8 +37,9 @@
                 items-start
                 justify-between
                 font-semibold
-                w-[70%]
-                max-w-[186px]
+                w-full
+                lg:w-[70%]
+                max-w-[200px]
                 bg-[#19193F]
                 p-1
                 rounded-lg

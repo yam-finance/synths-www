@@ -1,5 +1,6 @@
 <template>
     <aside
+        v-if="isMd"
         class="
             sticky
             justify-center
@@ -12,8 +13,7 @@
             font-semibold
             bg-main
             txt-main
-            hidden
-            md:block
+            block
             border-r
             bg-main
             scrollbar
@@ -205,4 +205,9 @@ export default {
         },
     },
 }
+</script>
+<script setup>
+import { globalStore } from "@/composables/global"
+
+const { isMd } = globalStore()
 </script>

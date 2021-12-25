@@ -25,7 +25,7 @@ module.exports = {
             primary: "#525284",
         },
         backgroundImage: {
-            checkbox: "url('/src/assets/images/tik.png')",
+            checkbox: "url('/src/assets/images/tik.svg')",
         },
         order: {
             first: "-9999",

@@ -6,27 +6,15 @@
             @click="toggleNotificationOpen"
         >
             <div
-                class="
-                    notification
-                    bg-main
-                    box-content
-                    border-l
-                    fixed
-                    top-0
-                    right-0
-                    h-full
-                    w-full
-                    md:w-[240px]
-                    px-4
-                    box-border
-                "
+                class="notification bg-main border-l fixed top-0 right-0 h-full w-full md:w-[240px] px-4 box-border"
                 @click.stop=""
             >
                 <div class="flex items-center">
                     <h2 class="font-semibold mb-2 mt-5">Notification</h2>
-                     <x-svg
-                       class="notification-close basic-hover ml-auto mt-5 cursor-pointer w-[24px] h-[24px]"
-                       @click="toggleNotificationOpen"/>
+                    <x-svg
+                        class="notification-close basic-hover ml-auto mt-5 cursor-pointer w-[24px] h-[24px]"
+                        @click="toggleNotificationOpen"
+                    />
                 </div>
                 <div v-if="notifications.length" class="notification-content">
                     <notification

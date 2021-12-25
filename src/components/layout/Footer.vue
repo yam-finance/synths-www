@@ -1,6 +1,6 @@
 <template>
     <nav class="h-12 w-full fixed bottom-0 left-0 z-20 text-white flex flex-col lg:flex-row border-t bg-main bg-main">
-        <div class="hidden md:block">
+        <div v-if="isMd" class="block">
             <div class="flex overflow-hidden absolute w-64 h-12 border-r bg-main">
                 <div class="flex items-center px-4 cursor-pointer" @click="goToBlockLink">
                     <green-dot-svg class="h-3 w-[10px]" />
@@ -153,7 +153,7 @@
             </div>
         </transition>
 
-        <div class="flex absolute w-full right-0 p-2 text-right h-12 lg:border-l bg-main lg:hidden">
+        <div v-if="!isLg" class="flex absolute w-full right-0 p-2 text-right h-12 lg:border-l bg-main">
             <div class="flex cursor-pointer ml-3">
                 <burger-button :is-open="isMenuOpen" @click="isMenuOpen = !isMenuOpen" />
             </div>
@@ -359,7 +359,7 @@ import ConnectWallet from "@/components/ConnectWallet.vue"
 import { globalStore } from "@/composables/global"
 import useClipboard from "@/composables/useClipboard"
 
-import { ref } from "vue"
+import { computed, ref } from "vue"
 
 const { login, web3, logout } = useWeb3()
 const isModalVisible = ref(false)
@@ -415,6 +415,8 @@ async function doCopy(address) {
         console.error(e)
     }
 }
+
+const { isMd, isLg } = globalStore()
 </script>
 
 <style scoped lang="scss">
