@@ -38,7 +38,7 @@
 
 <script>
 export default {
-    name: "TableLoader",
+    name: "PortfolioTableLoader",
     props: {
         target: {
             type: String,
