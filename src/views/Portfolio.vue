@@ -192,7 +192,7 @@ import { computed, ref } from "vue"
 import { ethers } from "ethers"
 import { useSynthsSDK } from "@/composables/useSynthsSDK"
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
-import TableLoader from "@/components/TableLoader.vue"
+import PortfolioTableLoader from "@/components/loader/PortfolioTableLoader.vue"
 
 const filter_string = ref("")
 
@@ -200,7 +200,7 @@ export default {
     name: "Portfolio",
     components: {
         "s-button": SynthsRoundedButton,
-        "table-loader": TableLoader,
+        "table-loader": PortfolioTableLoader,
     },
     setup() {
         const { loading, lspPortfolio, totalSynthsMinted, totalPortfolioValue } = useSynthsSDK()

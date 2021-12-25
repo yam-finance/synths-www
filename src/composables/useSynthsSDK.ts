@@ -1,15 +1,18 @@
 import { ref, computed } from "vue"
 import { ethers } from "ethers"
-import Synths, { getRecentSynthData, getTotalMarketData } from "synths-sdk"
+import Synths, { getRecentSynthData, getTotalMarketData, getSynthData } from "synths-sdk"
 import { JsonRpcProvider } from "@ethersproject/providers"
 // TOOD Remove after testphase.
 import { defaultAssetsConfig, defaultTestAssetsConfig } from "synths-sdk/dist/src/lib/config"
+import { AssetConfig, isAssetConfigLSP } from "synths-sdk/dist/src/types/assets.t"
 
 let synthsSDK: Synths
+const POLYSCAN_API_KEY = import.meta.env.VITE_POLYSCAN_API_KEY as string
 const loading = ref(true)
 const data = ref({})
 const totalMarketData = ref()
 const recentSynthData = ref()
+const lspAssets = ref({})
 const lspPortfolio = ref()
 const totalSynthsMinted = ref(0)
 const totalPortfolioValue = ref(0)
@@ -23,7 +26,6 @@ export function useSynthsSDK() {
     async function init(provider: JsonRpcProvider, networkId: number) {
         loading.value = true
 
-        const POLYSCAN_API_KEY = import.meta.env.VITE_POLYSCAN_API_KEY as string
 
         synthsSDK = await Synths.create({ ethersProvider: provider, userAssetsConfig: defaultTestAssetsConfig })
         totalMarketData.value = await getTotalMarketData([networkId], synthsSDK.config, POLYSCAN_API_KEY)
@@ -44,9 +46,54 @@ export function useSynthsSDK() {
             }
         }
 
+        await getLspAssets()
+
         loading.value = false
     }
-    const getSDK = () => synthsSDK
+
+    /**
+     * @notice Loads the latest synth data.
+     * @dev Can be used for explore page.
+     */
+    async function getLspAssets() {
+        const assetsConfig = synthsSDK.assets
+        
+        if (assetsConfig) {
+            for (const assetCategory in assetsConfig) {
+                const latestSynth: AssetConfig = assetsConfig[assetCategory][0]
+                if (isAssetConfigLSP(latestSynth)) {
+                    
+                    const tokenData = {}
+                    let shortData;
+                    let longData;
+
+                    for (const pool of latestSynth.pools) {
+                        const longOrShortToken = await getSynthData(
+                            pool.location, 
+                            pool.address, 
+                            latestSynth.collateral, 
+                            "137", 
+                            POLYSCAN_API_KEY
+                        )
+
+                        if (longOrShortToken) {
+                            if (longOrShortToken.tokenSymbol.startsWith("s")) {
+                                shortData = longOrShortToken;
+                            } else {
+                                longData = longOrShortToken;
+                            }
+                        }
+                    }
+
+                    lspAssets.value[assetCategory] = {
+                        "address": latestSynth.lsp.address,
+                        "short": shortData,
+                        "long": longData
+                    };
+                }
+            }
+        }
+    }
 
     /**
      * @notice Connect the sdk to a synth.
@@ -71,8 +118,8 @@ export function useSynthsSDK() {
         lspPortfolio: computed(() => lspPortfolio.value),
         totalSynthsMinted: computed(() => totalSynthsMinted.value),
         totalPortfolioValue: computed(() => totalPortfolioValue.value),
+        lspAssets: computed(() => lspAssets.value),
         connectTo,
         init,
-        getSDK,
     }
 }
