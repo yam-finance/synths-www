@@ -505,6 +505,6 @@ export default {
 }
 
 .divider_dropdown_wallet {
-    @apply my-[8px] mx-0 flex-grow-0 order-4 flex-none self-stretch	border-[#303060];
+    @apply my-[8px] mx-0 flex-grow-0 order-4 flex-none self-stretch border-[#303060];
 }
 </style>
