@@ -74,14 +74,13 @@ export default {
     data: () => ({
         canvas: null,
         container: null,
+        myChart: null,
     }),
     watch: {
         "container.clientWidth": {
             deep: true,
             handler() {
-                console.dir(this.container)
-                this.canvas.height = this.container.clientHeight
-                this.canvas.width = this.container.clientWidth
+                this.myChart.resize(this.container.clientWidth, this.container.clientHeight)
             },
         },
     },
@@ -100,10 +99,11 @@ export default {
         this.chartData.forEach((item) => {
             data.datasets.push(item)
         })
+
         this.canvas.height = this.container.clientHeight
         this.canvas.width = this.container.clientWidth
 
-        let myChart = new Chart(ctx, {
+        this.myChart = new Chart(ctx, {
             type: "line",
             data: data,
             options: {
