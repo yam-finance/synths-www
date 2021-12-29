@@ -20,11 +20,11 @@ export const i18n = createI18n<{ message: MessageSchema }, false>({
     locale: "en",
     fallbackLocale: "en",
     messages: {
-        "en": en,
-        "zh": zh,
+        en: en,
+        zh: zh,
     },
     datetimeFormats: {
-        "en": {
+        en: {
             short: {
                 hour: "numeric",
                 minute: "numeric",
@@ -35,7 +35,7 @@ export const i18n = createI18n<{ message: MessageSchema }, false>({
         },
     },
     numberFormats: {
-        "en": {
+        en: {
             currency: {
                 style: "currency",
                 currencyDisplay: "symbol",

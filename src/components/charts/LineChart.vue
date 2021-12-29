@@ -1,6 +1,6 @@
 <template>
     <div ref="chartContainer" class="chart-container relative w-full h-full">
-        <canvas ref="chart" id="myChart"></canvas>
+        <canvas id="myChart" ref="chart" />
     </div>
 </template>
 
@@ -71,10 +71,23 @@ export default {
             default: () => [],
         },
     },
+    data: () => ({
+        canvas: null,
+        container: null,
+        myChart: null,
+    }),
+    watch: {
+        "container.clientWidth": {
+            deep: true,
+            handler() {
+                this.myChart.resize(this.container.clientWidth, this.container.clientHeight)
+            },
+        },
+    },
     mounted() {
-        const canvas = this.$refs.chart
-        const container = this.$refs.chartContainer
-        const ctx = canvas.getContext("2d")
+        this.canvas = this.$refs.chart
+        this.container = this.$refs.chartContainer
+        const ctx = this.canvas.getContext("2d")
         const data = {
             labels: [],
             datasets: [],
@@ -86,10 +99,11 @@ export default {
         this.chartData.forEach((item) => {
             data.datasets.push(item)
         })
-        canvas.height = container.clientHeight
-        canvas.width = container.clientWidth
 
-        let myChart = new Chart(ctx, {
+        this.canvas.height = this.container.clientHeight
+        this.canvas.width = this.container.clientWidth
+
+        this.myChart = new Chart(ctx, {
             type: "line",
             data: data,
             options: {
