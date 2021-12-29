@@ -119,10 +119,10 @@
             No synths to show
         </div>
     </div>
-    <div class="min-w-[400px] border-l bg-main hidden lg:block">
+    <div v-if="isLg" class="min-w-[400px] border-l bg-main block">
         <!--Right Side-->
     </div>
-    <div class="w-screen font-semibold block md:hidden text-white">
+    <div v-if="!isMd" class="w-screen font-semibold block text-white">
         <div class="w-full py-2 px-3 border-b bg-main">
             <span class="text-sm txt-main">Explore Synths</span>
         </div>
@@ -296,4 +296,7 @@ export default {
 import searchSvg from "@/assets/images/search.svg"
 import arrowUpRightSvg from "@/assets/images/arrow-up-right.svg"
 import arrowRightSvg from "@/assets/images/arrow-right.svg"
+import { globalStore } from "@/composables/global"
+
+const { isMd, isLg } = globalStore()
 </script>

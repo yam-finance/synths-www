@@ -1,5 +1,6 @@
 <template>
     <aside
+        v-if="isMd"
         class="
             sticky
             justify-center
@@ -12,8 +13,7 @@
             font-semibold
             bg-main
             txt-main
-            hidden
-            md:block
+            block
             border-r
             bg-main
             scrollbar
@@ -25,7 +25,7 @@
                 <span class="text-sm">All Synths</span>
             </div>
             <div class="w-full h-12 py-3 px-3 flex">
-                <img src="../../assets/images/search.svg" class="flex absolute my-2.5 mx-3" />
+                <search-svg class="flex absolute my-2.5 mx-3 w-[20px] h-[20px]" />
                 <input
                     class="
                         flex flex-wrap
@@ -56,13 +56,16 @@
                             class="px-4 py-2 my-auto flex border-b hover:bg-[#1a1842] bg-main !cursor-pointer"
                             :class="activeTab === menu.id ? 'bg-light' : ''"
                         >
-                            <img class="w-6" src="../../assets/images/zombie.png" />
+                            <img class="w-6" src="@/assets/images/zombie.png" />
                             <span class="px-2 text-sm my-auto text-white">{{ menu.title }}</span>
                             <div class="flex my-0.5 absolute" :class="activeTab === menu.id ? 'left-32' : 'left-40'">
                                 <span class="px-1 text-sm my-auto text-purpleLight font-normal">$120</span>
-                                <img src="../../assets/images/arrow-up-right.svg" class="h-full py-0.5" />
+                                <arrow-up-right-svg class="h-[20px] w-[20px] py-0.5" />
                                 <span class="px-1 text-sm my-auto text-purpleDark font-normal">15%</span>
-                                <img v-if="activeTab === menu.id" src="../../assets/images/arrow-right.svg" />
+                                <arrow-right-svg
+                                    v-if="activeTab === menu.id"
+                                    class="cursor-pointer w-[20px] h-[20px]"
+                                />
                             </div>
                         </div>
                     </router-link>
@@ -72,6 +75,14 @@
     </aside>
 </template>
 
+<script setup>
+import arrowUpRightSvg from "@/assets/images/arrow-up-right.svg"
+import arrowRightSvg from "@/assets/images/arrow-right.svg"
+import searchSvg from "@/assets/images/search.svg"
+import { globalStore } from "@/composables/global"
+
+const { isMd } = globalStore()
+</script>
 <script>
 let menus = [
     {
@@ -181,14 +192,13 @@ let menus = [
     },
 ]
 let filter_string = ""
-let activeTab = 1
 export default {
     name: "SideBar",
     data() {
         return {
             menus,
             filter_string,
-            activeTab,
+            activeTab: 1,
         }
     },
     computed: {

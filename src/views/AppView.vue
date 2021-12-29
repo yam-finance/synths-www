@@ -6,10 +6,10 @@
                 <div>
                     <SideBar />
                 </div>
-                <div class="hidden md:flex content-desktop">
+                <div v-if="isMd" class="flex content-desktop">
                     <router-view />
                 </div>
-                <div class="block md:hidden content-mobile">
+                <div v-if="!isMd" class="block content-mobile">
                     <router-view />
                 </div>
             </div>
@@ -59,7 +59,7 @@ export default {
 import { globalStore } from "@/composables/global"
 import { onMounted } from "vue"
 
-let { state } = globalStore()
+let { state, isMd } = globalStore()
 let { deleteNewNotification } = globalStore()
 let { addNewNotifications } = globalStore()
 

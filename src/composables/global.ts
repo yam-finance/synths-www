@@ -1,9 +1,12 @@
-import { reactive, toRefs } from "vue"
+import { computed, reactive, toRefs } from "vue"
 import { web3 } from "@/plugins/web3"
 
 let newNotificationTimer
 
 const globalState = reactive({
+    //Screen width
+    screenWidth: 0 as number,
+
     //Block NUmber
     blockNumber: 0 as number,
 
@@ -14,6 +17,14 @@ const globalState = reactive({
 })
 
 export function globalStore() {
+
+    /**
+     * @notice Set Screen width
+     */
+    const setScreenWidth = (payload: number) => {
+        globalState.screenWidth = payload
+    }
+
     /**
      * @notice Set ETH block number globally.
      */
@@ -79,6 +90,12 @@ export function globalStore() {
 
     return {
         state: toRefs(globalState),
+
+        //Screen Width
+        setScreenWidth,
+        isXl: computed(() => globalState.screenWidth >= 1280),
+        isLg: computed(() => globalState.screenWidth >= 1024),
+        isMd: computed(() => globalState.screenWidth >= 768),
 
         //Block NUmber
         setBlockNumber,

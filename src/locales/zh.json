@@ -3,7 +3,5 @@
     "menu": {
         "login": "login"
     },
-    "errors": [
-        "Error!"
-    ]
+    "errors": ["Error!"]
 }

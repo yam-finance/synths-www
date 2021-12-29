@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full font-semibold hidden md:block mb-10">
+    <div v-if="isMd" class="w-full font-semibold block mb-10">
         <div class="w-full h-12 py-3 px-4 border-b bg-main">
             <span class="text-sm txt-main">Portfolio</span>
         </div>
@@ -82,7 +82,7 @@
             </div>
         </div>
 
-        <table cellpadding="5" class="text-white border-b bg-main w-full font-normal hidden md:table">
+        <table v-if="isMd" cellpadding="5" class="text-white border-b bg-main w-full font-normal table">
             <thead class="lg:text-xs xl:text-sm txt-main text-left">
                 <th class="py-2 px-4">Synths</th>
                 <th>Amount Minted</th>
@@ -130,11 +130,11 @@
         </div>
     </div>
 
-    <div class="min-w-[400px] border-l bg-main hidden lg:block">
+    <div v-if="isLg" class="min-w-[400px] border-l bg-main block">
         <!--Right Side-->
     </div>
 
-    <div class="w-screen font-semibold block md:hidden text-white">
+    <div v-if="!isMd" class="w-screen font-semibold block text-white">
         <div class="w-full py-2 px-3 border-b bg-main">
             <span class="text-sm txt-main">Portfolio</span>
         </div>
@@ -195,6 +195,7 @@ import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
 import TableLoader from "@/components/TableLoader.vue"
 import arrowRightSvg from "@/assets/images/arrow-right.svg"
 import searchSvg from "@/assets/images/search.svg"
+import { globalStore } from "@/composables/global"
 
 const filter_string = ref("")
 
@@ -208,8 +209,11 @@ export default {
     },
     setup() {
         const { loading, lspPortfolio, totalSynthsMinted, totalPortfolioValue } = useSynthsSDK()
+        const { isMd, isLg } = globalStore()
 
         return {
+            isMd,
+            isLg,
             formatEther: ethers.utils.formatEther,
             loading: computed(() => loading.value),
             lspPortfolio: computed(() => {

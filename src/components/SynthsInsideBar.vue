@@ -84,7 +84,6 @@ export default {
         "s-button": SynthsRoundedButton,
         "s-crypto-input": SynthsCryptoInput,
     },
-    inject: ["screen"],
     props: {
         title: {
             type: String,
