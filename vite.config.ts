@@ -52,4 +52,7 @@ export default defineConfig({
         // @ts-ignore
         allowNodeBuiltins: ["stream"],
     },
+    build: {
+        sourcemap: true,
+    },
 })

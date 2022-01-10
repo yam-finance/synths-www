@@ -240,12 +240,12 @@ import LineChart from "@/components/charts/LineChart.vue"
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
 
 export default {
-    name: "SynthsLongShortChart",
+    name: "SynthsChart",
     components: {
         LineChart,
         "s-button": SynthsRoundedButton,
     },
-    props: ["textTitle", "BtnColor"],
+    props: ["textTitle", "BtnColor", "isLongShort"],
     data: () => ({
         filterButtons: ["1H", "1D", "1W", "1M", "1Y"],
         labels: [12, 25, 1, 5, 20, 3],

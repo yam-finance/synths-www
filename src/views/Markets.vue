@@ -330,10 +330,7 @@ export default {
         const { isLg } = globalStore()
         /* -- End of SDK Init Test -- */
 
-        const userDetails: any = inject("userDetails")
-
         return {
-            userDetails,
             isLg,
 
             /* -- Start of SDK Test -- */
