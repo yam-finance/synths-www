@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="isLongShort">
         <div v-if="isXl" class="slsc-wrapper rounded-xl grid items-start grid">
             <div class="slsc__stats-item !rounded-tl-xl">
                 <p class="flex items-end font-semibold text-2xl">$323k</p>
@@ -233,6 +233,73 @@
             </div>
         </div>
     </div>
+    <div v-else class="ssc-wrapper bg-blueDark rounded-xl p-4 grid gap-y-2.5 items-start">
+        <div class="ssc__stats justify-self-start">
+            <p class="flex items-end font-semibold leading-5">
+                <span>42%</span>
+                <svg
+                    id="arrow-up-right"
+                    class="w-4 h-4 stroke-current text-[#2DFF42]"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M7 17L17 7"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
+                    <path
+                        d="M7 7H17V17"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
+                </svg>
+                <span class="text-xs text-purpleLight">15%</span>
+            </p>
+            <p class="text-[10px] text-purpleLight">xSUSHI APY</p>
+        </div>
+        <div
+            class="
+                sc__buttons
+                justify-self-end
+                flex
+                items-start
+                justify-between
+                font-semibold
+                w-full
+                lg:w-[70%]
+                max-w-[200px]
+                bg-[#19193F]
+                p-1
+                rounded-lg
+                text-[10px]
+            "
+        >
+            <div
+                v-for="item in filterButtons"
+                :key="item"
+                class="
+                    sc__buttons
+                    cursor-pointer
+                    text-purpleLight
+                    hover:text-black
+                    rounded
+                    hover:bg-white
+                    w-auto
+                    py-0.5
+                    px-2
+                "
+            >
+                {{ item }}
+            </div>
+        </div>
+        <line-chart class="sc__charts h-full overflow-auto relative" :labels="labels" :chart-data="chartData" />
+    </div>
 </template>
 
 <script>
@@ -279,6 +346,16 @@ const { state, isXl } = globalStore()
 </script>
 
 <style scoped lang="scss">
+.sc {
+    &__charts {
+        grid-area: chart;
+    }
+
+    &__buttons {
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+    }
+}
+
 .slsc {
     &-wrapper {
         grid-template-columns: 20% 80%;
@@ -289,14 +366,6 @@ const { state, isXl } = globalStore()
             ". chart"
             ". chart"
             ". chart";
-    }
-
-    &__charts {
-        grid-area: chart;
-    }
-
-    &__buttons {
-        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
     }
 
     &__stats-item {
@@ -316,6 +385,16 @@ const { state, isXl } = globalStore()
         &-stat {
             @apply mr-8;
         }
+    }
+}
+
+.ssc {
+    &-wrapper {
+        grid-template-columns: repeat(2, auto);
+        grid-template-areas:
+            ". ."
+            "chart chart";
+        box-shadow: 0 16px 16px -4px rgba(0, 0, 0, 0.15), 0px 4px 4px rgba(0, 0, 0, 0.1);
     }
 }
 </style>
