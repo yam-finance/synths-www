@@ -1,0 +1,121 @@
+@import "tailwindcss/components";
+@import "tailwindcss/base";
+@import "tailwindcss/utilities";
+
+@layer base {
+    @font-face {
+        font-family: "Open Sauce Sans", sans-serif;
+        font-weight: 300;
+        font-style: normal;
+        src: url(../public/fonts/OpenSauceSans-Light.ttf) format("ttf");
+    }
+    @font-face {
+        font-family: "Open Sauce Sans", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        src: url(../public/fonts/OpenSauceSans-Regular.ttf) format("ttf");
+    }
+    @font-face {
+        font-family: "Open Sauce Sans", sans-serif;
+        font-weight: 600;
+        font-style: normal;
+        src: url(../public/fonts/OpenSauceSans-SemiBold.ttf) format("ttf");
+    }
+    @font-face {
+        font-family: "Open Sauce Sans", sans-serif;
+        font-weight: 700;
+        font-style: normal;
+        src: url(../public/fonts/OpenSauceSans-Bold.ttf) format("ttf");
+    }
+}
+
+* {
+    -webkit-transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body,
+#__nuxt,
+#__layout {
+    height: 100%;
+    font-family: "Open Sauce Sans", sans-serif;
+}
+p,
+span,
+div {
+    cursor: inherit;
+    @apply text-white;
+}
+body {
+    background-color: #11112f;
+}
+html,
+body {
+    .bg-main {
+        background: #11112f;
+        border-color: #242449;
+    }
+
+    .bg-dark {
+        background: #0c0c28;
+    }
+
+    .bg-light {
+        background: #19193f;
+    }
+
+    .long {
+        box-shadow: 0px 0px 4px 0px #c8ff2d inset;
+    }
+    .short {
+        box-shadow: 0px 0px 4px 0px #ff6acc inset;
+    }
+
+    .wallet-btn {
+        background: linear-gradient(180deg, #f77fa0 0%, #da4cab 100%);
+        box-shadow: 0px 0px 2px 0px #ffb7e0 inset;
+    }
+
+    .txt-main {
+        color: #7171b2;
+    }
+
+    .bd-main {
+        border-color: #242449;
+    }
+
+    ::-webkit-scrollbar {
+        width: 1px;
+        height: 5px;
+        border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: inherit;
+        border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #0c0c28;
+        border-radius: 5px;
+    }
+
+    .basic-hover {
+        @apply hover:brightness-125 active:brightness-75;
+    }
+
+    .border-hover {
+        border-color: #131334;
+    }
+    #nprogress {
+        .spinner {
+            display: block;
+            position: fixed;
+            z-index: 1031;
+            top: 68% !important;
+            right: 49% !important;
+        }
+    }
+}

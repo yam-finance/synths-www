@@ -1,0 +1,34 @@
+{
+    "injected": {
+        "id": "injected",
+        "name": "MetaMask"
+    },
+    "walletconnect": {
+        "id": "walletconnect",
+        "name": "WalletConnect",
+        "network": "1",
+        "options": {
+            "rpc": {
+                "1": "https://cloudflare-eth.com",
+                "4": "https://eth-rinkeby.alchemyapi.io/v2/NpOuf_5b5E4-z2Sm_mD85ZWmFAkuvuF0",
+                "137": "https://polygon-mainnet.g.alchemy.com/v2/NpOuf_5b5E4-z2Sm_mD85ZWmFAkuvuF0"
+            }
+        }
+    },
+    "portis": {
+        "id": "portis",
+        "name": "Portis",
+        "network": "1",
+        "options": {
+            "dappId": "b58d1577-7308-4619-a123-dfa2db202059",
+            "network": "mainnet"
+        }
+    },
+    "fortmatic": {
+        "id": "fortmatic",
+        "name": "Fortmatic",
+        "options": {
+            "apiKey": "pk_live_F9DFAE92C4B7480D"
+        }
+    }
+}

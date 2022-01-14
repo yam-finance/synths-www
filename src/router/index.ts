@@ -1,15 +1,41 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from "vue-router"
 
 const routes = [
     {
-        path: '/',
-        name: 'Home',
-        component: () => import('../views/home/index.vue'),
+        path: "/",
+        name: "Home",
+        component: () => import("@/views/Home.vue"),
     },
     {
-        path: '/explore',
-        name: 'Explore',
-        component: () => import('../views/explore/index.vue'),
+        path: "/",
+        name: "AppView",
+        component: () => import("@/views/AppView.vue"),
+        meta: { hasSideBar: 1 },
+        children: [
+            {
+                path: "/explore",
+                name: "Explore",
+                component: () => import("@/views/ExploreSynths.vue"),
+                meta: { hasSideBar: 0 },
+            },
+            {
+                path: "/synths/:synth",
+                name: "Synths",
+                component: () => import("@/views/Markets.vue"),
+                meta: { hasSideBar: 1 },
+            },
+            {
+                path: "/portfolio",
+                name: "Portfolio",
+                component: () => import("@/views/Portfolio.vue"),
+                meta: { hasSideBar: 0 },
+            },
+        ],
+    },
+    {
+        path: "/testsidebar",
+        name: "Testsidebar",
+        component: () => import("@/components/testsidebar/index.vue"),
     },
 ]
 const router = createRouter({
