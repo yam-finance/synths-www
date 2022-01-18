@@ -1,6 +1,6 @@
 <template>
     <div v-if="isLongShort">
-        <div v-if="isXl" class="slsc-wrapper rounded-xl grid items-start grid">
+        <div v-if="isXl" class="slsc-wrapper rounded-xl items-start grid">
             <div class="slsc__stats-item !rounded-tl-xl">
                 <p class="flex items-end font-semibold text-2xl">$323k</p>
                 <p class="text-xs text-purpleLight">Long Token Liquidity</p>
@@ -21,7 +21,7 @@
                     </s-button>
                 </div>
             </div>
-            <div class="slsc__charts h-full flex flex-col justify-between">
+            <div class="slsc__charts sc__charts h-full flex flex-col justify-between">
                 <div class="slsc__charts-stats flex justify-start w-full">
                     <div class="slsc__charts-stat">
                         <p class="flex items-end font-semibold leading-5">
@@ -117,7 +117,9 @@
                 <p class="slsc__charts__upper-bound border-b border-[#3E3E6B] text-[10px] pb-1 mt-4 mb-4 mb-auto">
                     <span class="text-purpleLight">Upper bound</span> $300
                 </p>
+
                 <line-chart class="h-full overflow-auto my-3 relative" :labels="labels" :chart-data="chartData" />
+
                 <p class="slsc__charts__upper-bound border-t border-[#3E3E6B] text-[10px] pt-1 mt-4">
                     <span class="text-purpleLight">Lower bound</span> $300
                 </p>
@@ -186,11 +188,8 @@
                     </div>
                 </div>
 
-                <line-chart
-                    class="h-full overflow-auto my-3 relative w-full"
-                    :labels="labels"
-                    :chart-data="chartData"
-                />
+                <line-chart class="h-full overflow-auto my-3 relative w-full" :chart-data="chartData" />
+
                 <div class="flex justify-between">
                     <div class="slsc__charts-stat">
                         <p class="flex items-end font-semibold leading-5">
@@ -298,7 +297,7 @@
                 {{ item }}
             </div>
         </div>
-        <line-chart class="sc__charts h-full overflow-auto relative" :labels="labels" :chart-data="chartData" />
+        <line-chart class="sc__charts h-full relative" :chart-data="chartData" />
     </div>
 </template>
 
@@ -315,31 +314,26 @@ export default {
     props: ["textTitle", "BtnColor", "isLongShort"],
     data: () => ({
         filterButtons: ["1H", "1D", "1W", "1M", "1Y"],
-        labels: [12, 25, 1, 5, 20, 3],
         chartData: [
-            {
-                backgroundColor: "#FFFFFF",
-                borderWidth: 3,
-                tension: 0.4,
-                fill: false,
-                borderColor: "#FFFFFF",
-                data: [12, 25, 1, 5, 20, 3],
-            },
-            {
-                backgroundColor: "green",
-                borderWidth: 3,
-                tension: 0.4,
-                fill: false,
-                borderColor: "green",
-                data: [12, 25, 1, 5, 5, 3],
-            },
+            { name: "label1", value1: 24, value2: 10 },
+            { name: "label2", value1: 46, value2: 30 },
+            { name: "label3", value1: 0, value2: 0 },
+            { name: "label4", value1: 15, value2: 10 },
+            { name: "label5", value1: 1, value2: 1 },
+            { name: "label6", value1: 10, value2: 0 },
+            { name: "label7", value1: 21, value2: 10 },
+            { name: "label8", value1: 41, value2: 30 },
+            { name: "label9", value1: 61, value2: 50 },
+            { name: "label10", value1: 61, value2: 50 },
+            { name: "label11", value1: 61, value2: 50 },
+            { name: "label12", value1: 61, value2: 50 },
+            { name: "label13", value1: 61, value2: 50 },
+            { name: "label14", value1: 61, value2: 50 },
         ],
     }),
-    computed: {},
 }
 </script>
 <script setup>
-import { computed } from "vue"
 import { globalStore } from "@/composables/global"
 
 const { state, isXl } = globalStore()

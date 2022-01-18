@@ -39,6 +39,7 @@
         "vue-i18n": "^9.1.9",
         "vue-js-modal": "^2.0.1",
         "vue-router": "4",
+        "vue3-charts": "^1.1.27",
         "vue3-click-away": "^1.2.1",
         "vue3-clipboard": "^1.0.0"
     },

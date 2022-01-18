@@ -138,13 +138,13 @@
         </div>
 
         <div class="px-6 py-4 border-b md:border-0 bg-main">
-            <SynthsSingleChart class="h-[220px]" />
+            <SynthChart />
         </div>
         <div class="px-6 py-4 border-b md:border-0 bg-main xl:block">
-            <SynthsLongShortChart class="p-0" :text-title="textTitle" :btn-color="BtnColor" />
+            <SynthChart :is-long-short="true" class="p-0" :text-title="textTitle" :btn-color="BtnColor" />
         </div>
         <div class="px-6 py-4 border-b md:border-0 bg-main xl:block">
-            <SynthsLongShortChart class="p-0" :text-title="textTitles" :btn-color="BtnShortColor" />
+            <SynthChart :is-long-short="true" class="p-0" :text-title="textTitles" :btn-color="BtnShortColor" />
         </div>
         <div class="border-t bg-main">
             <div class="grid grid-cols-1 xl:grid-cols-2">
@@ -226,7 +226,7 @@
                         </div>
                     </div>
                     <div class="my-1">
-                        <SynthsSingleChart class="rounded-t-md" />
+                        <SynthChart class="rounded-t-md" />
                     </div>
                 </div>
             </div>
@@ -264,15 +264,13 @@
 </template>
 
 <script lang="ts">
+import SynthChart from "@/components/charts/SynthChart.vue"
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
-import SynthsSingleChart from "@/components/charts/SynthsSingleChart.vue"
-import SynthsLongShortChart from "@/components/charts/SynthsLongShortChart.vue"
 import SynthsInsideBar from "@/components/SynthsInsideBar.vue"
 import synthsLogo from "@/assets/images/logo.png"
 import externalLinkSvg from "@/assets/images/external-link.svg"
 import arrowRightSvg from "@/assets/images/arrow-right.svg"
 
-import { inject } from "vue"
 import { mixin as VueClickAway, directive as onClickaway } from "vue3-click-away"
 import { globalStore } from "@/composables/global"
 
@@ -310,8 +308,7 @@ let highlight = false
 export default {
     name: "Markets",
     components: {
-        SynthsSingleChart,
-        SynthsLongShortChart,
+        SynthChart,
         "s-button": SynthsRoundedButton,
         SynthsInsideBar,
         externalLinkSvg,
