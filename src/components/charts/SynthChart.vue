@@ -297,7 +297,7 @@
                 {{ item }}
             </div>
         </div>
-        <line-chart class="sc__charts h-full relative" :chart-data="chartData" />
+        <line-chart class="sc__charts h-full relative overflow-auto" :chart-data="chartData" />
     </div>
 </template>
 

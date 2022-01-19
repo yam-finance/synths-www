@@ -1,5 +1,5 @@
 <template>
-    <div ref="chartContainer" class="chart-container relative w-full min-h-[224px]">
+    <div ref="chartContainer" class="chart-container overflow-auto relative w-full min-h-[224px]">
         <Chart
             :size="{ width: myChart.width, height: myChart.height }"
             :data="chartData"
@@ -67,9 +67,12 @@ export default {
         },
     }),
     watch: {
-        "container.clientWidth": {
+        container: {
             deep: true,
             handler() {
+                this.$nextTick(() => {
+                    console.log(this.$el)
+                })
                 this.myChart.height = this.container.clientHeight
                 this.myChart.width = this.container.clientWidth
             },

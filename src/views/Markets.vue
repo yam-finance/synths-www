@@ -1,5 +1,5 @@
 <template>
-    <div class="markets pb-10 bg-light border-r bg-main">
+    <div class="markets w-full pb-10 bg-light border-r bg-main">
         <div class="w-full h-12 py-3 px-6 border-b bg-main">
             <span class="text-sm txt-main">Information</span>
         </div>
