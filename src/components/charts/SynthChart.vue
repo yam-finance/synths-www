@@ -118,7 +118,7 @@
                     <span class="text-purpleLight">Upper bound</span> $300
                 </p>
 
-                <line-chart class="h-full overflow-auto my-3 relative" :labels="labels" :chart-data="chartData" />
+                <line-chart class="h-full overflow-auto my-3 relative" :chart-data="chartData" />
 
                 <p class="slsc__charts__upper-bound border-t border-[#3E3E6B] text-[10px] pt-1 mt-4">
                     <span class="text-purpleLight">Lower bound</span> $300
@@ -329,6 +329,30 @@ export default {
             { name: "label12", value1: 61, value2: 50 },
             { name: "label13", value1: 61, value2: 50 },
             { name: "label14", value1: 61, value2: 50 },
+            { name: "label15", value1: 61, value2: 50 },
+            { name: "label16", value1: 61, value2: 50 },
+            { name: "label17", value1: 61, value2: 50 },
+            { name: "label18", value1: 61, value2: 50 },
+            { name: "label19", value1: 61, value2: 50 },
+            { name: "label20", value1: 61, value2: 50 },
+            { name: "label21", value1: 61, value2: 50 },
+            { name: "label22", value1: 61, value2: 50 },
+            { name: "label23", value1: 61, value2: 50 },
+            { name: "label24", value1: 61, value2: 50 },
+            { name: "label25", value1: 61, value2: 50 },
+            { name: "label26", value1: 61, value2: 50 },
+            { name: "label27", value1: 61, value2: 50 },
+            { name: "label28", value1: 61, value2: 50 },
+            { name: "label29", value1: 61, value2: 50 },
+            { name: "label30", value1: 61, value2: 50 },
+            { name: "label31", value1: 61, value2: 50 },
+            { name: "label32", value1: 61, value2: 50 },
+            { name: "label33", value1: 61, value2: 50 },
+            { name: "label34", value1: 61, value2: 50 },
+            { name: "label35", value1: 61, value2: 50 },
+            { name: "label36", value1: 61, value2: 50 },
+            { name: "label37", value1: 61, value2: 50 },
+            { name: "label38", value1: 61, value2: 50 },
         ],
     }),
 }

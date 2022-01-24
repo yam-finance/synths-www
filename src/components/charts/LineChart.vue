@@ -24,13 +24,13 @@
                 <Area
                     :data-keys="['name', 'value2']"
                     type="monotone"
-                    :dot-style="false"
+                    :dot-style="null"
                     :area-style="{ fill: 'url(#grad1)' }"
                 />
                 <Line
                     :data-keys="['name', 'value2']"
                     type="monotone"
-                    :dot-style="false"
+                    :dot-style="null"
                     :line-style="{ stroke: '#eeff00' }"
                 />
                 <defs>
@@ -66,23 +66,19 @@ export default {
             height: 0,
         },
     }),
-    watch: {
-        container: {
-            deep: true,
-            handler() {
-                this.$nextTick(() => {
-                    console.log(this.$el)
-                })
-                this.myChart.height = this.container.clientHeight
-                this.myChart.width = this.container.clientWidth
-            },
-        },
-    },
     mounted() {
         this.container = this.$refs.chartContainer
-
-        this.myChart.height = this.container.clientHeight
-        this.myChart.width = this.container.clientWidth
+        this.handleResize()
+        window.addEventListener("resize", this.handleResize)
+    },
+    beforeUnmount() {
+        window.removeEventListener("resize", this.handleResize)
+    },
+    methods: {
+        handleResize() {
+            this.myChart.height = this.container.clientHeight
+            this.myChart.width = this.container.clientWidth
+        },
     },
 }
 </script>
