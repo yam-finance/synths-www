@@ -6,29 +6,16 @@
             @click="toggleNotificationOpen"
         >
             <div
-                class="
-                    notification
-                    bg-main
-                    box-content
-                    border-l
-                    fixed
-                    top-0
-                    right-0
-                    h-full
-                    w-full
-                    md:w-[240px]
-                    px-4
-                    box-border
-                "
+                class="notification bg-main border-l fixed top-0 right-0 h-full w-full md:w-[240px] px-4 box-border"
                 @click.stop=""
             >
-                <img
-                    class="notification-close basic-hover ml-auto mt-5 cursor-pointer"
-                    src="@/assets/images/x.svg"
-                    alt="Close Icon"
-                    @click="toggleNotificationOpen"
-                />
-                <h2 class="font-semibold mb-2">Notification</h2>
+                <div class="flex items-center">
+                    <h2 class="font-semibold mb-2 mt-5">Notification</h2>
+                    <x-svg
+                        class="notification-close basic-hover ml-auto mt-5 cursor-pointer w-[24px] h-[24px]"
+                        @click="toggleNotificationOpen"
+                    />
+                </div>
                 <div v-if="notifications.length" class="notification-content">
                     <notification
                         v-for="(item, index) in notifications"
@@ -61,6 +48,8 @@ export default {
 }
 </script>
 <script setup>
+import xSvg from "@/assets/images/x.svg"
+
 import { globalStore } from "@/composables/global"
 
 const { state } = globalStore()

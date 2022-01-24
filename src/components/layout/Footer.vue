@@ -1,17 +1,17 @@
 <template>
     <nav class="h-12 w-full fixed bottom-0 left-0 z-20 text-white flex flex-col lg:flex-row border-t bg-main bg-main">
-        <div class="hidden md:block">
+        <div v-if="isMd" class="block">
             <div class="flex overflow-hidden absolute w-64 h-12 border-r bg-main">
                 <div class="flex items-center px-4 cursor-pointer" @click="goToBlockLink">
-                    <img src="@/assets/images/green-dot.svg" class="" alt="green-dot" />
+                    <green-dot-svg class="h-3 w-[10px]" />
                     <div class="text-xs font-normal translate-y-px px-2">{{ blockNumber }}</div>
-                    <img src="@/assets/images/external-link.svg" class="" />
+                    <external-link-svg class="w-[12px] h-[12px]" />
                 </div>
             </div>
             <div class="flex absolute w-96 mr-4 right-0 p-2 text-right h-12 lg:border-l bg-main">
                 <div class="flex absolute right-2">
-                    <img src="@/assets/images/socials/twitter.svg" class="mx-2 my-auto cursor-pointer" />
-                    <img src="@/assets/images/socials/discord.svg" class="mx-2 my-auto cursor-pointer" />
+                    <twitter-svg class="w-[24px] h-[24px] mx-2 my-auto cursor-pointer" />
+                    <discord-svg class="w-[24px] h-[24px] mx-2 my-auto cursor-pointer" />
                 </div>
             </div>
         </div>
@@ -82,18 +82,17 @@
 
                 <div class="w-full flex fixed bottom-96 mb-2 lg:hidden px-2 py-3 bg-main z-30">
                     <div class="flex">
-                        <img src="@/assets/images/socials/twitter.svg" class="mx-2 my-auto cursor-pointer" />
-                        <img src="@/assets/images/socials/discord.svg" class="mx-2 my-auto cursor-pointer" />
+                        <twitter-svg class="w-[24px] h-[24px] mx-2 my-auto cursor-pointer" />
+                        <discord-svg class="w-[24px] h-[24px] mx-2 my-auto cursor-pointer" />
                     </div>
                     <span
                         class="flex px-2 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer relative"
                         @click="handleLanguageMenu"
                     >
                         English
-                        <img
-                            src="@/assets/images/dropdown.svg"
+                        <dropdown-svg
                             :class="{ 'rotate-180': isLangDropDownOpen }"
-                            class="mx-2 ml-1 my-auto h-4"
+                            class="mx-2 ml-1 my-auto h-4 w-[24px]"
                         />
                         <ul
                             v-if="isLangDropDownOpen"
@@ -121,10 +120,9 @@
                         @click="handleSupportMenu"
                     >
                         Help
-                        <img
-                            src="@/assets/images/dropdown.svg"
+                        <dropdown-svg
                             :class="{ 'rotate-180': isHelpDropDownOpen }"
-                            class="mx-2 ml-1 my-auto h-4"
+                            class="mx-2 ml-1 my-auto h-4 w-[24px]"
                         />
                         <ul
                             v-if="isHelpDropDownOpen"
@@ -155,13 +153,13 @@
             </div>
         </transition>
 
-        <div class="flex absolute w-full right-0 p-2 text-right h-12 lg:border-l bg-main lg:hidden">
+        <div v-if="!isLg" class="flex absolute w-full right-0 p-2 text-right h-12 lg:border-l bg-main">
             <div class="flex cursor-pointer ml-3">
                 <burger-button :is-open="isMenuOpen" @click="isMenuOpen = !isMenuOpen" />
             </div>
             <div class="flex overflow-hidden ml-auto">
                 <div class="flex justify-center items-center px-3 cursor-pointer" @click="goToBlockLink">
-                    <img src="@/assets/images/green-dot.svg" class="h-3 py-0.5" />
+                    <green-dot-svg class="h-3 w-[10px] py-0.5" />
                     <span class="text-xs my-auto font-normal px-1">{{ blockNumber }}</span>
                 </div>
             </div>
@@ -179,12 +177,11 @@
                         class="flex px-4 py-1.5 text-sm cursor-pointer"
                         @click="connectButtonHandler"
                     >
-                        <img src="@/assets/icons/metamask.svg" class="mx-2 my-auto h-4" />
+                        <metamask-svg class="mx-2 my-auto h-4 w-4" />
                         {{ formatAddress(web3.account) }}
-                        <img
-                            src="@/assets/images/dropdown.svg"
+                        <dropdown-svg
                             :class="{ 'rotate-180': isWalletDropDownOpen }"
-                            class="mx-2 my-auto h-4"
+                            class="mx-2 my-auto h-4 w-[24px]"
                         />
                         <div v-if="isWalletDropDownOpen" class="blur h-full w-full top-0 right-0 fixed"></div>
 
@@ -248,17 +245,18 @@
                             <li class="divider_dropdown_wallet"></li>
                             <li class="min-w-max cursor-pointer p-1">
                                 <span class="wallet_actions">
-                                    <img src="@/assets/icons/play-circle.png" /> &nbsp; Run Simulation
+                                    <img src="@/assets/icons/play-circle.png" class="w-[12px] h-[20px]" /> &nbsp; Run
+                                    Simulation
                                 </span>
                             </li>
                             <li class="min-w-max cursor-pointer p-1">
                                 <span class="wallet_actions" @click="doCopy(web3.account)">
-                                    <img src="@/assets/icons/copy.svg" /> &nbsp; Copy Address
+                                    <copy-svg class="w-[16px] h-[16px]" />&nbsp; Copy Address
                                 </span>
                             </li>
                             <li class="min-w-max cursor-pointer p-1">
                                 <span class="wallet_actions">
-                                    <img src="@/assets/icons/externalLink.svg" />&nbsp;
+                                    <external-link-svg class="w-[16px] h-[16px]" />&nbsp;
                                     <a class="ml-1" :href="web3.etherscanlink" target="_blank">Etherscan</a>
                                 </span>
                             </li>
@@ -267,7 +265,7 @@
                                 @click="handleLogout(), (isWalletDropDownOpen = false)"
                             >
                                 <span class="wallet_actions">
-                                    <img src="@/assets/icons/disconnect.svg" />&nbsp; Disconnect
+                                    <disconnect-svg class="w-[16px] h-[16px]" />&nbsp; Disconnect
                                 </span>
                             </li>
                         </ul>
@@ -347,12 +345,21 @@ export default {
 </script>
 
 <script setup>
+import twitterSvg from "@/assets/images/socials/twitter.svg"
+import discordSvg from "@/assets/images/socials/discord.svg"
+import greenDotSvg from "@/assets/images/green-dot.svg"
+import externalLinkSvg from "@/assets/images/external-link.svg"
+import dropdownSvg from "@/assets/images/dropdown.svg"
+import metamaskSvg from "@/assets/icons/metamask.svg"
+import copySvg from "@/assets/icons/copy.svg"
+import disconnectSvg from "@/assets/icons/disconnect.svg"
+
 import { useWeb3 } from "@/composables/useWeb3"
 import ConnectWallet from "@/components/ConnectWallet.vue"
 import { globalStore } from "@/composables/global"
 import useClipboard from "@/composables/useClipboard"
 
-import { ref } from "vue"
+import { computed, ref } from "vue"
 
 const { login, web3, logout } = useWeb3()
 const isModalVisible = ref(false)
@@ -373,7 +380,7 @@ async function handleLogout() {
     // emit('close');
 }
 function formatAddress(address) {
-    return address.slice(0, 6) + "..." + address.slice(-6)
+    return address.slice(0, 1) + "..." + address.slice(-3)
 }
 
 function goToBlockLink() {
@@ -408,6 +415,8 @@ async function doCopy(address) {
         console.error(e)
     }
 }
+
+const { isMd, isLg } = globalStore()
 </script>
 
 <style scoped lang="scss">

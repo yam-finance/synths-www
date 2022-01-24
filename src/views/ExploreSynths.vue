@@ -9,7 +9,7 @@
                 grid
                 md:grid-cols-1
                 lg:grid-cols-1
-                xl:grid-cols-2
+                xl:grid-cols-3
                 2xl:grid-cols-3
                 gap-4
                 text-white
@@ -35,7 +35,7 @@
             <span class="py-3 px-4"> All Synths </span>
 
             <div class="h-full w-[230px] py-2 px-3 flex">
-                <img src="@/assets/images/search.svg" class="flex absolute my-1.5 mx-3" />
+                <search-svg class="flex absolute my-1.5 mx-3 w-[20px] h-[20px]" />
                 <input
                     class="
                         flex flex-wrap
@@ -75,22 +75,41 @@
             <tbody class="border-t bg-main lg:text-xs xl:text-sm 2xl:text-base">
                 <tr v-for="(synth, key) in synths" :key="key" class="cursor-pointer border-b bg-main basic-hover">
                     <td class="px-4 py-2 flex">
-                        <img src="@/assets/images/zombie.png" class="w-6 h-6" />
-                        <router-link class="font-semibold" :to="{ name: 'Synths', params: { synth: synth.id } }">
+                        <router-link class="font-semibold flex" :to="{ name: 'Synths', params: { synth: synth.id } }">
+                            <img src="@/assets/images/zombie.png" class="w-6 h-6" />
+
                             &nbsp;{{ synth.name }}
                         </router-link>
                     </td>
-                    <td>{{ synth.price }}</td>
                     <td>
-                        <img src="@/assets/images/arrow-up-right.svg" class="h-4 inline -translate-y-0.5" />
-                        {{ synth.day_change }}
+                        <router-link class="font-semibold" :to="{ name: 'Synths', params: { synth: synth.id } }">
+                            {{ synth.price }}
+                        </router-link>
                     </td>
-                    <td>{{ synth.day_volume }}</td>
-                    <td>{{ synth.liquidity }}</td>
-                    <td>${{ synth.apr }}</td>
+                    <td>
+                        <router-link class="font-semibold" :to="{ name: 'Synths', params: { synth: synth.id } }">
+                            <arrow-up-right-svg class="h-[20px] w-[20px] inline -translate-y-0.5" />
+                            {{ synth.day_change }}
+                        </router-link>
+                    </td>
+                    <td>
+                        <router-link class="font-semibold" :to="{ name: 'Synths', params: { synth: synth.id } }"
+                            >{{ synth.day_volume }}
+                        </router-link>
+                    </td>
+                    <td>
+                        <router-link class="font-semibold" :to="{ name: 'Synths', params: { synth: synth.id } }"
+                            >{{ synth.liquidity }}
+                        </router-link>
+                    </td>
+                    <td>
+                        <router-link class="font-semibold" :to="{ name: 'Synths', params: { synth: synth.id } }"
+                            >${{ synth.apr }}
+                        </router-link>
+                    </td>
                     <td class="p-0 m-0">
                         <router-link :to="{ name: 'Synths', params: { synth: synth.id } }">
-                            <img src="@/assets/images/arrow-right.svg" class="cursor-pointer" />
+                            <arrow-right-svg class="cursor-pointer w-[20px] h-[20px]" />
                         </router-link>
                     </td>
                 </tr>
@@ -100,22 +119,32 @@
             No synths to show
         </div>
     </div>
-    <div class="min-w-[400px] border-l bg-main hidden lg:block">
+    <div v-if="isLg" class="min-w-[400px] border-l bg-main block">
         <!--Right Side-->
     </div>
-    <div class="w-screen font-semibold block md:hidden text-white">
+    <div v-if="!isMd" class="w-screen font-semibold block text-white">
         <div class="w-full py-2 px-3 border-b bg-main">
             <span class="text-sm txt-main">Explore Synths</span>
         </div>
-        <div class="card p-3 border-b bg-main">
-            <div class="text-lg font-bold">$12.9M</div>
-            <div class="text-xs txt-main">Total Value Locked</div>
+        <div class="grid grid-cols-3 gap-4 border-b bg-main">
+            <div class="card p-3">
+                <div class="text-xl font-bold">$12.9M</div>
+                <div class="text-xs txt-main">Total Value Locked</div>
+            </div>
+            <div class="card p-3">
+                <div class="text-xl font-bold">$3.7M</div>
+                <div class="text-xs txt-main">Trading Volume</div>
+            </div>
+            <div class="card p-3">
+                <div class="text-xl font-bold">5</div>
+                <div class="text-xs txt-main">Total Synths</div>
+            </div>
         </div>
         <div class="w-full h-12 border-b bg-main text-white text-lg flex text-center justify-between">
             <span class="py-3 px-4"> All Synths </span>
 
             <div class="h-full w-[230px] py-2 px-3 flex">
-                <img src="@/assets/images/search.svg" class="flex absolute my-1.5 mx-3" />
+                <search-svg class="flex absolute my-1.5 mx-3 w-[20px] h-[20px]" />
                 <input
                     class="
                         flex flex-wrap
@@ -157,11 +186,11 @@
                     </td>
                     <td>{{ synth.price }}</td>
                     <td>
-                        <img src="@/assets/images/arrow-up-right.svg" class="h-4 inline -translate-y-0.5" />
+                        <arrow-up-right-svg class="h-[20px] w-[20px] inline -translate-y-0.5" />
                         {{ synth.day_change }}
                     </td>
                     <router-link :to="{ name: 'Synths', params: { synth: synth.id } }">
-                        <img src="@/assets/images/arrow-right.svg" class="cursor-pointer" />
+                        <arrow-right-svg class="cursor-pointer w-[24px] h-[24px]" />
                     </router-link>
                 </tr>
             </tbody>
@@ -262,4 +291,12 @@ export default {
         },
     },
 }
+</script>
+<script setup>
+import searchSvg from "@/assets/images/search.svg"
+import arrowUpRightSvg from "@/assets/images/arrow-up-right.svg"
+import arrowRightSvg from "@/assets/images/arrow-right.svg"
+import { globalStore } from "@/composables/global"
+
+const { isMd, isLg } = globalStore()
 </script>

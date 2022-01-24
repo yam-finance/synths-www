@@ -20,9 +20,9 @@ let auth: any
 
 export async function initSDK() {
     if (auth && auth.web3) {
-        init(auth.web3, (await auth.web3.getNetwork()).chainId)
+        await init(auth.web3, (await auth.web3.getNetwork()).chainId)
     } else {
-        init(defaultProvider, (await defaultProvider.getNetwork()).chainId)
+        await init(defaultProvider, (await defaultProvider.getNetwork()).chainId)
     }
 }
 

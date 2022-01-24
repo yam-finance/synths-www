@@ -3,20 +3,15 @@
         <div class="sn bg-blueDark rounded-lg grid gap-2 items-center">
             <div class="sn-title">{{ title }}</div>
             <div class="sn-icon">
-                <img :src="getIcon(iconStyle)" alt="Notification Status" />
+                <component :is="getIcon(iconStyle)" class="w-[20px] h-[20px]" />
             </div>
             <div v-show="link" class="sn-link w-4 h-4">
                 <a :href="link" target="_blank">
-                    <img src="@/assets/images/external-link.svg" alt="External Link" class="w-full h-full" />
+                    <external-link-svg class="w-[16px] h-[16px]" />
                 </a>
             </div>
             <div class="sn-close w-4 h-4">
-                <img
-                    class="cursor-pointer basic-hover w-full h-full"
-                    src="@/assets/images/x.svg"
-                    alt="Close Icon"
-                    @click="closeNotification"
-                />
+                <x-svg class="cursor-pointer basic-hover w-[18px] h-[18px]" @click="closeNotification" />
             </div>
             <div class="sn-text" v-html="content"></div>
         </div>
@@ -24,8 +19,8 @@
 </template>
 
 <script>
-import infoCircle from "@/assets/icons/info-circle.svg"
-import successCircle from "@/assets/icons/success-circle.svg"
+import infoCircleSvg from "@/assets/icons/info-circle.svg"
+import successCircleSvg from "@/assets/icons/success-circle.svg"
 
 export default {
     name: "NotificationItem",
@@ -44,15 +39,19 @@ export default {
     },
     methods: {
         getIcon(style) {
-            if (style === 0) return infoCircle
+            if (style === 0) return infoCircleSvg
 
-            if (style === 1) return successCircle
+            if (style === 1) return successCircleSvg
         },
         closeNotification() {
             this.$emit("close")
         },
     },
 }
+</script>
+<script setup>
+import xSvg from "@/assets/images/x.svg"
+import externalLinkSvg from "@/assets/images/external-link.svg"
 </script>
 
 <style scoped lang="scss">

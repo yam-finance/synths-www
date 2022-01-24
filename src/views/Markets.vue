@@ -50,23 +50,23 @@
                 <div class="flex flex-wrap space-x-4 mt-4">
                     <RouterLink to="/#" class="cursor-pointer">
                         <p class="text-sm inline mr-1 md:mr-2">Learn More</p>
-                        <img src="@/assets/images/external-link.svg" class="inline cursor-pointer" />
+                        <external-link-svg class="inline cursor-pointer w-[12px] h-[12px]" />
                     </RouterLink>
                     <RouterLink to="/#" class="cursor-pointer">
                         <p class="text-sm inline mr-1 md:mr-2">Tutorial</p>
-                        <img src="@/assets/images/external-link.svg" class="inline cursor-pointer" />
+                        <external-link-svg class="inline cursor-pointer w-[12px] h-[12px]" />
                     </RouterLink>
                     <RouterLink to="/#" class="cursor-pointer">
                         <p class="text-sm inline mr-0.5 md:mr-2">Connect Address</p>
-                        <img src="@/assets/images/external-link.svg" class="inline cursor-pointer" />
+                        <external-link-svg class="inline cursor-pointer w-[12px] h-[12px]" />
                     </RouterLink>
                 </div>
 
-                <div class="grid grid-cols-3">
+                <div class="flex">
                     <div class="grid grid-cols-1">
                         <div class="p-2 pl-0">
                             <s-button
-                                class="mt-2.5 py-2 px-8 long rounded-3xl"
+                                class="mt-2.5 py-2 px-4 long rounded-3xl"
                                 :button-styles="'!text-sm'"
                                 :color="'linear-gradient(180deg, #C8FF2D 0%, #008C0E 100%)'"
                             >
@@ -77,7 +77,7 @@
                     <div class="grid grid-cols-1">
                         <div class="p-2 pr-0">
                             <s-button
-                                class="mt-2.5 py-2 px-8 short rounded-3xl"
+                                class="mt-2.5 py-2 px-4 short rounded-3xl"
                                 :button-styles="'!text-sm'"
                                 :color="'linear-gradient(180deg, #FF6ACC 0%, #DC1919 100%)'"
                             >
@@ -122,7 +122,7 @@
                     >
                         <div
                             class="w-full h-12 py-3 px-6 cursor-pointer"
-                            :class="{ 'bg-[#4447BD]': option.id == selected_option }"
+                            :class="{ 'bg-[#4447BD]': option.id === selected_option }"
                         >
                             <span class="font-semibold">{{ option.title }}</span>
                             <img
@@ -130,11 +130,7 @@
                                 src="@/assets/images/arrow-right-pink.png"
                                 class="inline float-right w-6 h-6 cursor-pointer"
                             />
-                            <img
-                                v-else
-                                src="@/assets/images/arrow-right.svg"
-                                class="inline float-right w-6 h-6 cursor-pointer"
-                            />
+                            <arrow-right-svg v-else class="inline float-right w-6 h-6 cursor-pointer" />
                         </div>
                     </div>
                 </div>
@@ -144,11 +140,11 @@
         <div class="px-6 py-4 border-b md:border-0 bg-main">
             <SynthsSingleChart class="h-[220px]" />
         </div>
-        <div class="px-6 py-4 border-b md:border-0 bg-main hidden xl:block">
-            <SynthsLongShortChart class="p-0" />
+        <div class="px-6 py-4 border-b md:border-0 bg-main xl:block">
+            <SynthsLongShortChart class="p-0" :text-title="textTitle" :btn-color="BtnColor" />
         </div>
-        <div class="px-6 py-4 border-b md:border-0 bg-main hidden xl:block">
-            <SynthsLongShortChart class="p-0"> </SynthsLongShortChart>
+        <div class="px-6 py-4 border-b md:border-0 bg-main xl:block">
+            <SynthsLongShortChart class="p-0" :text-title="textTitles" :btn-color="BtnShortColor" />
         </div>
         <div class="border-t bg-main">
             <div class="grid grid-cols-1 xl:grid-cols-2">
@@ -181,14 +177,14 @@
 
                     <div class="mt-2">
                         <div class="checkbox inline-flex items-center mt-4 cursor-pointer">
-                            <input id="chk_wallet" type="checkbox" class="form-checkbox h-5 w-5 opacity-0" />
+                            <input id="chk_wallet" type="checkbox" class="form-checkbox relative h-5 w-5 opacity-0" />
                             <label
                                 for="chk_wallet"
                                 class="
                                     ml-2
                                     txt-main
                                     cursor-pointer
-                                    absolute
+                                    relative
                                     ml-8
                                     before:w-6
                                     before:h-6
@@ -197,7 +193,18 @@
                                     before:border
                                     before:border-purpleLight
                                     before:rounded-md
-                                    after:absolute after:w-6 after:h-6 after:-left-8 after:bg-checkbox
+                                    before:z-20
+                                    after:absolute
+                                    after:w-[16px]
+                                    after:h-[16px]
+                                    after:z-30
+                                    after:-ml-8
+                                    after:top-1
+                                    after:left-1
+                                    after:bg-checkbox
+                                    after:bg-no-repeat
+                                    after:bg-cover
+                                    after:rounded-sm
                                 "
                                 :class="{ 'after:content-none': isUseWallet === 0 }"
                                 @click="isUseWallet = 1 - isUseWallet"
@@ -218,7 +225,7 @@
                             <p class="text-xs txt-main">xSUSHI APY at Expiry</p>
                         </div>
                     </div>
-                    <div class="my-2">
+                    <div class="my-1">
                         <SynthsSingleChart class="rounded-t-md" />
                     </div>
                 </div>
@@ -226,7 +233,7 @@
         </div>
     </div>
 
-    <div class="min-w-[400px] hidden lg:block">
+    <div v-if="isLg" class="min-w-[400px] block">
         <div v-for="(option, key) in options" :key="key" :class="option.id == selected_option ? 'h-full' : ''">
             <SynthsInsideBar
                 v-if="option.id == selected_option"
@@ -236,6 +243,21 @@
                 :button-name="option.slug"
                 :loading="loading"
                 :expiry-price="expiryPrice"
+                @sidebar-closed="sidebarClosed"
+            />
+        </div>
+    </div>
+    <div v-if="!isLg" class="min-w-[400px] block absolute top-14 right-2 left-2">
+        <div v-for="(option, key) in options" :key="key" :class="option.id == selected_option ? 'h-full' : ''">
+            <SynthsInsideBar
+                v-if="option.id == selected_option"
+                :settle="option.slug == 'Settle' ? false : true"
+                :title="option.title"
+                :sub-title="option.description"
+                :button-name="option.slug"
+                :loading="loading"
+                :expiry-price="expiryPrice"
+                @sidebar-closed="sidebarClosed"
             />
         </div>
     </div>
@@ -247,8 +269,12 @@ import SynthsSingleChart from "@/components/charts/SynthsSingleChart.vue"
 import SynthsLongShortChart from "@/components/charts/SynthsLongShortChart.vue"
 import SynthsInsideBar from "@/components/SynthsInsideBar.vue"
 import synthsLogo from "@/assets/images/logo.png"
+import externalLinkSvg from "@/assets/images/external-link.svg"
+import arrowRightSvg from "@/assets/images/arrow-right.svg"
+
 import { inject } from "vue"
 import { mixin as VueClickAway, directive as onClickaway } from "vue3-click-away"
+import { globalStore } from "@/composables/global"
 
 /* -- Start of SDK Test -- */
 import { useSynthsSDK } from "../composables/useSynthsSDK"
@@ -279,6 +305,7 @@ let options = [
 let selected_option = 0
 let isUseWallet = 0
 let isDropDown = false
+let highlight = false
 
 export default {
     name: "Markets",
@@ -287,6 +314,8 @@ export default {
         SynthsLongShortChart,
         "s-button": SynthsRoundedButton,
         SynthsInsideBar,
+        externalLinkSvg,
+        arrowRightSvg,
     },
     directives: {
         ClickAway: onClickaway,
@@ -298,12 +327,14 @@ export default {
         // const url = `${import.meta.env.VITE_INFURA_URL}`
         // const provider = new providers.JsonRpcProvider(url)
         const { data, loading } = useSynthsSDK()
+        const { isLg } = globalStore()
         /* -- End of SDK Init Test -- */
 
         const userDetails: any = inject("userDetails")
 
         return {
             userDetails,
+            isLg,
 
             /* -- Start of SDK Test -- */
             loading: loading,
@@ -321,11 +352,19 @@ export default {
             selected_option,
             isUseWallet,
             isDropDown,
+            highlight,
+            textTitle: "Go Long",
+            textTitles: "Go Short",
+            BtnColor: "linear-gradient(180deg, #C8FF2D 0%, #008C0E 100%)",
+            BtnShortColor: "linear-gradient(180deg, #FF6ACC 0%, #DC1919 100%)",
         }
     },
     methods: {
         closeDown(e: any) {
             this.isDropDown = false
+        },
+        sidebarClosed(sidebarStatus) {
+            this.selected_option = sidebarStatus
         },
     },
 }

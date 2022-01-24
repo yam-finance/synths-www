@@ -28,18 +28,15 @@ export default defineComponent({
             state.email = email
         }
 
-        const { loadBlockNumber } = globalStore()
+        const { loadBlockNumber, setScreenWidth } = globalStore()
 
         loadBlockNumber()
 
-        //Setup window resize watcher
-        const screenWidth = ref<number | null>(null)
+        //Setup window resize watcher`
 
         const resizeHandler = () => {
-            screenWidth.value = window.innerWidth
+            setScreenWidth(window.innerWidth)
         }
-
-        window.addEventListener("resize", resizeHandler)
 
         // const { addNewNotifications } = globalStore();
 
@@ -47,13 +44,13 @@ export default defineComponent({
             window.removeEventListener("resize", resizeHandler)
         })
 
-        provide("screen", screenWidth)
-
         const { init } = useApp()
         onMounted(async () => {
+            window.addEventListener("resize", resizeHandler)
+            resizeHandler()
             init()
         })
-        return { state, screenWidth }
+        return {}
     },
     data() {
         return {
