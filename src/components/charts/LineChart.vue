@@ -69,11 +69,11 @@ export default {
     mounted() {
         this.container = this.$refs.chartContainer
         this.handleResize()
-        window.addEventListener("resize", this.handleResize)
+        // window.addEventListener("resize", this.handleResize)
     },
-    beforeUnmount() {
-        window.removeEventListener("resize", this.handleResize)
-    },
+    // beforeUnmount() {
+    //     window.removeEventListener("resize", this.handleResize)
+    // },
     methods: {
         handleResize() {
             this.myChart.height = this.container.clientHeight

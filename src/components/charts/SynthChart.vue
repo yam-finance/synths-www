@@ -118,7 +118,13 @@
                     <span class="text-purpleLight">Upper bound</span> $300
                 </p>
 
-                <line-chart class="h-full overflow-auto my-3 relative" :chart-data="chartData" />
+                <!--                <line-chart class="h-full overflow-auto my-3 relative" :chart-data="chartData" />-->
+                <new-chart
+                    class="h-full overflow-auto my-3 relative"
+                    :chart-data="chartData"
+                    :chart-bounds="chartBounds"
+                    :tooltip-style="chartTooltipStyle"
+                />
 
                 <p class="slsc__charts__upper-bound border-t border-[#3E3E6B] text-[10px] pt-1 mt-4">
                     <span class="text-purpleLight">Lower bound</span> $300
@@ -188,7 +194,13 @@
                     </div>
                 </div>
 
-                <line-chart class="h-full overflow-auto my-3 relative w-full" :chart-data="chartData" />
+                <new-chart
+                    class="h-full overflow-auto my-3 relative w-full"
+                    :chart-data="chartData"
+                    :chart-bounds="chartBounds"
+                    :tooltip-style="chartTooltipStyle"
+                />
+                <!--                <line-chart class="h-full overflow-auto my-3 relative w-full" :chart-data="chartData" />-->
 
                 <div class="flex justify-between">
                     <div class="slsc__charts-stat">
@@ -297,63 +309,67 @@
                 {{ item }}
             </div>
         </div>
-        <line-chart class="sc__charts h-full relative overflow-auto" :chart-data="chartData" />
+        <new-chart
+            class="sc__charts h-full relative overflow-auto"
+            :chart-data="chartData"
+            :chart-bounds="chartBounds"
+            :tooltip-style="chartTooltipStyle"
+        />
+        <!--        <line-chart class="sc__charts h-full relative overflow-auto" :chart-data="chartData" />-->
     </div>
 </template>
 
 <script>
+import LineChartApachNew from "@/components/charts/LineChartApachNew"
 import LineChart from "@/components/charts/LineChart.vue"
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
+import * as echarts from "echarts/core"
 
 export default {
     name: "SynthsChart",
     components: {
         LineChart,
+        "new-chart": LineChartApachNew,
         "s-button": SynthsRoundedButton,
     },
     props: ["textTitle", "BtnColor", "isLongShort"],
     data: () => ({
         filterButtons: ["1H", "1D", "1W", "1M", "1Y"],
         chartData: [
-            { name: "label1", value1: 24, value2: 10 },
-            { name: "label2", value1: 46, value2: 30 },
-            { name: "label3", value1: 0, value2: 0 },
-            { name: "label4", value1: 15, value2: 10 },
-            { name: "label5", value1: 1, value2: 1 },
-            { name: "label6", value1: 10, value2: 0 },
-            { name: "label7", value1: 21, value2: 10 },
-            { name: "label8", value1: 41, value2: 30 },
-            { name: "label9", value1: 61, value2: 50 },
-            { name: "label10", value1: 61, value2: 50 },
-            { name: "label11", value1: 61, value2: 50 },
-            { name: "label12", value1: 61, value2: 50 },
-            { name: "label13", value1: 61, value2: 50 },
-            { name: "label14", value1: 61, value2: 50 },
-            { name: "label15", value1: 61, value2: 50 },
-            { name: "label16", value1: 61, value2: 50 },
-            { name: "label17", value1: 61, value2: 50 },
-            { name: "label18", value1: 61, value2: 50 },
-            { name: "label19", value1: 61, value2: 50 },
-            { name: "label20", value1: 61, value2: 50 },
-            { name: "label21", value1: 61, value2: 50 },
-            { name: "label22", value1: 61, value2: 50 },
-            { name: "label23", value1: 61, value2: 50 },
-            { name: "label24", value1: 61, value2: 50 },
-            { name: "label25", value1: 61, value2: 50 },
-            { name: "label26", value1: 61, value2: 50 },
-            { name: "label27", value1: 61, value2: 50 },
-            { name: "label28", value1: 61, value2: 50 },
-            { name: "label29", value1: 61, value2: 50 },
-            { name: "label30", value1: 61, value2: 50 },
-            { name: "label31", value1: 61, value2: 50 },
-            { name: "label32", value1: 61, value2: 50 },
-            { name: "label33", value1: 61, value2: 50 },
-            { name: "label34", value1: 61, value2: 50 },
-            { name: "label35", value1: 61, value2: 50 },
-            { name: "label36", value1: 61, value2: 50 },
-            { name: "label37", value1: 61, value2: 50 },
-            { name: "label38", value1: 61, value2: 50 },
+            {
+                lineStyle: {
+                    width: 1,
+                    type: "dashed",
+                    color: "red",
+                },
+                areaStyle: {
+                    opacity: 0.1,
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                        {
+                            offset: 0,
+                            color: "rgb(128, 255, 165)",
+                        },
+                        {
+                            offset: 1,
+                            color: "rgb(1, 191, 236)",
+                        },
+                    ]),
+                },
+                data: [140, 232, 101, 264, 90, 340, 250, 101, 264, 90, 340, 250],
+            },
         ],
+        chartBounds: [
+            {
+                lineColor: "blue",
+                data: 250,
+                text: "ahahahhahah sdsds 100$",
+            },
+        ],
+        chartTooltipStyle: {
+            width: 2,
+            type: "dashed",
+            color: "white",
+        },
     }),
 }
 </script>
