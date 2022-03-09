@@ -114,21 +114,13 @@
                         14 April - 21 April
                     </div>
                 </div>
-                <p class="slsc__charts__upper-bound border-b border-[#3E3E6B] text-[10px] pb-1 mt-4 mb-4 mb-auto">
-                    <span class="text-purpleLight">Upper bound</span> $300
-                </p>
 
-                <!--                <line-chart class="h-full overflow-auto my-3 relative" :chart-data="chartData" />-->
                 <new-chart
                     class="h-full overflow-auto my-3 relative"
                     :chart-data="chartData"
                     :chart-bounds="chartBounds"
                     :tooltip-style="chartTooltipStyle"
                 />
-
-                <p class="slsc__charts__upper-bound border-t border-[#3E3E6B] text-[10px] pt-1 mt-4">
-                    <span class="text-purpleLight">Lower bound</span> $300
-                </p>
             </div>
         </div>
         <div v-else class="rounded-xl p-0 items-start">
@@ -200,7 +192,6 @@
                     :chart-bounds="chartBounds"
                     :tooltip-style="chartTooltipStyle"
                 />
-                <!--                <line-chart class="h-full overflow-auto my-3 relative w-full" :chart-data="chartData" />-->
 
                 <div class="flex justify-between">
                     <div class="slsc__charts-stat">
@@ -315,20 +306,17 @@
             :chart-bounds="chartBounds"
             :tooltip-style="chartTooltipStyle"
         />
-        <!--        <line-chart class="sc__charts h-full relative overflow-auto" :chart-data="chartData" />-->
     </div>
 </template>
 
 <script>
 import LineChartApachNew from "@/components/charts/LineChartApachNew"
-import LineChart from "@/components/charts/LineChart.vue"
 import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
 import * as echarts from "echarts/core"
 
 export default {
     name: "SynthsChart",
     components: {
-        LineChart,
         "new-chart": LineChartApachNew,
         "s-button": SynthsRoundedButton,
     },
@@ -362,7 +350,7 @@ export default {
             {
                 lineColor: "blue",
                 data: 250,
-                text: "ahahahhahah sdsds 100$",
+                text: "{blueText|Upper bound} {whiteText|100$}",
             },
         ],
         chartTooltipStyle: {
