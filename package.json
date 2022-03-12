@@ -37,6 +37,7 @@
         "unplugin-vue-components": "^0.15.6",
         "vue": "^3.2.13",
         "vue-echarts": "^6.0.2",
+        "vue-element-resize-detector": "^1.0.6",
         "vue-i18n": "^9.1.9",
         "vue-js-modal": "^2.0.1",
         "vue-router": "4",

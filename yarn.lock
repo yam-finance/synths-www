@@ -3865,6 +3865,11 @@ base@^0.11.1:
     mixin-deep "^1.2.0"
     pascalcase "^0.1.1"
 
+batch-processor@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/batch-processor/-/batch-processor-1.0.0.tgz#75c95c32b748e0850d10c2b168f6bdbe9891ace8"
+  integrity sha1-dclcMrdI4IUNEMKxaPa9vpiRrOg=
+
 bcrypt-pbkdf@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/bcrypt-pbkdf/-/bcrypt-pbkdf-1.0.2.tgz#a4301d389b6a43f9b67ff3ca11a3f6637e360e9e"
@@ -5648,6 +5653,13 @@ electron-to-chromium@^1.3.867:
   version "1.3.873"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.873.tgz#c238c9199e4951952fe815a65c1beab5db4826b8"
   integrity sha512-TiHlCgl2uP26Z0c67u442c0a2MZCWZNCRnPTQDPhVJ4h9G6z2zU0lApD9H0K9R5yFL5SfdaiVsVD2izOY24xBQ==
+
+element-resize-detector@^1.2.1, element-resize-detector@^1.2.4:
+  version "1.2.4"
+  resolved "https://registry.yarnpkg.com/element-resize-detector/-/element-resize-detector-1.2.4.tgz#3e6c5982dd77508b5fa7e6d5c02170e26325c9b1"
+  integrity sha512-Fl5Ftk6WwXE0wqCgNoseKWndjzZlDCwuPTcoVZfCP9R3EHQF8qUtr3YUPNETegRBOKqQKPW3n4kiIWngGi8tKg==
+  dependencies:
+    batch-processor "1.0.0"
 
 elliptic@6.5.4, elliptic@^6.4.0, elliptic@^6.4.1, elliptic@^6.5.2, elliptic@^6.5.3:
   version "6.5.4"
@@ -13976,6 +13988,13 @@ vue-echarts@^6.0.2:
   dependencies:
     resize-detector "^0.3.0"
     vue-demi "^0.12.1"
+
+vue-element-resize-detector@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/vue-element-resize-detector/-/vue-element-resize-detector-1.0.6.tgz#c0aa8ccb32d93892e32a16a9b3049ce06c1d2339"
+  integrity sha512-1vh9GtSFcwEJJEGkSZfYV3kKYqCoDGmtlOZhLcy7Itt0f5mK4V9Pa/r/9qmRa031VUIdO0WTXsHrNQnY9A/+Gw==
+  dependencies:
+    element-resize-detector "^1.2.1"
 
 vue-eslint-parser@^7.0.0, vue-eslint-parser@^7.10.0:
   version "7.11.0"

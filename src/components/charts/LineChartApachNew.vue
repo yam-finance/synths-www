@@ -1,7 +1,11 @@
 <template>
-    <div ref="chartContainer" class="chart-container relative w-full min-h-[224px]">
-        <v-chart :option="option" :loading="isLoading" autoresize />
-    </div>
+    <v-chart
+        ref="chart"
+        class="chart-container relative w-full min-h-[224px]"
+        :option="option"
+        :loading="isLoading"
+        autoresize
+    />
 </template>
 
 <script>
@@ -16,7 +20,7 @@ export default {
 }
 </script>
 <script setup>
-import { ref, computed, defineProps } from "vue"
+import { ref, computed, defineProps, onMounted } from "vue"
 const props = defineProps({
     chartData: {
         type: Array,
@@ -31,19 +35,26 @@ const props = defineProps({
         default: () => ({}),
     },
 })
-// reactive state
+
+// chart state
+const chart = ref(null)
+const chartWidth = ref(null)
 const chartContainer = ref(null)
+
 const isLoading = ref(false)
 
-// functions that mutate state and trigger updates
-const getChartWidth = computed(() => {
-    console.log("rea")
-    if (chartContainer.value) {
-        console.log("resize", chartContainer.value)
-        return chartContainer.value.clientWidth
-    }
-    return 1
+//Chart resize
+onMounted(() => {
+    chartWidth.value = chart.value.getWidth()
 })
+window.addEventListener("resize", () => {
+    if (chart.value) {
+        chart.value.resize()
+        chartWidth.value = chart.value.getWidth()
+    }
+})
+
+// Chart Generator
 const compileChartData = computed(() => {
     let result = []
     props.chartData.forEach((item) => {
@@ -80,7 +91,7 @@ const compileChartBounds = computed(() => {
             },
             endLabel: {
                 distance: 0,
-                offset: [getChartWidth.value * -1 + 15, -15],
+                offset: [chartWidth.value * -1 + 15, -15],
                 show: true,
                 position: "top",
                 color: "white",
