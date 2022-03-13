@@ -1,4 +1,4 @@
-import { createI18n } from "vue-i18n"
+import { createI18n } from "vue-i18n/index"
 
 /**
  * @notice Import locale messages resource from json for global scope

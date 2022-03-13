@@ -5,7 +5,7 @@ import visualizer from "rollup-plugin-visualizer"
 import ViteComponents from "unplugin-vue-components/vite"
 import PrerenderSpaPlugin from "prerender-spa-plugin"
 import svgSpritePlugin from "vite-plugin-svg-sprite-component"
-// https://vitejs.dev/config/
+
 export default defineConfig({
     plugins: [
         vue({
@@ -51,5 +51,8 @@ export default defineConfig({
         include: ["color"],
         // @ts-ignore
         allowNodeBuiltins: ["stream"],
+    },
+    build: {
+        sourcemap: true,
     },
 })

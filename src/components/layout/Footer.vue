@@ -280,16 +280,17 @@
 </template>
 
 <script>
+const featuredSynth = "dpi-2x"
 let tabs = [
     {
         id: 1,
-        title: "Explore Synths",
+        title: "Explore",
         to: "explore",
     },
     {
         id: 2,
-        title: "Markets",
-        to: "synths",
+        title: "Synths",
+        to: "synths/" + featuredSynth,
     },
     {
         id: 3,
@@ -297,6 +298,7 @@ let tabs = [
         to: "portfolio",
     },
 ]
+
 import SynthBurgerButton from "@/components/elements/SynthBurgerButton"
 import SynthsRoundedButton from "../buttons/SynthsRoundedButton"
 

@@ -9,7 +9,7 @@
                 <div v-if="isMd" class="flex content-desktop">
                     <router-view />
                 </div>
-                <div v-if="!isMd" class="block content-mobile">
+                <div v-if="!isMd" class="block content-mobile w-full">
                     <router-view />
                 </div>
             </div>

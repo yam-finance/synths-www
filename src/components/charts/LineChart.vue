@@ -1,141 +1,113 @@
 <template>
-    <div ref="chartContainer" class="chart-container relative w-full h-full">
-        <canvas id="myChart" ref="chart" />
+    <div ref="chartContainer" class="chart-container overflow-auto relative w-full min-h-[224px]">
+        <Chart
+            :size="{ width: myChart.width, height: myChart.height }"
+            :data="chartData"
+            :margin="margin"
+            :direction="direction"
+        >
+            <template #layers>
+                <Area :data-keys="['name', 'value1']" type="monotone" :area-style="{ fill: 'url(#grad)' }" />
+                <Line
+                    :data-keys="['name', 'value1']"
+                    type="monotone"
+                    :dot-style="{ stroke: 'rgba(255,255,255,0)' }"
+                    :line-style="{ stroke: '#f80202' }"
+                />
+                <defs>
+                    <linearGradient id="grad" gradientTransform="rotate(90)">
+                        <stop offset="0%" stop-color="#f80202" stop-opacity="1" />
+                        <stop offset="100%" stop-color="white" stop-opacity="0.4" />
+                    </linearGradient>
+                </defs>
+
+                <Area
+                    :data-keys="['name', 'value2']"
+                    type="monotone"
+                    :dot-style="null"
+                    :area-style="{ fill: 'url(#grad1)' }"
+                />
+                <Line
+                    :data-keys="['name', 'value2']"
+                    type="monotone"
+                    :dot-style="null"
+                    :line-style="{ stroke: '#eeff00' }"
+                />
+                <defs>
+                    <linearGradient id="grad1" gradientTransform="rotate(90)">
+                        <stop offset="0%" stop-color="#eeff00" stop-opacity="1" />
+                        <stop offset="100%" stop-color="white" stop-opacity="0.4" />
+                    </linearGradient>
+                </defs>
+            </template>
+        </Chart>
     </div>
 </template>
 
 <script>
-import {
-    Chart,
-    ArcElement,
-    LineElement,
-    BarElement,
-    PointElement,
-    BarController,
-    BubbleController,
-    DoughnutController,
-    LineController,
-    PieController,
-    PolarAreaController,
-    RadarController,
-    ScatterController,
-    CategoryScale,
-    LinearScale,
-    LogarithmicScale,
-    RadialLinearScale,
-    TimeScale,
-    TimeSeriesScale,
-    Decimation,
-    Filler,
-    Legend,
-    Title,
-    Tooltip,
-    SubTitle,
-} from "chart.js"
-
-Chart.register(
-    ArcElement,
-    LineElement,
-    BarElement,
-    PointElement,
-    BarController,
-    BubbleController,
-    DoughnutController,
-    LineController,
-    PieController,
-    PolarAreaController,
-    RadarController,
-    ScatterController,
-    CategoryScale,
-    LinearScale,
-    LogarithmicScale,
-    RadialLinearScale,
-    TimeScale,
-    TimeSeriesScale,
-    Decimation,
-    Filler,
-    Legend,
-    Title,
-    Tooltip,
-    SubTitle
-)
+import { Chart, Area, Grid, Line } from "vue3-charts"
 
 export default {
+    components: {
+        Chart,
+        Area,
+        Line,
+    },
     props: {
         chartData: {
             type: Array,
             default: () => [],
         },
-        labels: {
-            type: Array,
-            default: () => [],
-        },
     },
     data: () => ({
-        canvas: null,
         container: null,
-        myChart: null,
-    }),
-    watch: {
-        "container.clientWidth": {
-            deep: true,
-            handler() {
-                this.myChart.resize(this.container.clientWidth, this.container.clientHeight)
-            },
+        myChart: {
+            width: 0,
+            height: 0,
         },
-    },
+    }),
     mounted() {
-        this.canvas = this.$refs.chart
         this.container = this.$refs.chartContainer
-        const ctx = this.canvas.getContext("2d")
-        const data = {
-            labels: [],
-            datasets: [],
-        }
-        if (this.labels) {
-            data.labels = this.labels
-        }
-
-        this.chartData.forEach((item) => {
-            data.datasets.push(item)
-        })
-
-        this.canvas.height = this.container.clientHeight
-        this.canvas.width = this.container.clientWidth
-
-        this.myChart = new Chart(ctx, {
-            type: "line",
-            data: data,
-            options: {
-                plugins: {
-                    legend: {
-                        display: false,
-                    },
-                    tooltip: {
-                        enabled: false,
-                    },
-                },
-                scales: {
-                    y: {
-                        display: false, // Hide Y axis labels
-                    },
-                    x: {
-                        display: false, // Hide X axis labels
-                    },
-                },
-                elements: {
-                    point: {
-                        radius: 0,
-                    },
-                    line: {
-                        borderJoinStyle: "round",
-                    },
-                },
-                layout: {
-                    padding: 5,
-                },
-            },
-        })
+        this.handleResize()
+        // window.addEventListener("resize", this.handleResize)
+    },
+    // beforeUnmount() {
+    //     window.removeEventListener("resize", this.handleResize)
+    // },
+    methods: {
+        handleResize() {
+            this.myChart.height = this.container.clientHeight
+            this.myChart.width = this.container.clientWidth
+        },
     },
 }
 </script>
+<script setup>
+import { ref } from "vue"
+
+const direction = ref("horizontal")
+const margin = ref({
+    left: -30,
+    top: 5,
+    right: -10,
+    bottom: -10,
+})
+const axis = ref({
+    primary: {
+        type: "band",
+    },
+    secondary: {
+        domain: ["dataMin", "dataMax + 100"],
+        type: "linear",
+        ticks: 8,
+    },
+})
+</script>
+<style>
+.axis {
+    display: none;
+}
+circle {
+    display: none;
+}
+</style>
