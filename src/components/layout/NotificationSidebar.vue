@@ -37,18 +37,9 @@
     </transition>
 </template>
 
-<script>
-import SynthsNotification from "@/components/notifications/SynthsNotification.vue"
-
-export default {
-    name: "NotificationLayout",
-    components: {
-        notification: SynthsNotification,
-    },
-}
-</script>
-<script setup>
+<script setup lang="ts">
 import xSvg from "@/assets/images/x.svg"
+import notification from "@/components/notifications/SynthsNotification.vue"
 
 import { globalStore } from "@/composables/global"
 

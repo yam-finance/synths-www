@@ -22,27 +22,22 @@
     </div>
 </template>
 
-<script>
-export default {
-    name: "SynthsInput",
-    props: {
-        modelValue: {
-            type: String,
-            default: "0",
-        },
+<script lang="ts" setup>
+import { computed, defineEmits } from "vue"
+
+const props = defineProps({
+    modelValue: {
+        type: String,
+        default: "0",
     },
-    emits: ["update:modelValue"],
-    computed: {
-        inputValue: {
-            get() {
-                return this.modelValue
-            },
-            set(val) {
-                this.$emit("update:modelValue", val)
-            },
-        },
-    },
-}
+})
+
+const emits = defineEmits(["update:modelValue"])
+
+const inputValue = computed({
+    get: () => props.modelValue,
+    set: (value) => emits("update:modelValue", value),
+})
 </script>
 
 <style scoped lang="scss">

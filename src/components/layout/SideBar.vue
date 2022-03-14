@@ -75,15 +75,17 @@
     </aside>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { ref, computed } from "vue"
+import { useRouter } from "vue-router"
 import arrowUpRightSvg from "@/assets/images/arrow-up-right.svg"
 import arrowRightSvg from "@/assets/images/arrow-right.svg"
 import searchSvg from "@/assets/images/search.svg"
 import { globalStore } from "@/composables/global"
 
+const router = useRouter()
+
 const { isMd } = globalStore()
-</script>
-<script>
 let menus = [
     {
         id: 1,
@@ -192,27 +194,15 @@ let menus = [
     },
 ]
 let filter_string = ""
-export default {
-    name: "SideBar",
-    data() {
-        return {
-            menus,
-            filter_string,
-            activeTab: 1,
-        }
-    },
-    computed: {
-        hasSideBar() {
-            return this.$router.currentRoute.value.meta.hasSideBar
-        },
-    },
-    methods: {
-        selectMenu(item) {
-            this.activeTab = item.id
-        },
-        filter(event) {
-            this.filter_string = event.target.value
-        },
-    },
+const activeTab = ref(1)
+
+const hasSideBar = computed(() => router.currentRoute.value.meta.hasSideBar)
+
+function selectMenu(item) {
+    activeTab.value = item.id
+}
+
+function filter(event) {
+    filter_string = event.target.value
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
     <div class="home">
         <img class="m-auto max-w-xs" alt="logo" :src="synthsLogo" />
-        <SynthsNew class="mt-5" :msg="'Welcome ' + userDetails.name" />
+        <SynthsNew class="mt-5" :msg="'Welcome '" />
 
         <SynthsSideBar
             :settle="true"
@@ -29,9 +29,9 @@
             :button-name="'Mint'"
         />
 
-        <SynthsSingleChart class="h-[200px]" />
-        <br />
-        <SynthsLongShortChart class="h-[400px]" />
+        <!--        <SynthsSingleChart class="h-[200px]" />-->
+        <!--        <br />-->
+        <!--        <SynthsLongShortChart class="h-[400px]" />-->
     </div>
 </template>
 
@@ -41,26 +41,19 @@ import { defineComponent, inject, computed } from "vue"
 import SynthsSideBar from "@/components/SynthsInsideBar.vue"
 import SynthsNew from "@/components/SynthsNew.vue"
 import synthsLogo from "@/assets/images/logo.png"
-import SynthsSingleChart from "@/components/charts/SynthsSingleChart.vue"
-import SynthsLongShortChart from "@/components/charts/SynthsLongShortChart.vue"
+// import SynthsSingleChart from "@/components/charts/SynthsSingleChart.vue"
+// import SynthsLongShortChart from "@/components/charts/SynthsLongShortChart.vue"
 
 export default defineComponent({
     name: "Home",
     components: {
-        SynthsSingleChart,
-        SynthsLongShortChart,
+        // SynthsSingleChart,
+        // SynthsLongShortChart,
         SynthsSideBar,
         SynthsNew,
     },
     data: () => ({
         synthsLogo,
     }),
-    setup() {
-        const userDetails: any = inject("userDetails")
-
-        return {
-            userDetails,
-        }
-    },
 })
 </script>

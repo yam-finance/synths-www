@@ -14,6 +14,84 @@ import Simulator from "@/components/Simulator.vue"
 import { ref } from "vue"
 
 import useClipboard from "@/composables/useClipboard"
+
+import sButton from "@/components/buttons/SynthsRoundedButton.vue"
+import { directive as onClickaway } from "vue3-click-away"
+
+import { useI18n } from "vue-i18n"
+//INIT
+const featuredSynth = "dpi-2x"
+const vClickAway = onClickaway
+const i18n = useI18n()
+
+const tabs = [
+    {
+        id: 1,
+        title: "Explore",
+        to: "explore",
+    },
+    {
+        id: 2,
+        title: "Synths",
+        to: "synths/" + featuredSynth,
+    },
+    {
+        id: 3,
+        title: "Portfolio",
+        to: "portfolio",
+    },
+]
+const activeTab = ref(0)
+const isHelpDropDownOpen = ref(false)
+const isLangDropDownOpen = ref(false)
+const isWalletDropDownOpen = ref(false)
+
+function switchLocale(locale) {
+    if (i18n.global.locale._value !== locale) {
+        i18n.global.locale._value = locale
+    }
+}
+
+function selectTab(item) {
+    activeTab.value = item.id
+}
+
+function closePopup(e) {
+    isHelpDropDownOpen.value = false
+    isLangDropDownOpen.value = false
+    isWalletDropDownOpen.value = false
+}
+
+function getLanguageById(id) {
+    switch (id) {
+        case "en":
+            return "English"
+        case "zh":
+            return "Chinese"
+        default:
+            return "English"
+    }
+}
+
+function openLanguage() {
+    isLangDropDownOpen.value = !isLangDropDownOpen.value
+    isHelpDropDownOpen.value = false
+    isWalletDropDownOpen.value = false
+}
+
+function openHelp() {
+    isHelpDropDownOpen.value = !isHelpDropDownOpen.value
+    isLangDropDownOpen.value = false
+    isWalletDropDownOpen.value = false
+}
+
+function openWallet() {
+    isWalletDropDownOpen.value = !isWalletDropDownOpen.value
+    isLangDropDownOpen.value = false
+    isHelpDropDownOpen.value = false
+}
+
+// WEB3
 const { state, isLg } = globalStore()
 
 const { login, web3, logout } = useWeb3()
@@ -69,92 +147,6 @@ function goToBlockLink() {
 }
 </script>
 
-<script>
-import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
-import { mixin as VueClickAway, directive as onClickaway } from "vue3-click-away"
-
-const featuredSynth = "dpi-2x"
-let tabs = [
-    {
-        id: 1,
-        title: "Explore",
-        to: "explore",
-    },
-    {
-        id: 2,
-        title: "Synths",
-        to: "synths/" + featuredSynth,
-    },
-    {
-        id: 3,
-        title: "Portfolio",
-        to: "portfolio",
-    },
-]
-
-let activeTab = 0
-export default {
-    name: "Header",
-    components: {
-        "s-button": SynthsRoundedButton,
-    },
-    mixins: [VueClickAway],
-    directives: {
-        ClickAway: onClickaway,
-    },
-
-    data() {
-        return {
-            tabs,
-            activeTab,
-            isHelpDropDownOpen: false,
-            isLangDropDownOpen: false,
-            isWalletDropDownOpen: false,
-        }
-    },
-    methods: {
-        switchLocale(locale) {
-            if (this.$i18n.global.locale._value != locale) {
-                this.$i18n.global.locale._value = locale
-            }
-        },
-        selectTab(item) {
-            this.activeTab = item.id
-        },
-        closePopup(e) {
-            this.isHelpDropDownOpen = false
-            this.isLangDropDownOpen = false
-            this.isWalletDropDownOpen = false
-        },
-        getLanguageById(id) {
-            switch (id) {
-                case "en":
-                    return "English"
-                case "zh":
-                    return "Chinese"
-                default:
-                    return "English"
-            }
-        },
-        openLanguage() {
-            this.isLangDropDownOpen = !this.isLangDropDownOpen
-            this.isHelpDropDownOpen = false
-            this.isWalletDropDownOpen = false
-        },
-        openHelp() {
-            this.isHelpDropDownOpen = !this.isHelpDropDownOpen
-            this.isLangDropDownOpen = false
-            this.isWalletDropDownOpen = false
-        },
-        openWallet() {
-            this.isWalletDropDownOpen = !this.isWalletDropDownOpen
-            this.isLangDropDownOpen = false
-            this.isHelpDropDownOpen = false
-        },
-    },
-}
-</script>
-
 <template>
     <nav class="h-12 sticky top-0 left-0 z-20 bg-navy-blue-800 text-white flex lg:flex-row border-b bg-main">
         <router-link to="/">
@@ -185,9 +177,9 @@ export default {
             "
         >
             <li
-                class="cursor-pointer px-2"
                 v-for="(tab, key) in tabs"
                 :key="key"
+                class="cursor-pointer px-2"
                 :class="tab.title == $route.name ? 'bg-white rounded-md' : ''"
             >
                 <router-link :to="'/' + tab.to">
@@ -209,6 +201,8 @@ export default {
                         class="mx-2 ml-1 my-auto h-4 w-[24px]"
                     />
                     <ul
+                        v-if="isLangDropDownOpen"
+                        v-click-away="closePopup"
                         class="
                             my-auto
                             p-2
@@ -221,14 +215,12 @@ export default {
                             shadow-lg
                             z-[10000]
                         "
-                        v-if="isLangDropDownOpen"
-                        v-click-away="closePopup"
                     >
                         <li
                             v-for="locale in $i18n.global.availableLocales"
                             :key="locale"
-                            @click="switchLocale(locale)"
                             class="min-w-max cursor-pointer p-1"
+                            @click="switchLocale(locale)"
                         >
                             <span>{{ getLanguageById(locale) }}</span>
                         </li>
@@ -245,6 +237,8 @@ export default {
                         class="mx-2 ml-1 my-auto h-4 w-[24px]"
                     />
                     <ul
+                        v-if="isHelpDropDownOpen"
+                        v-click-away="closePopup"
                         class="
                             overflow-hidden
                             my-auto
@@ -257,8 +251,6 @@ export default {
                             rounded-xl
                             shadow-lg
                         "
-                        v-if="isHelpDropDownOpen"
-                        v-click-away="closePopup"
                     >
                         <li class="min-w-max cursor-pointer p-1">
                             <span>Documentation</span>
@@ -271,15 +263,15 @@ export default {
                 <span class="flex pr-4 py-1.5 font-semibold text-purpleLight text-sm cursor-pointer">
                     <img
                         src="@/assets/images/bell.png"
-                        @click="toggleNotificationOpen"
                         class="cursor-pointer my-auto h-4 w-4 basic-hover"
+                        @click="toggleNotificationOpen"
                     />
                 </span>
 
                 <s-button
                     v-if="!$auth.isAuthenticated.value"
+                    button-styles="wallet-btn px-4 py-2 my-auto text-sm font-normal hidden lg:block"
                     @click="isModalVisible = true"
-                    buttonStyles="wallet-btn px-4 py-2 my-auto text-sm font-normal hidden lg:block"
                 >
                     <template #buttonTitle> Connect Wallet </template>
                 </s-button>

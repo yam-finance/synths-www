@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-opacity-30 backdrop-blur-lg flex items-center justify-center fixed inset-0" @click="$emit('close')">
+    <div class="bg-opacity-30 backdrop-blur-lg flex items-center justify-center fixed inset-0" @click="emits('close')">
         <div class="rounded-lg flex flex-col items-start shadow-2xl p-4 absolute w-[340px] bg-[#252562] shadow-xl">
             <div class="justify-between font-semibold text-base leading-5 relative text-white not-italic pt-0">
                 <div class="header flex-none order-none font-semibold text-base mx-0 text-white not-italic">
@@ -39,23 +39,14 @@
     </div>
 </template>
 
-<script>
-import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
+<script setup lang="ts">
+import { defineEmits } from "vue"
+import externalLinkSvg from "@/assets/icons/externalLink.svg"
+import sButton from "@/components/buttons/SynthsRoundedButton.vue"
 
-export default {
-    name: "Simulator",
-    components: {
-        "s-button": SynthsRoundedButton,
-    },
-    methods: {
-        close() {
-            this.$emit("close")
-        },
-    },
+const emits = defineEmits(["close"])
+
+function close() {
+    emits("close")
 }
 </script>
-<script setup>
-import externalLinkSvg from "@/assets/icons/externalLink.svg"
-</script>
-
-<style scoped></style>

@@ -1,7 +1,7 @@
 <template>
     <div
         class="modal-backdrop backdrop-blur-lg flex items-center justify-center fixed inset-0 z-[1001]"
-        @click.prevent="$emit('close')"
+        @click.prevent="emits('close')"
     >
         <div class="modal rounded-lg flex flex-col items-start shadow-2xl p-4 absolute" @click.stop="">
             <img class="wallet_gif absolute w-40 right-[-15%] top-[-25%]" src="@/assets/images/wallet.gif" />
@@ -64,7 +64,7 @@
                         left-0
                         hover:brightness-150
                     "
-                    @click="$emit('connect', 'injected')"
+                    @click="emits('connect', 'injected')"
                 >
                     <metamask-svg class="h-4 w-4" />
                     <div
@@ -108,7 +108,7 @@
                         left-0
                         hover:brightness-150
                     "
-                    @click="$emit('connect', 'walletconnect')"
+                    @click="emits('connect', 'walletconnect')"
                 >
                     <img src="@/assets/icons/walletconnect.png" />
                     <div
@@ -153,7 +153,7 @@
                         left-0
                         hover:brightness-150
                     "
-                    @click="$emit('connect', 'fortmatic')"
+                    @click="emits('connect', 'fortmatic')"
                 >
                     <img src="@/assets/icons/formatic.png" />
                     <div
@@ -171,7 +171,7 @@
                             not-italic
                             wallet_name
                         "
-                        @click="$emit('connect', 'fortmatic')"
+                        @click="emits('connect', 'fortmatic')"
                     >
                         Fortmatic
                     </div>
@@ -198,7 +198,7 @@
                         left-0
                         hover:brightness-150
                     "
-                    @click="$emit('connect', 'portis')"
+                    @click="emits('connect', 'portis')"
                 >
                     <img src="@/assets/icons/portis.png" />
                     <div
@@ -251,22 +251,20 @@
     </div>
 </template>
 
-<script>
-export default {
-    name: "ConnectWallet",
-    methods: {
-        close() {
-            this.$emit("close")
-        },
-        saveWalletType() {
-            this.$emit("saveWalletType")
-        },
-    },
-}
-</script>
-<script setup>
+<script setup lang="ts">
 import metamaskSvg from "@/assets/icons/metamask.svg"
 import externalLinkSvg from "@/assets/icons/externalLink.svg"
+import { defineEmits } from "vue"
+
+const emits = defineEmits(["close", "saveWalletType", "connect"])
+
+function close() {
+    emits("close")
+}
+
+function saveWalletType() {
+    emits("saveWalletType")
+}
 </script>
 
 <style>
