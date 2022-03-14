@@ -199,6 +199,23 @@
 </template>
 
 <script>
+export default {
+    computed: {},
+    methods: {
+        filter(event) {
+            this.filter_string = event.target.value
+        },
+    },
+}
+</script>
+<script setup>
+import searchSvg from "@/assets/images/search.svg"
+import arrowUpRightSvg from "@/assets/images/arrow-up-right.svg"
+import arrowRightSvg from "@/assets/images/arrow-right.svg"
+import { globalStore } from "@/composables/global"
+import { computed, ref } from "vue"
+
+const { isMd, isLg } = globalStore()
 let rawSynths = [
     {
         id: 1,
@@ -267,36 +284,11 @@ let rawSynths = [
         status: 1,
     },
 ]
+const filter_string = ref("")
 
-export default {
-    name: "Explore",
-    data() {
-        return {
-            rawSynths,
-            filter_string: "",
-        }
-    },
-    computed: {
-        synths() {
-            if (this.filter_string !== "") {
-                return this.rawSynths.filter((item) =>
-                    item.name.toLowerCase().includes(this.filter_string.toLowerCase())
-                )
-            } else return this.rawSynths
-        },
-    },
-    methods: {
-        filter(event) {
-            this.filter_string = event.target.value
-        },
-    },
-}
-</script>
-<script setup>
-import searchSvg from "@/assets/images/search.svg"
-import arrowUpRightSvg from "@/assets/images/arrow-up-right.svg"
-import arrowRightSvg from "@/assets/images/arrow-right.svg"
-import { globalStore } from "@/composables/global"
-
-const { isMd, isLg } = globalStore()
+const synths = computed(() => {
+    if (filter_string.value !== "") {
+        return rawSynths.filter((item) => item.name.toLowerCase().includes(filter_string.value.toLowerCase()))
+    } else return rawSynths
+})
 </script>

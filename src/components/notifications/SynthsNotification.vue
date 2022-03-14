@@ -18,40 +18,53 @@
     </transition>
 </template>
 
-<script>
+<script setup lang="ts">
+import { ref, onUnmounted } from "vue"
+
 import infoCircleSvg from "@/assets/icons/info-circle.svg"
 import successCircleSvg from "@/assets/icons/success-circle.svg"
-
-export default {
-    name: "NotificationItem",
-    props: {
-        index: Number,
-        title: String,
-        iconStyle: Number, // 0 - info, 1 - success, 2 - error
-        link: String,
-        content: String,
-    },
-    data: () => ({
-        show: true,
-    }),
-    beforeUnmount() {
-        this.show = false
-    },
-    methods: {
-        getIcon(style) {
-            if (style === 0) return infoCircleSvg
-
-            if (style === 1) return successCircleSvg
-        },
-        closeNotification() {
-            this.$emit("close")
-        },
-    },
-}
-</script>
-<script setup>
 import xSvg from "@/assets/images/x.svg"
 import externalLinkSvg from "@/assets/images/external-link.svg"
+
+const props = defineProps({
+    index: {
+        type: Number,
+        default: null,
+    },
+    title: {
+        type: String,
+        default: "",
+    },
+    iconStyle: {
+        type: Number,
+        default: 0,
+    }, // 0 - info, 1 - success, 2 - error
+    link: {
+        type: String,
+        default: "",
+    },
+    content: {
+        type: String,
+        default: "",
+    },
+})
+const emits = defineEmits(["close"])
+
+const show = ref(true)
+
+onUnmounted(() => {
+    show.value = false
+})
+
+function getIcon(style) {
+    if (style === 0) return infoCircleSvg
+
+    if (style === 1) return successCircleSvg
+}
+
+function closeNotification() {
+    emits("close")
+}
 </script>
 
 <style scoped lang="scss">

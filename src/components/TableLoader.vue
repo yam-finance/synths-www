@@ -36,18 +36,15 @@
     </tr>
 </template>
 
-<script>
-export default {
-    name: "TableLoader",
-    props: {
-        target: {
-            type: String,
-            default: "desktop",
-        },
-        loading: {
-            type: Boolean,
-            default: true,
-        },
+<script lang="ts" setup>
+const props = defineProps({
+    target: {
+        type: String,
+        default: "desktop",
     },
-}
+    loading: {
+        type: Boolean,
+        default: true,
+    },
+})
 </script>

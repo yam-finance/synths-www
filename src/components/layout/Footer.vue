@@ -279,7 +279,27 @@
     </nav>
 </template>
 
-<script>
+<script setup lang="ts">
+import twitterSvg from "@/assets/images/socials/twitter.svg"
+import discordSvg from "@/assets/images/socials/discord.svg"
+import greenDotSvg from "@/assets/images/green-dot.svg"
+import externalLinkSvg from "@/assets/images/external-link.svg"
+import dropdownSvg from "@/assets/images/dropdown.svg"
+import metamaskSvg from "@/assets/icons/metamask.svg"
+import copySvg from "@/assets/icons/copy.svg"
+import disconnectSvg from "@/assets/icons/disconnect.svg"
+
+import burgerButton from "@/components/elements/SynthBurgerButton.vue"
+import sButton from "@/components/buttons/SynthsRoundedButton.vue"
+
+import { useWeb3 } from "@/composables/useWeb3"
+import ConnectWallet from "@/components/ConnectWallet.vue"
+import { globalStore } from "@/composables/global"
+import useClipboard from "@/composables/useClipboard"
+
+import { ref } from "vue"
+
+//INIT
 let tabs = [
     {
         id: 1,
@@ -297,79 +317,51 @@ let tabs = [
         to: "portfolio",
     },
 ]
-import SynthBurgerButton from "@/components/elements/SynthBurgerButton"
-import SynthsRoundedButton from "../buttons/SynthsRoundedButton"
 
-export default {
-    name: "Footer",
-    components: {
-        "burger-button": SynthBurgerButton,
-        "s-button": SynthsRoundedButton,
-    },
-    data() {
-        return {
-            isMenuOpen: false,
-            tabs,
-            isHelpDropDownOpen: false,
-            isLangDropDownOpen: false,
-            isWalletDropDownOpen: false,
-        }
-    },
-    methods: {
-        selectTab(item) {
-            this.activeTab = item.id
-        },
-        closePopup(e) {
-            // this.isHelpDropDownOpen = false
-            // this.isLangDropDownOpen = false
-            // this.isWalletDropDownOpen = false
-            // this.isModalVisible = false;
-        },
-        connectButtonHandler() {
-            this.isHelpDropDownOpen = false
-            this.isLangDropDownOpen = false
-            this.isWalletDropDownOpen = !this.isWalletDropDownOpen
-        },
-        handleLanguageMenu() {
-            this.isHelpDropDownOpen = false
-            this.isWalletDropDownOpen = false
-            this.isLangDropDownOpen = !this.isLangDropDownOpen
-        },
-        handleSupportMenu() {
-            this.isLangDropDownOpen = false
-            this.isWalletDropDownOpen = false
-            this.isHelpDropDownOpen = !this.isHelpDropDownOpen
-        },
-    },
+const isMenuOpen = ref(false)
+const isHelpDropDownOpen = ref(false)
+const isLangDropDownOpen = ref(false)
+const isWalletDropDownOpen = ref(false)
+
+function selectTab(item) {
+    // activeTab.value = item.id
 }
-</script>
 
-<script setup>
-import twitterSvg from "@/assets/images/socials/twitter.svg"
-import discordSvg from "@/assets/images/socials/discord.svg"
-import greenDotSvg from "@/assets/images/green-dot.svg"
-import externalLinkSvg from "@/assets/images/external-link.svg"
-import dropdownSvg from "@/assets/images/dropdown.svg"
-import metamaskSvg from "@/assets/icons/metamask.svg"
-import copySvg from "@/assets/icons/copy.svg"
-import disconnectSvg from "@/assets/icons/disconnect.svg"
+function closePopup() {
+    // isHelpDropDownOpen.value = false
+    // isLangDropDownOpen.value = false
+    // isWalletDropDownOpen.value = false
+    // isModalVisible.value = false;
+}
 
-import { useWeb3 } from "@/composables/useWeb3"
-import ConnectWallet from "@/components/ConnectWallet.vue"
-import { globalStore } from "@/composables/global"
-import useClipboard from "@/composables/useClipboard"
+function connectButtonHandler() {
+    isHelpDropDownOpen.value = false
+    isLangDropDownOpen.value = false
+    isWalletDropDownOpen.value = !isWalletDropDownOpen.value
+}
 
-import { computed, ref } from "vue"
+function handleLanguageMenu() {
+    isHelpDropDownOpen.value = false
+    isWalletDropDownOpen.value = false
+    isLangDropDownOpen.value = !isLangDropDownOpen.value
+}
 
+function handleSupportMenu() {
+    isLangDropDownOpen.value = false
+    isWalletDropDownOpen.value = false
+    isHelpDropDownOpen.value = !isHelpDropDownOpen.value
+}
+
+// WEB3
 const { login, web3, logout } = useWeb3()
-const isModalVisible = ref(false)
+let isModalVisible = ref(false)
 
 const { toggleNotificationOpen } = globalStore()
 const { addNewNotifications } = globalStore()
 
 const { state } = globalStore()
 
-const blockNumber = state.blockNumber
+let blockNumber = state.blockNumber
 
 async function handleConnect(connector) {
     isModalVisible.value = false

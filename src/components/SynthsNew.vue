@@ -4,11 +4,11 @@
     </div>
 </template>
 
-<script lang="ts">
-export default {
-    name: "SynthsNew",
-    props: {
-        msg: String,
+<script lang="ts" setup>
+const props = defineProps({
+    msg: {
+        type: String,
+        default: () => "",
     },
-}
+})
 </script>

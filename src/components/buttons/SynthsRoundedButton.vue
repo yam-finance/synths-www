@@ -8,21 +8,19 @@
     </button>
 </template>
 
-<script>
-export default {
-    name: "SynthsRoundedButton",
-    props: {
-        color: {
-            type: String,
-            default: "linear-gradient(180deg, #F77FA0 0%, #DA4CAB 100%)",
-        },
-        buttonStyles: {
-            type: String,
-            default: "",
-        },
+<script lang="ts" setup>
+const props = defineProps({
+    color: {
+        type: String,
+        default: "linear-gradient(180deg, #F77FA0 0%, #DA4CAB 100%)",
     },
-    emits: ["btn-click"],
-}
+    buttonStyles: {
+        type: String,
+        default: "",
+    },
+})
+
+const emits = defineEmits(["btn-click"])
 </script>
 
 <style scoped>

@@ -5,61 +5,6 @@
 </template>
 
 <script>
-import {
-    Chart,
-    ArcElement,
-    LineElement,
-    BarElement,
-    PointElement,
-    BarController,
-    BubbleController,
-    DoughnutController,
-    LineController,
-    PieController,
-    PolarAreaController,
-    RadarController,
-    ScatterController,
-    CategoryScale,
-    LinearScale,
-    LogarithmicScale,
-    RadialLinearScale,
-    TimeScale,
-    TimeSeriesScale,
-    Decimation,
-    Filler,
-    Legend,
-    Title,
-    Tooltip,
-    SubTitle,
-} from "chart.js"
-
-Chart.register(
-    ArcElement,
-    LineElement,
-    BarElement,
-    PointElement,
-    BarController,
-    BubbleController,
-    DoughnutController,
-    LineController,
-    PieController,
-    PolarAreaController,
-    RadarController,
-    ScatterController,
-    CategoryScale,
-    LinearScale,
-    LogarithmicScale,
-    RadialLinearScale,
-    TimeScale,
-    TimeSeriesScale,
-    Decimation,
-    Filler,
-    Legend,
-    Title,
-    Tooltip,
-    SubTitle
-)
-
 export default {
     props: {
         chartData: {
@@ -102,40 +47,6 @@ export default {
 
         this.canvas.height = this.container.clientHeight
         this.canvas.width = this.container.clientWidth
-
-        this.myChart = new Chart(ctx, {
-            type: "line",
-            data: data,
-            options: {
-                plugins: {
-                    legend: {
-                        display: false,
-                    },
-                    tooltip: {
-                        enabled: false,
-                    },
-                },
-                scales: {
-                    y: {
-                        display: false, // Hide Y axis labels
-                    },
-                    x: {
-                        display: false, // Hide X axis labels
-                    },
-                },
-                elements: {
-                    point: {
-                        radius: 0,
-                    },
-                    line: {
-                        borderJoinStyle: "round",
-                    },
-                },
-                layout: {
-                    padding: 5,
-                },
-            },
-        })
     },
 }
 </script>

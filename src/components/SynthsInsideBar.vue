@@ -73,77 +73,71 @@
         </s-button>
     </div>
 </template>
+<script setup lang="ts">
+import { reactive, ref, defineEmits } from "vue"
 
-<script>
-import SynthsRoundedButton from "@/components/buttons/SynthsRoundedButton.vue"
-import SynthsCryptoInput from "@/components/inputs/SynthsCryptoInput.vue"
-
-export default {
-    name: "SynthsInsideBar",
-    components: {
-        "s-button": SynthsRoundedButton,
-        "s-crypto-input": SynthsCryptoInput,
-    },
-    props: {
-        title: {
-            type: String,
-            default: "",
-        },
-        subTitle: {
-            type: String,
-            default: "",
-        },
-        buttonName: {
-            type: String,
-            default: "",
-        },
-        settle: {
-            type: Boolean,
-            default: false,
-        },
-        arrowReverse: {
-            type: Boolean,
-            default: false,
-        },
-        loading: {
-            type: Boolean,
-            default: false,
-        },
-        expiryPrice: {
-            type: String,
-            default: "",
-        },
-    },
-
-    data: () => ({
-        tokens: [
-            {
-                title: "long tokens",
-                subTitle: "Valued at",
-            },
-            {
-                title: "short tokens",
-                subTitle: "Valued at",
-            },
-        ],
-        input: "0",
-        highlight: true,
-        show: false,
-    }),
-    methods: {
-        buttonClick() {
-            console.log(this.input)
-        },
-        closeBox() {
-            this.show = !this.show
-            this.$emit("sidebar-closed", 0)
-        },
-    },
-}
-</script>
-<script setup>
 import sidebarArrowSvg from "@/assets/sidebarArrow.svg"
 import sidebarArrowReverseSvg from "@/assets/sidebarArrowReverse.svg"
+
+import sButton from "@/components/buttons/SynthsRoundedButton.vue"
+import sCryptoInput from "@/components/inputs/SynthsCryptoInput.vue"
+
+const props = defineProps({
+    title: {
+        type: String,
+        default: "",
+    },
+    subTitle: {
+        type: String,
+        default: "",
+    },
+    buttonName: {
+        type: String,
+        default: "",
+    },
+    settle: {
+        type: Boolean,
+        default: false,
+    },
+    arrowReverse: {
+        type: Boolean,
+        default: false,
+    },
+    loading: {
+        type: Boolean,
+        default: false,
+    },
+    expiryPrice: {
+        type: String,
+        default: "",
+    },
+})
+
+const emits = defineEmits(["sidebar-closed"])
+
+const tokens: { title: string; subTitle: string }[] = reactive([
+    {
+        title: "long tokens",
+        subTitle: "Valued at",
+    },
+    {
+        title: "short tokens",
+        subTitle: "Valued at",
+    },
+])
+
+const input = ref("0")
+const highlight = ref(true)
+const show = ref(false)
+
+function buttonClick() {
+    console.log(input)
+}
+
+function closeBox() {
+    show.value = !show.value
+    emits("sidebar-closed", 0)
+}
 </script>
 
 <style scoped lang="scss">

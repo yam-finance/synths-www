@@ -6,18 +6,17 @@
     </div>
 </template>
 
-<script>
-export default {
-    name: "SynthBurgerButton",
-    props: {
-        isOpen: Boolean,
-    },
-    emits: ["click"],
-    methods: {
-        clickHandler() {
-            this.$emit("click")
-        },
-    },
+<script lang="ts" setup>
+import { defineEmits, ref } from "vue"
+
+const props = defineProps({
+    isOpen: Boolean,
+})
+
+const emits = defineEmits(["click"])
+
+function clickHandler() {
+    emits("click")
 }
 </script>
 
